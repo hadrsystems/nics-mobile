@@ -1,0 +1,59 @@
+# To enable ProGuard in your project, edit project.properties
+# to define the proguard.config property as described in that file.
+#
+# Add project specific ProGuard rules here.
+# By default, the flags in this file are appended to flags specified
+# in ${sdk.dir}/tools/proguard/proguard-android.txt
+# You can edit the include path and order by changing the ProGuard
+# include property in project.properties.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# Add any project specific keep options here:
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keep class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+-keep class edu.mit.ll.phinics.android.SettingsActivity$GeneralPreferenceFragment
+-keep class edu.mit.ll.phinics.android.SettingsActivity$SyncPreferenceFragment
+-keep class edu.mit.ll.phinics.android.SettingsActivity$OtherPreferenceFragment
+
+-dontwarn org.apache.harmony.**
+-dontwarn com.sun.mail.**
+-dontwarn com.google.common.**
+-dontwarn android.support.v7.**
+-dontwarn java.awt.**,javax.security.**,java.beans.**
+
+-keepclassmembers enum * {
+ public static **[] values();
+ public static ** valueOf(java.lang.String);
+ }
+ 
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+-keep public class * extends android.view.ActionProvider {
+  <init>(...);
+}
+-keep public class * extends android.support.v4.view.ActionProvider {
+  <init>(...);
+}
+
+-keep class edu.mit.ll.phinics.android.api.data.** {
+	*;
+}
+
+-keep class edu.mit.ll.phinics.android.api.messages.** {
+	*;
+}
+
+-keep class edu.mit.ll.phinics.android.api.payload.** {
+	*;
+}

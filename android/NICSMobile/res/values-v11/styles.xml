@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme for API 11+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 11+ devices.
+    -->
+    <style name="AppTheme" parent="@style/Theme.AppCompat">
+        <item name="android:windowActionBar">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:actionBarStyle">@style/AppTheme.ActionBarStyle</item>
+        <item name="android:actionMenuTextColor">@color/holo_blue_dark</item>
+        <item name="android:actionDropDownStyle">@style/AppTheme.ActionDropDownStyle</item>
+        <item name="android:dropDownListViewStyle">@style/AppTheme.DropDownListViewStyle</item>
+        <item name="android:alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
+        <item name="android:alertDialogStyle">@style/AppTheme.AlertDialogStyle</item>
+        <item name="android:popupMenuStyle">@style/AppTheme.PopupMenuStyle</item>
+        <item name="android:actionBarWidgetTheme">@style/AppTheme.ActionBarWidgetTheme</item>
+        <item name="android:textColorAlertDialogListItem">@color/black</item>
+        <item name="android:fadeScrollbars">false</item>  
+        <item name="android:scrollbarThumbVertical">@drawable/custom_scroll_style</item>
+        <item name="android:scrollbarTrackVertical">@drawable/custom_scrolltrack_style</item>
+  		<item name="android:editTextStyle">@style/AppTheme.EditTextStyle</item>
+        
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/AppTheme.ActionBarStyle</item>
+        <item name="actionMenuTextColor">@color/holo_blue_dark</item>
+        <item name="actionDropDownStyle">@style/AppTheme.ActionDropDownStyle</item>
+        <item name="dropDownListViewStyle">@style/AppTheme.DropDownListViewStyle</item>
+        <item name="popupMenuStyle">@style/AppTheme.PopupMenuStyle</item>
+        <item name="actionBarWidgetTheme">@style/AppTheme.ActionBarWidgetTheme</item>
+    </style>
+    
+    <style name="AppTheme.AlertDialogStyle">
+ 		    <item name="android:fullDark">@color/white</item>
+		    <item name="android:topDark">@drawable/header_border</item> <!-- Header background -->
+		    <item name="android:centerDark">@color/white</item>
+		    <item name="android:bottomDark">@color/white</item>
+		    <item name="android:fullBright">@color/white</item>
+		    <item name="android:topBright">@color/white</item>
+		    <item name="android:centerBright">@color/white</item>
+		    <item name="android:bottomBright">@color/white</item> <!-- Item Background -->
+		    <item name="android:bottomMedium">@color/white</item>
+		    <item name="android:centerMedium">@color/white</item>
+    </style>
+    
+    <style name="AppTheme.AlertDialogTheme">
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingBottom">1dp</item>
+        <item name="android:paddingEnd">2dp</item>
+ 		<item name="android:windowBackground">@drawable/menu_border</item>
+    	<item name="android:windowIsFloating">true</item>
+  		<item name="android:textAppearanceSmall">@style/AppTheme.WindowSmallMessageStyle</item>
+    	<item name="android:textAppearanceMedium">@style/AppTheme.WindowMessageStyle</item>
+    	<item name="android:textAppearanceLarge">@style/AppTheme.WindowMessageStyle</item>
+    	<item name="android:buttonBarButtonStyle">@style/AppTheme.DialogButtonStyle</item>
+    </style>
+    
+    <style name="AppTheme.DialogButtonStyle" parent="@android:style/Widget.Button">
+   		<item name="android:textAppearance">@android:style/TextAppearance.Holo.Widget.ActionBar.Title</item>
+   		<item name="android:textColor">@color/black</item>
+    </style>
+    
+    <style name="AppTheme.ActionBarWidgetTheme" parent="@style/Theme.AppCompat.CompactMenu.Dialog">
+        <item name="android:background">@color/black</item>
+        <item name="background">@color/black</item>
+    </style>
+        
+    <style name="AppTheme.SpinnerDropDownStyle" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
+        <item name="android:background">@color/black</item>
+        <item name="background">@color/black</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="AppTheme.PopupMenuStyle" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/menu_border</item>
+        <item name="background">@drawable/menu_border</item>
+    </style>
+    
+    <style name="AppTheme.ActionDropDownStyle" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/menu_border</item>
+        <item name="background">@drawable/menu_border</item>
+        <item name="android:textAppearance">@style/AppTheme.ActionBar.TitleTextStyle</item>
+    </style>
+    
+    <style name="AppTheme.DropDownListViewStyle" parent="@style/Widget.AppCompat.ListView.DropDown">
+        <item name="android:background">@color/background_darker</item>
+        <item name="background">@drawable/menu_border</item>
+    </style>
+    
+    <style name="AppTheme.ActionBarStyle" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleTextStyle</item>
+        <item name="titleTextStyle">@style/AppTheme.ActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="AppTheme.ActionBar.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="AppTheme.WindowMessageStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    
+    <style name="AppTheme.EditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:textColor">@color/black</item>
+    </style>
+    
+    <style name="AppTheme.WindowSmallMessageStyle" parent="@android:style/TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="AppTheme.DropDownSpinner">
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

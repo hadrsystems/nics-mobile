@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<resources>
+    <string name="markup_AddSymbolButton">Add Markup Symbol Button</string>
+    <string name="markup_AddLineButton">Add Markup Line Button</string>
+    <string name="markup_AddRectangleButton">Add Markup Rectangle Button</string>
+    <string name="markup_AddTrapezoidButton">Add Markup Trapezoid Button</string>
+    <string name="markup_AddCircleButton">Add Markup Circle Button</string>
+    <string name="markup_AddLRFButton">Add Markup LRF Button</string>
+    
+    <string name="markup_LRF">LRF</string>
+    <string name="markup_decimal">Decimal</string>
+    <string name="markup_degrees">Degrees</string>
+    <string name="markup_latitude">Latitud</string>
+    <string name="markup_longitude">Longitud</string>
+    <string name="markup_mgrs">MGRS</string>
+    <string name="markup_utm">UTM: zone hemisphere(N/S) easting northing</string>
+    <string name="markup_radius">Radius (meters)</string>
+    <string name="markup_symbol_select">Select Symbol</string>
+    <string name="markup_symbol_icon">Symbol Icon</string>
+ 
+    <string name="markup_ok">Aceptar / OK</string>
+    <string name="markup_cancel">Cancelar</string>
+    
+    <string name="markup_maptype">Tipo de mapa</string>
+    <string name="markup_normal">Normal</string>
+    <string name="markup_satellite">Satélite</string>
+    <string name="markup_hybrid">Híbrido</string>
+    <string name="markup_terrain">Terreno</string>
+    <string name="markup_offline">NICS OSM</string>
+    <string name="markup_traffic">Tráfico</string>
+    <string name="markup_indoor">Interior</string>
+    
+    <string name="markup_symbol">Symbol</string>
+    <string name="markup_segment">Segment</string>
+    <string name="markup_rectangle">Rectangle</string>
+    <string name="markup_trapezoid">Trapezoid</string>
+    <string name="markup_circle">Circle</string>
+    
+    <string name="markup_symbol_lowercase">symbol</string>
+    <string name="markup_segment_lowercase">segment</string>
+    <string name="markup_rectangle_lowercase">rectangle</string>
+    <string name="markup_trapezoid_lowercase">trapezoid</string>
+    <string name="markup_circle_lowercase">circle</string>
+    
+    <string name="markup_finalize">Finalize %s Markup?</string>
+    <string name="markup_confirm_completion">Click OK to complete the %0$s. Click Cancel to continue editing the %0$s.</string>
+    <string name="markup_confrim_delete">Delete the selected shape?</string>
+    <string name="markup_shape_incomplete">Shape Incomplete</string>
+    <string name="markup_confirm_fields">Please fill in all of the lat/long fields to continue.</string>
+    
+    <string name="incident_focus_btn">Incident Focus Button</string>
+  	<string name="wfslayer_title">Seguimiento</string>
+  	
+  	<string name="markup_user">Usuario:</string>
+  	<string name="markup_timestamp">Hora de registro:</string>
+  	<string name="markup_message">Mensajes:</string>
+  	<string name="markup_resource_id">Recurso Id:</string>
+  	<string name="markup_course">Course:</string>
+  	<string name="markup_speed">Velocidad:</string>
+  	<string name="markup_description">Descripción:</string>
+  	
+  	<string name="markup_press_to_view">Press to view message&#8230;</string>
+  	
+
+</resources>

@@ -1,0 +1,141 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "My Tasks"
+    },
+    "operational_period": {
+    	"display_name": "Operational Period",
+        "type": "section",
+        "id": "0",
+        "priority": "0",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "from",
+                "to"
+            ]
+        }
+    },
+    "from": {
+    	"display_name": "From",
+        "type": "string",
+        "id": "1",
+        "priority": "1",
+        "enabled": "false"
+    },
+    "to": {
+    	"display_name": "To",
+        "type": "string",
+        "id": "2",
+        "priority": "2",
+        "enabled": "false"
+    },
+    "unit": {
+    	"display_name": "Unit",
+        "type": "section",
+        "id": "3",
+        "priority": "3",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "unit_name",
+                "leader",
+                "leader_contact",
+                "#_persons"
+            ]
+        }
+    },
+    "unit_name": {
+    	"display_name": "Unit Name",
+        "type": "string",
+        "id": "4",
+        "priority": "4",
+        "enabled": "false"
+    },
+    "leader": {
+    	"display_name": "Leader",
+        "type": "string",
+        "id": "5",
+        "priority": "5",
+        "enabled": "false"
+    },
+    "leader_contact": {
+    	"display_name": "Leader Contact",
+        "type": "string",
+        "id": "6",
+        "priority": "6",
+        "enabled": "false"
+    },
+    "#_persons": {
+    	"display_name": "# Persons",
+        "type": "string",
+        "id": "7",
+        "priority": "7",
+        "enabled": "false"
+    },
+    "staging_location": {
+    	"display_name": "Staging Location",
+        "type": "section",
+        "id": "8",
+        "priority": "8",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "latitude",
+                "longitude"
+            ]
+        }
+    },
+    "latitude": {
+    	"display_name": "Latitude",
+        "type": "string",
+        "id": "11",
+        "priority": "11",
+        "enabled": "false"
+    },
+    "longitude": {
+    	"display_name": "Longitude",
+        "type": "string",
+        "id": "12",
+        "priority": "12",
+        "enabled": "false"
+    },
+    "unit_list": {
+    	"display_name": "Unit List",
+        "type": "section",
+        "id": "13",
+        "priority": "13",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "personnel"
+            ]
+        }
+    },
+    "personnel": {
+    	"display_name": "Personnel",
+        "type": "string",
+        "id": "14",
+        "priority": "14",
+        "enabled": "false"
+    },
+    "tasks": {
+    	"display_name": "Tasks",
+        "type": "section",
+        "id": "15",
+        "priority": "15",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "task_list"
+            ]
+        }
+    },
+    "task_list": {
+    	"display_name": "Task List",
+        "type": "string",
+        "id": "16",
+        "priority": "16",
+        "enabled": "false"
+    }
+}

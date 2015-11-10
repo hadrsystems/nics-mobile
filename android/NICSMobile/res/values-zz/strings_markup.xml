@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<resources>
+    <string name="markup_AddSymbolButton">Áþð Mârkùp SýＭbøl Búttòñ</string>
+    <string name="markup_AddLineButton">Ãþð Mårkùp Lîñë Búttôñ</string>
+    <string name="markup_AddRectangleButton">Åþð Mãrkùp Rëçtäñglè Búttöñ</string>
+    <string name="markup_AddTrapezoidButton">Áðþ Mârkùp Trãpëzóìð Búttôñ</string>
+    <string name="markup_AddCircleButton">Ãþð Màrkùp Çìrçlê Búttöñ</string>
+    <string name="markup_AddLRFButton">Åþð Mãrkùp LRF Búttòñ</string>
+    
+    <string name="markup_LRF">LRF</string>
+    <string name="markup_decimal">ÐëçìＭãl</string>
+    <string name="markup_degrees">Þègréês</string>
+    <string name="markup_latitude">Lãtîtüðé</string>
+    <string name="markup_longitude">Lôñgîtûðè</string>
+    <string name="markup_mgrs">MGRS</string>
+    <string name="markup_utm">ÙTM: zòñè héＭìsphêrë(Ñ/S) èàstíñg ñórthîñg</string>
+    <string name="markup_radius">Rãðîúß (Ｍêtërs)</string>
+    <string name="markup_symbol_select">Sëlèçt SýＭböl</string>
+    <string name="markup_symbol_icon">SýＭból Ìçôñ</string>
+ 
+    <string name="markup_ok">ÒK</string>
+    <string name="markup_cancel">Çáñçél</string>
+    
+    <string name="markup_maptype">Måp Týpè</string>
+    <string name="markup_normal">ÑørＭãl</string>
+    <string name="markup_satellite">Sátéllïtê</string>
+    <string name="markup_hybrid">Hýbrïð</string>
+    <string name="markup_terrain">Têrráïñ</string>
+    <string name="markup_traffic">Tråffïç</string>
+    <string name="markup_indoor">Íñðôõr</string>
+    
+    <string name="markup_symbol">SýＭbøl</string>
+    <string name="markup_segment">SégＭêñt</string>
+    <string name="markup_rectangle">Rêçtãñglë</string>
+    <string name="markup_trapezoid">Trápêzóìð</string>
+    <string name="markup_circle">Çìrçlé</string>
+    
+    <string name="markup_symbol_lowercase">sýＭböl</string>
+    <string name="markup_segment_lowercase">sêgＭëñt</string>
+    <string name="markup_rectangle_lowercase">réçtâñglê</string>
+    <string name="markup_trapezoid_lowercase">trápëzõîð</string>
+    <string name="markup_circle_lowercase">çîrçlè</string>
+    
+    <string name="markup_finalize">Fïñâlìzë %s Mãrkùp?</string>
+    <string name="markup_confirm_completion">Çlíçk ÓK tô çõＭplêtë thè %0$s. Çlîçk Çàñçél tö çøñtïñûê ëþìtíñg thè %0$s.</string>
+    <string name="markup_confrim_delete">Ðélêtë thè sélêçtëþ ßhãpè?</string>
+    <string name="markup_shape_incomplete">Shápé ÎñçôＭplêtë</string>
+    <string name="markup_confirm_fields">Plêäsë fìll íñ åll öf thè làt/løñg fîélþs tò çóñtïñûê.</string>
+    
+    <string name="incident_focus_btn">Ïñçìþéñt Fõçùß Búttöñ</string>
+  	<string name="wfslayer_title">Tràçkìñg</string>
+  	
+  	<string name="markup_user">Ûƨèř:</string>
+  	<string name="markup_timestamp">Tï₥èƨƭá₥ƥ:</string>
+  	<string name="markup_message">Mèƨƨáϱè:</string>
+  	<string name="markup_resource_id">Rèƨôúřçè Ìδ:</string>
+  	<string name="markup_course">Çôúřƨè:</string>
+  	<string name="markup_speed">§ƥèèδ:</string>
+  	<string name="markup_description">Ðèƨçřïƥƭïôñ:</string>
+  	<string name="markup_assign">Mèƨƨáϱè:</string>
+
+  	<string name="markup_press_to_view">Þřèƨƨ ƭô Ʋïèω ₥èƨƨáϱè&#8230;</string>
+</resources>

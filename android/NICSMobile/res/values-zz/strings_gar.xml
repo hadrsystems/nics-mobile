@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<resources>
+    
+    <string name="high_risk">&gt;&gt;Hìgh Rísk&lt;&lt;</string>
+    <string name="caution">&gt;Çàùtîòñ&lt;</string>
+    <string name="low_risk">Lów Rïsk</string>
+    <string name="gar_condition_update">GÀR Çôñðìtíõñ Ùpþátè: %1$s [%2$d] %3$s</string>
+    <string name="gar_sent">GÁR Séñt: %s</string>
+    
+
+    <string name="gar_total">GÂR Tötâl</string>
+    <string name="gar_title">GÃR Çãlçúlätør</string>
+    <string name="gar_send">Sêñð Úpþåtëð GÄR îñ Çhàt</string>
+    <string name="gar_text">&quot;Tò çóＭpûtè thé tôtál lêvël õf rïßk, âssìgñ ã çöþè øf 0 (ñò ríßk) tó 10 (Ｍäx rîsk) fôr éåçh êlëＭèñt.&quot;</string>
+    <string name="gar_temp_val">GÅR ÛPÐÀTÈ:&lt;tïＭé&gt; &lt;lõçàtìöñ&gt; &lt;üsêr&gt; &lt;válùë&gt;</string>
+    <string name="temp_status">sèñð stàtùß áñþ tìＭé</string>
+	<string name="zerothehero">0</string>
+	
+	<!-- GAR Categories -->
+	<string name="crew_fitness">Çrèw Fìtñéss</string>
+    <string name="crew_selection">Çrèw Sélêçtìòñ</string>
+    <string name="environment">ÈñvìròñＭèñt</string>
+    <string name="ee_planning">Èvèñt/Évòlùtìóñ ÇôＭpléxítÿ</string>
+    <string name="supervision">Sùpèrvìsíòñ</string>
+    <string name="planning">Plàññìñg</string>
+</resources>

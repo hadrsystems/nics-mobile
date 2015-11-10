@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<resources>
+    <string name="pref_header_general">Gèñéràl</string>
+    <string name="pref_header_sync">Sÿñç</string>
+    <string name="pref_title_lrf">Làsèr Ráñgé Fìñðêr</string>
+    <string name="pref_description_lrf">Èñàblè/Ðìsáblé thê âbílîtÿ tò ùsë thè LRF tó ßét Lãt/Lñg pôsïtìõñ.</string>
+    <string name="pref_title_debug_tab">Shòw Ðèbùg Tàb</string>
+    <string name="pref_description_debug_tab">Èñàblè/Ðìsáblé thê âpplíçãtîòñ ðëbùg lóg ïñ thè Çhät Sçréêñ.</string>
+    <string name="pref_title_tracking">GPS Mòbìlè Ðévíçê Tràçkîñg</string>
+    <string name="pref_description_tracking">Èñàblè/Ðìsáblé GPS trâçkíñg.</string>
+    <string name="pref_title_select_server">Sèléçt ÑÌÇS Sêrvër</string>
+    <string name="pref_description_select_server">ÑÒTÈ: Çhàñgìñg sèrvérs wíll rêqùîrë ÿòú tó rè-lôgïñ.</string>
+    <string name="pref_description_mdt_sync_rate">ÑÒTÈ: Fàstèr GPS ùpðátés wìll çòñßúＭê â sígñîfïçãñt äＭóûñt ôf båttërÿ põwèr!</string>
+    <string name="pref_title_coordinate_display_format">Çòórðìñàtè Ðíspláÿ FôrＭât</string>
+    <string name="pref_description_coordinate_display_format">Sèléçt hòw ÿóù wôúlð lìkê làt/lõñg çöørþíñátës tò bè ðîsplâýéþ.</string>
+    
+    <string-array name="pref_coordinate_list_titles">
+        <item>ÐèçìＭàl Þégrêës\n[+-]DDD.DDDDD</item>
+        <item>Ðègréês àñð ÞëçìＭál Míñùtès\n[+-]DDD:MM.MMMMM</item>
+        <item>Ðègréês Mìñùtës Sèçòñðß\nDDD:MM:SS.SSSSS</item>
+		<item>UTM</item>
+		<item>MGRS</item>
+    </string-array>
+    <string-array name="pref_coordinate_list_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+		<item>3</item>
+		<item>4</item>
+    </string-array>
+
+    <string-array name="pref_server_list_titles">
+        <item>Your Instance</item>
+    </string-array>
+    <string-array name="pref_server_list_values">
+        <item>https://yourdomain/api/v1/</item>
+    </string-array>
+
+    <string name="pref_header_other">Àðþìtíòñàl Fèátùrés</string>
+    <string name="pref_title_risk_assessment">Rìsk ÀsßèssＭéñt</string>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Ðàtá &amp; sÿñç</string>
+    <string name="pref_title_incident_sync_frequency">Rèpòrts Ùpðàté Frêqùëñçÿ</string>
+    <string name="pref_title_collabroom_sync_frequency">Màp/Çhát Ùpðâtè Fréqùêñçÿ</string>
+    <string name="pref_title_mdt_sync_frequency">MÐT Ùpðàtè Fréqùêñçÿ</string>
+    <string name="pref_title_wfs_sync_frequency">WFS Làÿèr Ùpðáté Frêqùëñçý</string>
+
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 sèçòñðs</item>
+        <item>30 sèçòñðs</item>
+        <item>1 Ｍìñùtè</item>
+        <item>1.5 Ｍìñùtès</item>
+        <item>2 Ｍìñùtès</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+    </string-array>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Ñòtìfíçàtîóñs</string>
+    <string name="pref_title_new_message_notifications">Ñèw Ｍéssàgê ñòtìfíçátîóñß</string>
+    <string name="pref_title_ringtone">Rìñgtòñè</string>
+    <string name="pref_ringtone_silent">Sìlèñt</string>
+    <string name="pref_title_vibrate">Vìbràtè</string>
+    
+    <string name="log_in_and_join_collabroom_to_enable_risk_assessment">Plèàsé lòg-ìñ áñð jóíñ â ÇôllãbrõöＭ tø êñäblë rîsk åßsèsßＭéñt.</string>
+    <string name="join_collabroom_to_enable_risk_assessment">Plèàsé jòìñ á ÇóllâbrôõＭ tö êñãblë rísk äßsèsßＭéñt.</string>
+
+</resources>

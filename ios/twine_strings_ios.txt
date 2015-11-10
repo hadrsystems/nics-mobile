@@ -1,0 +1,2470 @@
+[[Uncategorized]]
+	[0YS-aA-8gI.normalTitle]
+		en = Tracking
+		comment = Class = "UIButton"; normalTitle = "Tracking"; ObjectID = "0YS-aA-8gI";
+		ca-ES = !@#$!@#$
+		es = Seguimiento
+		it = #$%&!
+	[0i6-hM-ZHR.title]
+		en = Field Report Detail
+		comment = Class = "UIViewController"; title = "Field Report Detail"; ObjectID = "0i6-hM-ZHR";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Información/Contenido del informe de campo
+		it = #$%&! #$%&! #$%&!
+	[0po-kV-x18.text]
+		en = Send status and time.
+		comment = Class = "UILabel"; text = "Send status and time."; ObjectID = "0po-kV-x18";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Enviar estado y tiempo
+		it = #$%&! #$%&! #$%&! #$%&!.
+	[1FX-dG-D25.title]
+		en = User Info
+		comment = Class = "UIViewController"; title = "User Info"; ObjectID = "1FX-dG-D25";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Información del usuario
+		it = #$%&! #$%&!
+	[311-Nq-PoD.title]
+		en = Field Report List
+		comment = Class = "UITableViewController"; title = "Field Report List"; ObjectID = "311-Nq-PoD";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Lista de informes de campo or reporte de campo
+		it = #$%&! #$%&! #$%&!
+	[3Yg-qf-Ga5.text]
+		en = Name
+		comment = Class = "UILabel"; text = "Name"; ObjectID = "3Yg-qf-Ga5";
+		ca-ES = !@#$!@#$
+		es = Nombre
+		it = #$%&!
+	[3a5-1Y-yMk.text]
+		en = Crew Selection
+		comment = Class = "UILabel"; text = "Crew Selection"; ObjectID = "3a5-1Y-yMk";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Seleción de personal
+		it = #$%&! #$%&!
+	[3pW-v9-n0J.normalTitle]
+		en = OK
+		comment = Class = "UIButton"; normalTitle = "OK"; ObjectID = "3pW-v9-n0J";
+		ca-ES = !@#$!@#$
+		es = Aceptar / OK
+		it = #$%&!
+	[5Mq-LV-Ca0.title]
+		en = Field Report List
+		comment = Class = "UITableViewController"; title = "Field Report List"; ObjectID = "5Mq-LV-Ca0";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Lista de informes de campo or reporte de campo
+		it = #$%&! #$%&! #$%&!
+	[7Gc-uZ-D7t.title]
+		en = GAR
+		comment = Class = "UINavigationItem"; title = "GAR"; ObjectID = "7Gc-uZ-D7t";
+		ca-ES = !@#$!@#$
+		es = Herramienta de evaluación global
+		it = #$%&!
+	[7cS-tx-LhI.text]
+		en = Name
+		comment = Class = "UILabel"; text = "Name"; ObjectID = "7cS-tx-LhI";
+		ca-ES = !@#$!@#$
+		es = Nombre
+		it = #$%&!
+	[80J-c5-QFg.text]
+		en = Timestamp
+		comment = Class = "UILabel"; text = "Timestamp"; ObjectID = "80J-c5-QFg";
+		ca-ES = !@#$!@#$
+		es = Hora de registro
+		it = #$%&!
+	[83r-r2-e97.normalTitle]
+		en = Chat
+		comment = Class = "UIButton"; normalTitle = "Chat"; ObjectID = "83r-r2-e97";
+		ca-ES = !@#$!@#$
+		es = Conversación / Chat
+		it = #$%&!
+	[8W5-U7-CUU.text]
+		en = Incident
+		comment = Class = "UILabel"; text = "Incident"; ObjectID = "8W5-U7-CUU";
+		ca-ES = !@#$!@#$
+		es = Incidencia
+		it = #$%&!
+	[A8U-4r-geh.text]
+		en = Timestamp
+		comment = Class = "UILabel"; text = "Timestamp"; ObjectID = "A8U-4r-geh";
+		ca-ES = !@#$!@#$
+		es = Hora de registro
+		it = #$%&!
+	[AKO-Iy-kL9.text]
+		en = TimeStamp
+		comment = Class = "UILabel"; text = "TimeStamp"; ObjectID = "AKO-Iy-kL9";
+		ca-ES = !@#$!@#$
+		es = Hora de registro
+		it = #$%&!
+	[AOc-15-z7d.text]
+		en = Planning
+		comment = Class = "UILabel"; text = "Planning"; ObjectID = "AOc-15-z7d";
+		ca-ES = !@#$!@#$
+		es = Planificación
+		it = #$%&!
+	[AWH-55-uSh.normalTitle]
+		en = Sign in
+		comment = Class = "UIButton"; normalTitle = "Sign in"; ObjectID = "AWH-55-uSh";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Registrarse
+		it = #$%&! #$%&!
+	[C3t-p7-dZX.title]
+		en = Simple Report Detail
+		comment = Class = "UIViewController"; title = "Simple Report Detail"; ObjectID = "C3t-p7-dZX";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Detalle de informe simple
+		it = #$%&! #$%&! #$%&!
+	[Dls-Xw-pvD.title]
+		en = Overview
+		comment = Class = "UINavigationItem"; title = "Overview"; ObjectID = "Dls-Xw-pvD";
+		ca-ES = !@#$!@#$
+		es = Descripción general/resumen/sinopsis
+		it = #$%&!
+	[HDO-gu-5rP.text]
+		en = Timestamp
+		comment = Class = "UILabel"; text = "Timestamp"; ObjectID = "HDO-gu-5rP";
+		ca-ES = !@#$!@#$
+		es = Hora de registro
+		it = #$%&!
+	[HRF-54-2Eb.text]
+		en = No Damage Reports have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No Damage Reports have been posted in this incident yet."; ObjectID = "HRF-54-2Eb";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = No se han registrado informes de daños para esta incidencia
+		it = #$%&! #$%&! #$%&! #$%&! #$%&! #$%&! #$%&!.
+	[I5U-Nh-yR5.text]
+		en = name
+		comment = Class = "UILabel"; text = "name"; ObjectID = "I5U-Nh-yR5";
+		ca-ES = !@#$!@#$
+		es = Nombre
+		it = #$%&!
+	[IMf-dv-FTx.normalTitle]
+		en = New Report
+		comment = Class = "UIButton"; normalTitle = "New Report"; ObjectID = "IMf-dv-FTx";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Nuevo informe
+		it = #$%&! #$%&!
+	[IeI-OW-h7D.normalTitle]
+		en = Map Type
+		comment = Class = "UIButton"; normalTitle = "Map Type"; ObjectID = "IeI-OW-h7D";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Tipo de mapa
+		it = #$%&! #$%&!
+	[Ioi-Cd-MP1.normalTitle]
+		en = Satellite
+		comment = Class = "UIButton"; normalTitle = "Satellite"; ObjectID = "Ioi-Cd-MP1";
+		ca-ES = !@#$!@#$
+		es = Satélite
+		it = #$%&!
+	[JY0-sV-A8e.placeholder]
+		en = Type chat message here...
+		comment = Class = "UITextField"; placeholder = "Type chat message here..."; ObjectID = "JY0-sV-A8e";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$...
+		es = Escribe aquí un mensaje o conversación
+		it = #$%&! #$%&! #$%&! #$%&!...
+	[JcV-ui-R4A.text]
+		en = Incident/Training
+		comment = Class = "UILabel"; text = "Incident/Training"; ObjectID = "JcV-ui-R4A";
+		ca-ES = !@#$!@#$/!@#$!@#$
+		es = Incidencia/Instrucción
+		it = #$%&!/#$%&!
+	[JgU-tg-bz0.title]
+		en = Resource Request List
+		comment = Class = "UITableViewController"; title = "Resource Request List"; ObjectID = "JgU-tg-bz0";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Lista de recursos solicitados
+		it = #$%&! #$%&! #$%&!
+	[L9O-Sl-a8r.text]
+		en = Tracking Layer
+		comment = Class = "UILabel"; text = "Tracking Layer"; ObjectID = "L9O-Sl-a8r";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Capa de seguimineto
+		it = #$%&! #$%&!
+	[LkN-rW-2Wn.text]
+		en = No Explosive Reports have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "LkN-rW-2Wn";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = No existen registros de explosiones para esta incidencia
+		it = #$%&! #$%&! #$%&! #$%&! #$%&! #$%&!.
+	[MhW-5A-pco.normalTitle]
+		en = Browse Gallery
+		comment = Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "MhW-5A-pco";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Explorar la galería
+		it = #$%&! #$%&!
+	[MpV-w0-6ms.title]
+		en = Simple Report List
+		comment = Class = "UITableViewController"; title = "Simple Report List"; ObjectID = "MpV-w0-6ms";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Lista de informes simplificada o simple
+		it = #$%&! #$%&! #$%&!
+	[O3T-gW-ktv.text]
+		en = Environment
+		comment = Class = "UILabel"; text = "Environment"; ObjectID = "O3T-gW-ktv";
+		ca-ES = !@#$!@#$
+		es = Entorno
+		it = #$%&!
+	[OrP-w5-R4i.normalTitle]
+		en = Cancel
+		comment = Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "OrP-w5-R4i";
+		ca-ES = !@#$!@#$
+		es = Cancelar
+		it = #$%&!
+	[P5r-xo-nEI.title]
+		en = Resource Request Detail
+		comment = Class = "UIViewController"; title = "Resource Request Detail"; ObjectID = "P5r-xo-nEI";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Información/Contenido de la solicitud de recursos
+		it = #$%&! #$%&! #$%&!
+	[PeB-ww-5fc.text]
+		en = Timestamp
+		comment = Class = "UILabel"; text = "Timestamp"; ObjectID = "PeB-ww-5fc";
+		ca-ES = !@#$!@#$
+		es = Hora de registro
+		it = #$%&!
+	[Qis-51-CXH.normalTitle]
+		en = Normal
+		comment = Class = "UIButton"; normalTitle = "Normal"; ObjectID = "Qis-51-CXH";
+		ca-ES = !@#$!@#$
+		es = Normal
+		it = #$%&!
+	[R34-ZS-sLC.title]
+		en = NICS Mobile
+		comment = Class = "UINavigationItem"; title = "NICS Mobile"; ObjectID = "R34-ZS-sLC";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = NICS Mobile
+		it = #$%&! #$%&!
+	[RKm-7P-Umu.text]
+		en = Remember Username
+		comment = Class = "UILabel"; text = "Remember Username"; ObjectID = "RKm-7P-Umu";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Recordar usuario
+		it = #$%&! #$%&!
+	[Rhx-eX-gmf.title]
+		en = UXO Reports
+		comment = Class = "UINavigationItem"; title = "UXO Reports"; ObjectID = "Rhx-eX-gmf";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Informes UXO municiones sin detonar
+		it = #$%&! #$%&!
+	[Ru3-1u-Jg3.title]
+		en = Damage Report List
+		comment = Class = "UITableViewController"; title = "Damage Report List"; ObjectID = "Ru3-1u-Jg3";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Lista de informes de daños
+		it = #$%&! #$%&! #$%&!
+	[TDe-5f-hAA.text]
+		en = User Name:
+		comment = Class = "UILabel"; text = "User Name:"; ObjectID = "TDe-5f-hAA";
+		ca-ES = !@#$!@#$ !@#$!@#$:
+		es = Nombre de usuario:
+		it = #$%&! #$%&!:
+	[UG6-VX-j4K.placeholder]
+		en = Latitude
+		comment = Class = "UITextField"; placeholder = "Latitude"; ObjectID = "UG6-VX-j4K";
+		ca-ES = !@#$!@#$
+		es = Latitud
+		it = #$%&!
+	[USe-ni-8Ty.text]
+		en = Training
+		comment = Class = "UILabel"; text = "Training"; ObjectID = "USe-ni-8Ty";
+		ca-ES = !@#$!@#$
+		es = Instrucción / Formación
+		it = #$%&!
+	[V5p-32-NZS.normalTitle]
+		en = Reports
+		comment = Class = "UIButton"; normalTitle = "Reports"; ObjectID = "V5p-32-NZS";
+		ca-ES = !@#$!@#$
+		es = Informes
+		it = #$%&!
+	[VZb-2A-Y1b.text]
+		en = No Resource Requests have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No Resource Requests have been posted in this incident yet."; ObjectID = "VZb-2A-Y1b";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$.
+		es = No se han registrado solicitudes de recursos para esta incidencia
+		it = #$%&! #$%&! #$%&! #$%&! #$%&! #$%&! #$%&!.
+	[Vjl-0I-2ap.text]
+		en = Name
+		comment = Class = "UILabel"; text = "Name"; ObjectID = "Vjl-0I-2ap";
+		ca-ES = !@#$!@#$
+		es = Nombre
+		it = #$%&!
+	[VnG-V6-k4S.text]
+		en = Version:
+		comment = Class = "UILabel"; text = "Version:"; ObjectID = "VnG-V6-k4S";
+		ca-ES = !@#$!@#$:
+		es = Versión:
+		it = #$%&!:
+	[YMD-zo-b6H.normalTitle]
+		en = Send
+		comment = Class = "UIButton"; normalTitle = "Send"; ObjectID = "YMD-zo-b6H";
+		ca-ES = !@#$!@#$
+		es = Enviar estado y tiempo
+		it = #$%&!
+	[Zmf-Xv-BB8.text]
+		en = Supervision
+		comment = Class = "UILabel"; text = "Supervision"; ObjectID = "Zmf-Xv-BB8";
+		ca-ES = !@#$!@#$
+		es = Supervisión
+		it = #$%&!
+	[ZoI-5N-DFC.text]
+		en = Traffic
+		comment = Class = "UILabel"; text = "Traffic"; ObjectID = "ZoI-5N-DFC";
+		ca-ES = !@#$!@#$
+		es = Tráfico
+		it = #$%&!
+	[Zvo-1h-bGi.text]
+		en = To compute the total level of risk, assign a code of 0 (no risk) to 10 (max risk) for each element.
+		comment = Class = "UILabel"; text = "To compute the total level of risk, assign a code of 0 (no risk) to 10 (max risk) for each element."; ObjectID = "Zvo-1h-bGi";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$.
+		es = Para calcular el nivel de riesgo, adjudica un código entre 0 (sin riesgo) y 10 (riesgo máximo) para cada elemento
+		it = #$%&! #$%&! #$%&! #$%&! #$%&! #$%&! #$%&! #$%&!.
+	[aIU-JC-vRy.text]
+		en = No Field Reports have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No Field Reports have been posted in this incident yet."; ObjectID = "aIU-JC-vRy";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$.
+		es = No se han registrado informes de campo para esta incidencia
+		it = #$%&! #$%&! #$%&! #$%&! #$%&! #$%&! #$%&! #$%&!.
+	[aYN-Gg-H1l.text]
+		en = Workspace:
+		comment = Class = "UILabel"; text = "Workspace:"; ObjectID = "aYN-Gg-H1l";
+		ca-ES = !@#$!@#$:
+		es = Espacio de trabajo:
+		it = #$%&!:
+	[aj1-iz-v0R.text]
+		en = <--- Select your incident to get started
+		comment = Class = "UILabel"; text = "<--- Select your incident to get started"; ObjectID = "aj1-iz-v0R";
+		ca-ES = <--- !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = <--- Selecciona tu incidencia para empezar
+		it = <--- #$%&! #$%&! #$%&! #$%&! #$%&! #$%&!
+	[bTS-oD-MjR.normalTitle]
+		en = Submit
+		comment = Class = "UIButton"; normalTitle = "Submit"; ObjectID = "bTS-oD-MjR";
+		ca-ES = !@#$!@#$
+		es = Enviar
+		it = #$%&!
+	[blJ-GA-rz5.placeholder]
+		en = Longitude
+		comment = Class = "UITextField"; placeholder = "Longitude"; ObjectID = "blJ-GA-rz5";
+		ca-ES = !@#$!@#$
+		es = Longitud
+		it = #$%&!
+	[cKr-kO-AFW.title]
+		en = GAR
+		comment = Class = "UIViewController"; title = "GAR"; ObjectID = "cKr-kO-AFW";
+		ca-ES = !@#$!@#$
+		es = Herramienta de evaluación global
+		it = #$%&!
+	[dWG-uW-Z6C.normalTitle]
+		en = Hybrid
+		comment = Class = "UIButton"; normalTitle = "Hybrid"; ObjectID = "dWG-uW-Z6C";
+		ca-ES = !@#$!@#$
+		es = Híbrido
+		it = #$%&!
+	[ehO-oJ-Xl1.text]
+		en = Timestamp
+		comment = Class = "UILabel"; text = "Timestamp"; ObjectID = "ehO-oJ-Xl1";
+		ca-ES = !@#$!@#$
+		es = Hora de registro
+		it = #$%&!
+	[f4F-ED-ies.normalTitle]
+		en = General Message
+		comment = Class = "UIButton"; normalTitle = "General Message"; ObjectID = "f4F-ED-ies";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Mensaje general
+		it = #$%&! #$%&!
+	[g7v-Ub-Qi0.normalTitle]
+		en = Settings
+		comment = Class = "UIButton"; normalTitle = "Settings"; ObjectID = "g7v-Ub-Qi0";
+		ca-ES = !@#$!@#$
+		es = Ajustes
+		it = #$%&!
+	[gGJ-3n-vLA.text]
+		en = Location (lat, long - decimal)
+		comment = Class = "UILabel"; text = "Location (lat, long - decimal)"; ObjectID = "gGJ-3n-vLA";
+		ca-ES = !@#$!@#$ (!@#$!@#$, !@#$!@#$ - !@#$!@#$)
+		es = Localización (latitud, longitud -decimal)
+		it = #$%&! (#$%&!, #$%&! - #$%&!)
+	[ge8-uq-hoE.normalTitle]
+		en = Capture Image
+		comment = Class = "UIButton"; normalTitle = "Capture Image"; ObjectID = "ge8-uq-hoE";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Capturar imagen
+		it = #$%&! #$%&!
+	[h1Z-iS-251.title]
+		en = User Info
+		comment = Class = "UIViewController"; title = "User Info"; ObjectID = "h1Z-iS-251";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Información del usuario
+		it = #$%&! #$%&!
+	[hNK-4l-mZS.text]
+		en = Name
+		comment = Class = "UILabel"; text = "Name"; ObjectID = "hNK-4l-mZS";
+		ca-ES = !@#$!@#$
+		es = Nombre
+		it = #$%&!
+	[iNb-c9-1j8.text]
+		en = No General Messages have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No General Messages have been posted in this incident yet."; ObjectID = "iNb-c9-1j8";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = No se han registrado mensajes generales para esta incidencia
+		it = #$%&! #$%&! #$%&! #$%&! #$%&! #$%&! #$%&!.
+	[j9G-Ym-pSp.normalTitle]
+		en = Save Draft
+		comment = Class = "UIButton"; normalTitle = "Save Draft"; ObjectID = "j9G-Ym-pSp";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Guardad borrador
+		it = #$%&! #$%&!
+	[joI-0d-ntB.normalTitle]
+		en = Logout
+		comment = Class = "UIButton"; normalTitle = "Logout"; ObjectID = "joI-0d-ntB";
+		ca-ES = !@#$!@#$
+		es = Desconexión
+		it = #$%&!
+	[kn4-g3-Chz.text]
+		en = Name
+		comment = Class = "UILabel"; text = "Name"; ObjectID = "kn4-g3-Chz";
+		ca-ES = !@#$!@#$
+		es = Nombre
+		it = #$%&!
+	[mmR-op-aMF.normalTitle]
+		en = Terrain
+		comment = Class = "UIButton"; normalTitle = "Terrain"; ObjectID = "mmR-op-aMF";
+		ca-ES = !@#$!@#$
+		es = Terreno
+		it = #$%&!
+	[naa-ag-WAP.normalTitle]
+		en = Capture Image
+		comment = Class = "UIButton"; normalTitle = "Capture Image"; ObjectID = "naa-ag-WAP";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Capturar imagen
+		it = #$%&! #$%&!
+	[nkE-Nq-uB4.title]
+		en = Back
+		comment = Class = "UIBarButtonItem"; title = "Back"; ObjectID = "nkE-Nq-uB4";
+		ca-ES = !@#$!@#$
+		es = Atrás
+		it = #$%&!
+	[oSP-u5-Fyu.normalTitle]
+		en = Select Incident
+		comment = Class = "UIButton"; normalTitle = "Select Incident"; ObjectID = "oSP-u5-Fyu";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Seleccionar incidencia
+		it = #$%&! #$%&!
+	[ppf-nN-22G.text]
+		en = Description
+		comment = Class = "UILabel"; text = "Description"; ObjectID = "ppf-nN-22G";
+		ca-ES = !@#$!@#$
+		es = Descripción / Contenido
+		it = #$%&!
+	[pw9-it-xGp.text]
+		en = Indoor
+		comment = Class = "UILabel"; text = "Indoor"; ObjectID = "pw9-it-xGp";
+		ca-ES = !@#$!@#$
+		es = Interior
+		it = #$%&!
+	[q15-WC-BCV.normalTitle]
+		en = Send Updated GAR in Chat
+		comment = Class = "UIButton"; normalTitle = "Send Updated GAR in Chat"; ObjectID = "q15-WC-BCV";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Enviar el reporte actualizado  GAR a través del chat
+		it = #$%&! #$%&! #$%&! #$%&! #$%&!
+	[q66-OF-uS4.text]
+		en = You currently do not have an assignment. Please pick an incident/collabroom to continue.
+		comment = Class = "UILabel"; text = "You currently do not have an assignment. Please pick an incident/collabroom to continue."; ObjectID = "q66-OF-uS4";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$.
+		es = No tienes una tarea. Selecciona una incidencia/* para continuar
+		it = #$%&! #$%&! #$%&! #$%&! #$%&! #$%&!.
+	[qaY-ei-ghS.text]
+		en = Message
+		comment = Class = "UILabel"; text = "Message"; ObjectID = "qaY-ei-ghS";
+		ca-ES = !@#$!@#$
+		es = `Mensaje `
+		it = #$%&!
+	[qzn-n3-L2a.normalTitle]
+		en = Settings
+		comment = Class = "UIButton"; normalTitle = "Settings"; ObjectID = "qzn-n3-L2a";
+		ca-ES = !@#$!@#$
+		es = Ajustes
+		it = #$%&!
+	[rEl-0p-eDf.title]
+		en = Damage Report Detail
+		comment = Class = "UIViewController"; title = "Damage Report Detail"; ObjectID = "rEl-0p-eDf";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Contenido del informe de daños
+		it = #$%&! #$%&! #$%&!
+	[smd-oK-nwy.title]
+		en = Field Report Detail
+		comment = Class = "UIViewController"; title = "Field Report Detail"; ObjectID = "smd-oK-nwy";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = Información/Contenido del informe de campo
+		it = #$%&! #$%&! #$%&!
+	[ssS-eI-lnT.placeholder]
+		en = Email
+		comment = Class = "UITextField"; placeholder = "Email"; ObjectID = "ssS-eI-lnT";
+		ca-ES = !@#$!@#$
+		es = Email
+		it = #$%&!
+	[tCL-nD-49O.text]
+		en = Server:
+		comment = Class = "UILabel"; text = "Server:"; ObjectID = "tCL-nD-49O";
+		ca-ES = !@#$!@#$:
+		es = Servidor:
+		it = #$%&!:
+	[toZ-47-iAm.title]
+		en = Chat
+		comment = Class = "UINavigationItem"; title = "Chat"; ObjectID = "toZ-47-iAm";
+		ca-ES = !@#$!@#$
+		es = Conversación / Chat
+		it = #$%&!
+	[v7v-zo-Kop.normalTitle]
+		en = Browse Gallery
+		comment = Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "v7v-zo-Kop";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Explorar la galería
+		it = #$%&! #$%&!
+	[vc9-Ed-u3z.text]
+		en = Crew Fitness
+		comment = Class = "UILabel"; text = "Crew Fitness"; ObjectID = "vc9-Ed-u3z";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = condición del personal
+		it = #$%&! #$%&!
+	[von-m4-tLa.text]
+		en = User
+		comment = Class = "UILabel"; text = "User"; ObjectID = "von-m4-tLa";
+		ca-ES = !@#$!@#$
+		es = Usuario
+		it = #$%&!
+	[xwv-u0-cmO.placeholder]
+		en = Password
+		comment = Class = "UITextField"; placeholder = "Password"; ObjectID = "xwv-u0-cmO";
+		ca-ES = !@#$!@#$
+		es = Contraseña
+		it = #$%&!
+	[yGd-Xp-jiG.text]
+		en = Total:
+		comment = Class = "UILabel"; text = "Total:"; ObjectID = "yGd-Xp-jiG";
+		ca-ES = !@#$!@#$:
+		es = Total:
+		it = #$%&!:
+	[yPm-4s-kqB.text]
+		en = Automatically log-in
+		comment = Class = "UILabel"; text = "Automatically log-in"; ObjectID = "yPm-4s-kqB";
+		ca-ES = !@#$!@#$ !@#$!@#$-!@#$!@#$
+		es = Iniciar sesión automáticamente
+		it = #$%&! #$%&!-#$%&!
+	[ySN-tA-zI0.text]
+		en = Event/Evolution Complexity
+		comment = Class = "UILabel"; text = "Event/Evolution Complexity"; ObjectID = "ySN-tA-zI0";
+		ca-ES = !@#$!@#$/!@#$!@#$ !@#$!@#$
+		es = Dificultad / Complejidad del evento / progresión
+		it = #$%&!/#$%&! #$%&!
+	[yu9-qd-dYs.text]
+		en = serverName
+		comment = Class = "UILabel"; text = "serverName"; ObjectID = "yu9-qd-dYs";
+		ca-ES = !@#$!@#$
+		es = Nombre del servidor
+	[zFv-O6-9b0.normalTitle]
+		en = Select Room
+		comment = Class = "UIButton"; normalTitle = "Select Room"; ObjectID = "zFv-O6-9b0";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = `Seleccionar una habitación o espacio `
+		it = #$%&! #$%&!
+	[zdW-9F-TUu.text]
+		en = Current Server
+		comment = Class = "UILabel"; text = "Current Server"; ObjectID = "zdW-9F-TUu";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Servidor actual
+		it = #$%&! #$%&!
+	[09f-8u-j8f.text]
+		en = Workspace:
+		comment = Class = "UILabel"; text = "Workspace:"; ObjectID = "09f-8u-j8f";
+		ca-ES = Workspace:
+		es = Espacio de trabajo:
+		it = +=+=+=:
+	[0Kr-dR-oxY.text]
+		en = Incident/Training
+		comment = Class = "UILabel"; text = "Incident/Training"; ObjectID = "0Kr-dR-oxY";
+		ca-ES = Incident/Training
+		es = Incidencia/Instrucción
+		it = +=+=+=/+=+=+=
+	[0eK-Vn-ta7.title]
+		en = Field Report Detail
+		comment = Class = "UIViewController"; title = "Field Report Detail"; ObjectID = "0eK-Vn-ta7";
+		ca-ES = Field Report Detail
+		es = Información/Contenido del informe de campo
+		it = +=+=+= +=+=+= +=+=+=
+	[0t7-MD-iWa.text]
+		en = No General Messages have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No General Messages have been posted in this incident yet."; ObjectID = "0t7-MD-iWa";
+		ca-ES = No General Messages have been posted in this incident yet.
+		es = No se han registrado mensajes generales para esta incidencia
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[20l-MD-9Xg.text]
+		en = No Damage Reports have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No Damage Reports have been posted in this incident yet."; ObjectID = "20l-MD-9Xg";
+		ca-ES = No Damage Reports have been posted in this incident yet.
+		es = No se han registrado informes de daños para esta incidencia
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[3dm-Xb-Cc1.title]
+		en = Explosive Reports
+		comment = Class = "UINavigationItem"; title = "Explosive Reports"; ObjectID = "3dm-Xb-Cc1";
+		ca-ES = Explosive Reports
+		es = Informes UXO municiones sin detonar
+		it = +=+=+= +=+=+=
+	[3sG-7z-WY9.title]
+		en = Map
+		comment = Class = "UINavigationItem"; title = "Map"; ObjectID = "3sG-7z-WY9";
+		ca-ES = Map
+		es = Mapa
+		it = +=+=+=
+	[4Hg-7c-Gzs.normalTitle]
+		en = Cancel
+		comment = Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "4Hg-7c-Gzs";
+		ca-ES = Cancel
+		es = Cancelar
+		it = +=+=+=
+	[4c7-2H-Fq9.text]
+		en = Name
+		comment = Class = "UILabel"; text = "Name"; ObjectID = "4c7-2H-Fq9";
+		ca-ES = Name
+		es = Nombre
+		it = +=+=+=
+	[4sQ-vS-WJ7.normalTitle]
+		en = Cancel
+		comment = Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "4sQ-vS-WJ7";
+		ca-ES = Cancel
+		es = Cancelar
+		it = +=+=+=
+	[5GP-Od-Jem.text]
+		en = Remember Username
+		comment = Class = "UILabel"; text = "Remember Username"; ObjectID = "5GP-Od-Jem";
+		ca-ES = Remember Username
+		es = Recordar usuario
+		it = +=+=+= +=+=+=
+	[5rc-Iv-4RA.title]
+		en = Back
+		comment = Class = "UIBarButtonItem"; title = "Back"; ObjectID = "5rc-Iv-4RA";
+		ca-ES = Back
+		es = Atrás
+		it = +=+=+=
+	[6Pw-BL-t2l.text]
+		en = User
+		comment = Class = "UILabel"; text = "User"; ObjectID = "6Pw-BL-t2l";
+		ca-ES = User
+		es = Usuario
+		it = +=+=+=
+	[6zg-IN-TG9.normalTitle]
+		en = Cancel
+		comment = Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "6zg-IN-TG9";
+		ca-ES = Cancel
+		es = Cancelar
+		it = +=+=+=
+	[7mg-Ua-iWF.title]
+		en = GAR
+		comment = Class = "UIViewController"; title = "GAR"; ObjectID = "7mg-Ua-iWF";
+		ca-ES = GAR
+		es = Herramienta de evaluación global
+		it = +=+=+=
+	[81h-Z2-VGt.text]
+		en = No Field Reports have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No Field Reports have been posted in this incident yet."; ObjectID = "81h-Z2-VGt";
+		ca-ES = No Field Reports have been posted in this incident yet.
+		es = No se han registrado informes de campo para esta incidencia
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[8MV-ui-UdW.normalTitle]
+		en = Satellite
+		comment = Class = "UIButton"; normalTitle = "Satellite"; ObjectID = "8MV-ui-UdW";
+		ca-ES = Satellite
+		es = Satélite
+		it = +=+=+=
+	[9UQ-TM-C49.title]
+		en = Field Report Detail
+		comment = Class = "UIViewController"; title = "Field Report Detail"; ObjectID = "9UQ-TM-C49";
+		ca-ES = Field Report Detail
+		es = Información/Contenido del informe de campo
+		it = +=+=+= +=+=+= +=+=+=
+	[CFg-Y9-caz.title]
+		en = Resource Requests
+		comment = Class = "UINavigationItem"; title = "Resource Requests"; ObjectID = "CFg-Y9-caz";
+		ca-ES = Resource Requests
+		es = Recursos solicitados
+		it = +=+=+= +=+=+=
+	[CHV-qU-dmk.text]
+		en = Incident
+		comment = Class = "UILabel"; text = "Incident"; ObjectID = "CHV-qU-dmk";
+		ca-ES = Incident
+		es = Incidencia
+		it = +=+=+=
+	[Cak-fX-Frq.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "Cak-fX-Frq";
+		ca-ES = 0
+		es = 0
+	[Cch-XP-RZ1.title]
+		en = Simple Report List
+		comment = Class = "UITableViewController"; title = "Simple Report List"; ObjectID = "Cch-XP-RZ1";
+		ca-ES = Simple Report List
+		es = `Lista de informes simplificada o simple `
+		it = +=+=+= +=+=+= +=+=+=
+	[Cl4-6N-wWX.text]
+		en = Name
+		comment = Class = "UILabel"; text = "Name"; ObjectID = "Cl4-6N-wWX";
+		ca-ES = Name
+		es = Nombre
+		it = +=+=+=
+	[DEK-qf-VRK.text]
+		en = 1.0
+		comment = Class = "UILabel"; text = "1.0"; ObjectID = "DEK-qf-VRK";
+		ca-ES = 1.0
+		es = 1.0
+	[DRc-l4-756.title]
+		en = Field Reports
+		comment = Class = "UINavigationItem"; title = "Field Reports"; ObjectID = "DRc-l4-756";
+		ca-ES = Field Reports
+		es = Field Reports
+		it = +=+=+= +=+=+=
+	[Djo-Pe-hH1.normalTitle]
+		en = Submit
+		comment = Class = "UIButton"; normalTitle = "Submit"; ObjectID = "Djo-Pe-hH1";
+		ca-ES = Submit
+		es = `Enviar `
+		it = +=+=+=
+	[G5H-Pl-1tQ.normalTitle]
+		en = Capture Image
+		comment = Class = "UIButton"; normalTitle = "Capture Image"; ObjectID = "G5H-Pl-1tQ";
+		ca-ES = Capture Image
+		es = Capturar imagen
+		it = +=+=+= +=+=+=
+	[GwM-Mv-AKg.text]
+		en = Chat
+		comment = Class = "UILabel"; text = "Chat"; ObjectID = "GwM-Mv-AKg";
+		ca-ES = Chat
+		es = Conversación / Chat
+		it = +=+=+=
+	[GxZ-oU-i3S.text]
+		en = Total:
+		comment = Class = "UILabel"; text = "Total:"; ObjectID = "GxZ-oU-i3S";
+		ca-ES = Total:
+		es = Total:
+		it = +=+=+=:
+	[H9e-ew-6xr.normalTitle]
+		en = Normal
+		comment = Class = "UIButton"; normalTitle = "Normal"; ObjectID = "H9e-ew-6xr";
+		ca-ES = Normal
+		es = Normal
+		it = +=+=+=
+	[HLq-L0-yBi.normalTitle]
+		en = Send Updated GAR in Chat
+		comment = Class = "UIButton"; normalTitle = "Send Updated GAR in Chat"; ObjectID = "HLq-L0-yBi";
+		ca-ES = Send Updated GAR in Chat
+		es = Enviar el reporte actualizado  GAR a través del chat
+		it = +=+=+= +=+=+= +=+=+= +=+=+=
+	[HqL-89-SDv.normalTitle]
+		en = Save as Draft
+		comment = Class = "UIButton"; normalTitle = "Save as Draft"; ObjectID = "HqL-89-SDv";
+		ca-ES = Save as Draft
+		es = Guardad borrador
+		it = +=+=+= +=+=+= +=+=+=
+	[IUQ-eE-QRp.normalTitle]
+		en = Select Room
+		comment = Class = "UIButton"; normalTitle = "Select Room"; ObjectID = "IUQ-eE-QRp";
+		ca-ES = Select Room
+		es = `Seleccionar una habitación o espacio `
+		it = +=+=+= +=+=+=
+	[JFD-Kk-Fqy.text]
+		en = name
+		comment = Class = "UILabel"; text = "name"; ObjectID = "JFD-Kk-Fqy";
+		ca-ES = name
+		es = Nombre
+		it = +=+=+=
+	[JGE-Ey-BI6.title]
+		en = Overview
+		comment = Class = "UINavigationItem"; title = "Overview"; ObjectID = "JGE-Ey-BI6";
+		ca-ES = Overview
+		es = Descripción general/resumen/sinopsis
+		it = +=+=+=
+	[JZV-8h-oRi.text]
+		en = Tracking Layer
+		comment = Class = "UILabel"; text = "Tracking Layer"; ObjectID = "JZV-8h-oRi";
+		ca-ES = Tracking Layer
+		es = Capa de seguimineto
+		it = +=+=+= +=+=+=
+	[KMh-4F-Wxu.text]
+		en = No Explosive Reports have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "KMh-4F-Wxu";
+		ca-ES = No Explosive Reports have been posted in this incident yet.
+		es = No existen registros de explosiones para esta incidencia.
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[KNe-sX-U2w.text]
+		en = Name
+		comment = Class = "UILabel"; text = "Name"; ObjectID = "KNe-sX-U2w";
+		ca-ES = Name
+		es = Nombre
+		it = +=+=+=
+	[Kli-Nj-wNl.normalTitle]
+		en = Browse Gallery
+		comment = Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "Kli-Nj-wNl";
+		ca-ES = Browse Gallery
+		es = Explorar la galería
+		it = +=+=+= +=+=+=
+	[MJq-GZ-FVU.text]
+		en = Crew Fitness
+		comment = Class = "UILabel"; text = "Crew Fitness"; ObjectID = "MJq-GZ-FVU";
+		ca-ES = Crew Fitness
+		es = condición del personal
+		it = +=+=+= +=+=+=
+	[MdT-Sk-ljk.text]
+		en = Current Server
+		comment = Class = "UILabel"; text = "Current Server"; ObjectID = "MdT-Sk-ljk";
+		ca-ES = Current Server
+		es = Servidor actual
+		it = +=+=+= +=+=+=
+	[NgE-KP-Ydp.text]
+		en = Name
+		comment = Class = "UILabel"; text = "Name"; ObjectID = "NgE-KP-Ydp";
+		ca-ES = Name
+		es = Nombre
+		it = +=+=+=
+	[O8S-0w-AHe.normalTitle]
+		en = OK
+		comment = Class = "UIButton"; normalTitle = "OK"; ObjectID = "O8S-0w-AHe";
+		ca-ES = OK
+		es = Aceptar / OK
+		it = +=+=+=
+	[OSk-EP-dwQ.title]
+		en = Resource Request Detail
+		comment = Class = "UIViewController"; title = "Resource Request Detail"; ObjectID = "OSk-EP-dwQ";
+		ca-ES = Resource Request Detail
+		es = Información/Contenido de la solicitud de recursos
+		it = +=+=+= +=+=+= +=+=+=
+	[OsA-Pb-6U7.text]
+		en = Reports
+		comment = Class = "UILabel"; text = "Reports"; ObjectID = "OsA-Pb-6U7";
+		ca-ES = Reports
+		es = Informes
+		it = +=+=+=
+	[P8X-Kq-iWZ.normalTitle]
+		en = Send
+		comment = Class = "UIButton"; normalTitle = "Send"; ObjectID = "P8X-Kq-iWZ";
+		ca-ES = Send
+		es = Enviar estado y tiempo
+		it = +=+=+=
+	[QPr-pW-Hg9.title]
+		en = Damage Report List
+		comment = Class = "UITableViewController"; title = "Damage Report List"; ObjectID = "QPr-pW-Hg9";
+		ca-ES = Damage Report List
+		es = Lista de informes de daños
+		it = +=+=+= +=+=+= +=+=+=
+	[QTM-d0-36s.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "QTM-d0-36s";
+		ca-ES = 0
+		es = 0
+	[QqL-HW-mos.title]
+		en = GAR
+		comment = Class = "UINavigationItem"; title = "GAR"; ObjectID = "QqL-HW-mos";
+		ca-ES = GAR
+		es = Herramienta de evaluación global
+		it = +=+=+=
+	[R0r-HX-q0X.text]
+		en = Timestamp
+		comment = Class = "UILabel"; text = "Timestamp"; ObjectID = "R0r-HX-q0X";
+		ca-ES = Timestamp
+		es = Hora de registro
+		it = +=+=+=
+	[Sj9-KE-l1U.normalTitle]
+		en = Capture Image
+		comment = Class = "UIButton"; normalTitle = "Capture Image"; ObjectID = "Sj9-KE-l1U";
+		ca-ES = Capture Image
+		es = Capturar imagen
+		it = +=+=+= +=+=+=
+	[Sw2-kd-KHo.text]
+		en = To compute the total level of risk, assign a code of 0 (no risk) to 10 (max risk) for each element.
+		comment = Class = "UILabel"; text = "To compute the total level of risk, assign a code of 0 (no risk) to 10 (max risk) for each element."; ObjectID = "Sw2-kd-KHo";
+		ca-ES = To compute the total level of risk, assign a code of 0 (no risk) to 10 (max risk) for each element.
+		es = Para calcular el nivel de riesgo, adjudica un código entre 0 (sin riesgo) y 10 (riesgo máximo) para cada elemento.
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[Tep-A1-db2.text]
+		en = Name
+		comment = Class = "UILabel"; text = "Name"; ObjectID = "Tep-A1-db2";
+		ca-ES = Name
+		es = Nombre
+		it = +=+=+=
+	[UdF-sl-TpV.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "UdF-sl-TpV";
+		ca-ES = 0
+		es = 0
+	[Udg-pH-R5q.normalTitle]
+		en = Save as Draft
+		comment = Class = "UIButton"; normalTitle = "Save as Draft"; ObjectID = "Udg-pH-R5q";
+		ca-ES = Save as Draft
+		es = Guardad borrador
+		it = +=+=+= +=+=+= +=+=+=
+	[W9f-au-hXC.text]
+		en = serverName
+		comment = Class = "UILabel"; text = "serverName"; ObjectID = "W9f-au-hXC";
+		ca-ES = serverName
+		es = Nombre del servidor
+		it = +=+=+=
+	[X8z-rp-WLK.normalTitle]
+		en = Save as Draft
+		comment = Class = "UIButton"; normalTitle = "Save as Draft"; ObjectID = "X8z-rp-WLK";
+		ca-ES = Save as Draft
+		es = Guardad borrador
+		it = +=+=+= +=+=+= +=+=+=
+	[XeY-PW-D3O.normalTitle]
+		en = Cancel
+		comment = Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "XeY-PW-D3O";
+		ca-ES = Cancel
+		es = Cancelar
+		it = +=+=+=
+	[Y2l-mE-NSC.text]
+		en = Version:
+		comment = Class = "UILabel"; text = "Version:"; ObjectID = "Y2l-mE-NSC";
+		ca-ES = Version:
+		es = Versión:
+		it = +=+=+=:
+	[Y6Q-Gm-snI.text]
+		en = Timestamp
+		comment = Class = "UILabel"; text = "Timestamp"; ObjectID = "Y6Q-Gm-snI";
+		ca-ES = Timestamp
+		es = Hora de registro
+		it = +=+=+=
+	[YA0-JK-Sxl.normalTitle]
+		en = Save as Draft
+		comment = Class = "UIButton"; normalTitle = "Save as Draft"; ObjectID = "YA0-JK-Sxl";
+		ca-ES = Save as Draft
+		es = Guardad borrador
+		it = +=+=+= +=+=+= +=+=+=
+	[YAh-1b-hEa.title]
+		en = Chat
+		comment = Class = "UINavigationItem"; title = "Chat"; ObjectID = "YAh-1b-hEa";
+		ca-ES = Chat
+		es = Conversación / Chat
+		it = +=+=+=
+	[YHH-mF-edG.placeholder]
+		en = Type chat message here...
+		comment = Class = "UITextField"; placeholder = "Type chat message here..."; ObjectID = "YHH-mF-edG";
+		ca-ES = Type chat message here...
+		es = Escribe aquí un mensaje o conversación
+		it = +=+=+= +=+=+= +=+=+= +=+=+=...
+	[YKS-RL-FMM.normalTitle]
+		en = Submit
+		comment = Class = "UIButton"; normalTitle = "Submit"; ObjectID = "YKS-RL-FMM";
+		ca-ES = Submit
+		es = Enviar
+		it = +=+=+=
+	[YiL-fR-cHz.text]
+		en = No Resource Requests have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No Resource Requests have been posted in this incident yet."; ObjectID = "YiL-fR-cHz";
+		ca-ES = No Resource Requests have been posted in this incident yet.
+		es = No se han registrado solicitudes de recursos para esta incidencia.
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[Yy2-um-JRY.text]
+		en = Timestamp
+		comment = Class = "UILabel"; text = "Timestamp"; ObjectID = "Yy2-um-JRY";
+		ca-ES = Timestamp
+		es = Hora de registro
+		it = +=+=+=
+	[ave-WK-WF3.text]
+		en = Automatically log-in
+		comment = Class = "UILabel"; text = "Automatically log-in"; ObjectID = "ave-WK-WF3";
+		ca-ES = Automatically log-in
+		es = Iniciar sesión automáticamente
+		it = +=+=+= +=+=+=-+=+=+=
+	[bVa-d4-tWN.text]
+		en = You currently do not have an assignment. Please pick an incident/collabroom to continue.
+		comment = Class = "UILabel"; text = "You currently do not have an assignment. Please pick an incident/collabroom to continue."; ObjectID = "bVa-d4-tWN";
+		ca-ES = You currently do not have an assignment. Please pick an incident/collabroom to continue.
+		es = No tienes una tarea. Selecciona una incidencia/* para continuar.
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[bcx-V1-ydT.title]
+		en = Resource Request List
+		comment = Class = "UITableViewController"; title = "Resource Request List"; ObjectID = "bcx-V1-ydT";
+		ca-ES = Resource Request List
+		es = Lista de recursos solicitados
+		it = +=+=+= +=+=+= +=+=+=
+	[bgx-nT-I6n.title]
+		en = NICS Mobile
+		comment = Class = "UINavigationItem"; title = "NICS Mobile"; ObjectID = "bgx-nT-I6n";
+		ca-ES = NICS Mobile
+		es = NICS Mobile
+		it = +=+=+= +=+=+=
+	[bzj-9e-DzO.normalTitle]
+		en = Submit
+		comment = Class = "UIButton"; normalTitle = "Submit"; ObjectID = "bzj-9e-DzO";
+		ca-ES = Submit
+		es = Enviar
+		it = +=+=+=
+	[c8R-1L-DeR.text]
+		en = Event/Evolution Complexity
+		comment = Class = "UILabel"; text = "Event/Evolution Complexity"; ObjectID = "c8R-1L-DeR";
+		ca-ES = Event/Evolution Complexity
+		es = Dificultad / Complejidad del evento / progresión
+		it = +=+=+=/+=+=+= +=+=+=
+	[c98-eo-wVD.normalTitle]
+		en = Logout
+		comment = Class = "UIButton"; normalTitle = "Logout"; ObjectID = "c98-eo-wVD";
+		ca-ES = Logout
+		es = Desconexión
+		it = +=+=+=
+	[cFp-pz-boh.normalTitle]
+		en = Hybrid
+		comment = Class = "UIButton"; normalTitle = "Hybrid"; ObjectID = "cFp-pz-boh";
+		ca-ES = Hybrid
+		es = Híbrido
+		it = +=+=+=
+	[cUY-4a-c5Y.normalTitle]
+		en = Submit
+		comment = Class = "UIButton"; normalTitle = "Submit"; ObjectID = "cUY-4a-c5Y";
+		ca-ES = Submit
+		es = Enviar
+		it = +=+=+=
+	[dCT-R6-OIt.text]
+		en = User Name:
+		comment = Class = "UILabel"; text = "User Name:"; ObjectID = "dCT-R6-OIt";
+		ca-ES = User Name:
+		es = Nombre de usuario:
+		it = +=+=+= +=+=+=:
+	[dbH-Tn-8WA.normalTitle]
+		en = Sign in
+		comment = Class = "UIButton"; normalTitle = "Sign in"; ObjectID = "dbH-Tn-8WA";
+		ca-ES = Sign in
+		es = Registrarse
+		it = +=+=+= +=+=+=
+	[dc9-Rf-4Rb.text]
+		en = Description
+		comment = Class = "UILabel"; text = "Description"; ObjectID = "dc9-Rf-4Rb";
+		ca-ES = Description
+		es = Descripción / Contenido
+		it = +=+=+=
+	[e7N-kG-DVq.text]
+		en = TimeStamp
+		comment = Class = "UILabel"; text = "TimeStamp"; ObjectID = "e7N-kG-DVq";
+		ca-ES = TimeStamp
+		es = Hora de registro
+		it = +=+=+=
+	[eHX-X3-Sqh.placeholder]
+		en = Email
+		comment = Class = "UITextField"; placeholder = "Email"; ObjectID = "eHX-X3-Sqh";
+		ca-ES = Email
+		es = Email
+		it = +=+=+=
+	[fPd-b9-H7K.normalTitle]
+		en = Submit
+		comment = Class = "UIButton"; normalTitle = "Submit"; ObjectID = "fPd-b9-H7K";
+		ca-ES = Submit
+		es = Enviar
+		it = +=+=+=
+	[fsB-aA-qd0.text]
+		en = Server:
+		comment = Class = "UILabel"; text = "Server:"; ObjectID = "fsB-aA-qd0";
+		ca-ES = Server:
+		es = Servidor:
+		it = +=+=+=:
+	[h16-Xf-kQg.text]
+		en = Crew Selection
+		comment = Class = "UILabel"; text = "Crew Selection"; ObjectID = "h16-Xf-kQg";
+		ca-ES = Crew Selection
+		es = Seleción de personal
+		it = +=+=+= +=+=+=
+	[hiS-dD-dyT.normalTitle]
+		en = Cancel
+		comment = Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "hiS-dD-dyT";
+		ca-ES = Cancel
+		es = Cancelar
+		it = +=+=+=
+	[hol-xO-XKJ.text]
+		en = Traffic
+		comment = Class = "UILabel"; text = "Traffic"; ObjectID = "hol-xO-XKJ";
+		ca-ES = Traffic
+		es = Tráfico
+		it = +=+=+=
+	[ion-KY-EIB.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "ion-KY-EIB";
+		ca-ES = 0
+		es = 0
+	[jM5-zX-kqN.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "jM5-zX-kqN";
+		ca-ES = 0
+		es = 0
+	[jX2-Mb-kmc.normalTitle]
+		en = Save as Draft
+		comment = Class = "UIButton"; normalTitle = "Save as Draft"; ObjectID = "jX2-Mb-kmc";
+		ca-ES = Save as Draft
+		es = Guardad borrador
+		it = +=+=+= +=+=+= +=+=+=
+	[jfn-hY-8Wg.placeholder]
+		en = Password
+		comment = Class = "UITextField"; placeholder = "Password"; ObjectID = "jfn-hY-8Wg";
+		ca-ES = Password
+		es = Contraseña
+		it = +=+=+=
+	[kir-dC-5h5.text]
+		en = Map
+		comment = Class = "UILabel"; text = "Map"; ObjectID = "kir-dC-5h5";
+		ca-ES = Map
+		es = Mapa
+		it = +=+=+=
+	[l27-i6-UZp.normalTitle]
+		en = Settings
+		comment = Class = "UIButton"; normalTitle = "Settings"; ObjectID = "l27-i6-UZp";
+		ca-ES = Settings
+		es = Ajustes
+		it = +=+=+=
+	[lRD-14-JZp.title]
+		en = User Info
+		comment = Class = "UIViewController"; title = "User Info"; ObjectID = "lRD-14-JZp";
+		ca-ES = User Info
+		es = Información del usuario
+		it = +=+=+= +=+=+=
+	[lXg-MP-sdr.text]
+		en = Training
+		comment = Class = "UILabel"; text = "Training"; ObjectID = "lXg-MP-sdr";
+		ca-ES = Training
+		es = Instrucción / Formación
+		it = +=+=+=
+	[mh8-hs-CHo.text]
+		en = Send status and time.
+		comment = Class = "UILabel"; text = "Send status and time."; ObjectID = "mh8-hs-CHo";
+		ca-ES = Send status and time.
+		es = Enviar estado y tiempo.
+		it = +=+=+= +=+=+= +=+=+= +=+=+=.
+	[moY-mr-D99.normalTitle]
+		en = Settings
+		comment = Class = "UIButton"; normalTitle = "Settings"; ObjectID = "moY-mr-D99";
+		ca-ES = Settings
+		es = Ajustes
+		it = +=+=+=
+	[n8F-PA-2U7.title]
+		en = General Messages
+		comment = Class = "UINavigationItem"; title = "General Messages"; ObjectID = "n8F-PA-2U7";
+		ca-ES = General Messages
+		es = Mensaje general
+		it = +=+=+= +=+=+=
+	[nDf-Gm-BmV.title]
+		en = Field Report List
+		comment = Class = "UITableViewController"; title = "Field Report List"; ObjectID = "nDf-Gm-BmV";
+		ca-ES = Field Report List
+		es = Lista de informes de campo or reporte de campo
+		it = +=+=+= +=+=+= +=+=+=
+	[nwG-Hj-YzB.placeholder]
+		en = Longitude
+		comment = Class = "UITextField"; placeholder = "Longitude"; ObjectID = "nwG-Hj-YzB";
+		ca-ES = Longitude
+		es = Longitud
+		it = Longi+=+=+=tude
+	[olL-WA-gLj.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "olL-WA-gLj";
+		ca-ES = 0
+		es = 0
+	[qaG-FX-ygl.text]
+		en = Environment
+		comment = Class = "UILabel"; text = "Environment"; ObjectID = "qaG-FX-ygl";
+		ca-ES = Environment
+		es = Entorno
+		it = +=+=+=
+	[sI6-Y6-Sxi.text]
+		en = ABCD
+		comment = Class = "UILabel"; text = "ABCD"; ObjectID = "sI6-Y6-Sxi";
+		ca-ES = ABCD
+		es = ABCD
+	[sf4-Lb-4cE.title]
+		en = Field Report Detail
+		comment = Class = "UIViewController"; title = "Field Report Detail"; ObjectID = "sf4-Lb-4cE";
+		ca-ES = Field Report Detail
+		es = Información/Contenido del informe de campo
+		it = +=+=+= +=+=+= +=+=+=
+	[spS-lw-6rE.title]
+		en = Map Settings
+		comment = Class = "UIBarButtonItem"; title = "Map Settings"; ObjectID = "spS-lw-6rE";
+		ca-ES = Map Settings
+		es = Mapa Ajustes
+		it = +=+=+= +=+=+=
+	[sq8-2e-Llz.text]
+		en = Message
+		comment = Class = "UILabel"; text = "Message"; ObjectID = "sq8-2e-Llz";
+		ca-ES = Message
+		es = `Mensaje `
+		it = +=+=+=
+	[tPe-eX-E8A.normalTitle]
+		en = Browse Gallery
+		comment = Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "tPe-eX-E8A";
+		ca-ES = Browse Gallery
+		es = Explorar la galería
+		it = +=+=+= +=+=+=
+	[tS3-rY-o9n.placeholder]
+		en = Latitude
+		comment = Class = "UITextField"; placeholder = "Latitude"; ObjectID = "tS3-rY-o9n";
+		ca-ES = Latitude
+		es = Latitud
+		it = +=+=+=
+	[tVX-t8-LZ6.text]
+		en = General Message
+		comment = Class = "UILabel"; text = "General Message"; ObjectID = "tVX-t8-LZ6";
+		ca-ES = General Message
+		es = Mensaje general
+		it = +=+=+= +=+=+=
+	[tYz-cy-rFO.text]
+		en = Location (lat, long - decimal)
+		comment = Class = "UILabel"; text = "Location (lat, long - decimal)"; ObjectID = "tYz-cy-rFO";
+		ca-ES = Location (lat, long - decimal)
+		es = Localización (latitud, longitud -decimal)
+		it = +=+=+= (+=+=+=, +=+=+= - +=+=+=)
+	[tgi-3p-Rn0.text]
+		en = Planning
+		comment = Class = "UILabel"; text = "Planning"; ObjectID = "tgi-3p-Rn0";
+		ca-ES = Planning
+		es = Planificación
+		it = +=+=+=
+	[vSs-1r-Haq.title]
+		en = Simple Report Detail
+		comment = Class = "UIViewController"; title = "Simple Report Detail"; ObjectID = "vSs-1r-Haq";
+		ca-ES = Simple Report Detail
+		es = Detalle de informe simple
+		it = +=+=+= +=+=+= +=+=+=
+	[vqV-RG-G4m.text]
+		en = Indoor
+		comment = Class = "UILabel"; text = "Indoor"; ObjectID = "vqV-RG-G4m";
+		ca-ES = Indoor
+		es = Interior
+		it = +=+=+=
+	[w8V-DC-JK3.normalTitle]
+		en = Mobile Tracking
+		comment = Class = "UIButton"; normalTitle = "Mobile Tracking"; ObjectID = "w8V-DC-JK3";
+		ca-ES = Mobile Tracking
+		es = Mobile Tracking
+		it = +=+=+= +=+=+=
+	[wFr-RJ-k6x.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "wFr-RJ-k6x";
+		ca-ES = 0
+		es = 0
+	[x44-dS-s1c.normalTitle]
+		en = Terrain
+		comment = Class = "UIButton"; normalTitle = "Terrain"; ObjectID = "x44-dS-s1c";
+		ca-ES = Terrain
+		es = Terreno
+		it = +=+=+=
+	[xa4-lv-83l.title]
+		en = Damage Reports
+		comment = Class = "UINavigationItem"; title = "Damage Reports"; ObjectID = "xa4-lv-83l";
+		ca-ES = Damage Reports
+		es = Lista de informes de daños
+		it = +=+=+= +=+=+=
+	[xsa-Ra-kdW.text]
+		en = Supervision
+		comment = Class = "UILabel"; text = "Supervision"; ObjectID = "xsa-Ra-kdW";
+		ca-ES = Supervision
+		es = Supervisión
+		it = +=+=+=
+	[y8G-Q3-llf.normalTitle]
+		en = Select Incident
+		comment = Class = "UIButton"; normalTitle = "Select Incident"; ObjectID = "y8G-Q3-llf";
+		ca-ES = Select Incident
+		es = Seleccionar incidencia
+		it = +=+=+= +=+=+=
+	[y8r-rJ-XfA.title]
+		en = Field Report List
+		comment = Class = "UITableViewController"; title = "Field Report List"; ObjectID = "y8r-rJ-XfA";
+		ca-ES = Field Report List
+		es = Lista de informes de campo or reporte de campo
+		it = +=+=+= +=+=+= +=+=+=
+	[zUc-rc-a7p.text]
+		en = Timestamp
+		comment = Class = "UILabel"; text = "Timestamp"; ObjectID = "zUc-rc-a7p";
+		ca-ES = Timestamp
+		es = Hora de registro
+		it = +=+=+=
+	[zsn-UH-ghC.text]
+		en = Timestamp
+		comment = Class = "UILabel"; text = "Timestamp"; ObjectID = "zsn-UH-ghC";
+		ca-ES = Timestamp
+		es = Hora de registro
+		it = +=+=+=
+	[[KEY]]
+		en = [TRANSLATION]
+		es = [TRANSLATION]
+		it = [TRANSLATION]
+	[Select Incident]
+		en = Select Incident
+		comment = Title of Select Incident button
+		es = Selecciona incidencia
+		it = +=+=+= +=+=+=
+	[Select Room]
+		en = Select Room
+		comment = Title of Select Room button
+		es = Seleccionar una habitación
+		it = +=+=+= +=+=+=
+	[Training]
+		en = Training
+		es = Entrenamiento
+		it = +=+=+=
+	[Incident]
+		en = Incident
+		es = Incidencia
+		it = +=+=+=
+	[Cancel]
+		en = Cancel
+		es = Cancelar
+		it = +=+=+=
+	[Error]
+		en = Error
+		comment = Used in error popup messages
+		es = Error
+		it = +=+=+=
+	[OK]
+		en = OK
+		es = Aceptar/ ok
+		it = +=+=+=
+	[Logging in...]
+		en = Logging in...
+		comment = Displayed for a bried period of time while the user is logging in and the app is loading
+		es = Iniciar sesión...
+		it = +=+=+= +=+=+=...
+	[Loading Incidents and Collabrooms...]
+		en = Loading Incidents and Collabrooms...
+		comment = Displayed for a bried period of time while the user is logging in and the app is loading
+		es = Cargando incidencias y collabrooms...
+		it = +=+=+= +=+=+= +=+=+= +=+=+=...
+	[Failed to login.]
+		en = Failed to login.
+		comment = Displayed on a failed login in a pop up window
+		es = Error al iniciar sesión.
+		it = +=+=+= +=+=+= +=+=+=.
+	[Success]
+		en = Success
+		comment = General use success message
+		es = Success
+		it = +=+=+= +=+=+= +=+=+=.
+	[Could not find server: Make sure device has an internet connection.]
+		en = Could not find server: Make sure device has an internet connection.
+		comment = Error message for failed login attempt.
+		es = Could not find server: Make sure device has an internet connection.
+		it = +=+=+= +=+=+= +=+=+=.
+	[Device has no camera]
+		en = Device has no camera
+		comment = Displayed in a popup error message if user trys to access camera through a report but the device has no camera
+		es = El dispositivo no tiene cámara
+		it = +=+=+= +=+=+= +=+=+= +=+=+=
+	[Laser Range Finder currently unsupported.]
+		en = Laser Range Finder currently unsupported.
+		comment = Displayed in a popup when a user trys to get a lat lon from a laser range finder which is currently not supported by the app
+		es = Telémetro láser no se admite actualmente.
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[Select Report Type]
+		en = Select Report Type
+		comment = Shown at the top of the Select report dropdown menu
+		es = Selecciona tipo de informe
+		it = +=+=+= +=+=+= +=+=+=
+	[Damage Report]
+		en = Damage Report
+		comment = Names of the different reports that appear in drop down menus when user is asked to select a report
+		es = Informe de daños
+		it = +=+=+= +=+=+=
+	[Resource Request]
+		en = Resource Request
+		es = Solicitud de medios/recursos
+		it = +=+=+= +=+=+=
+	[Field Report]
+		en = Field Report
+		es = Informe de campo
+		it = +=+=+= +=+=+=
+	[Explosives Report]
+		en = Explosive Report
+		es = Informe de explosivos
+		it = +=+=+= +=+=+=
+	[Draft]
+		en = Draft
+		comment = Shown in the report list view when a report is either a saved Draft, or is currently sending to NICS
+		es = Borrador
+		it = +=+=+=
+	[Sending]
+		en = Sending
+		es = Enviando
+		it = +=+=+=
+	[CA-BEU/XMY AVL]
+		en = CA-BEU/XMY AVL
+		comment = Tracking layers in the map Tracking layer dropdown menu
+		es = CA-BEU/XMY AVL
+		it = +=+=+=
+	[CA-COR-HMT AVL]
+		en = CA-COR-HMT AVL
+		es = CA-COR-HMT AVL
+		it = +=+=+=
+	[CA-ORC AVL]
+		en = CA-ORC AVL
+		es = CA-ORC AVL
+		it = +=+=+=
+	[CA-VNC AVL]
+		en = CA-VNC AVL
+		es = CA-VNC AVL
+		it = +=+=+=
+	[CA-XFR AVL]
+		en = CA-XFR AVL
+		es = CA-XFR AVL
+		it = +=+=+=
+	[CA-XMY-XSL (RIV temp.) AVL]
+		en = CA-XMY-XSL (RIV temp.) AVL
+		es = CA-XMY-XSL (RIV temp.) AVL
+		it = +=+=+= +=+=+= +=+=+=
+	[CA-XRI AVL]
+		en = CA-XRI AVL
+		es = CA-XRI AVL
+		it = +=+=+=
+	[CA-XSD-RCIP AVL]
+		en = CA-XSD-RCIP AVL
+		es = CA-XSD-RCIP AVL
+		it = +=+=+= +=+=+=
+	[CA-XSL AVL]
+		en = CA-XSL AVL
+		es = CA-XSL AVL
+		it = +=+=+= +=+=+=
+	[CDF AFF]
+		en = CDF AFF
+		es = CDF AFF
+		it = +=+=+= +=+=+=
+	[Delorme PLI]
+		en = Delorme PLI
+		es = Delorme PLI
+		it = +=+=+= +=+=+=
+	[NICS Damage Surveys]
+		en = NICS Damage Surveys
+		es = NICS Damage Surveys
+		it = +=+=+= +=+=+= +=+=+=
+	[NICS General Messages]
+		en = NICS General Messages
+		es = NICS General Messages
+		it = +=+=+= +=+=+= +=+=+=
+	[NICS Mobile Users]
+		en = NICS Mobile Users
+		es = NICS Mobile Users
+		it = +=+=+= +=+=+= +=+=+=
+	[SARApp PLI]
+		en = SARApp PLI
+		es = SARApp PLI
+		it = +=+=+= +=+=+=
+	[Recipient]
+		en = Recipient
+		comment = General Message Form Fields
+		es = Destinatario
+		it = +=+=+=
+	[Agency Representative]
+		en = Agency Representative
+		comment = Recipient dropdown options
+		es = Representante de la agencia
+		it = +=+=+= +=+=+=
+	[Comp/Claim/Damage Advisory]
+		en = Comp/Claim/Damage Advisory
+		es = Asesoría queja/solicitud/daño
+		it = +=+=+=/+=+=+=/+=+=+= +=+=+=
+	[Finance Section]
+		en = Finance Section
+		es = Sección de finanzas
+		it = +=+=+= +=+=+=
+	[Ground Support Request]
+		en = Ground Support Request
+		es = Solicitud de apoyo en tierra
+		it = +=+=+= +=+=+= +=+=+=
+	[Incident Commander]
+		en = Incident Commander
+		es = Responsable de incidencia
+		it = +=+=+= +=+=+=
+	[Liaison Officer]
+		en = Liaison Officer
+		es = Oficial de enlace
+		it = +=+=+= +=+=+=
+	[Logistics Section]
+		en = Logistics Section
+		es = Sección de logística
+		it = +=+=+= +=+=+=
+	[Operations Section]
+		en = Operations Section
+		es = Sección de operaciones
+		it = +=+=+= +=+=+=
+	[Other (See Message)]
+		en = Other (See Message)
+		es = Otro (ver mensaje)
+		it = +=+=+= (+=+=+= +=+=+=)
+	[Plans Section]
+		en = Plans Section
+		es = Sección de planes
+		it = +=+=+= +=+=+=
+	[Public Information Officer]
+		en = Public Information Officer
+		es = Director de información
+		it = +=+=+= +=+=+= +=+=+=
+	[Safety Officer]
+		en = Public Information Officer
+		es = Safety Officer
+		it = +=+=+= +=+=+= +=+=+=
+	[Suppression Repair]
+		en = Suppression Repair
+		es = Represión y  reparación,
+		it = +=+=+= +=+=+=
+	[NONE]
+		en = NONE
+		comment = Abbreviations of each of the above recipient fields
+		es = NONE
+		it = +=+=+=
+	[AREP]
+		en = AREP
+		es = AREP
+		it = +=+=+=
+	[DMG]
+		en = DMG
+		es = DMG
+		it = +=+=+=
+	[FSC]
+		en = FSC
+		es = FSC
+		it = +=+=+=
+	[GSUL]
+		en = GSUL
+		es = GSUL
+		it = +=+=+=
+	[IC]
+		en = IC
+		es = IC
+		it = +=+=+=
+	[LNO]
+		en = LNO
+		es = LNO
+		it = +=+=+=
+	[LSC]
+		en = LSC
+		es = LSC
+		it = +=+=+=
+	[OPS]
+		en = OPS
+		es = OPS
+		it = +=+=+=
+	[MSG]
+		en = MSG
+		es = MSG
+		it = +=+=+=
+	[PLAN]
+		en = PLAN
+		es = PLAN
+		it = +=+=+=
+	[PIO]
+		en = PIO
+		es = PIO
+		it = +=+=+=
+	[SOFR]
+		en = SOFR
+		es = SOFR
+		it = +=+=+=
+	[SUPR]
+		en = SUPR
+		es = SUPR
+		it = +=+=+=
+	[Please select or take an image to submit.]
+		en = Please select or take an image to submit.
+		comment = error message popup that appears when trying to send a general message without an image attached
+		es = Selecciona o genera una imagen para enviar.
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[Select Color]
+		en = Select Color
+		comment = Color drop down choices
+		es = Selecciona color
+		it = +=+=+= +=+=+=
+	[Red]
+		en = Red
+		es = Rojo
+		it = +=+=+=
+	[Orange]
+		en = Orange
+		es = Naranja
+		it = +=+=+=
+	[Yellow]
+		en = Yellow
+		es = Amarillo
+		it = +=+=+=
+	[Green]
+		en = Green
+		es = Verde
+		it = +=+=+=
+	[Teal]
+		en = Teal
+		es = Turquesa
+		it = +=+=+=
+	[Blue]
+		en = Blue
+		es = Azul
+		it = +=+=+=
+	[Purple]
+		en = Purple
+		es = Morado
+		it = +=+=+=
+	[Pink]
+		en = Pink
+		es = Rosa
+		it = +=+=+=
+	[Grey]
+		en = Grey
+		es = Gris
+		it = +=+=+=
+	[Black]
+		en = Black
+		es = Negro
+		it = +=+=+=
+	[Select Priority]
+		en = Select Priority
+		comment = Priority drop down options
+		es = Seleccionar prioridad
+		it = +=+=+= +=+=+=
+	[Urgent]
+		en = Urgent
+		es = Urgente
+		it = +=+=+=
+	[Regular]
+		en = Regular
+		es = Regular
+		it = +=+=+=
+	[Select Type]
+		en = Select Type
+		comment = Type drop down options
+		es = Selecciona tipo
+		it = +=+=+= +=+=+=
+	[Vessel]
+		en = Vessel
+		comment = Type drop down options
+		es = Vessel
+		it = +=+=+=
+	[Vehicle]
+		en = Vehicle
+		es = Vehicle
+		it = +=+=+=
+	[Overhead]
+		en = Overhead
+		es = Overhead
+		it = +=+=+=
+	[Equipment]
+		en = Equipment
+		es = Equipment
+		it = +=+=+=
+	[Aircraft]
+		en = Aircraft
+		es = Aircraft
+		it = +=+=+=
+	[Helo]
+		en = Helo
+		es = Helo
+		it = +=+=+=
+	[Crew]
+		en = Crew
+		es = Crew
+		it = +=+=+=
+	[VL]
+		en = VL
+		comment = Abbreviations of above resource request types
+		es = VL
+		it = +=+=+=
+	[VH]
+		en = VH
+		es = VH
+		it = +=+=+=
+	[O]
+		en = O
+		es = O
+		it = +=+=+=
+	[E]
+		en = E
+		es = E
+		it = +=+=+=
+	[A]
+		en = A
+		es = A
+		it = +=+=+=
+	[H]
+		en = H
+		es = H
+		it = +=+=+=
+	[C]
+		en = C
+		es = C
+		it = +=+=+=
+	[Property Owner Information]
+		en = Property Owner Information
+		comment = Damage Report Form Fields
+		es = Dueño de la propiedad Información
+		it = +=+=+= +=+=+= +=+=+=
+	[Last Name]
+		en = Last Name
+		es = Nombre
+		it = +=+=+= +=+=+=
+	[First Name]
+		en = First Name
+		es = Apellido
+		it = +=+=+= +=+=+=
+	[Landline Phone]
+		en = Landline Phone
+		es = Teléfono fijo
+		it = +=+=+= +=+=+=
+	[Cell Phone]
+		en = Cell Phone
+		es = Teléfono móvil
+		it = +=+=+= +=+=+=
+	[Email]
+		en = Email
+		es = Correo electrónico
+		it = +=+=+=
+	[Property Information]
+		en = Property Information
+		es = Propiedad de la información
+		it = +=+=+= +=+=+=
+	[Address]
+		en = Address
+		es = Dirección
+		it = +=+=+=
+	[City]
+		en = City
+		es = Ciudad
+		it = +=+=+=
+	[Zip Code]
+		en = Zip Code
+		es = Código postal
+		it = +=+=+= +=+=+=
+	[Latitude]
+		en = Latitude
+		es = Latitud
+		it = +=+=+=
+	[Longitude]
+		en = Longitude
+		es = Longitud
+		it = +=+=+=
+	[Damage Information]
+		en = Damage Information
+		es = Información de daños
+		it = +=+=+= +=+=+=
+	[Car]
+		en = Car
+		comment = Damage Types from form dropdown
+		es = Coche
+		it = +=+=+=
+	[Commercial - Multi-Story]
+		en = Commercial - Multi-Story
+		es = Local comercial de varias alturas
+		it = +=+=+= - +=+=+=-+=+=+=
+	[Commercial - Single-Story]
+		en = Commercial - Single-Story
+		es = Local comercial  a solo una altura
+		it = +=+=+= - +=+=+=-+=+=+=
+	[Double Wide Trailer]
+		en = Double Wide Trailer
+		es = Remolque de doble ancho
+		it = +=+=+= +=+=+= +=+=+=
+	[Motorhome]
+		en = Motorhome
+		es = vehículo de remolque, móvible
+		it = +=+=+=
+	[Other - Barn]
+		en = Other - Barn
+		es = Otros - granero
+		it = +=+=+= - +=+=+=
+	[Other - Garage]
+		en = Other - Garage
+		es = Otros - garaje
+		it = +=+=+= - +=+=+=
+	[Other - Out Building]
+		en = Other - Out Building
+		es = Otros - Exterior del edificio
+		it = +=+=+= - +=+=+= +=+=+=
+	[Residence - Multi-Family]
+		en = Residence - Multi-Family
+		es = Residencia - multifamiliar
+		it = +=+=+= - +=+=+=-+=+=+=
+	[Residence - Multi-Story Multi-Family]
+		en = Residence - Multi-Story Multi-Family
+		es = Residencia - de varias alturas multifamiliar
+		it = +=+=+= - +=+=+=-+=+=+= +=+=+=-+=+=+=
+	[Residence - Single Family]
+		en = Residence - Single Family
+		es = Residencia - unifamiliar
+		it = +=+=+= - +=+=+= +=+=+=
+	[Single Wide Trailer]
+		en = Single Wide Trailer
+		es = remolque sencillo
+		it = +=+=+= +=+=+= +=+=+=
+	[Trailer]
+		en = Trailer
+		es = Trailer
+		it = +=+=+=
+	[Truck]
+		en = Truck
+		es = Camión
+		it = +=+=+=
+	[Van]
+		en = Van
+		es = Furgoneta
+		it = +=+=+=
+	[Minor: 10 percent]
+		en = Minor: 10 percent
+		comment = Damage amounts from form dropdown
+		es = Poco grave: 10%
+		it = +=+=+=: < 10%
+	[Major: 10 to 50 percent]
+		en = Major: 10 to 50 percent
+		es = Importante: 10% to 50%
+		it = +=+=+=: 10% - 50%
+	[Destroyed: 50+ percent]
+		en = Destroyed: 50+ percent
+		es = Destruido: +50%
+		it = +=+=+=: > 50%
+	[Reporting Unit]
+		en = Reporting Unit
+		comment = Explosive Report Form Fields
+		es = Unidad informante/notificadora
+		it = +=+=+= +=+=+=
+	[Reporting Location]
+		en = Reporting Location
+		es = Lugar de conotificación
+		it = +=+=+= +=+=+=
+	[Contact Info]
+		en = Contact Info
+		es = Información de contacto
+		it = +=+=+= +=+=+=
+	[Explosive Type]
+		en = Explosive Type
+		es = Tipo de explosivo
+		it = +=+=+= +=+=+=
+	[Select Explosive Type]
+		en = Select Explosive Type
+		comment = Explosive type drop down choices
+		es = Selecciona tipo de explosivo
+		it = +=+=+= +=+=+= +=+=+=
+	[Dropped]
+		en = Dropped
+		es = dejar caer
+		it = +=+=+=
+	[Projected]
+		en = Projected
+		es = Proyectado,
+		it = +=+=+=
+	[Placed]
+		en = Placed
+		es = Colocados,
+		it = +=+=+=
+	[Possible IED]
+		en = Possible IED
+		es = posible artefacto explosivo improvisado
+		it = +=+=+= +=+=+=
+	[Thrown]
+		en = Thrown
+		es = Tirados or arrojados
+		it = +=+=+=
+	[Size]
+		en = Size
+		es = Tamaño
+		it = +=+=+=
+	[Shape]
+		en = Shape
+		es = Forma
+		it = +=+=+=
+	[Color]
+		en = Color
+		es = Color
+		it = +=+=+=
+	[Condition]
+		en = Condition
+		es = Condición
+		it = +=+=+=
+	[Select Condition]
+		en = Select Condition
+		comment = Condition drop down choices
+		es = Selecciona condición
+		it = +=+=+= +=+=+=
+	[Intact]
+		en = Intact
+		es = Intacto
+		it = +=+=+=
+	[Leaking]
+		en = Leaking
+		es = Filtrando
+		it = +=+=+=
+	[CBRN Contamination]
+		en = CBRN Contamination
+		es = contaminacion quimica, biologica,radiologica y nuclear
+		it = +=+=+= +=+=+=
+	[Resource Threatened]
+		en = Resource Threatened
+		es = Fuente amenazada
+		it = +=+=+= +=+=+=
+	[Impact On Mission]
+		en = Impact On Mission
+		es = Impacto/consecuencias sobre la misión
+		it = +=+=+= +=+=+= +=+=+=
+	[Protective Measures]
+		en = Protective Measures
+		es = Medidas de protección
+		it = +=+=+= +=+=+=
+	[Recommended Priority]
+		en = Recommended Priority
+		es = Prioridad recomendada
+		it = +=+=+= +=+=+=
+	[Select Recommended Priority]
+		en = Select Recommended Priority
+		comment = Recommended Priority drop down choices
+		es = Selecciona prioridad recomendada
+		it = +=+=+= +=+=+= +=+=+=
+	[Immediate]
+		en = Immediate
+		es = Inmediato
+		it = +=+=+=
+	[Indirect]
+		en = Indirect
+		es = Indirecto
+		it = +=+=+=
+	[Minor]
+		en = Minor
+		es = Poco grave
+		it = +=+=+=
+	[No Threat]
+		en = No Threat
+		es = Sin amenaza
+		it = +=+=+= +=+=+=
+	[Notes]
+		en = Notes
+		es = Observaciones
+		it = +=+=+=
+	[Incident Identification]
+		en = Incident Identification
+		es = Identificación de incidencia
+		it = +=+=+= +=+=+=
+	[Incident ID]
+		en = Incident ID
+		es = Código de incidencia
+		it = +=+=+= +=+=+=
+	[Incident Name]
+		en = Incident Name
+		es = Nombre de la incidencia
+		it = +=+=+= +=+=+=
+	[Pollution Case #]
+		en = Pollution Case #
+		es = caso de contaninación
+		it = +=+=+= +=+=+= #
+	[Source of Incident]
+		en = Source of Incident
+		es = Fuente de la incidencia
+		it = +=+=+= +=+=+= +=+=+=
+	[Location of Incident]
+		en = Location of Incident
+		es = Lugar de la incidencia
+		it = +=+=+= +=+=+= +=+=+=
+	[Date of Incident]
+		en = Date of Incident
+		es = Fecha de la incidencia
+		it = +=+=+= +=+=+= +=+=+=
+	[Investigators]
+		en = Investigators
+		es = Investigadores
+		it = +=+=+=
+	[Activity #]
+		en = Activity #
+		es = Actividad #
+		it = +=+=+= #
+	[Enforcement #]
+		en = Enforcement #
+		es = Número de acción/Ejecución #
+		it = +=+=+= #
+	[Ticket #]
+		en = Ticket #
+		es = Numero de boleto #
+		it = +=+=+= #
+	[Federal Project #]
+		en = Federal Project #
+		es = Número de proyecto federal #
+		it = +=+=+= +=+=+= #
+	[Discharge Data]
+		en = Discharge Data
+		es = Descargar información
+		it = +=+=+= +=+=+=
+	[Material Spilled]
+		en = Material Spilled
+		es = Material  derramado
+		it = +=+=+= +=+=+=
+	[Total Spilled (Est)]
+		en = Total Spilled (Est)
+		es = ` total de Cantidad volcada od derramada`
+		it = +=+=+= +=+=+= (+=+=+=)
+	[Total Potential]
+		en = Total Potential
+		es = Total Potential
+		it = +=+=+= +=+=+=
+	[Total Recovered]
+		en = Total Recovered
+		es = Total recuperado
+		it = +=+=+= +=+=+=
+	[Source]
+		en = Source
+		es = Fuente
+		it = +=+=+=
+	[Water Body]
+		en = Water Body
+		es = Fuente de agua / masa de agua
+		it = +=+=+= +=+=+=
+	[Description of Spill]
+		en = Description of Spill
+		es = Descripción del derrame/vertido
+		it = +=+=+= +=+=+= +=+=+=
+	[Description of Cause]
+		en = Description of Cause
+		es = Descripción de la causa
+		it = +=+=+= +=+=+= +=+=+=
+	[Path of Discharge]
+		en = Path of Discharge
+		es = Vía de descarga/derrame
+		it = +=+=+= +=+=+= +=+=+=
+	[Weather and Tides]
+		en = Weather and Tides
+		es = Climatología y mareas
+		it = +=+=+= +=+=+= +=+=+=
+	[Wind Direction]
+		en = Wind Direction
+		es = Dirección del viente
+		it = +=+=+= +=+=+=
+	[Sea Height]
+		en = Sea Height
+		es = Altura de la marea
+		it = +=+=+= +=+=+=
+	[Current Direction]
+		en = Current Direction
+		es = Dirección actual
+		it = +=+=+= +=+=+=
+	[Visibility]
+		en = Visibility
+		es = Visibilidad
+		it = +=+=+=
+	[Sunset]
+		en = Sunset
+		es = Atardecer
+		it = +=+=+=
+	[Air Temp]
+		en = Air Temp
+		es = Temperatura del aire
+		it = +=+=+= +=+=+=
+	[Wind Speed]
+		en = Wind Speed
+		es = Velocidad de los vientes
+		it = +=+=+= +=+=+=
+	[Current Speed]
+		en = Current Speed
+		es = Velocidad actual
+		it = +=+=+= +=+=+=
+	[Precipitation]
+		en = Precipitation
+		es = Precipitaciones
+		it = +=+=+=
+	[Sunrise]
+		en = Sunrise
+		es = Amanecer
+		it = +=+=+=
+	[Water Temp]
+		en = Water Temp
+		es = Temperatura del agua
+		it = +=+=+= +=+=+=
+	[Suspect R.P. and Witnesses]
+		en = Suspect R.P. and Witnesses
+		es = ` sospechoso * y testigos`
+		it = +=+=+= +=+=+=. +=+=+= +=+=+=
+	[Individual/Company]
+		en = Individual/Company
+		es = Individuo/Empresa
+		it = +=+=+=/+=+=+=
+	[Individual/Company Address]
+		en = Individual/Company Address
+		es = Dirección del individuo/empresa
+		it = +=+=+=/+=+=+= +=+=+=
+	[Individual/Company Phone]
+		en = Individual/Company Phone
+		es = Número de teléfono del individuo/ de la empresa
+		it = +=+=+=/+=+=+= +=+=+=
+	[Relationship]
+		en = Relationship
+		es = Relación
+		it = +=+=+=
+	[License or Doc #]
+		en = License or Doc #
+		es = Número de expediente/licencia/documento #
+		it = +=+=+= +=+=+= +=+=+= #
+	[Witness 1 Name]
+		en = Witness 1 Name
+		es = Testigo 1 nombre
+		it = +=+=+= +=+=+= +=+=+=
+	[Witness 1 Address]
+		en = Witness 1 Address
+		es = Testigo 1 dirección
+		it = +=+=+= +=+=+= +=+=+=
+	[Witness 1 Phone]
+		en = Witness 1 Phone
+		es = Testigo 1 número de teléfono
+		it = +=+=+= +=+=+= +=+=+=
+	[Witness 2 Name]
+		en = Witness 2 Name
+		es = Testigo 2 nombre
+		it = +=+=+= +=+=+= +=+=+=
+	[Witness 2 Address]
+		en = Witness 2 Address
+		es = Testigo 2 dirección
+		it = +=+=+= +=+=+= +=+=+=
+	[Witness 2 Phone]
+		en = Witness 2 Phone
+		es = Testigo 2 número de teléfono
+		it = +=+=+= +=+=+= +=+=+=
+	[Oil Samples]
+		en = Oil Samples
+		es = Muestras de aceite
+		it = +=+=+= +=+=+=
+	[Samples Taken]
+		en = Samples Taken
+		es = Muestras tomadas
+		it = +=+=+= +=+=+=
+	[Number]
+		en = Number
+		es = Número
+		it = +=+=+=
+	[Suspected Source]
+		en = Suspected Source
+		es = Presunta fuente/ Fuente bajo sospecha
+		it = +=+=+= +=+=+=
+	[Identification]
+		en = Identification
+		es = Identificación
+		it = +=+=+=
+	[Date]
+		en = Date
+		es = Fecha
+		it = +=+=+=
+	[Time]
+		en = Time
+		es = Hora
+		it = +=+=+=
+	[Witness]
+		en = Witness
+		es = Testigo
+		it = +=+=+=
+	[Sample Source]
+		en = Sample Source
+		es = Fuente de la muestra
+		it = +=+=+= +=+=+=
+	[Clean Sample]
+		en = Clean Sample
+		es = Muestra limpia
+		it = +=+=+= +=+=+=
+	[Suspect Source Sample 1]
+		en = Suspect Source Sample 1
+		es = Muestra de la fuente bajo sospecha 1
+		it = +=+=+= +=+=+= +=+=+= +=+=+=
+	[Suspect Source Sample 2]
+		en = Suspect Source Sample 2
+		es = Muestra de la fuente bajo sospecha 2
+		it = +=+=+= +=+=+= +=+=+= +=+=+=
+	[Suspect Source Sample 3]
+		en = Suspect Source Sample 3
+		es = Muestra de la fuente bajo sospecha 3
+		it = +=+=+= +=+=+= +=+=+= +=+=+=
+	[Suspect Source Sample 4]
+		en = Suspect Source Sample 4
+		es = Muestra de la fuente bajo sospecha 4
+		it = +=+=+= +=+=+= +=+=+= +=+=+=
+	[Vessel Name]
+		en = Vessel Name
+		es = Nombre del buque
+		it = +=+=+= +=+=+=
+	[Call Sign]
+		en = Call Sign
+		es = Call Sign
+		it = +=+=+= +=+=+=
+	[Flag]
+		en = Flag
+		es = Bandera
+		it = +=+=+=
+	[Owner/Operator]
+		en = Owner/Operator
+		es = Armador/Operador
+		it = +=+=+=/+=+=+=
+	[Operator Phone]
+		en = Operator Phone
+		es = Operator Phone
+		it = +=+=+= +=+=+=
+	[Gross Tonnage]
+		en = Gross Tonnage
+		es = Tonelaje bruto
+		it = +=+=+= +=+=+=
+	[Type of Vessel]
+		en = Type of Vessel
+		es = Tipo de buque
+		it = +=+=+= +=+=+= +=+=+=
+	[Designation]
+		en = Designation
+		es = designacion
+		it = +=+=+=
+	[Agent]
+		en = Agent
+		es = Agente
+		it = +=+=+=
+	[Agent Phone]
+		en = Agent Phone
+		es = Número de teléfono del agente
+		it = +=+=+= +=+=+=
+	[COFR]
+		en = COFR
+		es = COFR
+		it = +=+=+=
+	[SOPEP]
+		en = SOPEP
+		es = SOPEP
+		it = +=+=+=
+	[Oil Trans Procedures]
+		en = Oil Trans Procedures
+		es = Oil Trans Procedures
+		it = +=+=+= +=+=+= +=+=+=
+	[IOPP]
+		en = IOPP
+		es = IOPP
+		it = +=+=+=
+	[Oil Record Book]
+		en = Oil Record Book
+		es = Oil Record Book
+		it = +=+=+= +=+=+= +=+=+=
+	[Declaration of Inspection]
+		en = Declaration of Inspection
+		es = Declaración de inspección
+		it = +=+=+= +=+=+= +=+=+=
+	[Person in Charge]
+		en = Person in Charge
+		es = Responsable de incidencia
+		it = +=+=+= +=+=+= +=+=+=
+	[Master]
+		en = Master
+		es = Capitán
+		it = Master
+	[Chief Engineer]
+		en = Chief Engineer
+		es = Ingeniero jefe
+		it = +=+=+= +=+=+=
+	[Keel Laid Date]
+		en = Keel Laid Date
+		es = Fecha de la Quilla / vuelta a la fecha
+		it = +=+=+= +=+=+= +=+=+=
+	[Facility and Other Parties]
+		en = Facility and Other Parties
+		es = Instalación y de otras partes,
+		it = +=+=+= +=+=+= +=+=+= +=+=+=
+	[Facility]
+		en = Facility
+		es = Instalaciones/Establecimiento
+		it = +=+=+=
+	[Type]
+		en = Type
+		es = Tipo
+		it = +=+=+=
+	[Facility Address]
+		en = Facility Address
+		es = Dirección de las instalaciones
+		it = +=+=+= +=+=+=
+	[Facility Phone]
+		en = Facility Phone
+		es = Número de contacto de las instalaciones
+		it = +=+=+= +=+=+=
+	[Operations Manager]
+		en = Operations Manager
+		es = Responsable de operaciones
+		it = +=+=+= +=+=+=
+	[Other Party]
+		en = Other Party
+		es = otra persona of individuo
+		it = +=+=+= +=+=+=
+	[Other Vessel]
+		en = Other Vessel
+		es = Otro buque
+		it = +=+=+= +=+=+=
+	[Other Facility]
+		en = Other Facility
+		es = Otras instalaciones
+		it = +=+=+= +=+=+=
+	[Other Facility Address]
+		en = Other Facility Address
+		es = Dirección de otras instalaciones
+		it = +=+=+= +=+=+= +=+=+=
+	[Other Facility Phone]
+		en = Other Facility Phone
+		es = Número de contacto de otras instalaciones
+		it = +=+=+= +=+=+= +=+=+=
+	[Other Factors]
+		en = Other Factors
+		es = Otros factores
+		it = +=+=+= +=+=+=
+	[Aggravating (-)]
+		en = Aggravating (-)
+		es = Agravantes (-)
+		it = +=+=+= (-)
+	[Mitigating (+)]
+		en = Mitigating (+)
+		es = Atenuantes (+)
+		it = +=+=+= (+)
+	[Description]
+		en = Description
+		comment = Resource Request Form Fields
+		es = Descripción/Información
+		it = +=+=+=
+	[Quantity]
+		en = Quantity
+		es = Cantidad
+		it = +=+=+=
+	[Priority]
+		en = Priority
+		es = `Prioridad `
+		it = +=+=+=
+	[Location]
+		en = Location
+		es = Localización
+		it = +=+=+=
+	[ETA]
+		en = ETA
+		es = ETA
+		it = +=+=+=
+	[Status]
+		en = Status
+		es = Estatus
+		it = +=+=+=
+	[Type: ]
+		en = `Type: `
+		comment = Map markup
+		es = `Tipo: `
+		it = `+=+=+=: `
+	[User: ]
+		en = `User: `
+		es = `Usuario: `
+		it = `+=+=+=: `
+	[Use the Select Room button above to join your team's chat]
+		en = Use the Select Room button above to join your team's chat
+		comment = Helper text displayed in chat room to guide the user
+		es = Utiliza el botón de selección en la parte superior para unirte al chat de tu equipo
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=
+	[No messages have been posted in this Room yet.]
+		en = No messages have been posted in this Room yet.
+		es = No hay mensajes en este chatroom todavía.
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[0EO-ZU-Z7V.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "0EO-ZU-Z7V";
+		es = 0
+	[GPS-gp-rlw.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "GPS-gp-rlw";
+		es = 0
+	[WKX-pa-1gw.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "WKX-pa-1gw";
+		es = 0
+	[ZTG-W6-cCv.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "ZTG-W6-cCv";
+		es = 0
+	[fu5-or-CpW.text]
+		en = 1.0
+		comment = Class = "UILabel"; text = "1.0"; ObjectID = "fu5-or-CpW";
+		es = 1.0
+	[hrT-mm-kjh.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "hrT-mm-kjh";
+		es = 0
+	[nfa-Ph-kzy.text]
+		en = ABCD
+		comment = Class = "UILabel"; text = "ABCD"; ObjectID = "nfa-Ph-kzy";
+		es = ABCD
+	[p8B-Dx-9Ex.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "p8B-Dx-9Ex";
+		es = 0
+	[q1Z-rg-Wyu.text]
+		en = 0
+		comment = Class = "UILabel"; text = "0"; ObjectID = "q1Z-rg-Wyu";
+		es = 0
+	[Group]
+		en = Group
+		es = Group
+		it = Group
+	[Name]
+		en = Name
+		es = Name
+		it = Name
+	[none given]
+		en = none given
+		es = none given
+		it = none given
+	[Enabled]
+		en = Enabled
+		es = Enabled
+		it = Enabled
+	[Chat Update Frequency]
+		en = Chat Update Frequency
+		comment = Translations for settings menu
+		es = Chat Update Frequency
+		it = *#*#*#*# *#*#*#*# *#*#*#*#
+	[Reports Update Frequency]
+		en = Reports Update Frequency
+		es = Reports Update Frequency
+		it = *#*#*#*# *#*#*#*# *#*#*#*#
+	[Map Update Frequency]
+		en = Map Update Frequency
+		es = Map Update Frequency
+		it = *#*#*#*# *#*#*#*# *#*#*#*#
+	[Mobile Tracking Update Frequency]
+		en = Mobile Tracking Update Frequency
+		es = Mobile Tracking Update Frequency
+		it = *#*#*#*# *#*#*#*# *#*#*#*#
+	[WFS Update Frequency]
+		en = WFS Update Frequency
+		es = WFS Update Frequency
+		it = *#*#*#*# *#*#*#*# *#*#*#*#
+	[Laser Range Finder]
+		en = Laser Range Finder
+		es = Laser Range Finder
+		it = *#*#*#*# *#*#*#*# *#*#*#*#
+	[Show Debug Tab]
+		en = Show Debug Tab
+		es = Show Debug Tab
+		it = *#*#*#*# *#*#*#*# *#*#*#*#
+	[GPS Mobile Device Tracking]
+		en = GPS Mobile Device Tracking
+		es = GPS Mobile Device Tracking
+		it = *#*#*#*# *#*#*#*# *#*#*#*# *#*#*#*#
+	[Select NICS Server]
+		en = Select NICS Server
+		es = Select NICS Server
+		it = *#*#*#*# *#*#*#*# *#*#*#*#
+	[Select NICS Authentication Server]
+		en = Select NICS Authentication Server
+		es = Select NICS Authentication Server
+		it = *#*#*#*# *#*#*#*# *#*#*#*# *#*#*#*#
+	[Select NICS Geo Server]
+		en = Select NICS Geo Server
+		es = Select NICS Geo Server
+		it = *#*#*#*# *#*#*#*# *#*#*#*# *#*#*#*#
+	[15 Seconds]
+		en = 15 Seconds
+		comment = Drop down options for settings menu
+		es = 15 Seconds
+		it = 15 *#*#*#*#
+	[30 Seconds]
+		en = 30 Seconds
+		es = 30 Seconds
+		it = 30 *#*#*#*#
+	[1 Minute]
+		en = 1 Minute
+		es = 1 Minute
+		it = 1 *#*#*#*#
+	[1.5 Minutes]
+		en = 1.5 Minutes
+		es = 1.5 Minutes
+		it = 1.5 *#*#*#*#
+	[2 Minutes]
+		en = 2 Minutes
+		es = 2 Minutes
+		it = 2 *#*#*#*#

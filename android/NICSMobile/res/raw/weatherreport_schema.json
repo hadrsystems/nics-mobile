@@ -1,0 +1,97 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "Weather Report"
+    },
+    "datasource": {
+    	"display_name": "wr_datasource_displayname",
+        "type": "integer",
+        "id": "2",
+        "priority": "2",
+		"options": {
+            "0": "wr_sourcetype_beltweatherkit",
+            "1": "wr_sourcetype_kestral",
+            "2": "wr_sourcetype_electronic"
+        }
+    },
+    "coordinate": {
+    	"display_name": "wr_coordinate_displayname",
+        "type": "coordinate",
+        "id": "3",
+        "priority": "3"
+    },
+    "elevation": {
+    	"display_name": "wr_elevation_displayname",
+        "type": "integer",
+        "id": "4",
+        "priority": "4"
+    },
+    "drybulbtemp": {
+    	"display_name": "wr_drybulbtemp_displayname",
+        "type": "integer",
+        "id": "5",
+        "priority": "5"
+    },
+    "wetbulbtemp": {
+    	"display_name": "wr_wetbulbtemp_displayname",
+        "type": "integer",
+        "id": "6",
+        "priority": "6"
+    },
+	"relativehumidity": {
+    	"display_name": "wr_relativehumidity_displayname",
+		"type": "integer",
+		"id":"7",
+		"priority": "7"
+	},
+	"winddirection": {
+    	"display_name": "wr_winddirection_displayname",
+		"type": "integer",
+		"id": "8",
+		"priority": "8",
+		"options": {
+            "0": "wr_windtype_north",
+            "1": "wr_windtype_south",
+            "2": "wr_windtype_east",
+            "3": "wr_windtype_west",
+            "4": "wr_windtype_northeast",
+            "5": "wr_windtype_northwest",
+            "6": "wr_windtype_southeast",
+            "7": "wr_windtype_southwest"
+        }
+	},
+	"windspeed": {
+    	"display_name": "wr_windspeed_displayname",
+		"type": "integer",
+		"id": "9",
+		"priority": "9"
+	},
+	"aspect": {
+    	"display_name": "wr_aspect_displayname",
+		"type": "integer",
+		"id": "10",
+		"priority": "10",
+		"options": {
+            "0": "wr_windtype_north",
+            "1": "wr_windtype_south",
+            "2": "wr_windtype_east",
+            "3": "wr_windtype_west",
+            "4": "wr_windtype_northeast",
+            "5": "wr_windtype_northwest",
+            "6": "wr_windtype_southeast",
+            "7": "wr_windtype_southwest"
+        }
+	},
+	"physicallocation": {
+    	"display_name": "wr_physicallocation_displayname",
+		"type": "string",
+		"id": "11",
+		"priority": "11"
+	},
+	"timetaken": {
+    	"display_name": "wr_timetaken_displayname",
+		"type": "string",
+		"id": "12",
+		"priority": "12"
+	}
+}

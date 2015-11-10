@@ -1,0 +1,61 @@
+====
+    (c) Copyright, 2008-2014 Massachusetts Institute of Technology.
+
+        This material may be reproduced by or for the
+        U.S. Government pursuant to the copyright license
+        under the clause at DFARS 252.227-7013 (June, 1995).
+====
+
+# To enable ProGuard in your project, edit project.properties
+# to define the proguard.config property as described in that file.
+#
+# Add project specific ProGuard rules here.
+# By default, the flags in this file are appended to flags specified
+# in ${sdk.dir}/tools/proguard/proguard-android.txt
+# You can edit the include path and order by changing the ProGuard
+# include property in project.properties.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# Add any project specific keep options here:
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keep class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+-keep class edu.mit.ll.phinics.android.SettingsActivity$GeneralPreferenceFragment
+-keep class edu.mit.ll.phinics.android.SettingsActivity$SyncPreferenceFragment
+-keep class edu.mit.ll.phinics.android.SettingsActivity$OtherPreferenceFragment
+
+-keepclassmembers enum * {
+ public static **[] values();
+ public static ** valueOf(java.lang.String);
+ }
+ 
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+-keep public class * extends android.view.ActionProvider {
+  <init>(...);
+}
+-keep public class * extends android.support.v4.view.ActionProvider {
+  <init>(...);
+}
+
+-keep class edu.mit.ll.phinics.android.api.data.** {
+	*;
+}
+
+-keep class edu.mit.ll.phinics.android.api.messages.** {
+	*;
+}
+
+-keep class edu.mit.ll.phinics.android.api.payload.** {
+	*;
+}

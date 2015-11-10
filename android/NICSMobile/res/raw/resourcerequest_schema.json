@@ -1,0 +1,69 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "Resource Request"
+    },
+    "description": {
+    	"display_name": "resreq_description_displayname",
+        "type": "string",
+        "id": "1",
+        "priority": "1"
+    },
+    "type": {
+    	"display_name": "resreq_type_displayname",
+        "type": "integer",
+        "id": "2",
+        "priority": "2",
+		"options": {
+            "0": "resreq_resreqtype_vessel",
+            "1": "resreq_resreqtype_vehicle",
+            "2": "resreq_resreqtype_overhead",
+            "3": "resreq_resreqtype_equipment",
+            "4": "resreq_resreqtype_aircraft",
+            "5": "resreq_resreqtype_helo",
+            "6": "resreq_resreqtype_crew"
+        }
+    },
+    "source": {
+    	"display_name": "resreq_source_displayname",
+        "type": "string",
+        "id": "3",
+        "priority": "3"
+    },
+    "quantity": {
+    	"display_name": "resreq_quantity_displayname",
+        "type": "string",
+        "id": "4",
+        "priority": "4"
+    },
+    "priority": {
+    	"display_name": "resreq_priority_displayname",
+        "type": "integer",
+        "id": "5",
+        "priority": "5",
+		"options": {
+			"0": "resreq_priority_urgent",
+            "1": "resreq_priority_regular"
+		}
+    },
+    "location": {
+    	"display_name": "resreq_location_displayname",
+        "type": "string",
+        "id": "6",
+        "priority": "6"
+    },
+	"ETA": {
+    	"display_name": "resreq_eta_displayname",
+		"type": "string",
+		"id":"7",
+		"priority": "7",
+		"enabled": "false"
+	},
+	"status": {
+    	"display_name": "resreq_status_displayname",
+		"type": "string",
+		"id": "8",
+		"priority": "8",
+		"enabled": "false"
+	}
+}

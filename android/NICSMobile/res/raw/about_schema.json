@@ -1,0 +1,56 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "About"
+    },
+    
+    "funding": {
+    	"display_name": "",
+    	"type": "string",
+    	"font_size": 16,
+    	"id": "0",
+    	"priority": "0"
+    },
+       
+    "legal_section_google": {
+    	"display_name": "Legal Notices - Google Maps",
+        "type": "section",
+        "id": "1",
+        "priority": "1",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "google"
+            ]
+        }
+    },
+    "google": {
+    	"display_name": "",
+    	"font_size": 10,
+        "type": "string",
+        "id": "2",
+        "priority": "2",
+        "enabled": "false"
+    },
+    
+    "legal_section_icons": {
+    	"display_name": "Legal Notice - Icons",
+        "type": "section",
+        "id": "3",
+        "priority": "3",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "icons"
+            ]
+        }
+    },
+    "icons": {
+    	"display_name": "",
+    	"font_size": 10,
+        "type": "string",
+        "id": "4",
+        "priority": "4",
+        "enabled": "false"
+    }
+}

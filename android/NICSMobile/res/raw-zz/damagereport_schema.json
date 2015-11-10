@@ -1,0 +1,131 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "ÐàＭágè Sùrvéÿ"
+    },
+    "property_owner_information": {
+    	"display_name": "Pròpèrtÿ Owñér IñfôrＭàtíõñ",
+        "type": "section",
+        "id": "0",
+        "priority": "0",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "last_name",
+                "first_name",
+                "landline_phone",
+                "cell_phone",
+                "email"
+            ]
+        }
+    },
+    "last_name": {
+    	"display_name": "Lást ñâＭê",
+        "type": "string",
+        "id": "1",
+        "priority": "1"
+    },
+    "first_name": {
+    	"display_name": "Fîrst ñãＭë",
+        "type": "string",
+        "id": "2",
+        "priority": "2"
+    },
+    "landline_phone": {
+    	"display_name": "Läñðlïñè Phöñé",
+        "type": "string",
+        "id": "3",
+        "priority": "3"
+    },
+    "cell_phone": {
+    	"display_name": "Cêll Phøñë",
+        "type": "string",
+        "id": "4",
+        "priority": "4"
+    },
+    "email": {
+    	"display_name": "EＭåìl",
+        "type": "string",
+        "id": "5",
+        "priority": "5"
+    },
+    "property_information": {
+    	"display_name": "Pròpértý IñfórＭàtîôñ",
+        "type": "section",
+        "id": "6",
+        "priority": "6",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "address",
+                "city",
+                "zip_code",
+                "coordinate"
+            ]
+        }
+    },
+    "address": {
+    	"display_name": "Aþðrêßs",
+        "type": "string",
+        "id": "7",
+        "priority": "7"
+    },
+    "city": {
+    	"display_name": "Cïtÿ",
+        "type": "string",
+        "id": "8",
+        "priority": "8"
+    },
+    "zip_code": {
+    	"display_name": "Zìp Cõþë",
+        "type": "string",
+        "id": "9",
+        "priority": "9"
+    },
+    "coordinate": {
+    	"display_name": "Cöørðíñâtè",
+        "type": "coordinate",
+        "id": "10",
+        "priority": "10"
+    },
+	"damage_information": {
+    	"display_name": "þãＭägé IñfòrＭåtïóñ",
+        "type": "section",
+        "id": "12",
+        "priority": "12",
+        "default": "0",
+        "toggles": {
+            "1": ["damage_information_data"]
+        }
+	},
+	"damage_information_data": {
+    	"display_name": "ðàＭágê IñfôrＭâtíõñ þãtä",
+	     "type": "damage",
+        "id": "13",
+        "priority": "13",
+		"options": {
+            "0": "Mìñòr: < 10%",
+            "1": "Màjór: 10% - 50%",
+            "2": "Ðèstrôÿéð: > 50%"
+		}
+	},
+	"images": {
+		"display_name": "IＭägé",
+        "type": "section",
+        "id": "14",
+        "priority": "14",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "fullpath"
+            ]
+        }
+    },
+	"fullpath": {
+		"display_name": "",
+		"type": "image_selector",
+		"id": "15",
+		"priority": "15"
+
+	}
+}

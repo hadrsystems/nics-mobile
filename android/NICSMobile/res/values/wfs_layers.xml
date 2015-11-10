@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<string name="wfslayer_ca_beu_xmy_avl_title">CA-BEU/XMY AVL</string>
+  	<string name="wfslayer_ca_cor_hmt_avl_title">CA-COR-HMT AVL</string>
+	<string name="wfslayer_ca_orc_avl_title">CA-ORC AVL</string>
+	<string name="wfslayer_ca_vnc_avl_title">CA-VNC AVL</string>
+	<string name="wfslayer_ca_xfr_avl_title">CA-XFR AVL</string>
+	<string name="wfslayer_ca_xmy_xsl_avl_title">CA-XMY-XSL (RIV temp.) AVL</string>
+	<string name="wfslayer_ca_xri_avl_title">CA-XRI AVL</string>
+	<string name="wfslayer_ca_xsd_rcip_avl_title">CA-XSD-RCIP AVL</string>
+	<string name="wfslayer_ca_xsl_avl_title">CA-XSL AVL</string>
+	<string name="wfslayer_cdf_aff_title">CDF AFF</string>
+	<string name="wfslayer_delorme_pli_title">Delorme PLI</string> 
+	<string name="wfslayer_nics_damage_report_title">NICS Damage Surveys</string>
+  	<string name="wfslayer_nics_simple_report_title">NICS General Messages</string>
+  	<string name="wfslayer_nics_mobile_title">NICS Mobile Users</string>
+	<string name="wfslayer_sarapp_pli_title">SARApp PLI</string>
+	<string name="wfslayer_balloon_title">Balloon</string>
+
+	<string name="wfslayer_ca_beu_xmy_avl_layername">ca_beu_view</string>
+	<string name="wfslayer_ca_cor_hmt_avl_layername">ca_corona_view</string>
+	<string name="wfslayer_ca_orc_avl_layername">ca_ocfa_view</string>
+	<string name="wfslayer_ca_vnc_avl_layername">ca_ventura_view</string>
+	<string name="wfslayer_ca_xfr_avl_layername">ca_fku_view</string>
+	<string name="wfslayer_ca_xmy_xsl_avl_layername">avlnmea_view</string>
+	<string name="wfslayer_ca_xri_avl_layername">avlxriground_view</string>
+	<string name="wfslayer_ca_xsd_rcip_avl_layername">avlrcip_view</string>
+	<string name="wfslayer_ca_xsl_avl_layername">ca_slu_view</string>
+	<string name="wfslayer_cdf_aff_layername">avlxriair_view</string>
+	<string name="wfslayer_delorme_pli_layername">avldelorme_view</string>
+	<string name="wfslayer_nics_damage_report_layername">nics_dmgrpt</string>
+    <string name="wfslayer_nics_mobile_layername">phi_mdt_view</string>
+    <string name="wfslayer_nics_simple_report_layername">nics_sr</string>
+   	<string name="wfslayer_sarapp_pli_layername">sar_view</string>
+   	<string name="wfslayer_balloon_layername">weinert_view</string>
+   
+   <array name="wfslayer_array">
+		<item>@string/wfslayer_ca_beu_xmy_avl_layername</item>
+		<item>@string/wfslayer_ca_cor_hmt_avl_layername</item>
+    	<item>@string/wfslayer_ca_orc_avl_layername</item>
+    	<item>@string/wfslayer_ca_vnc_avl_layername</item>
+		<item>@string/wfslayer_ca_xfr_avl_layername</item>
+		<item>@string/wfslayer_ca_xmy_xsl_avl_layername</item>
+		<item>@string/wfslayer_ca_xri_avl_layername</item>
+		<item>@string/wfslayer_ca_xsd_rcip_avl_layername</item>
+		<item>@string/wfslayer_ca_xsl_avl_layername</item>
+		<item>@string/wfslayer_cdf_aff_layername</item>
+		<item>@string/wfslayer_delorme_pli_layername</item>
+		<item>@string/wfslayer_nics_damage_report_layername</item>
+		<item>@string/wfslayer_nics_mobile_layername</item>
+		<item>@string/wfslayer_nics_simple_report_layername</item>
+		<item>@string/wfslayer_sarapp_pli_layername</item>
+		<item>@string/wfslayer_balloon_layername</item>
+	</array>
+	
+      <array name="wfslayer_title_array">
+        <item android:id="@+id/wfs_ca_beu_xmy_avl">@string/wfslayer_ca_beu_xmy_avl_title</item>
+        <item android:id="@+id/wfs_ca_cor_hmt_avl">@string/wfslayer_ca_cor_hmt_avl_title</item>
+        <item android:id="@+id/wfs_ca_orc_avl">@string/wfslayer_ca_orc_avl_title</item>
+        <item android:id="@+id/wfs_ca_vnc_avl">@string/wfslayer_ca_vnc_avl_title</item>
+		<item android:id="@+id/wfs_ca_xfr_avl">@string/wfslayer_ca_xfr_avl_title</item>
+		<item android:id="@+id/wfs_ca_xmy_xsl_avl">@string/wfslayer_ca_xmy_xsl_avl_title</item>
+		<item android:id="@+id/wfs_ca_xri_avl">@string/wfslayer_ca_xri_avl_title</item>
+		<item android:id="@+id/wfs_ca_xsd_rcip_avl">@string/wfslayer_ca_xsd_rcip_avl_title</item>
+		<item android:id="@+id/wfs_ca_xsl_avl">@string/wfslayer_ca_xsl_avl_title</item>
+		<item android:id="@+id/wfs_cdf_aff">@string/wfslayer_cdf_aff_title</item>
+		<item android:id="@+id/wfs_delorme_pli">@string/wfslayer_delorme_pli_title</item>
+		<item android:id="@+id/wfs_nics_dmgrpt">@string/wfslayer_nics_damage_report_title</item>
+		<item android:id="@+id/wfs_nics_mobile">@string/wfslayer_nics_mobile_title</item>
+		<item android:id="@+id/wfs_nics_sr">@string/wfslayer_nics_simple_report_title</item>
+		<item android:id="@+id/wfs_sarapp_pli">@string/wfslayer_sarapp_pli_title</item>
+		<item android:id="@+id/wfs_balloon">@string/wfslayer_balloon_title</item>
+	</array>
+</resources>

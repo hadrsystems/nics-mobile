@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<resources>
+    <string name="dr_property_owner_information_displayname">Dueño de la propiedad Información</string>
+    <string name="dr_last_name_displayname">Nombre</string>
+    <string name="dr_first_name_displayname">Apellido</string>
+    <string name="dr_landline_phone_displayname">Teléfono fijo</string>
+    <string name="dr_cell_phone_displayname">Teléfono móvil</string>
+    <string name="dr_email_displayname">Correo electrónico</string>
+    <string name="dr_property_information_displayname">Propiedad de la información</string>
+    <string name="dr_address_displayname">Dirección</string>
+    <string name="dr_city_displayname">Ciudad</string>
+    <string name="dr_zip_code_displayname">Código postal</string>
+    <string name="dr_coordinate_displayname">Coordinate</string>
+    <string name="dr_damage_information_displayname">Información de daños</string>
+    <string name="dr_damage_information_data_displayname">Información de daños data</string>
+    <string name="dr_image_displayname">Imagen</string>
+  
+    <string name="dr_propertydamagetype_blank"></string>
+    <string name="dr_propertydamagetype_minor">Poco grave: 10%</string>
+    <string name="dr_propertydamagetype_major">Importante: 10% to 50%</string>
+    <string name="dr_propertydamagetype_destroyed">Destruido: +50%</string>
+    
+    <string name="dr_propertytype_notset">no se establece</string>
+    <string name="dr_propertytype_car">Coche</string>
+    <string name="dr_propertytype_commercialmultistory">Local comercial de varias alturas</string>
+    <string name="dr_propertytype_commercialsinglestory">Local comercial  a solo una altura</string>
+    <string name="dr_propertytype_doublewidetrailer">Remolque de doble ancho</string>
+    <string name="dr_propertytype_motorhome">vehículo de remolque, móvible</string>
+    <string name="dr_propertytype_otherbarn">Otros - granero</string>
+    <string name="dr_propertytype_othergarage">Otros - garaje</string>
+    <string name="dr_propertytype_otheroutbuilding">Otros - Exterior del edificio</string>
+    <string name="dr_propertytype_residencemultifamily">Residencia - multifamiliar</string>
+    <string name="dr_propertytype_residencemultistorymultifamily">Residencia - de varias alturas multifamiliar</string>
+    <string name="dr_propertytype_residencemultistorysinglefamily">Residencia - unifamiliar</string>
+    <string name="dr_propertytype_residencesinglefamily">Residence - Single Family(italian)</string>
+    <string name="dr_propertytype_singlewidetrailer">remolque sencillo</string>
+    <string name="dr_propertytype_trailer">Trailer</string>
+    <string name="dr_propertytype_truck">Camión</string>
+    <string name="dr_propertytype_van">Furgoneta</string>
+   
+</resources>

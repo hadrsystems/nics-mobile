@@ -1,0 +1,315 @@
+
+/* Class = "UILabel"; text = "0"; ObjectID = "0EO-ZU-Z7V"; */
+"0EO-ZU-Z7V.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Tracking"; ObjectID = "0YS-aA-8gI"; */
+"0YS-aA-8gI.normalTitle" = "Tracking";
+
+/* Class = "UIViewController"; title = "Field Report Detail"; ObjectID = "0i6-hM-ZHR"; */
+"0i6-hM-ZHR.title" = "Field Report Detail";
+
+/* Class = "UILabel"; text = "Send status and time."; ObjectID = "0po-kV-x18"; */
+"0po-kV-x18.text" = "Send status and time.";
+
+/* Class = "UIViewController"; title = "User Info"; ObjectID = "1FX-dG-D25"; */
+"1FX-dG-D25.title" = "User Info";
+
+/* Class = "UITableViewController"; title = "Field Report List"; ObjectID = "311-Nq-PoD"; */
+"311-Nq-PoD.title" = "Field Report List";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "3Yg-qf-Ga5"; */
+"3Yg-qf-Ga5.text" = "Name";
+
+/* Class = "UILabel"; text = "Crew Selection"; ObjectID = "3a5-1Y-yMk"; */
+"3a5-1Y-yMk.text" = "Crew Selection";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "3pW-v9-n0J"; */
+"3pW-v9-n0J.normalTitle" = "OK";
+
+/* Class = "UITableViewController"; title = "Field Report List"; ObjectID = "5Mq-LV-Ca0"; */
+"5Mq-LV-Ca0.title" = "Field Report List";
+
+/* Class = "UINavigationItem"; title = "GAR"; ObjectID = "7Gc-uZ-D7t"; */
+"7Gc-uZ-D7t.title" = "GAR";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "7cS-tx-LhI"; */
+"7cS-tx-LhI.text" = "Name";
+
+/* Class = "UILabel"; text = "Timestamp"; ObjectID = "80J-c5-QFg"; */
+"80J-c5-QFg.text" = "Timestamp";
+
+/* Class = "UIButton"; normalTitle = "Chat"; ObjectID = "83r-r2-e97"; */
+"83r-r2-e97.normalTitle" = "Chat";
+
+/* Class = "UILabel"; text = "Incident"; ObjectID = "8W5-U7-CUU"; */
+"8W5-U7-CUU.text" = "Incident";
+
+/* Class = "UILabel"; text = "Timestamp"; ObjectID = "A8U-4r-geh"; */
+"A8U-4r-geh.text" = "Timestamp";
+
+/* Class = "UILabel"; text = "TimeStamp"; ObjectID = "AKO-Iy-kL9"; */
+"AKO-Iy-kL9.text" = "TimeStamp";
+
+/* Class = "UILabel"; text = "Planning"; ObjectID = "AOc-15-z7d"; */
+"AOc-15-z7d.text" = "Planning";
+
+/* Class = "UIButton"; normalTitle = "Sign in"; ObjectID = "AWH-55-uSh"; */
+"AWH-55-uSh.normalTitle" = "Sign in";
+
+/* Class = "UIViewController"; title = "Simple Report Detail"; ObjectID = "C3t-p7-dZX"; */
+"C3t-p7-dZX.title" = "Simple Report Detail";
+
+/* Class = "UINavigationItem"; title = "Overview"; ObjectID = "Dls-Xw-pvD"; */
+"Dls-Xw-pvD.title" = "Overview";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "GPS-gp-rlw"; */
+"GPS-gp-rlw.text" = "0";
+
+/* Class = "UILabel"; text = "Timestamp"; ObjectID = "HDO-gu-5rP"; */
+"HDO-gu-5rP.text" = "Timestamp";
+
+/* Class = "UILabel"; text = "No Damage Reports have been posted in this incident yet."; ObjectID = "HRF-54-2Eb"; */
+"HRF-54-2Eb.text" = "No Damage Reports have been posted in this incident yet.";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "I5U-Nh-yR5"; */
+"I5U-Nh-yR5.text" = "name";
+
+/* Class = "UIButton"; normalTitle = "New Report"; ObjectID = "IMf-dv-FTx"; */
+"IMf-dv-FTx.normalTitle" = "New Report";
+
+/* Class = "UIButton"; normalTitle = "Map Type"; ObjectID = "IeI-OW-h7D"; */
+"IeI-OW-h7D.normalTitle" = "Map Type";
+
+/* Class = "UIButton"; normalTitle = "Satellite"; ObjectID = "Ioi-Cd-MP1"; */
+"Ioi-Cd-MP1.normalTitle" = "Satellite";
+
+/* Class = "UITextField"; placeholder = "Type chat message here..."; ObjectID = "JY0-sV-A8e"; */
+"JY0-sV-A8e.placeholder" = "Type chat message here...";
+
+/* Class = "UILabel"; text = "Incident/Training"; ObjectID = "JcV-ui-R4A"; */
+"JcV-ui-R4A.text" = "Incident/Training";
+
+/* Class = "UITableViewController"; title = "Resource Request List"; ObjectID = "JgU-tg-bz0"; */
+"JgU-tg-bz0.title" = "Resource Request List";
+
+/* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "L9O-Sl-a8r"; */
+"L9O-Sl-a8r.text" = "Tracking Layer";
+
+/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "LkN-rW-2Wn"; */
+"LkN-rW-2Wn.text" = "No Explosive Reports have been posted in this incident yet.";
+
+/* Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "MhW-5A-pco"; */
+"MhW-5A-pco.normalTitle" = "Browse Gallery";
+
+/* Class = "UITableViewController"; title = "Simple Report List"; ObjectID = "MpV-w0-6ms"; */
+"MpV-w0-6ms.title" = "Simple Report List";
+
+/* Class = "UILabel"; text = "Environment"; ObjectID = "O3T-gW-ktv"; */
+"O3T-gW-ktv.text" = "Environment";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "OrP-w5-R4i"; */
+"OrP-w5-R4i.normalTitle" = "Cancel";
+
+/* Class = "UIViewController"; title = "Resource Request Detail"; ObjectID = "P5r-xo-nEI"; */
+"P5r-xo-nEI.title" = "Resource Request Detail";
+
+/* Class = "UILabel"; text = "Timestamp"; ObjectID = "PeB-ww-5fc"; */
+"PeB-ww-5fc.text" = "Timestamp";
+
+/* Class = "UIButton"; normalTitle = "Normal"; ObjectID = "Qis-51-CXH"; */
+"Qis-51-CXH.normalTitle" = "Normal";
+
+/* Class = "UINavigationItem"; title = "NICS Mobile"; ObjectID = "R34-ZS-sLC"; */
+"R34-ZS-sLC.title" = "NICS Mobile";
+
+/* Class = "UILabel"; text = "Remember Username"; ObjectID = "RKm-7P-Umu"; */
+"RKm-7P-Umu.text" = "Remember Username";
+
+/* Class = "UINavigationItem"; title = "UXO Reports"; ObjectID = "Rhx-eX-gmf"; */
+"Rhx-eX-gmf.title" = "UXO Reports";
+
+/* Class = "UITableViewController"; title = "Damage Report List"; ObjectID = "Ru3-1u-Jg3"; */
+"Ru3-1u-Jg3.title" = "Damage Report List";
+
+/* Class = "UILabel"; text = "User Name:"; ObjectID = "TDe-5f-hAA"; */
+"TDe-5f-hAA.text" = "User Name:";
+
+/* Class = "UITextField"; placeholder = "Latitude"; ObjectID = "UG6-VX-j4K"; */
+"UG6-VX-j4K.placeholder" = "Latitude";
+
+/* Class = "UILabel"; text = "Training"; ObjectID = "USe-ni-8Ty"; */
+"USe-ni-8Ty.text" = "Training";
+
+/* Class = "UIButton"; normalTitle = "Reports"; ObjectID = "V5p-32-NZS"; */
+"V5p-32-NZS.normalTitle" = "Reports";
+
+/* Class = "UILabel"; text = "No Resource Requests have been posted in this incident yet."; ObjectID = "VZb-2A-Y1b"; */
+"VZb-2A-Y1b.text" = "No Resource Requests have been posted in this incident yet.";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "Vjl-0I-2ap"; */
+"Vjl-0I-2ap.text" = "Name";
+
+/* Class = "UILabel"; text = "Version:"; ObjectID = "VnG-V6-k4S"; */
+"VnG-V6-k4S.text" = "Version:";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "WKX-pa-1gw"; */
+"WKX-pa-1gw.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "YMD-zo-b6H"; */
+"YMD-zo-b6H.normalTitle" = "Send";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "ZTG-W6-cCv"; */
+"ZTG-W6-cCv.text" = "0";
+
+/* Class = "UILabel"; text = "Supervision"; ObjectID = "Zmf-Xv-BB8"; */
+"Zmf-Xv-BB8.text" = "Supervision";
+
+/* Class = "UILabel"; text = "Traffic"; ObjectID = "ZoI-5N-DFC"; */
+"ZoI-5N-DFC.text" = "Traffic";
+
+/* Class = "UILabel"; text = "To compute the total level of risk, assign a code of 0 (no risk) to 10 (max risk) for each element."; ObjectID = "Zvo-1h-bGi"; */
+"Zvo-1h-bGi.text" = "To compute the total level of risk, assign a code of 0 (no risk) to 10 (max risk) for each element.";
+
+/* Class = "UILabel"; text = "No Field Reports have been posted in this incident yet."; ObjectID = "aIU-JC-vRy"; */
+"aIU-JC-vRy.text" = "No Field Reports have been posted in this incident yet.";
+
+/* Class = "UILabel"; text = "Workspace:"; ObjectID = "aYN-Gg-H1l"; */
+"aYN-Gg-H1l.text" = "Workspace:";
+
+/* Class = "UILabel"; text = "<--- Select your incident to get started"; ObjectID = "aj1-iz-v0R"; */
+"aj1-iz-v0R.text" = "<--- Select your incident to get started";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "bTS-oD-MjR"; */
+"bTS-oD-MjR.normalTitle" = "Submit";
+
+/* Class = "UITextField"; placeholder = "Longitude"; ObjectID = "blJ-GA-rz5"; */
+"blJ-GA-rz5.placeholder" = "Longitude";
+
+/* Class = "UIViewController"; title = "GAR"; ObjectID = "cKr-kO-AFW"; */
+"cKr-kO-AFW.title" = "GAR";
+
+/* Class = "UIButton"; normalTitle = "Hybrid"; ObjectID = "dWG-uW-Z6C"; */
+"dWG-uW-Z6C.normalTitle" = "Hybrid";
+
+/* Class = "UILabel"; text = "Timestamp"; ObjectID = "ehO-oJ-Xl1"; */
+"ehO-oJ-Xl1.text" = "Timestamp";
+
+/* Class = "UIButton"; normalTitle = "General Message"; ObjectID = "f4F-ED-ies"; */
+"f4F-ED-ies.normalTitle" = "General Message";
+
+/* Class = "UILabel"; text = "1.0"; ObjectID = "fu5-or-CpW"; */
+"fu5-or-CpW.text" = "1.0";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "g7v-Ub-Qi0"; */
+"g7v-Ub-Qi0.normalTitle" = "Settings";
+
+/* Class = "UILabel"; text = "Location (lat, long - decimal)"; ObjectID = "gGJ-3n-vLA"; */
+"gGJ-3n-vLA.text" = "Location (lat, long - decimal)";
+
+/* Class = "UIButton"; normalTitle = "Capture Image"; ObjectID = "ge8-uq-hoE"; */
+"ge8-uq-hoE.normalTitle" = "Capture Image";
+
+/* Class = "UIViewController"; title = "User Info"; ObjectID = "h1Z-iS-251"; */
+"h1Z-iS-251.title" = "User Info";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "hNK-4l-mZS"; */
+"hNK-4l-mZS.text" = "Name";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "hrT-mm-kjh"; */
+"hrT-mm-kjh.text" = "0";
+
+/* Class = "UILabel"; text = "No General Messages have been posted in this incident yet."; ObjectID = "iNb-c9-1j8"; */
+"iNb-c9-1j8.text" = "No General Messages have been posted in this incident yet.";
+
+/* Class = "UIButton"; normalTitle = "Save Draft"; ObjectID = "j9G-Ym-pSp"; */
+"j9G-Ym-pSp.normalTitle" = "Save Draft";
+
+/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "joI-0d-ntB"; */
+"joI-0d-ntB.normalTitle" = "Logout";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "kn4-g3-Chz"; */
+"kn4-g3-Chz.text" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Terrain"; ObjectID = "mmR-op-aMF"; */
+"mmR-op-aMF.normalTitle" = "Terrain";
+
+/* Class = "UIButton"; normalTitle = "Capture Image"; ObjectID = "naa-ag-WAP"; */
+"naa-ag-WAP.normalTitle" = "Capture Image";
+
+/* Class = "UILabel"; text = "ABCD"; ObjectID = "nfa-Ph-kzy"; */
+"nfa-Ph-kzy.text" = "ABCD";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "nkE-Nq-uB4"; */
+"nkE-Nq-uB4.title" = "Back";
+
+/* Class = "UIButton"; normalTitle = "Select Incident"; ObjectID = "oSP-u5-Fyu"; */
+"oSP-u5-Fyu.normalTitle" = "Select Incident";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "p8B-Dx-9Ex"; */
+"p8B-Dx-9Ex.text" = "0";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "ppf-nN-22G"; */
+"ppf-nN-22G.text" = "Description";
+
+/* Class = "UILabel"; text = "Indoor"; ObjectID = "pw9-it-xGp"; */
+"pw9-it-xGp.text" = "Indoor";
+
+/* Class = "UIButton"; normalTitle = "Send Updated GAR in Chat"; ObjectID = "q15-WC-BCV"; */
+"q15-WC-BCV.normalTitle" = "Send Updated GAR in Chat";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "q1Z-rg-Wyu"; */
+"q1Z-rg-Wyu.text" = "0";
+
+/* Class = "UILabel"; text = "You currently do not have an assignment. Please pick an incident/collabroom to continue."; ObjectID = "q66-OF-uS4"; */
+"q66-OF-uS4.text" = "You currently do not have an assignment. Please pick an incident/collabroom to continue.";
+
+/* Class = "UILabel"; text = "Message"; ObjectID = "qaY-ei-ghS"; */
+"qaY-ei-ghS.text" = "Message";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "qzn-n3-L2a"; */
+"qzn-n3-L2a.normalTitle" = "Settings";
+
+/* Class = "UIViewController"; title = "Damage Report Detail"; ObjectID = "rEl-0p-eDf"; */
+"rEl-0p-eDf.title" = "Damage Report Detail";
+
+/* Class = "UIViewController"; title = "Field Report Detail"; ObjectID = "smd-oK-nwy"; */
+"smd-oK-nwy.title" = "Field Report Detail";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "ssS-eI-lnT"; */
+"ssS-eI-lnT.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "Server:"; ObjectID = "tCL-nD-49O"; */
+"tCL-nD-49O.text" = "Server:";
+
+/* Class = "UINavigationItem"; title = "Chat"; ObjectID = "toZ-47-iAm"; */
+"toZ-47-iAm.title" = "Chat";
+
+/* Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "v7v-zo-Kop"; */
+"v7v-zo-Kop.normalTitle" = "Browse Gallery";
+
+/* Class = "UILabel"; text = "Crew Fitness"; ObjectID = "vc9-Ed-u3z"; */
+"vc9-Ed-u3z.text" = "Crew Fitness";
+
+/* Class = "UILabel"; text = "User"; ObjectID = "von-m4-tLa"; */
+"von-m4-tLa.text" = "User";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "xwv-u0-cmO"; */
+"xwv-u0-cmO.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Total:"; ObjectID = "yGd-Xp-jiG"; */
+"yGd-Xp-jiG.text" = "Total:";
+
+/* Class = "UILabel"; text = "Automatically log-in"; ObjectID = "yPm-4s-kqB"; */
+"yPm-4s-kqB.text" = "Automatically log-in";
+
+/* Class = "UILabel"; text = "Event/Evolution Complexity"; ObjectID = "ySN-tA-zI0"; */
+"ySN-tA-zI0.text" = "Event/Evolution Complexity";
+
+/* Class = "UILabel"; text = "serverName"; ObjectID = "yu9-qd-dYs"; */
+"yu9-qd-dYs.text" = "serverName";
+
+/* Class = "UIButton"; normalTitle = "Select Room"; ObjectID = "zFv-O6-9b0"; */
+"zFv-O6-9b0.normalTitle" = "Select Room";
+
+/* Class = "UILabel"; text = "Current Server"; ObjectID = "zdW-9F-TUu"; */
+"zdW-9F-TUu.text" = "Current Server";

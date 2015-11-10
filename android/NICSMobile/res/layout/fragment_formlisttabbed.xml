@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/TabLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/TabLayoutFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/aidTab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:text="@string/aid"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/holo_green_light"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/volunteerTab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:text="@string/volunteer"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/holo_green_light"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+	    <TextView
+	        android:id="@android:id/empty"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent" >
+	    </TextView>
+
+	        <LinearLayout
+	            android:id="@+id/listLinearLayout"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:layout_alignParentLeft="true"
+	       
+	            android:layout_marginTop="34dp"
+	            android:orientation="vertical" >
+
+	            <ListView
+	                android:id="@android:id/list"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:layout_marginTop="2dp"
+	                android:layout_weight="1" >
+
+	            </ListView>
+
+	            <LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_alignParentTop="true" >
+            
+			        <LinearLayout
+			            android:id="@+id/iconGridLayout"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:orientation="horizontal"
+			            android:visibility="visible" >
+			            
+				        <LinearLayout
+			            android:id="@+id/requestBundle1"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:orientation="vertical"
+			            android:layout_centerHorizontal="true"
+			            android:layout_weight="1" >
+
+				            <ImageView
+				                android:id="@+id/catanRequestThumbnail1"
+				                android:layout_width="48dp"
+				                android:layout_height="48dp"
+				                android:layout_gravity="center"
+				                android:contentDescription="icon"
+				                android:maxHeight="48dp"
+				                android:maxWidth="48dp"
+				                android:padding="2dip"
+				                android:src="@drawable/catan_aid_cleanup" />
+				            
+								<TextView
+								    android:id="@+id/requestCount1"
+								    android:layout_width="wrap_content"
+								    android:layout_height="wrap_content"
+								    android:layout_gravity="center"
+								    android:text="23" >
+
+							    </TextView>
+				            </LinearLayout>
+
+				        <LinearLayout
+			            android:id="@+id/requestBundle2"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:orientation="vertical"
+			            android:layout_centerHorizontal="true"
+			            android:layout_weight="1" >
+				        
+			            <ImageView
+			                android:id="@+id/catanRequestThumbnail2"
+			                android:layout_width="48dp"
+			                android:layout_height="48dp"
+			                android:layout_gravity="center"
+			                android:contentDescription="icon"
+			                android:maxHeight="48dp"
+			                android:maxWidth="48dp"
+			                android:padding="2dip"
+			                android:src="@drawable/catan_aid_cleanup" />
+
+			            			<TextView
+			            			    android:id="@+id/requestCount2"
+			            			    android:layout_width="wrap_content"
+			            			    android:layout_height="wrap_content"
+			            			    android:layout_gravity="center"
+			            			    android:text="23" >
+
+							    </TextView>
+				            </LinearLayout>
+			            
+				        
+				        <LinearLayout
+			            android:id="@+id/requestBundle3"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:orientation="vertical"
+			            android:layout_centerHorizontal="true"
+			            android:layout_weight="1" >
+				        
+			            <ImageView
+			                android:id="@+id/catanRequestThumbnail3"
+			                android:layout_width="48dp"
+			                android:layout_height="48dp"
+			                android:layout_gravity="center"
+			                android:contentDescription="icon"
+			                android:maxHeight="48dp"
+			                android:maxWidth="48dp"
+			                android:padding="2dip"
+			                android:src="@drawable/catan_aid_cleanup" />
+
+			            			<TextView
+			            			    android:id="@+id/requestCount3"
+			            			    android:layout_width="wrap_content"
+			            			    android:layout_height="wrap_content"
+			            			    android:layout_gravity="center"
+			            			    android:text="23" >
+
+							    </TextView>
+				            </LinearLayout>
+			            
+				        <LinearLayout
+			            android:id="@+id/requestBundle4"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:orientation="vertical"
+			            android:layout_centerHorizontal="true"
+			            android:layout_weight="1" >
+				        				        
+			            <ImageView
+			                android:id="@+id/catanRequestThumbnail4"
+			                android:layout_width="48dp"
+			                android:layout_height="48dp"
+			                android:layout_gravity="center"
+			                android:contentDescription="icon"
+			                android:maxHeight="48dp"
+			                android:maxWidth="48dp"
+			                android:padding="2dip"
+			                android:src="@drawable/catan_aid_cleanup" />
+
+			            			<TextView
+			            			    android:id="@+id/requestCount4"
+			            			    android:layout_width="wrap_content"
+			            			    android:layout_height="wrap_content"
+			            			    android:layout_gravity="center"
+			            			    android:text="23" >
+
+							    </TextView>
+				            </LinearLayout>
+			            
+			            
+				        <LinearLayout
+			            android:id="@+id/requestBundle5"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:orientation="vertical"
+			            android:layout_centerHorizontal="true"
+			            android:layout_weight="1" >
+
+				            <ImageView
+				                android:id="@+id/catanRequestThumbnail5"
+				                android:layout_width="48dp"
+				                android:layout_height="48dp"
+				                android:layout_gravity="center"
+				                android:contentDescription="icon"
+				                android:maxHeight="48dp"
+				                android:maxWidth="48dp"
+				                android:padding="2dip"
+				                android:src="@drawable/catan_aid_cleanup" />
+			            
+			            			<TextView
+			            			    android:id="@+id/requestCount5"
+			            			    android:layout_width="wrap_content"
+			            			    android:layout_height="wrap_content"
+			            			    android:layout_gravity="center"
+			            			    android:text="23" >
+
+							    </TextView>
+				            </LinearLayout>
+			            
+				        <LinearLayout
+			            android:id="@+id/requestBundle6"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:orientation="vertical"
+			            android:layout_centerHorizontal="true"
+			            android:layout_weight="1" >
+				        
+			            <ImageView
+			                android:id="@+id/catanRequestThumbnail6"
+			                android:layout_width="48dp"
+			                android:layout_height="48dp"
+			                android:layout_gravity="center"
+			                android:contentDescription="icon"
+			                android:maxHeight="48dp"
+			                android:maxWidth="48dp"
+			                android:padding="2dip"
+			                android:src="@drawable/catan_aid_cleanup" />
+
+			            			<TextView
+			            			    android:id="@+id/requestCount6"
+			            			    android:layout_width="wrap_content"
+			            			    android:layout_height="wrap_content"
+			            			    android:layout_gravity="center"
+			            			    android:text="23" >
+
+							    </TextView>
+				            </LinearLayout>
+			            
+			            
+			            </LinearLayout>
+			            
+	            </LinearLayout>
+	        </LinearLayout>
+
+</RelativeLayout>

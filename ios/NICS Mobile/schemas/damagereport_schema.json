@@ -1,0 +1,43 @@
+{
+    "meta": {
+        "name": "Damage Report",
+        "type": "meta"
+    },
+    "sections": [
+                 {
+                 "name": "Property Owner Information",
+                 "fields":  [
+                             { "key": "dr-A-ownerLastName", "name": "Last Name", "type": "string" },
+                             { "key": "dr-A-ownerFirstName", "name": "First Name", "type": "string" },
+                             { "key": "dr-A-ownerLandlinePhone", "name": "Landline Phone", "type": "string"},
+                             { "key": "dr-A-ownerCellPhone", "name": "Cell Phone", "type": "string"},
+                             { "key": "dr-A-ownerEmail", "name": "Email", "type": "string"}
+                            ]
+                 },
+                 
+                 {
+                 "name": "Property Information",
+                 "fields":  [
+                             { "key": "dr-B-propertyAddress", "name": "Address", "type": "string" },
+                             { "key": "dr-B-propertyCity", "name": "City", "type": "string" },
+                             { "key": "dr-B-propertyZipCode", "name": "Zip Code", "type": "string" },
+                             { "key": "dr-B-propertyLatitude", "name": "Location (Lat,Lon - decimal)", "type": "location" },
+                            ]
+                 },
+                 
+                 {
+                 "name": "Damage Information",
+                 "fields":  [
+                             { "key": "dr-C-damageInformation", "name": " ", "type": "damageInformation" }
+                            ]
+                 },
+                 
+                 {
+                 "name": "Image Selector",
+                 "fields":  [
+                             { "key": "dr-D-fullPath", "name": "Image Selector", "type": "imageSelector" }
+                             ]
+                 }
+                 
+                ]
+}

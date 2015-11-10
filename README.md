@@ -1,1 +1,3 @@
-# nics-mobile
+# NICS Mobile
+
+NICS Mobile (Android / iOS)

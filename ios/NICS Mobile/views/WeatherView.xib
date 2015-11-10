@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1134" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherView">
+            <connections>
+                <outlet property="currentLocation" destination="5S5-Uu-gbn" id="ZyK-Rm-5rx"/>
+                <outlet property="description" destination="n3h-59-vy5" id="gFF-cB-UfL"/>
+                <outlet property="imageView" destination="krl-ud-Blg" id="57F-kK-tP4"/>
+                <outlet property="temperatureCelcius" destination="nhc-Ax-lXu" id="z6p-BZ-pWg"/>
+                <outlet property="temperatureFarenheight" destination="kdy-ZJ-cY8" id="8SD-kK-tbH"/>
+                <outlet property="view" destination="1" id="hn0-SF-qjG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Weather Forecast..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5S5-Uu-gbn">
+                    <rect key="frame" x="10" y="0.0" width="300" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3h-59-vy5">
+                    <rect key="frame" x="10" y="55" width="300" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="STc-46-0r4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdy-ZJ-cY8">
+                    <rect key="frame" x="50" y="23" width="75" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="m5Y-71-IeR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhc-Ax-lXu">
+                    <rect key="frame" x="133" y="32" width="60" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="4TN-x5-YVD"/>
+                        <constraint firstAttribute="height" constant="21" id="W6N-rW-jXW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="krl-ud-Blg">
+                    <rect key="frame" x="10" y="21" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="2ox-0b-QkQ"/>
+                        <constraint firstAttribute="width" constant="32" id="icv-qd-O1D"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="nhc-Ax-lXu" firstAttribute="top" secondItem="5S5-Uu-gbn" secondAttribute="bottom" constant="11" id="00m-ub-9Cr"/>
+                <constraint firstItem="n3h-59-vy5" firstAttribute="top" secondItem="krl-ud-Blg" secondAttribute="bottom" constant="2" id="4Rp-W9-PcY"/>
+                <constraint firstItem="kdy-ZJ-cY8" firstAttribute="leading" secondItem="krl-ud-Blg" secondAttribute="trailing" constant="8" symbolic="YES" id="8Fc-97-sUy"/>
+                <constraint firstItem="n3h-59-vy5" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="8PI-Ne-7P6"/>
+                <constraint firstItem="nhc-Ax-lXu" firstAttribute="leading" secondItem="kdy-ZJ-cY8" secondAttribute="trailing" constant="8" symbolic="YES" id="9XX-Jf-wz5"/>
+                <constraint firstItem="n3h-59-vy5" firstAttribute="trailing" secondItem="5S5-Uu-gbn" secondAttribute="trailing" id="K6z-Me-awy"/>
+                <constraint firstItem="krl-ud-Blg" firstAttribute="top" secondItem="5S5-Uu-gbn" secondAttribute="bottom" id="SjT-QS-247"/>
+                <constraint firstItem="kdy-ZJ-cY8" firstAttribute="top" secondItem="5S5-Uu-gbn" secondAttribute="bottom" constant="2" id="byC-Rj-KlE"/>
+                <constraint firstItem="n3h-59-vy5" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="dCj-c5-Vyn"/>
+                <constraint firstAttribute="bottom" secondItem="n3h-59-vy5" secondAttribute="bottom" id="eaZ-pS-OuM"/>
+                <constraint firstItem="nhc-Ax-lXu" firstAttribute="top" secondItem="1" secondAttribute="top" constant="32" id="fJe-fN-Zpr"/>
+                <constraint firstItem="n3h-59-vy5" firstAttribute="leading" secondItem="krl-ud-Blg" secondAttribute="leading" id="hfi-JY-2rc"/>
+                <constraint firstItem="nhc-Ax-lXu" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="133" id="ubD-Gq-2E4"/>
+                <constraint firstItem="n3h-59-vy5" firstAttribute="leading" secondItem="5S5-Uu-gbn" secondAttribute="leading" id="ymm-7c-SFc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

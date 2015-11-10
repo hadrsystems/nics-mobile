@@ -1,0 +1,725 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "Fìêlþ Rëpôrt"
+    },
+    "incident_identification": {
+    	"display_name": "ìñçíðèñt_îþéñtïfìçàtíòñ",
+        "type": "section",
+        "id": "0",
+        "priority": "0",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "incident_id",
+                "incident_name",
+                "pollution_case_#",
+                "source_of_incident",
+                "location_of_incident",
+                "date_of_incident",
+                "investigators",
+                "activity_#",
+                "enforcement_#",
+                "ticket_#",
+                "federal_project_#"
+            ]
+        }
+    },
+    "incident_id": {
+    	"display_name": "îñçïðêñt ìþ",
+        "type": "string",
+        "id": "1",
+        "priority": "1",
+        "enabled": "false"
+    },
+    "incident_name": {
+    	"display_name": "íñçîðëñt ñáＭè",
+        "type": "string",
+        "id": "2",
+        "priority": "2",
+        "enabled": "false"
+    },
+    "pollution_case_#": {
+    	"display_name": "póllùtïôñ çâsé #",
+        "type": "string",
+        "id": "3",
+        "priority": "3"
+    },
+    "source_of_incident": {
+    	"display_name": "sõúrçê öf ìñçíþëñt",
+        "type": "string",
+        "id": "4",
+        "priority": "4"
+    },
+    "location_of_incident": {
+    	"display_name": "løçãtîòñ óf ïñçìðèñt",
+        "type": "string",
+        "id": "5",
+        "priority": "5"
+    },
+    "date_of_incident": {
+    	"display_name": "þäté ôf íñçîðêñt",
+        "type": "string",
+        "id": "6",
+        "priority": "6"
+    },
+    "investigators": {
+    	"display_name": "ïñvëßtìgåtõrs",
+        "type": "string",
+        "id": "7",
+        "priority": "7"
+    },
+    "activity_#": {
+    	"display_name": "àçtívîtÿ #",
+        "type": "string",
+        "id": "8",
+        "priority": "8"
+    },
+    "enforcement_#": {
+    	"display_name": "èñförçéＭêñt #",
+        "type": "string",
+        "id": "9",
+        "priority": "9"
+    },
+    "ticket_#": {
+    	"display_name": "tïçkët #",
+        "type": "string",
+        "id": "10",
+        "priority": "10"
+    },
+    "federal_project_#": {
+    	"display_name": "fèþérál prøjêçt #",
+        "type": "string",
+        "id": "11",
+        "priority": "11"
+    },
+    "discharge_data": {
+    	"display_name": "ðìsçhârgë þãtä",
+        "type": "section",
+        "id": "12",
+        "priority": "12",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "material_spilled",
+                "total_spilled_(est)",
+                "total_potential",
+                "total_recovered",
+                "source",
+                "water_body",
+                "description_of_spill",
+                "description_of_cause",
+                "path_of_discharge"
+            ]
+        }
+    },
+    "material_spilled": {
+    	"display_name": "Ｍåtèríàl ßpîlléð",
+        "type": "string",
+        "id": "13",
+        "priority": "13"
+    },
+    "total_spilled_(est)": {
+    	"display_name": "tòtál spïllêþ (ëst)",
+        "type": "string",
+        "id": "14",
+        "priority": "14"
+    },
+    "total_potential": {
+    	"display_name": "tótâl pôtèñtìãl",
+        "type": "string",
+        "id": "15",
+        "priority": "15"
+    },
+    "total_recovered": {
+    	"display_name": "tõtäl réçövêrëð",
+        "type": "string",
+        "id": "16",
+        "priority": "16"
+    },
+    "source": {
+    	"display_name": "ßøûrçè",
+        "type": "string",
+        "id": "17",
+        "priority": "17"
+    },
+    "water_body": {
+    	"display_name": "wåtér bòþý",
+        "type": "string",
+        "id": "18",
+        "priority": "18"
+    },
+    "description_of_spill": {
+    	"display_name": "ðêsçríptîóñ ôf spïll",
+        "type": "string",
+        "id": "19",
+        "priority": "19"
+    },
+    "description_of_cause": {
+    	"display_name": "þëßçrìptíõñ öf çàüsè",
+        "type": "string",
+        "id": "20",
+        "priority": "20"
+    },
+    "path_of_discharge": {
+    	"display_name": "páth øf ðîsçhârgé",
+        "type": "string",
+        "id": "21",
+        "priority": "21"
+    },
+    "weather_and_tides": {
+    	"display_name": "wêãthër äñþ tïðèß",
+        "type": "section",
+        "id": "22",
+        "priority": "22",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "wind_direction",
+                "sea_height",
+                "current_direction",
+                "visibility",
+                "sunset",
+                "air_temp",
+                "wind_speed",
+                "current_speed",
+                "precipitation",
+                "sunrise",
+                "water_temp"
+            ]
+        }
+    },
+    "wind_direction": {
+    	"display_name": "wìñþ ðíréçtîòñ",
+        "type": "string",
+        "id": "23",
+        "priority": "23"
+    },
+    "sea_height": {
+    	"display_name": "sêå hëïght",
+        "type": "string",
+        "id": "24",
+        "priority": "24"
+    },
+    "current_direction": {
+    	"display_name": "çùrrèñt þìréçtíóñ",
+        "type": "string",
+        "id": "25",
+        "priority": "25"
+    },
+    "visibility": {
+    	"display_name": "vîsïbìlítÿ",
+        "type": "string",
+        "id": "26",
+        "priority": "26"
+    },
+    "sunset": {
+    	"display_name": "ßúñsêt",
+        "type": "string",
+        "id": "27",
+        "priority": "27"
+    },
+    "air_temp": {
+    	"display_name": "àîr tëＭp",
+        "type": "string",
+        "id": "28",
+        "priority": "28"
+    },
+    "wind_speed": {
+    	"display_name": "wïñð spèéþ",
+        "type": "string",
+        "id": "29",
+        "priority": "29"
+    },
+    "current_speed": {
+    	"display_name": "çûrrêñt ßpëèð",
+        "type": "string",
+        "id": "30",
+        "priority": "30"
+    },
+    "precipitation": {
+    	"display_name": "préçìpítátîôñ",
+        "type": "string",
+        "id": "31",
+        "priority": "31"
+    },
+    "sunrise": {
+    	"display_name": "süñrïsê",
+        "type": "string",
+        "id": "32",
+        "priority": "32"
+    },
+    "water_temp": {
+    	"display_name": "wâtër tèＭp",
+        "type": "string",
+        "id": "33",
+        "priority": "33"
+    },
+    "suspect_r._p._and_witnesses": {
+    	"display_name": "ßùspéçt r. p. ãñþ wìtñêsßës",
+        "type": "section",
+        "id": "34",
+        "priority": "34",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "individual_/_company",
+                "individual_/_company_address",
+                "individual_/_company_phone",
+                "relationship",
+                "license_or_doc_#",
+                "witness_1_name",
+                "witness_1_address",
+                "witness_1_phone",
+                "witness_2_name",
+                "witness_2_address",
+                "witness_2_phone"
+            ]
+        }
+    },
+    "individual_/_company": {
+    	"display_name": "íñðîvïþúäl / çõＭpåñý",
+        "type": "string",
+        "id": "35",
+        "priority": "35"
+    },
+    "individual_/_company_address": {
+    	"display_name": "ìñðívîþûàl / çöＭpáñÿ âðþrèsß",
+        "type": "string",
+        "id": "36",
+        "priority": "36"
+    },
+    "individual_/_company_phone": {
+    	"display_name": "ïñðìvíþüãl / çøＭpäñý phòñé",
+        "type": "string",
+        "id": "37",
+        "priority": "37"
+    },
+    "relationship": {
+    	"display_name": "rêlåtîóñshïp",
+        "type": "string",
+        "id": "38",
+        "priority": "38"
+    },
+    "license_or_doc_#": {
+    	"display_name": "lìçëñsè ôr ðõç #",
+        "type": "string",
+        "id": "39",
+        "priority": "39"
+    },
+    "witness_1_name": {
+    	"display_name": "wítñéßs 1 ñàＭê",
+        "type": "string",
+        "id": "40",
+        "priority": "40"
+    },
+    "witness_1_address": {
+    	"display_name": "wîtñësß 1 áþðrèss",
+        "type": "string",
+        "id": "41",
+        "priority": "41"
+    },
+    "witness_1_phone": {
+    	"display_name": "wïtñéßs 1 phöñê",
+        "type": "string",
+        "id": "42",
+        "priority": "42"
+    },
+    "witness_2_name": {
+    	"display_name": "wìtñësß 2 ñâＭè",
+        "type": "string",
+        "id": "43",
+        "priority": "43"
+    },
+    "witness_2_address": {
+    	"display_name": "wítñéss 2 ãþðrêßs",
+        "type": "string",
+        "id": "44",
+        "priority": "44"
+    },
+    "witness_2_phone": {
+    	"display_name": "wîtñësß 2 phøñè",
+        "type": "string",
+        "id": "45",
+        "priority": "45"
+    },
+    "oil_samples": {
+    	"display_name": "òïl säＭplés",
+        "type": "section",
+        "id": "46",
+        "priority": "46",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "samples_taken",
+                "number",
+                "suspected_source",
+                "identification",
+                "date",
+                "time",
+                "witness",
+                "sample_source",
+                "clean_sample",
+                "suspect_source_sample_1",
+                "suspect_source_sample_2",
+                "suspect_source_sample_3",
+                "suspect_source_sample_4"
+            ]
+        }
+    },
+    "samples_taken": {
+    	"display_name": "ßåＭplês tàkëñ",
+        "type": "string",
+        "id": "47",
+        "priority": "47"
+    },
+    "number": {
+    	"display_name": "ñùＭbèr",
+        "type": "string",
+        "id": "48",
+        "priority": "48"
+    },
+    "suspected_source": {
+    	"display_name": "súßpéçtêþ sóûrçë",
+        "type": "string",
+        "id": "49",
+        "priority": "49"
+    },
+    "identification": {
+    	"display_name": "ìðèñtífîçátïôñ",
+        "type": "string",
+        "id": "50",
+        "priority": "50"
+    },
+    "date": {
+    	"display_name": "þâté",
+        "type": "string",
+        "id": "51",
+        "priority": "51"
+    },
+    "time": {
+    	"display_name": "TtìＭêime",
+        "type": "string",
+        "id": "52",
+        "priority": "52"
+    },
+    "witness": {
+    	"display_name": "wítñësß",
+        "type": "string",
+        "id": "53",
+        "priority": "53"
+    },
+    "sample_source": {
+    	"display_name": "sãＭplè sõürçé",
+        "type": "string",
+        "id": "54",
+        "priority": "54"
+    },
+    "clean_sample": {
+    	"display_name": "çlêäñ ßåＭplë",
+        "type": "string",
+        "id": "55",
+        "priority": "55"
+    },
+    "suspect_source_sample_1": {
+    	"display_name": "sùspèçt ßöúrçé sàＭplê 1",
+        "type": "string",
+        "id": "56",
+        "priority": "56"
+    },
+    "suspect_source_sample_2": {
+    	"display_name": "sûßpëçt søürçè sáＭplé 2",
+        "type": "string",
+        "id": "57",
+        "priority": "57"
+    },
+    "suspect_source_sample_3": {
+    	"display_name": "ßùspêçt sòúrçë ßâＭplè 3",
+        "type": "string",
+        "id": "58",
+        "priority": "58"
+    },
+    "suspect_source_sample_4": {
+    	"display_name": "sûspéçt ßóürçê sãＭplë 4",
+        "type": "string",
+        "id": "59",
+        "priority": "59"
+    },
+    "vessel": {
+    	"display_name": "vèsßél",
+        "type": "section",
+        "id": "60",
+        "priority": "60",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "vessel_name",
+                "call_sign",
+                "flag",
+                "owner_/_operator",
+                "operator_phone",
+                "gross_tonnage",
+                "type_of_vessel",
+                "designation",
+                "address",
+                "agent",
+                "agent_phone",
+                "COFR",
+                "SOPEP",
+                "oil_trans_procedures",
+                "IOPP",
+                "oil_record_book",
+                "declaration_of_inspection",
+                "person_in_charge",
+                "master",
+                "chief_engineer",
+                "keel_laid_date"
+            ]
+        }
+    },
+    "vessel_name": {
+    	"display_name": "vêssël ñäＭè",
+        "type": "string",
+        "id": "61",
+        "priority": "61"
+    },
+    "call_sign": {
+    	"display_name": "çåll ßîgñ",
+        "type": "string",
+        "id": "62",
+        "priority": "62"
+    },
+    "flag": {
+    	"display_name": "flàg",
+        "type": "string",
+        "id": "63",
+        "priority": "63"
+    },
+    "owner_/_operator": {
+    	"display_name": "ôwñér / õpêrátör",
+        "type": "string",
+        "id": "64",
+        "priority": "64"
+    },
+    "operator_phone": {
+    	"display_name": "øpërâtòr phóñè",
+        "type": "string",
+        "id": "65",
+        "priority": "65"
+    },
+    "gross_tonnage": {
+    	"display_name": "grôss tõññãgé",
+        "type": "string",
+        "id": "66",
+        "priority": "66"
+    },
+    "type_of_vessel": {
+    	"display_name": "tÿpê öf vëßsèl",
+        "type": "string",
+        "id": "67",
+        "priority": "67"
+    },
+    "designation": {
+    	"display_name": "ðésïgñätìøñ",
+        "type": "string",
+        "id": "68",
+        "priority": "68"
+    },
+    "address": {
+    	"display_name": "åþðrêßs",
+        "type": "string",
+        "id": "69",
+        "priority": "69"
+    },
+    "agent": {
+    	"display_name": "àgëñt",
+        "type": "string",
+        "id": "70",
+        "priority": "70"
+    },
+    "agent_phone": {
+    	"display_name": "ágèñt phòñé",
+        "type": "string",
+        "id": "71",
+        "priority": "71"
+    },
+    "COFR": {
+    	"display_name": "ÇÒFR",
+        "type": "string",
+        "id": "72",
+        "priority": "72"
+    },
+    "SOPEP": {
+    	"display_name": "SÓPÈP",
+        "type": "string",
+        "id": "73",
+        "priority": "73"
+    },
+    "oil_trans_procedures": {
+    	"display_name": "óíl trâñs prôçêþùrëß",
+        "type": "string",
+        "id": "74",
+        "priority": "74"
+    },
+    "IOPP": {
+    	"display_name": "ÌÔPP",
+        "type": "string",
+        "id": "75",
+        "priority": "75"
+    },
+    "oil_record_book": {
+    	"display_name": "õîl rèçörð bøòk",
+        "type": "string",
+        "id": "76",
+        "priority": "76"
+    },
+    "declaration_of_inspection": {
+    	"display_name": "þéçlãrätïóñ ôf ìñspêçtíõñ",
+        "type": "string",
+        "id": "77",
+        "priority": "77"
+    },
+    "person_in_charge": {
+    	"display_name": "përsöñ îñ çhårgè",
+        "type": "string",
+        "id": "78",
+        "priority": "78"
+    },
+    "master": {
+    	"display_name": "Ｍàßtér",
+        "type": "string",
+        "id": "79",
+        "priority": "79"
+    },
+    "chief_engineer": {
+    	"display_name": "çhïêf ëñgìñèér",
+        "type": "string",
+        "id": "80",
+        "priority": "80"
+    },
+    "keel_laid_date": {
+    	"display_name": "kêël láíð þâtè",
+        "type": "string",
+        "id": "81",
+        "priority": "81"
+    },
+    "facility_and_other_parties": {
+    	"display_name": "fãçîlïtý äñð øthér pårtìês",
+        "type": "section",
+        "id": "82",
+        "priority": "82",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "facility",
+                "type",
+                "facility_address",
+                "facility_phone",
+                "owner_/_op",
+                "operations_manager",
+                "other_party",
+                "other_vessel",
+                "other_facility",
+                "other_facility_address",
+                "other_facility_phone"
+            ]
+        }
+    },
+    "facility": {
+    	"display_name": "fàçílîtÿ",
+        "type": "string",
+        "id": "83",
+        "priority": "83"
+    },
+    "type": {
+    	"display_name": "týpë",
+        "type": "string",
+        "id": "84",
+        "priority": "84"
+    },
+    "facility_address": {
+    	"display_name": "fáçïlìtÿ âþðrèsß",
+        "type": "string",
+        "id": "85",
+        "priority": "85"
+    },
+    "facility_phone": {
+    	"display_name": "fãçílîtý phòñé",
+        "type": "string",
+        "id": "86",
+        "priority": "86"
+    },
+    "owner_/_op": {
+    	"display_name": "ówñêr / ôpèràtòr",
+        "type": "string",
+        "id": "87",
+        "priority": "87"
+    },
+    "operations_manager": {
+    	"display_name": "õpërätïöñs Ｍåñàgèr",
+        "type": "string",
+        "id": "88",
+        "priority": "88"
+    },
+    "other_party": {
+    	"display_name": "øthér pártÿ",
+        "type": "string",
+        "id": "89",
+        "priority": "89"
+    },
+    "other_vessel": {
+    	"display_name": "òthêr vësßèl",
+        "type": "string",
+        "id": "93",
+        "priority": "93"
+    },
+    "other_facility": {
+    	"display_name": "óthér fâçìlítý",
+        "type": "string",
+        "id": "91",
+        "priority": "91"
+    },
+    "other_facility_address": {
+    	"display_name": "ôthêr fãçîlïtÿ äþðrëss",
+        "type": "string",
+        "id": "92",
+        "priority": "92"
+    },
+    "other_facility_phone": {
+    	"display_name": "õthèr fåçìlítý phöñé",
+        "type": "string",
+        "id": "94",
+        "priority": "94"
+    },
+    "fàçtørß": {
+    	"display_name": "Factors",
+        "type": "section",
+        "id": "95",
+        "priority": "95",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "aggravating_(-)",
+                "mitigating_(+)"
+            ]
+        }
+    },
+    "aggravating_(-)": {
+    	"display_name": "ággrâvãtîñg (-)",
+        "type": "string",
+        "id": "96",
+        "priority": "96"
+    },
+    "mitigating_(+)": {
+    	"display_name": "Ｍïtìgätíñg (+)",
+        "type": "string",
+        "id": "97",
+        "priority": "97"
+    },
+    "notes": {
+    	"display_name": "ñòtês",
+        "type": "string",
+        "id": "-1",
+        "priority": "-1"
+    }
+}

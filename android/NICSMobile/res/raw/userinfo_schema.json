@@ -1,0 +1,132 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "User Info"
+    },
+    "first_name": {
+    	"display_name": "First Name", 
+        "type": "string",
+        "id": "1",
+        "priority": "1",
+        "enabled": "false"
+    },
+    "last_name": {
+    	"display_name": "Last Name",
+        "type": "string",
+        "id": "2",
+        "priority": "2",
+        "enabled": "false"
+    },
+    "rank": {
+    	"display_name": "Rank",
+        "type": "string",
+        "id": "3",
+        "priority": "3",
+        "enabled": "false"
+    },
+    "mobile_phone": {
+    	"display_name": "Mobile Phone",
+        "type": "string",
+        "id": "4",
+        "priority": "4",
+        "enabled": "false"
+    },
+    "home_phone": {
+    	"display_name": "Home Phone",
+        "type": "string",
+        "id": "5",
+        "priority": "5",
+        "enabled": "false"
+    },
+    "office_phone": {
+    	"display_name": "Office Phone",
+        "type": "string",
+        "id": "6",
+        "priority": "6",
+        "enabled": "false"
+    },
+    "other_phone": {
+    	"display_name": "Other Phone",
+        "type": "string",
+        "id": "7",
+        "priority": "7",
+        "enabled": "false"
+    },
+    "email_address": {
+    	"display_name": "Email Address",
+        "type": "string",
+        "id": "8",
+        "priority": "8",
+        "enabled": "false"
+    },
+    "homebase_name": {
+    	"display_name": "Homebase Name",
+        "type": "string",
+        "id": "9",
+        "priority": "9",
+        "enabled": "false"
+    },
+    "homebase_street": {
+    	"display_name": "Homebase Street",
+        "type": "string",
+        "id": "10",
+        "priority": "10",
+        "enabled": "false"
+    },
+    "homebase_city": {
+    	"display_name": "Homebase City",
+        "type": "string",
+        "id": "11",
+        "priority": "11",
+        "enabled": "false"
+    },
+    "homebase_state": {
+    	"display_name": "Homebase State",
+        "type": "string",
+        "id": "12",
+        "priority": "12",
+        "enabled": "false"
+    },
+    "homebase_zip": {
+    	"display_name": "Homebase Zip",
+        "type": "string",
+        "id": "13",
+        "priority": "13",
+        "enabled": "false"
+    },
+    "qualified_positions": {
+    	"display_name": "Qualified Positions",
+        "type": "string",
+        "id": "14",
+        "priority": "14",
+        "enabled": "false"
+    },
+    "radio_number": {
+    	"display_name": "Radio Number",
+        "type": "string",
+        "id": "15",
+        "priority": "15",
+        "enabled": "false"
+    },
+    "agency": {
+    	"display_name": "Agency",
+        "type": "string",
+        "id": "16",
+        "priority": "16",
+        "enabled": "false"
+    },
+    "weight": {
+    	"display_name": "Weight",
+        "type": "string",
+        "id": "16",
+        "priority": "16",
+        "enabled": "false"
+    },
+    "remarks": {
+    	"display_name": "Remarks",
+        "type": "string",
+        "id": "16",
+        "priority": "16",
+        "enabled": "false"
+    }
+}

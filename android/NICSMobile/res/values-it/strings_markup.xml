@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<resources>
+    <string name="markup_AddSymbolButton">-+-+-+ -+-+-+ -+-+-+ -+-+-+</string>
+    <string name="markup_AddLineButton">-+-+-+ -+-+-+ -+-+-+ -+-+-+</string>
+    <string name="markup_AddRectangleButton">-+-+-+ -+-+-+ -+-+-+ -+-+-+</string>
+    <string name="markup_AddTrapezoidButton">-+-+-+ -+-+-+ -+-+-+ -+-+-+</string>
+    <string name="markup_AddCircleButton">-+-+-+ -+-+-+ -+-+-+ -+-+-+</string>
+    <string name="markup_AddLRFButton">-+-+-+ -+-+-+ -+-+-+ -+-+-+</string>
+    
+    <string name="markup_LRF">-+-+-+</string>
+    <string name="markup_decimal">-+-+-+</string>
+    <string name="markup_degrees">-+-+-+</string>
+    <string name="markup_latitude">-+-+-+</string>
+    <string name="markup_longitude">-+-+-+</string>
+    <string name="markup_mgrs">-+-+-+</string>
+    <string name="markup_utm">-+-+-+: -+-+-+ -+-+-+(-+-+-+) -+-+-+-+-+-+ -+-+-+</string>
+    <string name="markup_radius">-+-+-+ (-+-+-+)</string>
+    <string name="markup_symbol_select">-+-+-+ -+-+-+</string>
+    <string name="markup_symbol_icon">-+-+-+ -+-+-+</string>
+ 
+    <string name="markup_ok">-+-+-+</string>
+    <string name="markup_cancel">-+-+-+</string>
+    
+    <string name="markup_maptype">-+-+-+ -+-+-+</string>
+    <string name="markup_normal">-+-+-+</string>
+    <string name="markup_satellite">-+-+-+</string>
+    <string name="markup_hybrid">-+-+-+</string>
+    <string name="markup_terrain">-+-+-+</string>
+    <string name="markup_offline">-+-+-+ -+-+-+</string>
+    <string name="markup_traffic">-+-+-+</string>
+    <string name="markup_indoor">-+-+-+</string>
+    
+    <string name="markup_symbol">-+-+-+</string>
+    <string name="markup_segment">-+-+-+</string>
+    <string name="markup_rectangle">-+-+-+</string>
+    <string name="markup_trapezoid">-+-+-+</string>
+    <string name="markup_circle">-+-+-+</string>
+    
+    <string name="markup_symbol_lowercase">-+-+-+</string>
+    <string name="markup_segment_lowercase">-+-+-+</string>
+    <string name="markup_rectangle_lowercase">-+-+-+</string>
+    <string name="markup_trapezoid_lowercase">-+-+-+</string>
+    <string name="markup_circle_lowercase">-+-+-+</string>
+    
+    <string name="markup_finalize">-+-+-+ %s -+-+-+?</string>
+    <string name="markup_confirm_completion">-+-+-+ -+-+-+ -+-+-+ -+-+-+ -+-+-+ %0$s. -+-+-+ -+-+-+ -+-+-+ -+-+-+ -+-+-+ -+-+-+ %0$s.</string>
+    <string name="markup_confrim_delete">-+-+-+ -+-+-+ -+-+-+ -+-+-+?</string>
+    <string name="markup_shape_incomplete">-+-+-+ -+-+-+</string>
+    <string name="markup_confirm_fields">-+-+-+ -+-+-+ -+-+-+-+-+-+ -+-+-+ -+-+-+ -+-+-+ -+-+-+.</string>
+    
+    <string name="incident_focus_btn">-+-+-+ -+-+-+ -+-+-+</string>
+  	<string name="wfslayer_title">-+-+-+</string>
+  	
+  	<string name="markup_user">-+-+-+:</string>
+  	<string name="markup_timestamp">-+-+-+:</string>
+  	<string name="markup_message">-+-+-+:</string>
+  	<string name="markup_resource_id">-+-+-+ -+-+-+:</string>
+  	<string name="markup_course">-+-+-+:</string>
+  	<string name="markup_speed">-+-+-+:</string>
+  	<string name="markup_description">-+-+-+:</string>
+  	
+  	<string name="markup_press_to_view">-+-+-+ -+-+-+ -+-+-+ -+-+-+&#8230;</string>
+  	
+
+</resources>

@@ -1,0 +1,938 @@
+[[Uncategorized]]
+	[blank]
+		en = 
+		es = 
+		fr = 
+	[app_name]
+		en = NICS
+		es = NICS
+		fr = NICS
+	[action_settings]
+		en = Settings
+		es = Ajustes
+		fr = Settings
+	[action_low_data_mode]
+		en = Low Data Mode
+		es = Low Data Mode
+		fr = Low Data Mode
+	[action_switch_orgs]
+		en = Switch Organizations
+		es = Switch Organizations
+		fr = Switch Organizations
+	[action_about]
+		en = About
+		es = About
+		fr = About
+	[action_logout]
+		en = Logout
+		es = Desconexión
+		fr = Logout
+	[button_save_draft]
+		en = Save As Draft
+		es = Guardad borrador
+		fr = Save As Draft
+	[button_submit]
+		en = Submit
+		es = Enviar
+		fr = Submit
+	[button_clear]
+		en = Clear
+		es = Claro
+		fr = Clear
+	[chat_log]
+		en = Chat
+		es = Conversación
+		fr = Chat
+	[chat_is_loading]
+		en = Chat is Loading…
+		es = Chat is Loading…
+		fr = Chat is Loading…
+	[chat_enter_message]
+		en = Enter chat message…
+		es = Enter chat message…
+		fr = Enter chat message…
+	[funding]
+		en = NICS Mobile is based on work funded by The United States Coast Guard, and includes extensions funded by The Department of Homeland Security’s Science and Technology Directorate.
+		es = NICS Mobile is based on work funded by The United States Coast Guard, and includes extensions funded by The Department of Homeland Security’s Science and Technology Directorate.
+		fr = NICS Mobile is based on work funded by The United States Coast Guard, and includes extensions funded by The Department of Homeland Security’s Science and Technology Directorate.
+	[nounproject]
+		en = Various icons are used from The Noun Project (http://thenounproject.com) under Creative Commons – Attribution (CC BY 3.0)
+		es = Various icons are used from The Noun Project (http://thenounproject.com) under Creative Commons – Attribution (CC BY 3.0)
+		fr = Various icons are used from The Noun Project (http://thenounproject.com) under Creative Commons – Attribution (CC BY 3.0)
+	[DAMAGESURVEY]
+		en = Damage Survey
+		es = Informe de daños
+		fr = Damage Survey
+	[FIELDREPORT]
+		en = Field Report
+		es = Informe de campo
+		fr = Field Report
+	[GENERALMESSAGE]
+		en = General Message
+		es = Mensaje general
+		fr = General Message
+	[WEATHERREPORT]
+		en = Weather Report
+		es = Weather Report
+		fr = Weather Report
+	[UXOREPORT]
+		en = Explosive Report
+		es = Informe de explosivos
+		fr = Explosive Report
+	[CATANREQUEST]
+		en = Catan Request
+		es = Catan Request
+		fr = Catan Request
+	[LOGOUT]
+		en = Logout
+		es = Desconexión
+		fr = Logout
+	[MAPCOLLABORATION]
+		en = Map Collaboration
+		es = Map Collaboration
+		fr = Map Collaboration
+	[OVERVIEW]
+		en = Overview
+		es = Descripción general
+		fr = Overview
+	[REPORTS]
+		en = Reports
+		es = Informes
+		fr = Reports
+	[RESOURCEREQUEST]
+		en = Resource Request
+		es = Solicitud de medios
+		fr = Resource Request
+	[USERINFO]
+		en = User Info
+		es = Información del usuario
+		fr = User Info
+	[add]
+		en = Add
+		es = Add
+		fr = Add
+	[assigned_to]
+		en = Assigned To: %@
+		es = Assigned To: %@
+		fr = Assigned To: %@
+	[browse_gallery]
+		en = Browse Gallery
+		es = Explorar la galería
+		fr = Browse Gallery
+	[capture_image]
+		en = Capture Image
+		es = Capturar imagen
+		fr = Capture Image
+	[cancel]
+		en = Cancel
+		es = Cancelar
+		fr = Cancel
+	[recipient]
+		en = Recipient
+		es = Destinatario
+		fr = Recipient
+	[color_picker_title]
+		en = Color Picker
+		es = Color Picker
+		fr = Color Picker
+	[common]
+		en = Common
+		es = Common
+		fr = Common
+	[copy_as_new_report]
+		en = Copy as New Report
+		es = Copy as New Report
+		fr = Copy as New Report
+	[mark_all_as_read]
+		en = Mark all as read
+		es = Mark all as read
+		fr = Mark all as read
+	[message]
+		en = Message
+		es = Mensaje
+		fr = Message
+	[device_not_connected_to_network]
+		en = Device is not connected to a network.
+		es = Device is not connected to a network.
+		fr = Device is not connected to a network.
+	[location]
+		en = Location (lat, long)
+		es = Localización (latitud, longitud -decimal)
+		fr = Location (lat, long)
+	[map]
+		en = Map
+		es = Mapa
+		fr = Map
+	[ok]
+		en = OK
+		es = Aceptar
+		fr = OK
+	[sending]
+		en = <Sending>
+		es = <Enviando>
+		fr = <Sending>
+	[sending_progress]
+		en = <Sending %d %%>
+		es = <Enviando %d %%>
+		fr = <Sending %d %%>
+	[sending_failed]
+		en = <Sending Failed>
+		es = <Enviando Error>
+		fr = <Sending Failed>
+	[incident]
+		en = Incident
+		es = Incidencia
+		fr = Incident
+	[incident_]
+		en = Incident
+		es = Incidencia
+		fr = Incident
+	[incident_active]
+		en = Incident: %@
+		es = Incidencia: %@
+		fr = Incident: %@
+	[incident_error_not_found]
+		en = Error: Incident not found.
+		es = Error: Incident not found.
+		fr = Error: Incident not found.
+	[incident_no_longer_exists]
+		en = %@ no longer exists. Please select another incident and collabroom.
+		es = %@ no longer exists. Please select another incident and collabroom.
+		fr = %@ no longer exists. Please select another incident and collabroom.
+	[incident_join]
+		en = Join Incident
+		es = Selecciona incidencia
+		fr = Join Incident
+	[room_]
+		en = Room
+		es = habitación
+		fr = Room
+	[room_active]
+		en = Room: %@
+		es = habitación: %@
+		fr = Room: %@
+	[room_error_not_found]
+		en = Error: Incident not found.
+		es = Error: Incident not found.
+		fr = Error: Incident not found.
+	[room_no_longer_exists]
+		en = %@ no longer exists. Please select another collabroom.
+		es = %@ no longer exists. Please select another collabroom.
+		fr = %@ no longer exists. Please select another collabroom.
+	[room_join]
+		en = Join Room
+		es = Seleccionar una habitación
+		fr = Join Room
+	[no_room_selected]
+		en = No Room Selected
+		es = No Room Selected
+		fr = No Room Selected
+	[select_workspace_]
+		en = Select Workspace
+		es = Select Workspace
+		fr = Select Workspace
+	[confirm_form_cancel]
+		en = If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.
+		comment = ^^^^^^^^^^^^^^^^
+		es = If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.
+		fr = If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.
+	[confirm_continue_to_title]
+		en = Continue to %@ list?
+		es = Continue to %@ list?
+		fr = Continue to %@ list?
+	[confirm_continue_to_description]
+		en = You are currently editing a %@. If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.
+		es = You are currently editing a %@. If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.
+		fr = You are currently editing a %@. If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.
+	[draft]
+		en = <Draft>
+		es = <Borrador>
+		fr = <Draft>
+	[national_guard]
+		en = National Guard
+		es = National Guard
+		fr = National Guard
+	[symbol_picker]
+		en = Symbol Picker
+		es = Symbol Picker
+		fr = Symbol Picker
+	[add_item]
+		en = Add Item
+		es = Add Item
+		fr = Add Item
+	[debug_log]
+		en = Debug Log
+		es = Debug Log
+		fr = Debug Log
+	[enter_chat_message]
+		en = Enter chat message…
+		es = Enter chat message…
+		fr = Enter chat message…
+	[enter_debug_log_comment]
+		en = Enter debug log comment…
+		es = Enter debug log comment…
+		fr = Enter debug log comment…
+	[no_messages_received]
+		en = No messages received.\n
+		es = No messages received.\n
+		fr = No messages received.\n
+	[no_debug_messages_logged]
+		en = No debug messages logged.\n
+		es = No debug messages logged.\n
+		fr = No debug messages logged.\n
+	[no_damage_reports_exist]
+		en = No damage surveys exist - please click the '+' sign to create a new survey.
+		es = No damage surveys exist - please click the '+' sign to create a new survey.
+		fr = No damage surveys exist - please click the '+' sign to create a new survey.
+	[no_field_reports_exist]
+		en = No field reports exist - please click the '+' sign to create a new report.
+		es = No field reports exist - please click the '+' sign to create a new report.
+		fr = No field reports exist - please click the '+' sign to create a new report.
+	[no_resource_requests_exist]
+		en = No resource requests exist - please click the '+' sign to create a new request.
+		es = No resource requests exist - please click the '+' sign to create a new request.
+		fr = No resource requests exist - please click the '+' sign to create a new request.
+	[no_simple_reports_exist]
+		en = No general messages exist - please click the '+' sign to create a new message.
+		es = No general messages exist - please click the '+' sign to create a new message.
+		fr = No general messages exist - please click the '+' sign to create a new message.
+	[no_weather_reports_exist]
+		en = No weather reports exist - please click the '+' sign to create a new report.
+		es = No weather reports exist - please click the '+' sign to create a new report.
+		fr = No weather reports exist - please click the '+' sign to create a new report.
+	[no_uxo_reports_exist]
+		en = No Explosive reports exist - please click the '+' sign to create a new report.
+		es = No Explosive reports exist - please click the '+' sign to create a new report.
+		fr = No Explosive reports exist - please click the '+' sign to create a new report.
+	[no_rooms_accessible]
+		en = You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.
+		es = You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.
+		fr = You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.
+	[no_catan_requests_exist]
+		en = No Catan Requests exist.
+		es = No Catan Requests exist.
+		fr = No Catan Requests exist.
+	[n_a]
+		en = N/A
+		es = N/A
+		fr = N/A
+	[select_an_incident]
+		en = Select an Incident
+		comment = Don't Translate
+		es = Selecciona incidencia
+		fr = Select an Incident
+	[select_an_organization]
+		en = Select an Organization
+		es = Select an Organization
+		fr = Select an Organization
+	[select_report_type]
+		en = Select Report Type
+		es = Selecciona tipo de informe
+		fr = Select Report Type
+	[select_a_room]
+		en = Select a Room
+		es = Seleccionar una habitación
+		fr = Select a Room
+	[not_implemented_title]
+		en = Not implemented…
+		es = Not implemented…
+		fr = Not implemented…
+	[not_implemented_desc]
+		en = Feature still needs to be implemented.
+		es = Feature still needs to be implemented.
+		fr = Feature still needs to be implemented.
+	[missing_image_capture_title]
+		en = Missing Image Capture
+		es = Missing Image Capture
+		fr = Missing Image Capture
+	[missing_image_capture_description]
+		en = Must capture an image to send Report.
+		es = Selecciona o genera una imagen para enviar.
+		fr = Must capture an image to send Report.
+	[selected_image_not_available_title]
+		en = Selected image is not on the local phone.
+		es = Selected image is not on the local phone.
+		fr = Selected image is not on the local phone.
+	[selected_image_not_available_desc]
+		en = Please select an image that is available locally on the phone.
+		es = Please select an image that is available locally on the phone.
+		fr = Please select an image that is available locally on the phone.
+	[using_alt_image_path_for_general_message]
+		en = Using alternate image path for general message.
+		es = Using alternate image path for general message.
+		fr = Using alternate image path for general message.
+	[damage_item_not_set_title]
+		en = Damage Type Not Selected
+		es = Damage Type Not Selected
+		fr = Damage Type Not Selected
+	[damage_item_not_set_desc]
+		en = One or more damaged items do not have a type selected. Please select an item type to submit this survey.
+		es = One or more damaged items do not have a type selected. Please select an item type to submit this survey.
+		fr = One or more damaged items do not have a type selected. Please select an item type to submit this survey.
+	[collecting_lrf_data]
+		en = Collecting LRF Data…
+		es = Collecting LRF Data…
+		fr = Collecting LRF Data…
+	[press_fire_to_capture_data]
+		en = Please press the "fire" button on the LRF to capture the data point
+		es = Please press the "fire" button on the LRF to capture the data point
+		fr = Please press the "fire" button on the LRF to capture the data point
+	[aid]
+		en = Aid
+		es = Aid
+		fr = Aid
+	[volunteer]
+		en = Volunteer
+		es = Volunteer
+		fr = Volunteer
+	[title_activity_login]
+		en = Sign in
+		es = ingresar
+		fr = se connecter
+	[automatically_login]
+		en = Automatically Login
+		comment = Strings related to login
+		es = Iniciar sesión automáticamente
+		fr = Connexion automatique
+	[remember_username]
+		en = Remember Username
+		es = Recordar usuario
+		fr = Rappelez-vous Nom d'utilisateur
+	[incident_login]
+		en = Incident Login
+		es = Incidencia
+		fr = incident Connexion
+	[training_login]
+		en = Training Login
+		es = Entrenamiento
+		fr = formation Connexion
+	[server_]
+		en = Server: %@
+		es = Servidor: %@
+		fr = serveur: %@
+	[prompt_email]
+		en = Email
+		es = Correo electrónico
+		fr = Email
+	[prompt_password]
+		en = Password
+		es = Contraseña
+		fr = Mot de passe
+	[action_sign_in_register]
+		en = <b>Sign in</b>
+		es = <b>Registrarse</b>
+		fr = <b>Connectez-vous</b>
+	[error_invalid_email]
+		en = This email address is invalid
+		es = This email address is invalid
+		fr = Cette adresse email est invalide
+	[error_invalid_password]
+		en = This password is too short
+		es = This password is too short
+		fr = Ce mot de passe est trop court
+	[error_incorrect_password]
+		en = This password is incorrect
+		es = This password is incorrect
+		fr = Ce mot de passe est incorrect
+	[error_field_required]
+		en = This field is required
+		es = This field is required
+		fr = Ce champ est obligatoire
+	[login_progress_signing_in]
+		en = Signing in…
+		es = Iniciar sesión…
+		fr = Connectez-vous…
+	[loading_incidents_and_collabrooms]
+		en = Loading Incidents and Collabrooms…
+		es = Cargando incidencias y collabrooms…
+		fr = Incidents de chargement et Collabrooms…
+	[version]
+		en = Version: %@
+		es = Versión: %@
+		fr = Version: %@
+	[version_login_activity]
+		en = Version:
+		es = Versión:
+		fr = Version:
+	[pref_header_general]
+		en = General
+		es = General
+		fr = General
+	[pref_header_sync]
+		en = Sync
+		es = Sync
+		fr = Sync
+	[pref_title_lrf]
+		en = Laser Range Finder
+		es = Laser Range Finder
+		fr = Laser Range Finder
+	[pref_description_lrf]
+		en = Enable/Disable the ability to use the LRF to set Lat/Lng position.
+		es = Enable/Disable the ability to use the LRF to set Lat/Lng position.
+		fr = Enable/Disable the ability to use the LRF to set Lat/Lng position.
+	[pref_title_disable_notifications]
+		en = Disable Push Notifications
+		es = Disable Push Notifications
+		fr = Disable Push Notifications
+	[pref_title_debug_tab]
+		en = Show Debug Tab
+		es = Show Debug Tab
+		fr = Show Debug Tab
+	[pref_description_debug_tab]
+		en = Enable/Disable the application debug log in the Chat Screen.
+		es = Enable/Disable the application debug log in the Chat Screen.
+		fr = Enable/Disable the application debug log in the Chat Screen.
+	[pref_title_tracking]
+		en = GPS Mobile Device Tracking
+		es = GPS Mobile Device Tracking
+		fr = GPS Mobile Device Tracking
+	[pref_description_tracking]
+		en = Enable/Disable GPS tracking.
+		es = Enable/Disable GPS tracking.
+		fr = Enable/Disable GPS tracking.
+	[pref_title_select_server]
+		en = Select NICS Server
+		es = Select NICS Server
+		fr = Select NICS Server
+	[pref_description_select_server]
+		en = NOTE: Changing servers will require you to re-login.
+		es = NOTE: Changing servers will require you to re-login.
+		fr = NOTE: Changing servers will require you to re-login.
+	[pref_title_select_geo_server]
+		en = Select NICS Geo Server
+		es = Select NICS Geo Server
+		fr = Select NICS Geo Server
+	[pref_description_select_geo_server]
+		en = NOTE: Changing geo servers will require you to re-login.
+		es = NOTE: Changing geo servers will require you to re-login.
+		fr = NOTE: Changing geo servers will require you to re-login.
+	[pref_title_select_auth_server]
+		en = Select NICS Authentication Server
+		es = Select NICS Authentication Server
+		fr = Select NICS Authentication Server
+	[pref_description_select_auth_server]
+		en = NOTE: Changing authentication servers will require you to re-login.
+		es = NOTE: Changing authentication servers will require you to re-login.
+		fr = NOTE: Changing authentication servers will require you to re-login.
+	[pref_description_mdt_sync_rate]
+		en = NOTE: Faster GPS updates will consume a significant amount of battery power!
+		es = NOTE: Faster GPS updates will consume a significant amount of battery power!
+		fr = NOTE: Faster GPS updates will consume a significant amount of battery power!
+	[pref_title_coordinate_display_format]
+		en = Coordinate Display Format
+		es = Coordinate Display Format
+		fr = Coordinate Display Format
+	[pref_description_coordinate_display_format]
+		en = Select how you would like lat/long coordinates to be displayed.
+		es = Select how you would like lat/long coordinates to be displayed.
+		fr = Select how you would like lat/long coordinates to be displayed.
+	[pref_title_sync_over_wifi_only]
+		en = Sync Over Wifi Only
+		es = Sync Over Wifi Only
+		fr = Sync Over Wifi Only
+	[pref_description_sync_over_wifi_only]
+		en = Data will only be exchanged when connected to wifi
+		es = Data will only be exchanged when connected to wifi
+		fr = Data will only be exchanged when connected to wifi
+	[pref_title_language_select]
+		en = Select Language
+		es = Select Language
+		fr = Select Language
+	[pref_description_language_select]
+		en = NOTE: Changing the language will log you out and restart NICS
+		es = NOTE: Changing the language will log you out and restart NICS
+		fr = NOTE: Changing the language will log you out and restart NICS
+	[language_code]
+		en = en
+		es = es
+		fr = es
+	[pref_header_other]
+		en = Additional Features
+		es = Additional Features
+		fr = Additional Features
+	[pref_title_risk_assessment]
+		en = Risk Assessment
+		es = Risk Assessment
+		fr = Risk Assessment
+	[pref_header_data_sync]
+		en = Data & sync
+		comment = Example settings for Data & Sync
+		es = Data & sync
+		fr = Data & sync
+	[pref_title_incident_sync_frequency]
+		en = Reports Update Frequency
+		es = Reports Update Frequency
+		fr = Reports Update Frequency
+	[pref_title_collabroom_sync_frequency]
+		en = Map/Chat Update Frequency
+		es = Map/Chat Update Frequency
+		fr = Map/Chat Update Frequency
+	[pref_title_mdt_sync_frequency]
+		en = MDT Update Frequency
+		es = MDT Update Frequency
+		fr = MDT Update Frequency
+	[pref_title_wfs_sync_frequency]
+		en = WFS Layer Update Frequency
+		es = WFS Layer Update Frequency
+		fr = WFS Layer Update Frequency
+	[pref_header_notifications]
+		en = Notifications
+		comment = Example settings for Notifications
+		es = Notifications
+		fr = Notifications
+	[pref_title_new_message_notifications]
+		en = New message notifications
+		es = New message notifications
+		fr = New message notifications
+	[pref_title_ringtone]
+		en = Ringtone
+		es = Ringtone
+		fr = Ringtone
+	[pref_ringtone_silent]
+		en = Silent
+		es = Silent
+		fr = Silent
+	[pref_title_vibrate]
+		en = Vibrate
+		es = Vibrate
+		fr = Vibrate
+	[log_in_and_join_collabroom_to_enable_risk_assessment]
+		en = Please log-in and join a Collabroom to enable risk assessment.
+		es = Please log-in and join a Collabroom to enable risk assessment.
+		fr = Please log-in and join a Collabroom to enable risk assessment.
+	[join_collabroom_to_enable_risk_assessment]
+		en = Please join a Collabroom to enable risk assessment.
+		es = Please join a Collabroom to enable risk assessment.
+		fr = Please join a Collabroom to enable risk assessment.
+	[connected_device]
+		en = %@ Connected.
+		es = %@ Connected.
+		fr = %@ Connected.
+	[connected_device_desc]
+		en = Successfully connected to LRF.
+		es = Successfully connected to LRF.
+		fr = Successfully connected to LRF.
+	[disconnected_device]
+		en = %@ Disconnected
+		es = %@ Disconnected
+		fr = %@ Disconnected
+	[disconnected_device_desc]
+		en = The paired LRF was disconnected. Press the power button until the LRF is on again and ensure BT is enabled.
+		es = The paired LRF was disconnected. Press the power button until the LRF is on again and ensure BT is enabled.
+		fr = The paired LRF was disconnected. Press the power button until the LRF is on again and ensure BT is enabled.
+	[reconnecting_bt_device]
+		en = Reconnecting BT Device
+		es = Reconnecting BT Device
+		fr = Reconnecting BT Device
+	[reconnecting_to_device]
+		en = Reconnecting to %@ …
+		es = Reconnecting to %@ …
+		fr = Reconnecting to %@ …
+	[high_risk]
+		en = >>High Risk<<
+		es = >>High Risk<<
+		fr = >>High Risk<<
+	[caution]
+		en = >Caution<
+		es = >Caution<
+		fr = >Caution<
+	[low_risk]
+		en = Low Risk
+		es = Low Risk
+		fr = Low Risk
+	[gar_condition_update]
+		en = GAR Condition Update: %1$@ [%2$d] %3$@
+		es = GAR Condition Update: %1$@ [%2$d] %3$@
+		fr = GAR Condition Update: %1$@ [%2$d] %3$@
+	[gar_sent]
+		en = GAR Sent: %@
+		es = GAR Sent: %@
+		fr = GAR Sent: %@
+	[gar_total]
+		en = GAR Total
+		es = GAR Total
+		fr = GAR Total
+	[gar_title]
+		en = GAR Calculator
+		es = GAR Calculator
+		fr = GAR Calculator
+	[gar_send]
+		en = Send Updated GAR in Chat
+		es = Send Updated GAR in Chat
+		fr = Send Updated GAR in Chat
+	[gar_text]
+		en = To compute the total level of risk, assign a code of 0 (no risk) to 10 (max risk) for each element.
+		es = To compute the total level of risk, assign a code of 0 (no risk) to 10 (max risk) for each element.
+		fr = To compute the total level of risk, assign a code of 0 (no risk) to 10 (max risk) for each element.
+	[gar_temp_val]
+		en = GAR UPDATE:<time> <location> <user> <value>
+		es = GAR UPDATE:<time> <location> <user> <value>
+		fr = GAR UPDATE:<time> <location> <user> <value>
+	[temp_status]
+		en = send status and time
+		es = send status and time
+		fr = send status and time
+	[zerothehero]
+		en = 0
+		es = 0
+		fr = 0
+	[crew_fitness]
+		en = Crew Fitness
+		comment = GAR Categories
+		es = Crew Fitness
+		fr = Crew Fitness
+	[crew_selection]
+		en = Crew Selection
+		es = Crew Selection
+		fr = Crew Selection
+	[environment]
+		en = Environment
+		es = Environment
+		fr = Environment
+	[ee_planning]
+		en = Event/Evolution Complexity
+		es = Event/Evolution Complexity
+		fr = Event/Evolution Complexity
+	[supervision]
+		en = Supervision
+		es = Supervision
+		fr = Supervision
+	[planning]
+		en = Planning
+		es = Planning
+		fr = Planning
+	[markup_AddSymbolButton]
+		en = Add Markup Symbol Button
+		es = Add Markup Symbol Button
+		fr = Add Markup Symbol Button
+	[markup_AddLineButton]
+		en = Add Markup Line Button
+		es = Add Markup Line Button
+		fr = Add Markup Line Button
+	[markup_AddRectangleButton]
+		en = Add Markup Rectangle Button
+		es = Add Markup Rectangle Button
+		fr = Add Markup Rectangle Button
+	[markup_AddTrapezoidButton]
+		en = Add Markup Trapezoid Button
+		es = Add Markup Trapezoid Button
+		fr = Add Markup Trapezoid Button
+	[markup_AddCircleButton]
+		en = Add Markup Circle Button
+		es = Add Markup Circle Button
+		fr = Add Markup Circle Button
+	[markup_AddLRFButton]
+		en = Add Markup LRF Button
+		es = Add Markup LRF Button
+		fr = Add Markup LRF Button
+	[markup_LRF]
+		en = LRF
+		es = LRF
+		fr = LRF
+	[markup_decimal]
+		en = Decimal
+		es = Decimal
+		fr = Decimal
+	[markup_degrees]
+		en = Degrees
+		es = Degrees
+		fr = Degrees
+	[markup_latitude]
+		en = Latitude
+		es = Latitud
+		fr = Latitude
+	[markup_longitude]
+		en = Longitude
+		es = Longitud
+		fr = Longitude
+	[markup_mgrs]
+		en = MGRS
+		es = MGRS
+		fr = MGRS
+	[markup_utm]
+		en = UTM: zone hemisphere(N/S) easting northing
+		es = UTM: zone hemisphere(N/S) easting northing
+		fr = UTM: zone hemisphere(N/S) easting northing
+	[markup_radius]
+		en = Radius (meters)
+		es = Radius (meters)
+		fr = Radius (meters)
+	[markup_symbol_select]
+		en = Select Symbol
+		es = Select Symbol
+		fr = Select Symbol
+	[markup_symbol_icon]
+		en = Symbol Icon
+		es = Symbol Icon
+		fr = Symbol Icon
+	[markup_ok]
+		en = OK
+		es = Aceptar / OK
+		fr = OK
+	[markup_cancel]
+		en = Cancel
+		es = Cancelar
+		fr = Cancel
+	[markup_maptype]
+		en = Map Type
+		es = Tipo de mapa
+		fr = Map Type
+	[markup_normal]
+		en = Normal
+		es = Normal
+		fr = Normal
+	[markup_satellite]
+		en = Satellite
+		es = Satélite
+		fr = Satellite
+	[markup_hybrid]
+		en = Hybrid
+		es = Híbrido
+		fr = Hybrid
+	[markup_terrain]
+		en = Terrain
+		es = Terreno
+		fr = Terrain
+	[markup_offline]
+		en = NICS OSM
+		es = NICS OSM
+		fr = NICS OSM
+	[markup_traffic]
+		en = Traffic
+		es = Tráfico
+		fr = Traffic
+	[markup_indoor]
+		en = Indoor
+		es = Interior
+		fr = Indoor
+	[markup_symbol]
+		en = Symbol
+		es = Symbol
+		fr = Symbol
+	[markup_segment]
+		en = Segment
+		es = Segment
+		fr = Segment
+	[markup_rectangle]
+		en = Rectangle
+		es = Rectangle
+		fr = Rectangle
+	[markup_trapezoid]
+		en = Trapezoid
+		es = Trapezoid
+		fr = Trapezoid
+	[markup_circle]
+		en = Circle
+		es = Circle
+		fr = Circle
+	[markup_symbol_lowercase]
+		en = symbol
+		es = symbol
+		fr = symbol
+	[markup_segment_lowercase]
+		en = segment
+		es = segment
+		fr = segment
+	[markup_rectangle_lowercase]
+		en = rectangle
+		es = rectangle
+		fr = rectangle
+	[markup_trapezoid_lowercase]
+		en = trapezoid
+		es = trapezoid
+		fr = trapezoid
+	[markup_circle_lowercase]
+		en = circle
+		es = circle
+		fr = circle
+	[markup_finalize]
+		en = Finalize %@ Markup?
+		es = Finalize %@ Markup?
+		fr = Finalize %@ Markup?
+	[markup_confirm_completion]
+		en = Click OK to complete the %0$@. Click Cancel to continue editing the %0$@.
+		es = Click OK to complete the %0$@. Click Cancel to continue editing the %0$@.
+		fr = Click OK to complete the %0$@. Click Cancel to continue editing the %0$@.
+	[markup_confrim_delete]
+		en = Delete the selected shape?
+		es = Delete the selected shape?
+		fr = Delete the selected shape?
+	[markup_shape_incomplete]
+		en = Shape Incomplete
+		es = Shape Incomplete
+		fr = Shape Incomplete
+	[markup_confirm_fields]
+		en = Please fill in all of the lat/long fields to continue.
+		es = Please fill in all of the lat/long fields to continue.
+		fr = Please fill in all of the lat/long fields to continue.
+	[incident_focus_btn]
+		en = Incident Focus Button
+		es = Incident Focus Button
+		fr = Incident Focus Button
+	[wfslayer_title]
+		en = Tracking
+		es = Seguimiento
+		fr = Tracking
+	[markup_user]
+		en = User:
+		es = Usuario:
+		fr = User:
+	[markup_timestamp]
+		en = Timestamp:
+		es = Hora de registro:
+		fr = Timestamp:
+	[markup_message]
+		en = Message:
+		es = Mensajes:
+		fr = Message:
+	[markup_resource_id]
+		en = Resource Id:
+		es = Recurso Id:
+		fr = Resource Id:
+	[markup_course]
+		en = Course:
+		es = Course:
+		fr = Course:
+	[markup_speed]
+		en = Speed:
+		es = Velocidad:
+		fr = Speed:
+	[markup_description]
+		en = Description:
+		es = Descripción:
+		fr = Description:
+	[markup_press_to_view]
+		en = Press to view message…
+		es = Press to view message…
+		fr = Press to view message…
+	[action_help]
+		en = NICS Help
+		fr = NICS Help
+	[schema_generalmessage]
+		en = generalmessage_schema
+		comment = DO NOT TRANSLATE
+		fr = generalmessage_schema
+	[schema_damagereport]
+		en = damagereport_schema
+		fr = damagereport_schema
+	[schema_fieldreport]
+		en = fieldreport_schema
+		fr = fieldreport_schema
+	[schema_uxoreport]
+		en = uxoreport_schema
+		fr = uxoreport_schema
+	[schema_tasking]
+		en = tasking_schema
+		fr = tasking_schema
+	[schema_resource_request]
+		en = resourcerequest_schema
+		fr = resourcerequest_schema
+	[schema_userinfo]
+		en = userinfo_schema
+		fr = userinfo_schema
+	[schema_weatherreport]
+		en = weatherreport_schema
+		fr = weatherreport_schema
+	[no_selection]
+		en = no_selection
+		fr = no_selection

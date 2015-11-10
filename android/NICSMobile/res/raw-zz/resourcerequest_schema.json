@@ -1,0 +1,69 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "Rèsòùrçé Rêqúëst"
+    },
+    "description": {
+    	"display_name": "ðèsçrìptíòñ",
+        "type": "string",
+        "id": "1",
+        "priority": "1"
+    },
+    "type": {
+    	"display_name": "tÿpé",
+        "type": "integer",
+        "id": "2",
+        "priority": "2",
+		"options": {
+            "0": "Vèssél",
+            "1": "Vêhìçlë",
+            "2": "Òvèrhéàð",
+            "3": "ÈqùípＭêñt",
+            "4": "Àîrçráft",
+            "5": "Hëlò",
+            "6": "Çrèw"
+        }
+    },
+    "source": {
+    	"display_name": "sóùrçê",
+        "type": "string",
+        "id": "3",
+        "priority": "3"
+    },
+    "quantity": {
+    	"display_name": "qúàñtîtý",
+        "type": "string",
+        "id": "4",
+        "priority": "4"
+    },
+    "priority": {
+    	"display_name": "prïôrìtÿ",
+        "type": "integer",
+        "id": "5",
+        "priority": "5",
+		"options": {
+			"0": "Ùrgèñt",
+            "1": "Régùlàr"
+		}
+    },
+    "location": {
+    	"display_name": "lõçátíöñ",
+        "type": "string",
+        "id": "6",
+        "priority": "6"
+    },
+	"ETA": {
+    	"display_name": "ÈTÀ",
+		"type": "string",
+		"id":"7",
+		"priority": "7",
+		"enabled": "false"
+	},
+	"status": {
+    	"display_name": "ßtâtûs",
+		"type": "string",
+		"id": "8",
+		"priority": "8",
+		"enabled": "false"
+	}
+}

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/sr_image_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".5" >
+
+        <ImageView
+            android:id="@+id/sr_image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="5dp"
+            android:layout_weight=".5" />
+
+        <ProgressBar
+            android:id="@+id/sr_image_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/sr_imagebutton_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/sr_capture_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="@string/capture_image" />
+
+            <Button
+                android:id="@+id/sr_browse_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="@string/browse_gallery" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sr_category_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipient"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/sr_category_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"/>
+
+        <TextView
+            android:id="@+id/sr_location_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/sr_coordinate_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
+
+            <EditText
+                android:id="@+id/sr_latitude_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="5"
+                android:hint="@string/markup_latitude"
+                android:inputType="numberDecimal|numberSigned"
+                android:nextFocusDown="@+id/sr_longitude_input"
+                android:textSize="14sp" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@+id/sr_longitude_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="5"
+                android:hint="@string/markup_longitude"
+                android:inputType="numberDecimal|numberSigned"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/sr_lrf0"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
+                android:layout_weight="0"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/markup_AddSymbolButton"
+                android:maxHeight="32dp"
+                android:maxWidth="32dp"
+                android:minHeight="32dip"
+                android:minWidth="32dip"
+                android:src="@drawable/lrf" />
+
+            <ImageButton
+                android:id="@+id/sr_mylocation0"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
+                android:layout_weight="0"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/markup_AddSymbolButton"
+                android:maxHeight="32dp"
+                android:maxWidth="32dp"
+                android:minHeight="32dip"
+                android:minWidth="32dip"
+                android:src="@drawable/myloc" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sr_description_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/message"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/sr_description"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="@string/message"
+            android:inputType="textMultiLine" />
+
+        <LinearLayout
+            android:id="@+id/sr_submitbutton_layout"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/simpleReportSaveButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="@string/button_save_draft" />
+
+            <Button
+                android:id="@+id/simpleReportSubmitButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:text="@string/button_submit" />
+
+            <Button
+                android:id="@+id/simpleReportClearButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:text="@string/button_clear" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

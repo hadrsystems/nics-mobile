@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<resources>
+    <string name="pref_header_general">General</string>
+    <string name="pref_header_sync">Sync</string>
+    <string name="pref_title_lrf">Laser Range Finder</string>
+    <string name="pref_description_lrf">Enable/Disable the ability to use the LRF to set Lat/Lng position.</string>
+    <string name="pref_title_disable_notifications">Disable Push Notifications</string>
+    <string name="pref_title_debug_tab">Show Debug Tab</string>
+    <string name="pref_description_debug_tab">Enable/Disable the application debug log in the Chat Screen.</string>
+    <string name="pref_title_tracking">GPS Mobile Device Tracking</string>
+    <string name="pref_description_tracking">Enable/Disable GPS tracking.</string>
+    <string name="pref_title_select_server">Select NICS Server</string>
+    <string name="pref_description_select_server">NOTE: Changing servers will require you to re-login.</string>
+    <string name="pref_title_select_geo_server">Select NICS Geo Server</string>
+    <string name="pref_description_select_geo_server">NOTE: Changing geo servers will require you to re-login.</string>
+    <string name="pref_title_select_auth_server">Select NICS Authentication Server</string>
+    <string name="pref_description_select_auth_server">NOTE: Changing authentication servers will require you to re-login.</string>
+    <string name="pref_description_mdt_sync_rate">NOTE: Faster GPS updates will consume a significant amount of battery power!</string>
+    <string name="pref_title_coordinate_display_format">Coordinate Display Format</string>
+    <string name="pref_description_coordinate_display_format">Select how you would like lat/long coordinates to be displayed.</string>
+    <string name="pref_title_sync_over_wifi_only">Sync Over Wifi Only</string>
+    <string name="pref_description_sync_over_wifi_only">Data will only be exchanged when connected to wifi</string>
+    <string name="pref_title_language_select">Select Language</string>
+    <string name="pref_description_language_select">NOTE: Changing the language will log you out and restart NICS</string>
+    
+    <string name="language_code">es</string>
+    
+    
+    <string-array name="pref_coordinate_list_titles">
+        <item>Decimal Degrees\n[+-]DDD.DDDDD</item>
+        <item>Degrees and Decimal Minutes\n[+-]DDD:MM.MMMMM</item>
+        <item>Degrees Minutes Seconds\nDDD:MM:SS.SSSSS</item>
+		<item>UTM</item>
+		<item>MGRS</item>
+    </string-array>
+    <string-array name="pref_coordinate_list_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+		<item>3</item>
+		<item>4</item>
+    </string-array>
+
+    <string-array name="pref_language_list_titles">
+        <item>Device Default</item>
+        <item>English</item>
+        <item>Spanish</item>
+  <!--       <item>French</item>
+        <item>Italian</item>  -->
+    </string-array>
+    <string-array name="pref_language_list_values">
+        <item>Device Default</item>
+        <item>en</item>
+        <item>es</item>
+  <!--       <item>fr</item>
+        <item>it</item>  -->
+    </string-array>
+    
+    <string-array name="pref_server_list_titles">
+        <item>Your Instance</item>
+    </string-array>
+    <string-array name="pref_server_list_values">
+        <item>https://yourdomain/api/v1/</item>
+    </string-array>
+
+        <string-array name="pref_geo_server_list_titles">
+        <item>Your Mapserver</item>
+    </string-array>
+    <string-array name="pref_geo_server_list_values">
+        <item>https://yourdomain/geoserver/</item>
+    </string-array>
+    
+            <string-array name="pref_auth_server_list_titles">
+        <item>Your Identity</item>
+    </string-array>
+    <string-array name="pref_auth_server_list_values">
+        <item>https://yourdomain/openam/</item>
+    </string-array>
+    
+    <string name="pref_header_other">Additional Features</string>
+    <string name="pref_title_risk_assessment">Risk Assessment</string>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <string name="pref_title_incident_sync_frequency">Reports Update Frequency</string>
+    <string name="pref_title_collabroom_sync_frequency">Map/Chat Update Frequency</string>
+    <string name="pref_title_mdt_sync_frequency">MDT Update Frequency</string>
+    <string name="pref_title_wfs_sync_frequency">WFS Layer Update Frequency</string>
+
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 seconds</item>
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>1.5 minutes</item>
+        <item>2 minutes</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+    </string-array>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+    <string name="pref_title_vibrate">Vibrate</string>
+    
+    <string name="log_in_and_join_collabroom_to_enable_risk_assessment">Please log-in and join a Collabroom to enable risk assessment.</string>
+    <string name="join_collabroom_to_enable_risk_assessment">Please join a Collabroom to enable risk assessment.</string>
+
+</resources>

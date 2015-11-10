@@ -1,0 +1,151 @@
+{
+    "meta": {
+        "name": "Field Report",
+        "type": "meta"
+    },
+    "sections": [
+                 {
+                 "name": "Notes",
+                 "fields":  [
+                             { "key": "fr-I-notes", "name": "Notes", "type": "string" }
+                             ]
+                 },
+                 
+                 {
+                 "name": "Incident Identification",
+                 "fields":  [
+                             { "key": "fr-A-id", "name": "Incident ID", "type": "string", "enabled": "false" },
+                             { "key": "fr-A-name", "name": "Incident Name", "type": "string", "enabled": "false" },
+                             { "key": "fr-A-casenum", "name": "Pollution Case #", "type": "string"},
+                             { "key": "fr-A-source", "name": "Source of Incident", "type": "string"},
+                             { "key": "fr-A-location", "name": "Location of Incident", "type": "string"},
+                             { "key": "fr-A-date", "name": "Date of Incident", "type": "string"},
+                             { "key": "fr-A-invest", "name": "Investigators", "type": "string"},
+                             { "key": "fr-A-activitynum", "name": "Activity #", "type": "string"},
+                             { "key": "fr-A-enforcenum", "name": "Enforcement #", "type": "string"},
+                             { "key": "fr-A-ticketnum", "name": "Ticket #", "type": "string"},
+                             { "key": "fr-A-fedprojnum", "name": "Federal Project #", "type": "string"}
+                            ]
+                 },
+                 
+                 {
+                 "name": "Discharge Data",
+                 "fields":  [
+                             { "key": "fr-B-matspilled", "name": "Material Spilled", "type": "string" },
+                             { "key": "fr-B-totalspilled", "name": "Total Spilled (Est)", "type": "string" },
+                             { "key": "fr-B-totalpot", "name": "Total Potential", "type": "string" },
+                             { "key": "fr-B-totalrecover", "name": "Total Recovered", "type": "string" },
+                             { "key": "fr-B-source", "name": "Source", "type": "string" },
+                             { "key": "fr-B-waterbody", "name": "Water Body", "type": "string" },
+                             { "key": "fr-B-descriptionspill", "name": "Description of Spill", "type": "string" },
+                             { "key": "fr-B-descriptioncause", "name": "Description of Cause", "type": "string" },
+                             { "key": "fr-B-pathdischarge", "name": "Path of Discharge", "type": "string" }
+                            ]
+                 },
+                 
+                 {
+                 "name": "Weather and Tides",
+                 "fields":  [
+                             { "key": "fr-C-winddir", "name": "Wind Direction", "type": "string" },
+                             { "key": "fr-C-seaheight", "name": "Sea Height", "type": "string" },
+                             { "key": "fr-C-currentdir", "name": "Current Direction", "type": "string" },
+                             { "key": "fr-C-visibility", "name": "Visibility", "type": "string" },
+                             { "key": "fr-C-sunset", "name": "Sunset", "type": "string" },
+                             { "key": "fr-C-airtemp", "name": "Air Temp", "type": "string" },
+                             { "key": "fr-C-windspeed", "name": "Wind Speed", "type": "string" },
+                             { "key": "fr-C-currentspeed", "name": "Current Speed", "type": "string" },
+                             { "key": "fr-C-precipitation", "name": "Precipitation", "type": "string" },
+                             { "key": "fr-C-sunrise", "name": "Sunrise", "type": "string" },
+                             { "key": "fr-C-watertemp", "name": "Water Temp", "type": "string" }
+                            ]
+                 },
+                 
+                 {
+                 "name": "Suspect R.P. and Witnesses",
+                 "fields":  [
+                             { "key": "fr-D-indcompany", "name": "Individual/Company", "type": "string" },
+                             { "key": "fr-D-address", "name": "Individual/Company Address", "type": "string" },
+                             { "key": "fr-D-phone", "name": "Individual/Company Phone", "type": "string" },
+                             { "key": "fr-D-relationship", "name": "Relationship", "type": "string" },
+                             { "key": "fr-D-licensedoc", "name": "License or Doc #", "type": "string" },
+                             { "key": "fr-D-witness1name", "name": "Witness 1 Name", "type": "string" },
+                             { "key": "fr-D-witness1add", "name": "Witness 1 Address", "type": "string" },
+                             { "key": "fr-D-witness1phone", "name": "Witness 1 Phone", "type": "string" },
+                             { "key": "fr-D-witness2name", "name": "Witness 2 Name", "type": "string" },
+                             { "key": "fr-D-witness2add", "name": "Witness 2 Address", "type": "string" },
+                             { "key": "fr-D-witness2phone", "name": "Witness 2 Phone", "type": "string" }
+                            ]
+                 },
+                 
+                 {
+                 "name": "Oil Samples",
+                 "fields":  [
+                             { "key": "fr-E-samplestaken", "name": "Samples Taken", "type": "string" },
+                             { "key": "fr-E-number", "name": "Number", "type": "string" },
+                             { "key": "fr-E-syspectedsrc", "name": "Suspected Source", "type": "string" },
+                             { "key": "fr-E-id", "name": "Identification", "type": "string" },
+                             { "key": "fr-E-date", "name": "Date", "type": "string" },
+                             { "key": "fr-E-time", "name": "Time", "type": "string" },
+                             { "key": "fr-E-witnesses", "name": "Witness", "type": "string" },
+                             { "key": "fr-E-src", "name": "Sample Source", "type": "string" },
+                             { "key": "fr-E-cleansample", "name": "Clean Sample", "type": "string" },
+                             { "key": "fr-E-samp1", "name": "Suspect Source Sample 1", "type": "string" },
+                             { "key": "fr-E-samp2", "name": "Suspect Source Sample 2", "type": "string" },
+                             { "key": "fr-E-samp3", "name": "Suspect Source Sample 3", "type": "string" },
+                             { "key": "fr-E-samp4", "name": "Suspect Source Sample 4", "type": "string" }
+                            ]
+                 },
+                 
+                 {
+                 "name": "Vessel",
+                 "fields":  [
+                             { "key": "fr-F-name", "name": "Vessel Name", "type": "string" },
+                             { "key": "fr-F-callsign", "name": "Call Sign", "type": "string" },
+                             { "key": "fr-F-flag", "name": "Flag", "type": "string" },
+                             { "key": "fr-F-ownerop", "name": "Owner/Operator", "type": "string" },
+                             { "key": "fr-F-phone", "name": "Operator Phone", "type": "string" },
+                             { "key": "fr-F-grosston", "name": "Gross Tonnage", "type": "string" },
+                             { "key": "fr-F-vessel", "name": "Type of Vessel", "type": "string" },
+                             { "key": "fr-F-designation", "name": "Designation", "type": "string" },
+                             { "key": "fr-F-address", "name": "Address", "type": "string" },
+                             { "key": "fr-F-agent", "name": "Agent", "type": "string" },
+                             { "key": "fr-F-agent-phone", "name": "Agent Phone", "type": "string" },
+                             { "key": "fr-F-cofr", "name": "COFR", "type": "string" },
+                             { "key": "fr-F-sopep", "name": "SOPEP", "type": "string" },
+                             { "key": "fr-F-oiltrans", "name": "Oil Trans Procedures", "type": "string" },
+                             { "key": "fr-F-iopp", "name": "IOPP", "type": "string" },
+                             { "key": "fr-F-recordbook", "name": "Oil Record Book", "type": "string" },
+                             { "key": "fr-F-inspection", "name": "Declaration of Inspection", "type": "string" },
+                             { "key": "fr-F-personincharge", "name": "Person in Charge", "type": "string" },
+                             { "key": "fr-F-master", "name": "Master", "type": "string" },
+                             { "key": "fr-F-chiefeng", "name": "Chief Engineer", "type": "string" },
+                             { "key": "fr-F-keeldate", "name": "Keel Laid Date", "type": "string" }
+                            ]
+                 },
+                 
+                 {
+                 "name": "Facility and Other Parties",
+                 "fields":  [
+                             { "key": "fr-G-facility", "name": "Facility", "type": "string" },
+                             { "key": "fr-G-type", "name": "Type", "type": "string" },
+                             { "key": "fr-G-address", "name": "Facility Address", "type": "string" },
+                             { "key": "fr-G-phone", "name": "Facility Phone", "type": "string" },
+                             { "key": "fr-G-ownerop", "name": "Owner/Operator", "type": "string" },
+                             { "key": "fr-G-opsman", "name": "Operations Manager", "type": "string" },
+                             { "key": "fr-G-otherparty", "name": "Other Party", "type": "string" },
+                             { "key": "fr-G-othervessel", "name": "Other Vessel", "type": "string" },
+                             { "key": "fr-G-otherfacility", "name": "Other Facility", "type": "string" },
+                             { "key": "fr-G-otherfacadd", "name": "Other Facility Address", "type": "string" },
+                             { "key": "fr-G-otherfacphone", "name": "Other Facility Phone", "type": "string" }
+                            ]
+                 },
+                 
+                 {
+                 "name": "Other Factors",
+                 "fields":  [
+                             { "key": "fr-H-negfac", "name": "Aggravating (-)", "type": "string" },
+                             { "key": "fr-H-posfac", "name": "Mitigating (+)", "type": "string" }
+                            ]
+                 }
+                ]
+}

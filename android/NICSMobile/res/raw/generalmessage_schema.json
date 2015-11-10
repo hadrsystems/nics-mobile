@@ -1,0 +1,48 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "General Message"
+    },
+    "fullpath": {
+    	"display_name": "",
+        "type": "image_selector",
+        "id": "0",
+        "priority": "0",
+        "default": "0"
+    },
+    "category": {
+    	"display_name": "sr_category_displayname",
+        "type": "integer",
+        "id": "1",
+        "priority": "1",
+        "options": {
+            "0": "sr_categorytype_none",
+            "1": "sr_categorytype_agency_representative",
+            "2": "sr_categorytype_comp_claim_damage_advisory",
+            "3": "sr_categorytype_finance_section",
+            "4": "sr_categorytype_ground_support_request",
+            "5": "sr_categorytype_incident_commander",
+            "6": "sr_categorytype_liason_officer",
+            "7": "sr_categorytype_logistics_section",
+            "8": "sr_categorytype_operations_section",
+            "9": "sr_categorytype_other",
+            "10": "sr_categorytype_plans_section",
+            "11": "sr_categorytype_public_information_officer",
+            "12": "sr_categorytype_safety_officer",
+            "13": "sr_categorytype_suppression_repair"
+		}
+    },
+    "location": {
+    	"display_name": "sr_location_displayname",
+        "type": "coordinate",
+        "id": "2",
+        "priority": "2"
+    },
+    "message": {
+    	"display_name": "sr_message_displayname",
+        "type": "string",
+        "id": "3",
+        "priority": "3",
+        "hint": "sr_message_hint"
+    }
+}

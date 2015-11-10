@@ -1,0 +1,7 @@
+FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Google-Maps-iOS-SDK" "$(PODS_ROOT)/Google-Maps-iOS-SDK"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CocoaSecurity" "${PODS_ROOT}/Headers/Public/CollapseClick" "${PODS_ROOT}/Headers/Public/FMDB" "${PODS_ROOT}/Headers/Public/Google-Maps-iOS-SDK" "${PODS_ROOT}/Headers/Public/JSONModel" "${PODS_ROOT}/Headers/Public/SWRevealViewController" "${PODS_ROOT}/Headers/Public/SecureNSUserDefaults"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/CocoaSecurity" -isystem "${PODS_ROOT}/Headers/Public/CollapseClick" -isystem "${PODS_ROOT}/Headers/Public/FMDB" -isystem "${PODS_ROOT}/Headers/Public/Google-Maps-iOS-SDK" -isystem "${PODS_ROOT}/Headers/Public/JSONModel" -isystem "${PODS_ROOT}/Headers/Public/SWRevealViewController" -isystem "${PODS_ROOT}/Headers/Public/SecureNSUserDefaults"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"Pods-CocoaSecurity" -l"Pods-CollapseClick" -l"Pods-FMDB" -l"Pods-JSONModel" -l"Pods-SWRevealViewController" -l"Pods-SecureNSUserDefaults" -l"c++" -l"icucore" -l"sqlite3" -l"z" -framework "AVFoundation" -framework "CoreData" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreText" -framework "GLKit" -framework "GoogleMaps" -framework "ImageIO" -framework "OpenGLES" -framework "QuartzCore" -framework "SystemConfiguration"
+OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+PODS_ROOT = ${SRCROOT}/Pods

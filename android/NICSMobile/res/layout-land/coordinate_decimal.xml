@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/coordinateLinearLayout0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical" >
+
+        <EditText
+            android:id="@+id/markupLatitudeInput0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="5"
+            android:hint="@string/markup_latitude"
+            android:inputType="numberDecimal|numberSigned"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/markupLongitudeInput0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="5"
+            android:hint="@string/markup_longitude"
+            android:inputType="numberDecimal|numberSigned"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/markupLRF0"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/markup_AddSymbolButton"
+            android:maxHeight="32dp"
+            android:maxWidth="32dp"
+            android:minHeight="32dip"
+            android:minWidth="32dip"
+            android:src="@drawable/lrf" />
+
+        <ImageButton
+            android:id="@+id/markupMyLocation0"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/markup_AddSymbolButton"
+            android:maxHeight="32dp"
+            android:maxWidth="32dp"
+            android:minHeight="32dip"
+            android:minWidth="32dip"
+            android:src="@drawable/myloc" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/coordinateLinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/coordinateLinearLayout0"
+        android:gravity="center_vertical" >
+
+        <EditText
+            android:id="@+id/markupLatitudeInput1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="5"
+            android:hint="@string/markup_latitude"
+            android:inputType="numberDecimal|numberSigned"
+            android:textSize="14sp" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/markupLongitudeInput1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="5"
+            android:hint="@string/markup_longitude"
+            android:inputType="numberDecimal|numberSigned"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/markupLRF1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/markup_AddSymbolButton"
+            android:maxHeight="32dp"
+            android:maxWidth="32dp"
+            android:minHeight="32dip"
+            android:minWidth="32dip"
+            android:src="@drawable/lrf" />
+
+        <ImageButton
+            android:id="@+id/markupMyLocation1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/markup_AddSymbolButton"
+            android:maxHeight="32dp"
+            android:maxWidth="32dp"
+            android:minHeight="32dip"
+            android:minWidth="32dip"
+            android:src="@drawable/myloc" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/coordinateSymbolLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/coordinateLinearLayout2"
+        android:layout_alignTop="@+id/coordinateLinearLayout1"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/markupSymbolSelectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/markup_symbol_select"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/markupSymbolView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@color/background_light"
+            android:contentDescription="@string/markup_symbol_icon"
+            android:padding="3dp"
+            android:src="@drawable/staging_area2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/coordinateCircleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/coordinateLinearLayout2"
+        android:layout_alignTop="@+id/coordinateLinearLayout1"
+        android:gravity="center_vertical" >
+
+        <EditText
+            android:id="@+id/markupRadiusInput"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="5"
+            android:hint="@string/markup_radius"
+            android:inputType="numberDecimal|numberSigned"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/coordinateLinearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/coordinateLinearLayout1"
+        android:gravity="center_vertical" >
+
+        <EditText
+            android:id="@+id/markupLatitudeInput2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="5"
+            android:hint="@string/markup_latitude"
+            android:inputType="numberDecimal|numberSigned"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/markupLongitudeInput2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="5"
+            android:hint="@string/markup_longitude"
+            android:inputType="numberDecimal|numberSigned"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/markupLRF2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/markup_AddSymbolButton"
+            android:maxHeight="32dp"
+            android:maxWidth="32dp"
+            android:minHeight="32dip"
+            android:minWidth="32dip"
+            android:src="@drawable/lrf" />
+
+        <ImageButton
+            android:id="@+id/markupMyLocation2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/markup_AddSymbolButton"
+            android:maxHeight="32dp"
+            android:maxWidth="32dp"
+            android:minHeight="32dip"
+            android:minWidth="32dip"
+            android:src="@drawable/myloc" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/coordinateLinearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/coordinateLinearLayout2"
+        android:gravity="center_vertical" >
+
+        <EditText
+            android:id="@+id/markupLatitudeInput3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="5"
+            android:hint="@string/markup_latitude"
+            android:inputType="numberDecimal|numberSigned"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/markupLongitudeInput3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="5"
+            android:hint="@string/markup_longitude"
+            android:inputType="numberDecimal|numberSigned"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/markupLRF3"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/markup_AddSymbolButton"
+            android:maxHeight="32dp"
+            android:maxWidth="32dp"
+            android:minHeight="32dip"
+            android:minWidth="32dip"
+            android:src="@drawable/lrf" />
+
+        <ImageButton
+            android:id="@+id/markupMyLocation3"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/markup_AddSymbolButton"
+            android:maxHeight="32dp"
+            android:maxWidth="32dp"
+            android:minHeight="32dip"
+            android:minWidth="32dip"
+            android:src="@drawable/myloc" />
+    </LinearLayout>
+
+</RelativeLayout>

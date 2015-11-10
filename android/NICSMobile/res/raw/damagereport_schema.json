@@ -1,0 +1,132 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "Damage Survey"
+    },
+    "property_owner_information": {
+    	"display_name": "dr_property_owner_information_displayname",
+        "type": "section",
+        "id": "0",
+        "priority": "0",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "last_name",
+                "first_name",
+                "landline_phone",
+                "cell_phone",
+                "email"
+            ]
+        }
+    },
+    "last_name": {
+    	"display_name": "dr_last_name_displayname",
+        "type": "string",
+        "id": "1",
+        "priority": "1"
+    },
+    "first_name": {
+    	"display_name": "dr_first_name_displayname",
+        "type": "string",
+        "id": "2",
+        "priority": "2"
+    },
+    "landline_phone": {
+    	"display_name": "dr_landline_phone_displayname",
+        "type": "string",
+        "id": "3",
+        "priority": "3"
+    },
+    "cell_phone": {
+    	"display_name": "dr_cell_phone_displayname",
+        "type": "string",
+        "id": "4",
+        "priority": "4"
+    },
+    "email": {
+    	"display_name": "dr_email_displayname",
+        "type": "string",
+        "id": "5",
+        "priority": "5"
+    },
+    "property_information": {
+    	"display_name": "dr_property_information_displayname",
+        "type": "section",
+        "id": "6",
+        "priority": "6",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "address",
+                "city",
+                "zip_code",
+                "coordinate"
+            ]
+        }
+    },
+    "address": {
+    	"display_name": "dr_address_displayname",
+        "type": "string",
+        "id": "7",
+        "priority": "7"
+    },
+    "city": {
+    	"display_name": "dr_city_displayname",
+        "type": "string",
+        "id": "8",
+        "priority": "8"
+    },
+    "zip_code": {
+    	"display_name": "dr_zip_code_displayname",
+        "type": "string",
+        "id": "9",
+        "priority": "9"
+    },
+    "coordinate": {
+    	"display_name": "dr_coordinate_displayname",
+        "type": "coordinate",
+        "id": "10",
+        "priority": "10"
+    },
+	"damage_information": {
+    	"display_name": "dr_damage_information_displayname",
+        "type": "section",
+        "id": "12",
+        "priority": "12",
+        "default": "0",
+        "toggles": {
+            "1": ["damage_information_data"]
+        }
+	},
+	"damage_information_data": {
+    	"display_name": "dr_damage_information_data_displayname",
+	    "type": "damage",
+        "id": "13",
+        "priority": "13",
+		"options": {
+			"0": "dr_propertydamagetype_blank",
+            "1": "dr_propertydamagetype_minor",
+            "2": "dr_propertydamagetype_major",
+            "3": "dr_propertydamagetype_destroyed"
+		}
+	},
+	"images": {
+		"display_name": "dr_image_displayname",
+        "type": "section",
+        "id": "14",
+        "priority": "14",
+        "default": "0",
+        "toggles": {
+            "1": [
+                "fullpath"
+            ]
+        }
+    },
+	"fullpath": {
+		"display_name": "",
+		"type": "image_selector",
+		"id": "15",
+		"priority": "15"
+
+	}
+}

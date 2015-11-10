@@ -1,0 +1,132 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "Ùsèr Ìñfò"
+    },
+    "first_name": {
+    	"display_name": "fìrst ñàＭè", 
+        "type": "string",
+        "id": "1",
+        "priority": "1",
+        "enabled": "false"
+    },
+    "last_name": {
+    	"display_name": "lást ñâＭé",
+        "type": "string",
+        "id": "2",
+        "priority": "2",
+        "enabled": "false"
+    },
+    "rank": {
+    	"display_name": "rãñk",
+        "type": "string",
+        "id": "3",
+        "priority": "3",
+        "enabled": "false"
+    },
+    "mobile_phone": {
+    	"display_name": "Ｍòbílê phóñë",
+        "type": "string",
+        "id": "4",
+        "priority": "4",
+        "enabled": "false"
+    },
+    "home_phone": {
+    	"display_name": "hôＭè phõñé",
+        "type": "string",
+        "id": "5",
+        "priority": "5",
+        "enabled": "false"
+    },
+    "office_phone": {
+    	"display_name": "öffîçê phøñë",
+        "type": "string",
+        "id": "6",
+        "priority": "6",
+        "enabled": "false"
+    },
+    "other_phone": {
+    	"display_name": "òthèr phóñé",
+        "type": "string",
+        "id": "7",
+        "priority": "7",
+        "enabled": "false"
+    },
+    "email_address": {
+    	"display_name": "êＭäïl åðþrëßs",
+        "type": "string",
+        "id": "8",
+        "priority": "8",
+        "enabled": "false"
+    },
+    "homebase_name": {
+    	"display_name": "hôＭèbàsé ñáＭê",
+        "type": "string",
+        "id": "9",
+        "priority": "9",
+        "enabled": "false"
+    },
+    "homebase_street": {
+    	"display_name": "hõＭëbâßè stréêt",
+        "type": "string",
+        "id": "10",
+        "priority": "10",
+        "enabled": "false"
+    },
+    "homebase_city": {
+    	"display_name": "höＭëbãsè çìtÿ",
+        "type": "string",
+        "id": "11",
+        "priority": "11",
+        "enabled": "false"
+    },
+    "homebase_state": {
+    	"display_name": "høＭébäßê ståtë",
+        "type": "string",
+        "id": "12",
+        "priority": "12",
+        "enabled": "false"
+    },
+    "homebase_zip": {
+    	"display_name": "hòＭèbàsé zíp",
+        "type": "string",
+        "id": "13",
+        "priority": "13",
+        "enabled": "false"
+    },
+    "qualified_positions": {
+    	"display_name": "qùálîfïêð póßìtíôñs",
+        "type": "string",
+        "id": "14",
+        "priority": "14",
+        "enabled": "false"
+    },
+    "radio_number": {
+    	"display_name": "râþîõ ñúＭbër",
+        "type": "string",
+        "id": "15",
+        "priority": "15",
+        "enabled": "false"
+    },
+    "agency": {
+    	"display_name": "ãgèñçý",
+        "type": "string",
+        "id": "16",
+        "priority": "16",
+        "enabled": "false"
+    },
+    "weight": {
+    	"display_name": "wéïght",
+        "type": "string",
+        "id": "16",
+        "priority": "16",
+        "enabled": "false"
+    },
+    "remarks": {
+    	"display_name": "rêＭärks",
+        "type": "string",
+        "id": "16",
+        "priority": "16",
+        "enabled": "false"
+    }
+}

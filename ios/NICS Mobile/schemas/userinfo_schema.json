@@ -1,0 +1,31 @@
+{
+    "meta": {
+        "name": "User Info",
+        "type": "meta"
+    },
+    "sections": [
+                 {
+                 "name": "",
+                 "fields":  [
+                             { "key": "first_name", "name": "First Name", "type": "string" },
+                             { "key": "last_name", "name": "Last Name", "type": "string" },
+                             { "key": "rank", "name": "Rank", "type": "string" },
+                             { "key": "mobile_phone", "name": "Mobile Phone", "type": "string" },
+                             { "key": "home_phone", "name": "Home Phone", "type": "string" },
+                             { "key": "office_phone", "name": "Office Phone", "type": "string" },
+                             { "key": "other_phone", "name": "Other Phone", "type": "string" },
+                             { "key": "email_address", "name": "Email Address", "type": "string" },
+                             { "key": "homebase_name", "name": "Homebase Name", "type": "string" },
+                             { "key": "homebase_street", "name": "Homebase Street", "type": "string" },
+                             { "key": "homebase_city", "name": "Homebase City", "type": "string" },
+                             { "key": "homebase_state", "name": "Homebase State", "type": "string" },
+                             { "key": "homebase_zip", "name": "Homebase Zip", "type": "string" },
+                             { "key": "qualified_positions", "name": "Qualified Positions", "type": "string" },
+                             { "key": "radio_number", "name": "Radio Number", "type": "string" },
+                             { "key": "agency", "name": "Agency", "type": "string" },
+                             { "key": "weight", "name": "Weight", "type": "string" },
+                             { "key": "remarks", "name": "Remarks", "type": "string" }
+                            ]
+                 }
+                ]
+}

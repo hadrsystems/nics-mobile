@@ -1,0 +1,50 @@
+{
+    "meta": {
+        "name": "Explosives Report",
+        "type": "meta"
+    },
+    "sections": [
+                 {
+                 "name": "Reporting Unit",
+                 "fields":  [
+                             { "key": "ur-reportingunit", "name": "Reporting Unit", "type": "string" },
+                             { "key": "ur-reportinglocation", "name": "Reporting Location", "type": "string"},
+                             { "key": "ur-contactinfo", "name": "Contact Info", "type": "string" },
+                             { "key": "ur-latitude", "name": "Location (Lat,Lon - decimal)", "type": "location" }
+                             ]
+                  },
+                 
+                  {
+                  "name": "Explosive Type",
+                  "fields":  [
+                              { "key": "ur-uxotype", "name": "Explosive Type", "type": "spinner",
+                              "options": ["Dropped", "Projected", "Placed", "Possible IED", "Thrown"] },
+                             { "key": "ur-size", "name": "Size", "type": "string"},
+                             { "key": "ur-shape", "name": "Shape", "type": "string" },
+                             { "key": "ur-color", "name": "Color", "type": "spinner",
+                              "options": ["Red", "Orange", "Yellow", "Green", "Teal", "Blue","Purple","Pink","Grey","Black"] },
+                              { "key": "ur-condition", "name": "Condition", "type": "spinner",
+                              "options": ["Intact", "Leaking"] }
+                             ]
+                 },
+                 
+                 {
+                 "name": "Explosives Report",
+                 "fields":  [
+                             { "key": "ur-cbrncontamination", "name": "CBRN Contamination", "type": "string"},
+                             { "key": "ur-resourcethreatened", "name": "Resource Threatened", "type": "string" },
+                             { "key": "ur-impactonmission", "name": "Impact On Mission", "type": "string" },
+                             { "key": "ur-protectivemeasures", "name": "Protective Measures", "type": "string" },
+                             { "key": "ur-recommendedpriority", "name": "Recommended Priority", "type": "spinner",
+                             "options": ["Intact", "Immediate","Indirect","Minor", "No Threat"] }
+                             ]
+                 },
+                 
+                 {
+                 "name": "Image Selector",
+                 "fields":  [
+                             { "key": "ur-fullPath", "name": "Image Selector", "type": "imageSelector" }
+                             ]
+                 }
+                 ]
+}

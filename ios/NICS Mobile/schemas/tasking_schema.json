@@ -1,0 +1,44 @@
+{
+    "meta": {
+        "name": "Assignments",
+        "type": "meta"
+    },
+    "sections": [
+                     {
+                         "name": "Operational Period",
+                         "fields":  [
+                                        { "key": "from", "name": "From", "type": "string"},
+                                        { "key": "to", "name": "To", "type": "string" }
+                                    ]
+                     },
+                     
+                     {
+                         "name": "Unit",
+                         "fields":  [
+                                        { "key": "unit_name", "name": "Unit Name", "type": "string" },
+                                        { "key": "leader", "name": "Leader", "type": "string" },
+                                        { "key": "leader_contact", "name": "Leader Contact", "type": "string" },
+                                        { "key": "#_persons", "name": "# Persons", "type": "string" }
+                                    ]
+                     },
+                     {
+                         "name": "Staging Location",
+                         "fields":  [
+                                        { "key": "latitude", "name": "Latitude", "type": "string" },
+                                        { "key": "longitude", "name": "Longitude", "type": "string" }
+                                    ]
+                     },
+                     {
+                        "name": "Unit List",
+                        "fields":   [
+                                        { "key": "personnel", "name": "Personnel", "type": "string" }
+                                    ]
+                     },
+                     {
+                        "name": "Tasks",
+                        "fields":   [
+                                        { "key": "task_list", "name": "Task List", "type": "string" }
+                                    ]
+                     }
+                 ]
+}

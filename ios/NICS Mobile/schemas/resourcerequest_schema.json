@@ -1,0 +1,23 @@
+{
+    "meta": {
+        "name": "Resource Request",
+        "type": "meta"
+    },
+    "sections": [
+                 {
+                 "name": "Resource Request",
+                 "fields":  [
+                             { "key": "resreq-description", "name": "Description", "type": "string" },
+                             { "key": "resreq-type", "name": "Type", "type": "spinner",
+                                "options": ["Vessel", "Vehicle", "Overhead", "Equipment", "Aircraft", "Helo", "Crew"] },
+                             { "key": "resreq-source", "name": "Source", "type": "string" },
+                             { "key": "resreq-quantity", "name": "Quantity", "type": "string" },
+                             { "key": "resreq-priority", "name": "Priority", "type": "spinner",
+                                "options": ["Urgent", "Regular"] },
+                             { "key": "resreq-location", "name": "Location", "type": "string" },
+                             { "key": "resreq-eta", "name": "ETA", "type": "string" },
+                             { "key": "resreq-status", "name": "Status", "type": "string" }
+                            ]
+                 }
+                ]
+}

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<!--
+
+
+
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="header"
+        android:title="@string/pref_header_general" />
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="lrf_checkbox"
+        android:summary="@string/pref_description_lrf"
+        android:title="@string/pref_title_lrf" />
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="disable_notifications_checkbox"
+        android:title="@string/pref_title_disable_notifications" />
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="debug_checkbox"
+        android:summary="@string/pref_description_debug_tab"
+        android:title="@string/pref_title_debug_tab" />
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="tracking_checkbox"
+        android:title="@string/pref_title_tracking" />
+    
+         <ListPreference
+     android:defaultValue="@string/language_code"
+     android:entries="@array/pref_language_list_titles"
+     android:entryValues="@array/pref_language_list_values"
+     android:key="language_select_list"
+     android:negativeButtonText="@null"
+     android:positiveButtonText="@null"
+     android:title="@string/pref_title_language_select"
+      android:summary="@string/pref_description_language_select"/>
+    
+    
+    <CheckBoxPreference 
+         android:title="Use Custom Server?"
+         android:defaultValue="false"
+         android:key="custom_server_enabled"
+         />
+    <ListPreference
+        android:defaultValue="https://yourdomain/api/v1/"
+        android:entries="@array/pref_server_list_titles"
+        android:entryValues="@array/pref_server_list_values"
+        android:key="server_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:summary="@string/pref_description_select_server"
+        android:title="@string/pref_title_select_server" />
+    
+    <EditTextPreference 
+         android:defaultValue="https://yourdomain/api/v1/"
+        android:key="custom_server_url"
+        android:summary="Specify your own NICS Server."
+        android:title="Custom NICS Server URL" />
+    
+    
+    <CheckBoxPreference 
+     android:title="Use Custom Geo Server?"
+     android:defaultValue="false"
+     android:key="custom_geo_server_enabled"
+     />
+    
+     <ListPreference
+     android:defaultValue="https://yourdomain/geoserver/"
+     android:entries="@array/pref_geo_server_list_titles"
+     android:entryValues="@array/pref_geo_server_list_values"
+     android:key="geo_server_list"
+     android:negativeButtonText="@null"
+     android:positiveButtonText="@null"
+     android:summary="@string/pref_description_select_geo_server"
+     android:title="@string/pref_title_select_geo_server" />
+    
+    <EditTextPreference 
+        android:defaultValue="https://yourdomain/geoserver/"
+        android:key="custom_geo_server_url"
+        android:summary="Specify GeoServer for WMS/WFS layers"
+        android:title="NICS GeoServer URL" />
+    
+        <CheckBoxPreference 
+     android:title="Use Custom Authentication Server?"
+     android:defaultValue="false"
+     android:key="custom_auth_server_enabled"
+     />
+    
+     <ListPreference
+     android:defaultValue="https://yourdomain/openam/"
+     android:entries="@array/pref_auth_server_list_titles"
+     android:entryValues="@array/pref_auth_server_list_values"
+     android:key="auth_server_list"
+     android:negativeButtonText="@null"
+     android:positiveButtonText="@null"
+     android:summary="@string/pref_description_select_auth_server"
+     android:title="@string/pref_title_select_auth_server" />
+    
+    <EditTextPreference 
+   		android:defaultValue="https://yourdomain/openam/" 
+        android:key="custom_auth_server_url"
+        android:summary="Specify server for Open AM Authentication"
+        android:title="NICS Authentication URL" />
+    
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_coordinate_list_titles"
+        android:entryValues="@array/pref_coordinate_list_values"
+        android:key="coordinate_representation"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:summary="@string/pref_description_coordinate_display_format"
+        android:title="@string/pref_title_coordinate_display_format" />
+
+</PreferenceScreen>
+
+
