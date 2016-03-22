@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  FormEditText.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -49,7 +49,8 @@
 @property NSString *imagePath;
 @property UIViewController *formView;
 
-@property bool * popoverOpen;
+@property bool popoverOpen;
+@property bool readOnly;
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
 

@@ -75,14 +75,6 @@
 		en = Weather Report
 		es = Weather Report
 		fr = Weather Report
-	[UXOREPORT]
-		en = Explosive Report
-		es = Informe de explosivos
-		fr = Explosive Report
-	[CATANREQUEST]
-		en = Catan Request
-		es = Catan Request
-		fr = Catan Request
 	[LOGOUT]
 		en = Logout
 		es = Desconexión
@@ -111,6 +103,22 @@
 		en = Add
 		es = Add
 		fr = Add
+	[filter]
+		en = Filter
+		es = Filter
+		fr = Filter
+	[no_reports_to_filter]
+		en = No Reports To Filter
+		es = No Reports To Filter (es translate)
+		fr = No Reports To Filter (fr translate)
+	[you_are_not_seeing_all_available_reports]
+		en = You are not seeing all available reports.
+		es = You are not seeing all available reports.
+		fr = You are not seeing all available reports.
+	[date_range]
+		en = Date Range
+		es = Date Range (ES Translate)
+		it = +=+=+=
 	[assigned_to]
 		en = Assigned To: %@
 		es = Assigned To: %@
@@ -131,6 +139,10 @@
 		en = Recipient
 		es = Destinatario
 		fr = Recipient
+	[select_color]
+		en = Select Color
+		es = Select Color (es translate)
+		fr = Select Color (fr translate)
 	[color_picker_title]
 		en = Color Picker
 		es = Color Picker
@@ -147,6 +159,10 @@
 		en = Mark all as read
 		es = Mark all as read
 		fr = Mark all as read
+	[refresh]
+		en = Refresh
+		es = Refresh (es translate)
+		fr = Refresh (fr translate)
 	[message]
 		en = Message
 		es = Mensaje
@@ -244,6 +260,10 @@
 		en = You are currently editing a %@. If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.
 		es = You are currently editing a %@. If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.
 		fr = You are currently editing a %@. If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.
+	[open_map_and_tap_to_place_marker]
+		en = Open map and tap to place marker.
+		es = Open map and tap to place marker. (es translate)
+		fr = Open map and tap to place marker. (fr translate)
 	[draft]
 		en = <Draft>
 		es = <Borrador>
@@ -268,6 +288,14 @@
 		en = Enter chat message…
 		es = Enter chat message…
 		fr = Enter chat message…
+	[select_collabroom_to_join_your_teams_chat]
+		en = Select collabroom to join your team's chat.
+		es = Select collabroom to join your team's chat. (es translate)
+		fr = Select collabroom to join your team's chat. (fr translate)
+	[no_chat_messages_have_been_posted_in_this_room_yet]
+		en = No chat messages have been posted in this room yet.
+		es = No chat messages have been posted in this room yet. (es translate)
+		fr = No chat messages have been posted in this room yet. (fr translate)
 	[enter_debug_log_comment]
 		en = Enter debug log comment…
 		es = Enter debug log comment…
@@ -280,6 +308,10 @@
 		en = No debug messages logged.\n
 		es = No debug messages logged.\n
 		fr = No debug messages logged.\n
+	[reports_not_available_for_your_organization]
+		en = Reports are not available for your organization
+		es = Reports are not available for your organization (es translate)
+		fr = Reports are not available for your organization (fr translate)
 	[no_damage_reports_exist]
 		en = No damage surveys exist - please click the '+' sign to create a new survey.
 		es = No damage surveys exist - please click the '+' sign to create a new survey.
@@ -300,18 +332,14 @@
 		en = No weather reports exist - please click the '+' sign to create a new report.
 		es = No weather reports exist - please click the '+' sign to create a new report.
 		fr = No weather reports exist - please click the '+' sign to create a new report.
-	[no_uxo_reports_exist]
-		en = No Explosive reports exist - please click the '+' sign to create a new report.
-		es = No Explosive reports exist - please click the '+' sign to create a new report.
-		fr = No Explosive reports exist - please click the '+' sign to create a new report.
+	[go_to_report_on_map]
+		en = Go to report on map
+		es = Go to report on map
+		fr = Go to report on map
 	[no_rooms_accessible]
 		en = You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.
 		es = You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.
 		fr = You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.
-	[no_catan_requests_exist]
-		en = No Catan Requests exist.
-		es = No Catan Requests exist.
-		fr = No Catan Requests exist.
 	[n_a]
 		en = N/A
 		es = N/A
@@ -419,9 +447,13 @@
 		es = Contraseña
 		fr = Mot de passe
 	[action_sign_in_register]
-		en = <b>Sign in</b>
-		es = <b>Registrarse</b>
-		fr = <b>Connectez-vous</b>
+		en = Sign in
+		es = Registrarse
+		fr = Connectez-vous
+	[tablet_layout_checkbox_text]
+		en = Tablet Layout \n (beta: hasn't been tested on all devices yet)
+		es = Tablet Layout \n (beta: hasn't been tested on all devices yet) (es translate)
+		fr = Tablet Layout \n (beta: hasn't been tested on all devices yet) (fr translate)
 	[error_invalid_email]
 		en = This email address is invalid
 		es = This email address is invalid
@@ -514,6 +546,22 @@
 		en = NOTE: Changing authentication servers will require you to re-login.
 		es = NOTE: Changing authentication servers will require you to re-login.
 		fr = NOTE: Changing authentication servers will require you to re-login.
+	[pref_title_nics_domain_name]
+		en = NICS Domain Name
+		es = NICS Domain Name
+		fr = NICS Domain Name
+	[pref_summary_nics_domain_name]
+		en = Specify domain for custom server
+		es = Specify domain for custom server
+		fr = Specify domain for custom server
+	[pref_title_custom_domain_toggle]
+		en = Use Custom Domain Name?
+		es = Use Custom Domain Name?
+		fr = Use Custom Domain Name?
+	[pref_summary_custom_domain_toggle]
+		en = NOTE: Changing the domain will log you out and restart NICS
+		es = NOTE: Changing the domain will log you out and restart NICS
+		fr = NOTE: Changing the domain will log you out and restart NICS
 	[pref_description_mdt_sync_rate]
 		en = NOTE: Faster GPS updates will consume a significant amount of battery power!
 		es = NOTE: Faster GPS updates will consume a significant amount of battery power!
@@ -575,6 +623,18 @@
 		en = WFS Layer Update Frequency
 		es = WFS Layer Update Frequency
 		fr = WFS Layer Update Frequency
+	[pref_title_clear_local_map_data]
+		en = Clear Local Map Data
+		es = Clear Local Map Data
+		fr = Clear Local Map Data
+	[pref_title_clear_local_chat_data]
+		en = Clear Local Chat Data
+		es = Clear Local Chat Data
+		fr = Clear Local Chat Data
+	[pref_title_clear_local_reports_data]
+		en = Clear Local Reports Data
+		es = Clear Local Reports Data
+		fr = Clear Local Reports Data
 	[pref_header_notifications]
 		en = Notifications
 		comment = Example settings for Notifications
@@ -908,31 +968,3 @@
 	[action_help]
 		en = NICS Help
 		fr = NICS Help
-	[schema_generalmessage]
-		en = generalmessage_schema
-		comment = DO NOT TRANSLATE
-		fr = generalmessage_schema
-	[schema_damagereport]
-		en = damagereport_schema
-		fr = damagereport_schema
-	[schema_fieldreport]
-		en = fieldreport_schema
-		fr = fieldreport_schema
-	[schema_uxoreport]
-		en = uxoreport_schema
-		fr = uxoreport_schema
-	[schema_tasking]
-		en = tasking_schema
-		fr = tasking_schema
-	[schema_resource_request]
-		en = resourcerequest_schema
-		fr = resourcerequest_schema
-	[schema_userinfo]
-		en = userinfo_schema
-		fr = userinfo_schema
-	[schema_weatherreport]
-		en = weatherreport_schema
-		fr = weatherreport_schema
-	[no_selection]
-		en = no_selection
-		fr = no_selection

@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -44,26 +44,40 @@ UIStoryboard *currentStoryboard;
     
     _dataManager = [DataManager getInstance];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"DamageReportsUpdateReceived" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"IncidentSwitched" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newReportReceived:) name:@"damageReportsUpdateReceived" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newReportReceived:) name:@"IncidentSwitched" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:[[Enums formTypeEnumToStringAbbrev:DR] stringByAppendingString:@"ReportProgressUpdateReceived"] object:nil];
-    [_dataManager requestDamageReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-    
-    if([_dataManager getIsIpad] == true){
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DamageReportsPolledNothing) name:@"DamageReportsPolledNothing" object:nil];
+    [_dataManager requestDamageReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+
+    if([_dataManager getIsIpad]  == true){
         currentStoryboard = [UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil];
     }
     
-    if([_dataManager isIpad]){  //hacky method to get tableview displayed properly
-        CGRect thisFrame = self.view.frame;
-        thisFrame.size.width = 512;
-        self.view.frame = thisFrame;
-    }
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor blackColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshDamageReports)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                forKey:NSForegroundColorAttributeName];
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Checking for new reports", nil)  attributes:attrsDictionary];
+    self.refreshControl.attributedTitle = attributedTitle;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refreshDamageReports{
+    [_dataManager requestDamageReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings]intValue] immediate:YES];
+}
+-(void)DamageReportsPolledNothing{
+    [self.refreshControl endRefreshing];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -81,6 +95,24 @@ UIStoryboard *currentStoryboard;
     }
     
     [[self tableView] reloadData];
+    [self.refreshControl endRefreshing];
+}
+
+- (void) newReportReceived:(NSNotification *) notification {
+    _reports = [_dataManager getAllDamageReportsForIncidentId:[_dataManager getActiveIncidentId]];
+    
+    if(_reports.count <= 0)
+    {
+        DamageReportPayload* emptyListPayload = [[DamageReportPayload alloc]init];
+        [_reports addObject:emptyListPayload];
+        
+        _emptyList = TRUE;
+    }else{
+        _emptyList = NO;
+    }
+    
+    [[self tableView] reloadData];
+    [self.refreshControl endRefreshing];
 }
 
 - (void) updateProgress:(NSNotification *) notification {
@@ -93,7 +125,6 @@ UIStoryboard *currentStoryboard;
             break;
         }
     }
-    
     [[self tableView] reloadData];
 }
 
@@ -117,54 +148,42 @@ UIStoryboard *currentStoryboard;
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DamageReportPayload* payload = _reports[indexPath.row];
-    
     DamageReportData* data = payload.messageData;
-    
     NSDate* date = [NSDate dateWithTimeIntervalSince1970:[payload.seqtime longLongValue]/1000.0];
     
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    ReportCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
-    
-    UILabel *label = (UILabel *)[cell.contentView viewWithTag:10];
-    
+    cell.lat = data.drBpropertyLatitude;
+    cell.lon = data.drBpropertyLongitude;
+    cell.parent = self.navigationController;
     
     if(_emptyList){
-        UILabel *noMessagesLabel =(UILabel *)[cell.contentView viewWithTag:40];
-        [noMessagesLabel setHidden:false];
-        UILabel *timeLabel =(UILabel *)[cell.contentView viewWithTag:20];
-        [timeLabel setHidden:TRUE];
-//        UIImageView *image = (UIImageView *)[cell.contentView viewWithTag:30];
-//        [image setHidden:TRUE];
-        UILabel *nameLabel =(UILabel *)[cell.contentView viewWithTag:10];
-        [nameLabel setHidden:TRUE];
-//        UILabel *recipientAbreviation= (UILabel *)[cell.contentView viewWithTag:50];
-//        [recipientAbreviation setHidden:TRUE];
+        [cell.NoReportMessage setHidden:false];
+        [cell.TimestampLabel setHidden:TRUE];
+        [cell.NameLabel setHidden:TRUE];
+        [cell.MapLocationButton setHidden:TRUE];
+        [cell.MapLocationButton setEnabled:FALSE];
         return cell;
     }
     
-    
     if([payload.isDraft isEqual: @1]) {
-        label.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Draft", nil),@">",data.user];
-    } else if([payload.status isEqual:[NSNumber numberWithInt:WAITING_TO_SEND]]) {
+        cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Draft", nil),@">",data.user];
+    } else if([payload.status isEqual:[NSNumber numberWithInt:WAITING_TO_SEND]] && payload.progress < [NSNumber numberWithInt: 100]) {
         if(payload.progress == 0) {
-            label.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Sending", nil),@">",data.user];
+            cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Sending", nil),@">",data.user];
         } else {
-            label.text = [@"<" stringByAppendingFormat:@"%@%.2f%@%@",NSLocalizedString(@"Sending", nil), [payload.progress doubleValue],@">",data.user];
+            cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%.2f%@%@",NSLocalizedString(@"Sending", nil), [payload.progress doubleValue],@">",data.user];
         }
     } else {
-        label.text = data.user;
+        cell.NameLabel.text = data.user;
     }
     
-    UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:20];
-    timeLabel.text = [[Utils getDateFormatter] stringFromDate:date];
-    
-    [timeLabel setHidden:FALSE];
-    //    [image setHidden:FALSE];
-    UILabel *nameLabel =(UILabel *)[cell.contentView viewWithTag:10];
-    [nameLabel setHidden:FALSE];
-    UILabel *noMessagesLabel =(UILabel *)[cell.contentView viewWithTag:40];
-    [noMessagesLabel setHidden:TRUE];
+    cell.TimestampLabel.text = [[Utils getDateFormatter] stringFromDate:date];
+    [cell.TimestampLabel setHidden:FALSE];
+    [cell.NameLabel setHidden:FALSE];
+    [cell.NoReportMessage setHidden:TRUE];
+    [cell.MapLocationButton setHidden:FALSE];
+    [cell.MapLocationButton setEnabled:TRUE];
     
     return cell;
 }
@@ -193,16 +212,12 @@ UIStoryboard *currentStoryboard;
 }
 
 - (void)prepareForTabletCanvasSwap:(BOOL)isEdit :(NSInteger)index{
-
-    bool newReport = false;
-    if([IncidentButtonBar GetDamageReportDetailView] == nil){
-        [IncidentButtonBar SetDamageReportDetailView:[currentStoryboard instantiateViewControllerWithIdentifier:@"DamageReportDetailViewID"]];
-        newReport = true;
-    }
     
     DamageReportPayload *payload;
     if(_reports.count > 0 && index >= 0) {
         payload = _reports[index];
+    } else if( index == -2){
+        payload = [IncidentButtonBar GetDamageReportDetailView].payload;
     } else {
         payload = [[DamageReportPayload alloc]init];
     }
@@ -217,26 +232,22 @@ UIStoryboard *currentStoryboard;
             [[IncidentButtonBar GetSaveDraftButton] setHidden:TRUE];
             [[IncidentButtonBar GetSubmitButton] setHidden:TRUE];
         }
-        [IncidentButtonBar GetDamageReportDetailView].payload = payload;
         
     } else if (isEdit==true) {
         [IncidentButtonBar GetDamageReportDetailView].hideEditControls = NO;
-        [IncidentButtonBar GetDamageReportDetailView].payload = payload;
         [[IncidentButtonBar GetSaveDraftButton] setHidden:FALSE];
         [[IncidentButtonBar GetSubmitButton] setHidden:FALSE];
         
     } else {
-        [IncidentButtonBar GetDamageReportDetailView].payload = payload;
         [[IncidentButtonBar GetSaveDraftButton] setHidden:TRUE];
         [[IncidentButtonBar GetSubmitButton] setHidden:TRUE];
     }
-    
-    if(newReport == false){
-        [IncidentButtonBar GetDamageReportDetailView].payload = payload;
-        [[IncidentButtonBar GetDamageReportDetailView] configureView];
-    }
+
+    [IncidentButtonBar GetDamageReportDetailView].payload = payload;
+    [[IncidentButtonBar GetDamageReportDetailView] configureView];
     
     [[IncidentButtonBar GetAddButton] setHidden:TRUE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton] setHidden:FALSE];
     
     [[IncidentButtonBar GetIncidentCanvas] addSubview:[IncidentButtonBar GetDamageReportDetailView].view ];
@@ -270,6 +281,14 @@ UIStoryboard *currentStoryboard;
         detailViewController.hideEditControls = NO;
         detailViewController.payload = [[DamageReportPayload alloc]init];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //filtered lists not added to damage reports yet
+//    if(_filteredList && indexPath.row==0){
+//        return 180;
+//    }
+    return 50;
 }
 
 @end

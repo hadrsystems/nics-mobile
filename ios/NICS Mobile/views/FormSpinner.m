@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  FormEditText.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -79,7 +79,6 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [_menu showInView:self];
-
     return NO;
 }
 - (void)refreshLayout:(UIView *)view {
@@ -101,6 +100,44 @@
         CustomTextView *tempTextView = [self.interactableViews objectAtIndex:0];
         tempTextView.text = [actionSheet buttonTitleAtIndex:buttonIndex];
     }
+}
+
+-(void)setSpinnerWidth:(double)width{
+    CustomTextView *tempTextView = [self getTextView];
+    
+    CGRect frame = tempTextView.frame;
+    frame.size.width = width;
+    tempTextView.frame = frame;
+    
+    frame = self.label.frame;
+    frame.size.width = width;
+    self.label.frame = frame;
+    
+    
+    CGRect arrowFrame = _selectorIcon.frame;
+    arrowFrame.origin.x = tempTextView.frame.origin.x + tempTextView.frame.size.width - arrowFrame.size.width;
+    _selectorIcon.frame = arrowFrame;
+}
+
+-(void)setSpinnerPosition:(double)x :(double)y{
+    CustomTextView *tempTextView = [self getTextView];
+
+    CGRect frame = self.label.frame;
+    frame.origin.x = x;
+    frame.origin.y = y;
+    self.label.frame = frame;
+    
+    frame = tempTextView.frame;
+    frame.origin.x = x;
+    frame.origin.y = y + self.label.frame.size.height;
+    tempTextView.frame = frame;
+    
+    
+    CGRect arrowFrame = _selectorIcon.frame;
+    arrowFrame.origin.x = tempTextView.frame.origin.x + tempTextView.frame.size.width - arrowFrame.size.width;
+    arrowFrame.origin.y = tempTextView.frame.origin.y + tempTextView.frame.size.height - arrowFrame.size.height;
+    
+    _selectorIcon.frame = arrowFrame;
 }
 
 -(CustomTextView*) getTextView{

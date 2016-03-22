@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  RestClient.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -47,7 +47,7 @@
 #import "SimpleReportMessage.h"
 #import "DamageReportMessage.h"
 #import "FieldReportMessage.h"
-#import "UxoReportMessage.h"
+#import "WeatherReportMessage.h"
 #import "ResourceRequestMessage.h"
 #import "UserMessage.h"
 #import "OrganizationMessage.h"
@@ -90,9 +90,10 @@
 + (void) getFieldReportsForIncidentId:(NSNumber *)incidentId offset:(NSNumber *)offset limit:(NSNumber *)limit completion:(void (^)(BOOL successful)) completion;
 + (void) getDamageReportsForIncidentId:(NSNumber *)incidentId offset:(NSNumber *)offset limit:(NSNumber *)limit completion:(void (^)(BOOL successful)) completion;
 + (void) getResourceRequestsForIncidentId:(NSNumber *)incidentId offset:(NSNumber *)offset limit:(NSNumber *)limit completion:(void (^)(BOOL successful)) completion;
-+ (void) getUxoReportsForIncidentId:(NSNumber *)incidentId offset:(NSNumber *)offset limit:(NSNumber *)limit completion:(void (^)(BOOL successful)) completion;
++ (void) getWeatherReportsForIncidentId:(NSNumber *)incidentId offset:(NSNumber *)offset limit:(NSNumber *)limit completion:(void (^)(BOOL successful)) completion;
 
 + (void) getMarkupHistoryForCollabroomId:(NSNumber *)collabRoomId completion:(void (^)(BOOL successful)) completion;
++ (void)postMapMarkupFeatures;
 + (NSString *) deleteMarkupFeatureById:(NSString *)featureId;
 
 + (void) getWFSData;
@@ -102,12 +103,11 @@
 + (void)postFieldReports;
 + (void)postDamageReports;
 + (void)postResourceRequests;
-+ (void)postUxoReports;
++ (void)postWeatherReports;
 + (void)postChatMessages;
 + (void)postMDTs:(MDTPayload *) payload;
 
 + (void)setSendingSimpleReport:(BOOL)value;
-+ (void)setSendingUxoReport:(BOOL)value;
 //+ (void)setBaseUrl:(NSString *)server;
 //+ (NSString*)getBaseUrl;
 

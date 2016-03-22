@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,6 @@
 -(id) init;
 - (void)postReport: (ReportPayload*) reportPayload;
 - (void)postSimpleReport: (SimpleReportPayload*) payload;
--(void) postUxoReports: (UxoReportPayload*) payload;
 -(void) postDamageReports: (DamageReportPayload*) payload;
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten

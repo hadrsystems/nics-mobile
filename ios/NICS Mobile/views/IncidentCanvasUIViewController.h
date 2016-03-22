@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@ enum ReportTypesMenu : NSUInteger {
     DamageReport = 0,
 //    ResourceRequest = 1,
 //    FieldReport = 2,
-    UxoReport = 1,
+    WeatherReport = 1,
     Cancel = 2
 };
 
@@ -51,6 +51,7 @@ enum ReportTypesMenu : NSUInteger {
 @property (weak, nonatomic) IBOutlet UIButton *SaveDraftButton;
 @property (weak, nonatomic) IBOutlet UIButton *CancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *SubmitButton;
+@property (weak, nonatomic) IBOutlet UIButton *FilterButton;
 
 @property UIActionSheet *ReportsMenu;
 
@@ -61,6 +62,7 @@ enum ReportTypesMenu : NSUInteger {
 - (IBAction)CancelButtonPressed:(id)sender;
 - (IBAction)SubmitButtonPressed:(id)sender;
 - (IBAction)ChatButtonPressed:(id)sender;
+- (IBAction)FilterButtonPressed:(id)sender;
 
 - (void)SetCanvasToGeneralMessageFromButtonBar;
 
@@ -73,7 +75,7 @@ enum ReportTypesMenu : NSUInteger {
 - (void)SetCanvasToFieldReport;
 - (void)SetCanvasToFieldReportFromButtonBar;
 
-- (void)SetCanvasToUXOReport;
-- (void)SetCanvasToUxoReportFromButtonBar;
+- (void)SetCanvasToWeatherReport;
+- (void)SetCanvasToWeatherReportFromButtonBar;
 
 @end

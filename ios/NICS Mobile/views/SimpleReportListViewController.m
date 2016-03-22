@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -45,15 +45,35 @@ NSInteger lastIndexSelected;
     [Enums simpleReportCategoriesDictionary];
     
     _dataManager = [DataManager getInstance];
-    [_dataManager requestSimpleReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
+    [_dataManager requestSimpleReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"simpleReportsUpdateReceived" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name: [[Enums formTypeEnumToStringAbbrev:SR] stringByAppendingString:@"ReportProgressUpdateReceived"] object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"IncidentSwitched" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(GeneralMessagesPolledNothing) name:@"GeneralMessagesPolledNothing" object:nil];
     
     if([_dataManager getIsIpad]  == true){
         currentStoryboard = [UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil];
     }
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor blackColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshGeneralMessages)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                forKey:NSForegroundColorAttributeName];
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Checking for new reports", nil)  attributes:attrsDictionary];
+    self.refreshControl.attributedTitle = attributedTitle;
+}
+
+-(void)refreshGeneralMessages{
+    [_dataManager requestSimpleReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings]intValue] immediate:YES];
+}
+-(void)GeneralMessagesPolledNothing{
+    [self.refreshControl endRefreshing];
 }
 
 - (void) updateProgress:(NSNotification *) notification {
@@ -66,14 +86,12 @@ NSInteger lastIndexSelected;
             break;
         }
     }
-    
     [[self tableView] reloadData];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -82,12 +100,7 @@ NSInteger lastIndexSelected;
     
     if(_reports.count <= 0)
     {
-        
         SimpleReportPayload* emptyListPayload = [[SimpleReportPayload alloc]init];
-//        SimpleReportData* data = emptyList.messageData;
-//        data.user = @"No General Messages have been posted in this Incident yet";
-//        emptyList.messageData = data;
-        
         [_reports addObject:emptyListPayload];
         
         _emptyList = TRUE;
@@ -96,7 +109,7 @@ NSInteger lastIndexSelected;
     }
     
     [[self tableView] reloadData];
-//    [[IncidentButtonBar GetSaveDraftButton]setHidden:TRUE];
+    [self.refreshControl endRefreshing];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -119,59 +132,46 @@ NSInteger lastIndexSelected;
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SimpleReportPayload* payload = _reports[indexPath.row];
-    
     SimpleReportData* data = payload.messageData;
-    
     NSDate* date = [NSDate dateWithTimeIntervalSince1970:[payload.seqtime longLongValue]/1000.0];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    ReportCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
+    cell.lat = [data.latitude stringValue];
+    cell.lon = [data.longitude stringValue];
+    cell.parent = self.navigationController;
     
-    UILabel *label = (UILabel *)[cell.contentView viewWithTag:10];
-
     if(_emptyList){
-        UILabel *noMessagesLabel =(UILabel *)[cell.contentView viewWithTag:40];
-        [noMessagesLabel setHidden:false];
-        UILabel *timeLabel =(UILabel *)[cell.contentView viewWithTag:20];
-        [timeLabel setHidden:TRUE];
-        UIImageView *image = (UIImageView *)[cell.contentView viewWithTag:30];
-        [image setHidden:TRUE];
-        UILabel *nameLabel =(UILabel *)[cell.contentView viewWithTag:10];
-        [nameLabel setHidden:TRUE];
-        UILabel *recipientAbreviation= (UILabel *)[cell.contentView viewWithTag:50];
-        [recipientAbreviation setHidden:TRUE];
+        [cell.NoReportMessage setHidden:false];
+        [cell.TimestampLabel setHidden:TRUE];
+        [cell.NameLabel setHidden:TRUE];
+        [cell.AbbreviationLabel setHidden:TRUE];
+        [cell.MapLocationButton setHidden:TRUE];
+        [cell.MapLocationButton setEnabled:FALSE];
         return cell;
     }
     
-    
     if([payload.isDraft isEqual: @1]) {
-        label.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Draft", nil),@">",data.user];
+        cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Draft", nil),@">",data.user];
     } else if([payload.status isEqual:[NSNumber numberWithInt:WAITING_TO_SEND]]) {
         if(payload.progress == 0) {
-            label.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Sending", nil),@">",data.user];
+            cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Sending", nil),@">",data.user];
         } else {
-            label.text = [@"<" stringByAppendingFormat:@"%@%.2f%@%@",NSLocalizedString(@"Sending", nil), [payload.progress doubleValue],@">",data.user];
+            cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%.2f%@%@",NSLocalizedString(@"Sending", nil), [payload.progress doubleValue],@">",data.user];
         }
     } else {
-        label.text = data.user;
+        cell.NameLabel.text = data.user;
     }
     
-    UILabel *timeLabel =(UILabel *)[cell.contentView viewWithTag:20];
-    timeLabel.text = [[Utils getDateFormatter] stringFromDate:date];
+    cell.TimestampLabel.text = [[Utils getDateFormatter] stringFromDate:date];
+    [cell.AbbreviationLabel setHidden:FALSE];
+    cell.AbbreviationLabel.text = [Enums convertSRCategoryTypeToAbreviation: [Enums convertToSRCategoryFromString: data.category]];
     
-//    UIImageView *image = (UIImageView *)[cell.contentView viewWithTag:30];
-//    [image setImage:[UIImage imageNamed:[Enums convertSRCategoryTypeToNamedImage:[Enums convertToSRCategoryFromString:data.category]]]];
-    
-    UILabel *recipientAbreviation= (UILabel *)[cell.contentView viewWithTag:50];
-    [recipientAbreviation setHidden:FALSE];
-    recipientAbreviation.text = [Enums convertSRCategoryTypeToAbreviation: [Enums convertToSRCategoryFromString: data.category]];
-    
-    [timeLabel setHidden:FALSE];
-//    [image setHidden:FALSE];
-    UILabel *nameLabel =(UILabel *)[cell.contentView viewWithTag:10];
-    [nameLabel setHidden:FALSE];
-    UILabel *noMessagesLabel =(UILabel *)[cell.contentView viewWithTag:40];
-    [noMessagesLabel setHidden:TRUE];
+    [cell.TimestampLabel setHidden:FALSE];
+    [cell.NameLabel setHidden:FALSE];
+    [cell.NoReportMessage setHidden:TRUE];
+    [cell.MapLocationButton setHidden:FALSE];
+    [cell.MapLocationButton setEnabled:TRUE];
     
     return cell;
 }
@@ -201,15 +201,11 @@ NSInteger lastIndexSelected;
 
 - (void)prepareForTabletCanvasSwap:(BOOL)isEdit :(NSInteger)index{
     
-    bool newReport = false;
-    if([IncidentButtonBar GetGeneralMessageDetailView] == nil){
-        [IncidentButtonBar SetGeneralMessageDetailView:[currentStoryboard instantiateViewControllerWithIdentifier:@"SimpleReportDetailViewID"]];
-        newReport = true;
-    }
-    
     SimpleReportPayload *payload;
-    if(_reports.count > 0) {
+    if(_reports.count > 0 && index >= 0) {
         payload = _reports[index];
+    } else if( index == -2){
+        payload = [IncidentButtonBar GetGeneralMessageDetailView].payload;
     } else {
         payload = [SimpleReportPayload new];
     }
@@ -224,7 +220,6 @@ NSInteger lastIndexSelected;
             [[IncidentButtonBar GetSaveDraftButton] setHidden:TRUE];
             [[IncidentButtonBar GetSubmitButton] setHidden:TRUE];
         }
-        [IncidentButtonBar GetGeneralMessageDetailView].payload = payload;
         
     } else if (isEdit==true) {
         [IncidentButtonBar GetGeneralMessageDetailView].hideEditControls = NO;
@@ -233,18 +228,16 @@ NSInteger lastIndexSelected;
         [[IncidentButtonBar GetSubmitButton] setHidden:FALSE];
         
     } else {
-        [IncidentButtonBar GetGeneralMessageDetailView].payload = payload;
         [[IncidentButtonBar GetSaveDraftButton] setHidden:TRUE];
         [[IncidentButtonBar GetSubmitButton] setHidden:TRUE];
     }
     
-    if(newReport == false){
-        [[IncidentButtonBar GetGeneralMessageDetailView] configureView];
-    }
+    [IncidentButtonBar GetGeneralMessageDetailView].payload = payload;
+    [[IncidentButtonBar GetGeneralMessageDetailView] configureView];
     
     [[IncidentButtonBar GetAddButton] setHidden:TRUE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton] setHidden:FALSE];
-    
     
     [[IncidentButtonBar GetIncidentCanvas] addSubview:[IncidentButtonBar GetGeneralMessageDetailView].view ];
 }
@@ -278,6 +271,14 @@ NSInteger lastIndexSelected;
         detailViewController.payload = payload;
     }
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //filtered lists not added to damage reports yet
+    //    if(_filteredList && indexPath.row==0){
+    //        return 180;
+    //    }
+    return 50;
 }
 
 @end

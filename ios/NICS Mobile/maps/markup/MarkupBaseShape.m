@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  MarkupBaseShape.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -65,7 +65,7 @@
 }
 
 - (void)removeFromMap {
-    
+    _mapView = nil;
 }
 
 @end

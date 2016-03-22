@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  DetailViewController.m
-//  PHINICS
+//  nics
 //
 //
 
@@ -44,9 +44,15 @@
 
 static DataManager *dataManager;
 
+-(void)viewWillAppear:(BOOL)animated {
+    [self configureView];
+}
+
 - (void)configureView
 {
-    [_UserNameLabel setText: [dataManager getUsername]];
+    
+    
+    [_UserNameLabel setText: [NSLocalizedString(@"User Name", nil) stringByAppendingString:[@": " stringByAppendingString:[dataManager getUsername]]]];
 
     if( [dataManager getActiveWorkspaceId] == [NSNumber numberWithInteger:2]){
         [_WorkspaceLabel setText:NSLocalizedString(@"Training",nil)];
@@ -54,7 +60,10 @@ static DataManager *dataManager;
         [_WorkspaceLabel setText:NSLocalizedString(@"Incident",nil)];
     }
     
+    _VersionNumberLabel.text =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    
     [_ServerNameLabel setText: [dataManager getServerFromSettings]];
+    _confirmDeleteActivated = false;
 }
 
 - (void)viewDidLoad
@@ -75,7 +84,7 @@ static DataManager *dataManager;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    [self configureView];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,11 +94,34 @@ static DataManager *dataManager;
 }
 
 - (IBAction)LogoutButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [[IncidentButtonBar GetOverview] navigateBackToLoginScreen];
+    [IncidentButtonBar ClearAllViews];
+    
     [dataManager setAutoLogin:FALSE];
     [RestClient logoutUser:[dataManager getUsername]];
+    [dataManager disableAllPollingTimers];
 }
 
 - (IBAction)SettingsButtonPressed:(id)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+}
+
+- (IBAction)ClearLocalDataButtonPressed:(id)sender {
+    
+    if(_confirmDeleteActivated == false){
+        [_ClearLocalDataButton setTitle:NSLocalizedString(@"Confirm Data Delete",nil) forState:UIControlStateNormal];
+        [_ClearLocalDataButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        _confirmDeleteActivated = true;
+    }else{
+        [self dismissViewControllerAnimated:NO completion:nil];
+        [[IncidentButtonBar GetOverview] navigateBackToLoginScreen];
+        [IncidentButtonBar ClearAllViews];
+        
+        [dataManager setAutoLogin:FALSE];
+        [RestClient logoutUser:[dataManager getUsername]];
+        [dataManager disableAllPollingTimers];
+        [dataManager ResetLocalUserData];
+    }
 }
 @end

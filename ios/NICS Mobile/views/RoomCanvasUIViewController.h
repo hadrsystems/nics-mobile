@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -32,15 +32,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataManager.h"
 
 @interface RoomCanvasUIViewController : UIViewController
 
+@property DataManager* dataManager;
+
 @property (weak, nonatomic) IBOutlet UIView *RoomCanvas;
 
-//- (IBAction)SetCanvasToMap:(id)sender;
-//- (IBAction)SetCanvasToChat:(id)sender;
 - (void) SetCanvas:(UIView*) newController;
 
 @property (weak, nonatomic) IBOutlet UIView *ContainerCanvas;
+@property (weak, nonatomic) IBOutlet UIButton *MapRefreshButton;
+- (IBAction)MapRefreshButtonPressed:(id)sender;
+
 
 @end

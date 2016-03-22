@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -33,19 +33,20 @@
 //
 
 #import "MapMarkupViewController.h"
+@class SimpleReportDetailViewController;
+@class DamageReportDetailViewController;
 
 @interface MapMarkupViewController ()
 
 @end
 
 static NSNumber* selectedIndex;
-static int mapType = kGMSTypeNormal;
 
 @implementation MapMarkupViewController
 
 MapMarkupViewController *FullscreenMap = nil;
 UIPopoverController *myPopOver = nil;
-bool *markupProcessing = false;
+bool markupProcessing = false;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -59,46 +60,50 @@ bool *markupProcessing = false;
     _dateFormatter = [[NSDateFormatter alloc] init];
     [_dateFormatter setDateFormat:@"MM/dd HH:mm:ss"];
     
-    [_coordinateView setDelegate:self];
-//    CGRect framez = self.view.frame;
-//    framez.size.height = framez.size.height - self.navigationController.navigationBar.frame.size.height;
-//    //_coordinateView.mainFrame = self.view.frame;
-//    UIView *view = [_coordinateView.subviews objectAtIndex:0];
-//    CGRect frame = view.frame;
-//    frame.size.width = _mapView.frame.size.width;
-//    view.frame = frame;
-
-    
-    
-    
-//    CGRect tableFrame = _tableView.frame;
-//    _tableView.bounds = tableFrame;
-// 
-//    CGRect selfFrame = self.view.frame;
-//    selfFrame.size.width = _mapView.frame.size.width;
-//    selfFrame.size.height = self.navigationController.navigationBar.frame.size.height;
-//    self.view.frame = selfFrame;
-    
-    
-    
     _dataManager = [DataManager getInstance];
     
-    _markupShapes = [NSMutableArray new];
-    _undoStack = [NSMutableArray new];
-    _markupFeatures = [NSMutableArray new];
+    _markupShapes = [NSMutableDictionary new];
+    _markupDraftShapes = [NSMutableArray new];
+    _generalMessageSymbols = [NSMutableDictionary new];
+    _damageReportSymbols = [NSMutableDictionary new];
+
     _wfsMarkers = [NSMutableArray new];
 
     _mapView.mapType = _dataManager.CurrentMapType;
     _mapView.trafficEnabled = _dataManager.TrafficDisplay;
     _mapView.indoorEnabled = _dataManager.IndoorDisplay;
     
-    [self addMarkupFromServer];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addMarkupFromServer) name:@"markupFeaturesUpdateReceived" object:nil];
+    [self addMarkupUpdateFromServer:nil];
+    
+    _originalFrame = self.view.frame;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addMarkupUpdateFromServer:) name:@"markupFeaturesUpdateReceived" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetMapFeatures) name:@"resetMapFeatures" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkIosVersionThenWfsUpdate) name:@"WfsUpdateRecieved" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recieveMapType:) name:@"MapTypeSwitched" object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:@"CollabRoomSwitched" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addMarkupFromServer) name:@"CollabRoomSwitched" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addMarkupFromServer) name:@"IncidentSwitched" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addMarkupUpdateFromServer:) name:@"CollabRoomSwitched" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addMarkupUpdateFromServer:) name:@"IncidentSwitched" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetMapPosition:) name:@"SetMapPosition" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetMapCustomMarkerPosition:) name:@"SetMapCustomMarkerPosition" object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(trackingLayerWasToggled:) name:@"wfsLayerWasToggled" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(GeneralMessageUpdateRecieved:) name:@"simpleReportsUpdateReceived" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DamageReportUpdateRecieved:) name:@"damageReportsUpdateReceived" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    
+    if([_dataManager getIsIpad] == false){
+        
+        UIBarButtonItem *refreshBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed)];
+        refreshBarButtonItem.style = UIBarButtonItemStyleBordered;
+        
+        UIBarButtonItem *mapSettingsBarButton = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(MapSettingsBarButtonPressed)];
+        mapSettingsBarButton.style = UIBarButtonItemStyleBordered;
+        
+        self.navigationItem.rightBarButtonItems = @[mapSettingsBarButton,refreshBarButtonItem];
+    }
     
     _mapView.settings.compassButton = YES;
     _mapView.myLocationEnabled = YES;
@@ -108,15 +113,19 @@ bool *markupProcessing = false;
     
     _isFirstLoad = YES;
     
-    [_mapView animateToLocation:[_dataManager.locationManager location].coordinate];
-    [_mapView animateToZoom:12];
+    if(_zoomingToReport){
+        [_mapView animateToLocation: _positionToZoomTo];
+        [_mapView animateToZoom:12];
+        _zoomingToReport = false;
+    }else{
+        [_mapView animateToLocation:[_dataManager.locationManager location].coordinate];
+        [_mapView animateToZoom:12];
+    }
     _mapView.delegate = self;
     
-    
-    
-//    CLLocationCoordinate2D* coord =
     _myCustomMarker = [[GMSMarker alloc] init];
     _myCustomMarker.position = CLLocationCoordinate2DMake(0,0);
+    _myCustomMarker.draggable = TRUE;
     
     UIImage *image;
     
@@ -139,19 +148,54 @@ bool *markupProcessing = false;
         [_fullscreenButton setTitle:@"Fullscreen" forState:UIControlStateNormal];
         [_mapView addSubview:_fullscreenButton];
     }
-        _extendMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-        image  = [UIImage imageNamed:@"down_arrow_icon.png"];
-        [_extendMapButton setImage:image forState:UIControlStateNormal];
-        
-        SEL noArgumentSelectorExtend = @selector(ExtendMapDown);
-        [_extendMapButton addTarget:self action:noArgumentSelectorExtend forControlEvents:UIControlEventTouchUpInside];
-        
-        _extendMapButton.frame = CGRectMake(_mapView.bounds.size.width - 130, _mapView.bounds.size.height - mapBtnOffset, 50, 50);
-        _extendMapButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
-        [_extendMapButton setTitle:@"Extend" forState:UIControlStateNormal];
-        [_mapView addSubview:_extendMapButton];
+    _extendMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    image  = [UIImage imageNamed:@"down_arrow_icon.png"];
+    [_extendMapButton setImage:image forState:UIControlStateNormal];
+    
+    SEL noArgumentSelectorExtend = @selector(ExtendMapDown);
+    [_extendMapButton addTarget:self action:noArgumentSelectorExtend forControlEvents:UIControlEventTouchUpInside];
+    
+    _extendMapButton.frame = CGRectMake(_mapView.bounds.size.width - 130, _mapView.bounds.size.height - mapBtnOffset, 50, 50);
+    _extendMapButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
+    [_extendMapButton setTitle:@"Extend" forState:UIControlStateNormal];
+    [_mapView addSubview:_extendMapButton];
+    
+    
+    _editMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    SEL noArgumentSelectorEdit = @selector(ToggleEditMap);
+    [_editMapButton addTarget:self action:noArgumentSelectorEdit forControlEvents:UIControlEventTouchUpInside];
+    [_editMapButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _editMapButton.frame = CGRectMake( 25, _mapView.bounds.size.height - mapBtnOffset, 50, 50);
+    _editMapButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
+    [_editMapButton setImage:[UIImage imageNamed:@"pencil_icon.png"] forState:UIControlStateNormal];
+    [_mapView addSubview:_editMapButton];
+    
+    CGRect mapEditFrame =_MapEditCanvas.frame;
+    mapEditFrame.origin.x = 0;
+    mapEditFrame.origin.y = 0;
+    mapEditFrame.size.height = 70;
+//    _mapEditView = [[MapEditView alloc]initWithFrame: mapEditFrame];
+    _mapEditView = [[MapEditView alloc] init];
+    _mapEditView.mapViewController = self;
+    [_mapEditView Setup:mapEditFrame];
+//    _mapEditView.frame = mapEditFrame;
+    [_MapEditCanvas addSubview:_mapEditView.view];
+    
+    _editMapPanelOpen = false;
 
+    _gotoReportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_gotoReportButton setImage:[UIImage imageNamed:@"report_map_icon.png"] forState:UIControlStateNormal];
+    SEL noArgumentSelectorGotoReport = @selector(GotoReport);
+    [_gotoReportButton addTarget:self action:noArgumentSelectorGotoReport forControlEvents:UIControlEventTouchUpInside];
+    
+    _gotoReportButton.frame = CGRectMake(_editMapButton.frame.origin.x + mapBtnOffset, _mapView.bounds.size.height - mapBtnOffset, 50, 50);
+    _gotoReportButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
+    [_gotoReportButton setTitle:@"Report" forState:UIControlStateNormal];
+    [_mapView addSubview:_gotoReportButton];
+    [_gotoReportButton setHidden:TRUE];
+    [_gotoReportButton setEnabled:FALSE];
 }
 
 -(void)reloadTableView{
@@ -207,6 +251,47 @@ bool *markupProcessing = false;
     [UIView commitAnimations];
 }
 
+-(void)ToggleEditMap{
+    
+    CGRect frame = _mapEditView.view.frame;
+    frame.size.height=70;
+    _mapEditView.view.frame = frame;
+    
+    //disables autolayouts allowing me more control over it's positions
+    _tableView.translatesAutoresizingMaskIntoConstraints = YES;
+    _mapView.translatesAutoresizingMaskIntoConstraints = YES;
+    _MapEditCanvas.translatesAutoresizingMaskIntoConstraints = YES;
+    
+    if(_originalTableFrame.size.width ==0){
+        _originalTableFrame = _tableView.frame;
+    }
+
+    [UIView beginAnimations: @"tableAnim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: NO];
+    [UIView setAnimationDuration: 0.35f];
+    
+    if(_tableView.frame.size.height < _originalTableFrame.size.height){
+        _tableView.frame = _originalTableFrame;
+        _editMapPanelOpen = false;
+    }else{
+        CGRect newFrame = _tableView.frame;
+        newFrame.size.height = _originalTableFrame.size.height - _MapEditCanvas.frame.size.height;
+        newFrame.origin.y = _originalTableFrame.origin.y + _MapEditCanvas.frame.size.height;
+        _tableView.frame = newFrame;
+        _editMapPanelOpen = true;
+    }
+    
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(ToggleEditMapAnimationStopped)];
+    [UIView commitAnimations];
+}
+
+-(void)ToggleEditMapAnimationStopped{
+    if(_editMapPanelOpen == false){
+        [_mapEditView switchViewState: TypeSelectView];
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -219,79 +304,360 @@ bool *markupProcessing = false;
             GMSCameraUpdate *update = [GMSCameraUpdate setCamera:newPosition];
             [_mapView moveCamera:update];
         }
-        [self addMarkupFromServer];
     }
     _previousZoomLevel = position.zoom;
-
 }
 
-
--(void) addMarkupFromServer {
-    if(_currentShape == nil && !_ignoreUpdate) {
-        
-        //this currently clears all markers as well.
-        //need to make it so this only clears markups. it is a waste of energy to redreaw the tracking markers when they are not being updated
-        [_mapView clear];
-        
-        
-        [_markupFeatures removeAllObjects];
-        [_markupShapes removeAllObjects];
-        
-        _myCustomMarker.map = _mapView;
-        //[_tableView setHidden:YES];
-        
-        if(markupProcessing == false){
-            markupProcessing = true;
+-(void)addFeatureToMap:(MarkupFeature*) feature {
+    
+//    [_markupFeatures setValue:feature forKey:feature.featureId];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MarkupType currentType = [Enums convertToMarkupTypeFromString:feature.type];
+        if(currentType == symbol) {
+            NSString* dateString =  [[Utils getDateFormatter] stringFromDate:[NSDate dateWithTimeIntervalSince1970:[feature.seqtime longValue]]];
             
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-            dispatch_async(queue, ^{
-                [_markupFeatures addObjectsFromArray:[_dataManager getAllMarkupFeaturesForCollabroomId:[_dataManager getSelectedCollabroomId]]];
-                
-                _ignoreUpdate = YES;
-                
-                MarkupType currentType;
-                for(MarkupFeature *feature in _markupFeatures) {
-                    currentType = [Enums convertToMarkupTypeFromString:feature.type];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if(currentType == symbol) {
-                            MarkupSymbol *symbol = [[MarkupSymbol alloc] initWithMap:_mapView feature:feature];
-                            [_markupShapes addObject:symbol];
-
-                        } else if(currentType == segment) {
-                            if([feature.dashStyle isEqualToString:@"solid"] || [feature.dashStyle isEqualToString:@"completedLine"]) {
-                                MarkupSegment *segment = [[MarkupSegment alloc] initWithMap:_mapView feature:feature];
-                                [_markupShapes addObject:segment];
-                            } else {
-                                MarkupFireline *fireline = [[MarkupFireline alloc] initWithMap:_mapView feature:feature];
-                                [_markupShapes addObject:fireline];
-                            }
-                        
-                        } else if(currentType == rectangle || currentType == polygon) {
-                            MarkupPolygon *polygon = [[MarkupPolygon alloc] initWithMap:_mapView feature:feature];
-                            [_markupShapes addObject:polygon];
-                        } else if(currentType == text) {
-                            MarkupText *text = [[MarkupText alloc] initWithMap:_mapView feature:feature];
-                            [_markupShapes addObject:text];
-                        }
-                    });
+            feature.featureattributes = [@"" stringByAppendingFormat:@"%@%@%@%@%@%@",
+                                         @"user: ",feature.username,
+                                         @"\ntime: ",dateString,
+                                         @"\ncoord: ",feature.geometry
+                                         ];
+            
+            MarkupSymbol *symbol = [[MarkupSymbol alloc] initWithMap:_mapView feature:feature];
+            if([feature.featureId isEqualToString: @"draft"]){
+                [_markupDraftShapes addObject:symbol];
+            }else{
+                [_markupShapes setValue:symbol forKey:feature.featureId];
+            }
+            
+        } else if(currentType == segment) {
+            if([feature.dashStyle isEqualToString:@"solid"] || [feature.dashStyle isEqualToString:@"completedLine"]) {
+                MarkupSegment *segment = [[MarkupSegment alloc] initWithMap:_mapView feature:feature];
+                if([feature.featureId isEqualToString: @"draft"]){
+                    [_markupDraftShapes addObject:segment];
+                }else{
+                    [_markupShapes setValue:segment forKey:feature.featureId];
                 }
+            } else {
+                MarkupFireline *fireline = [[MarkupFireline alloc] initWithMap:_mapView feature:feature];
+                if([feature.featureId isEqualToString: @"draft"]){
+                    [_markupDraftShapes addObject:fireline];
+                }else{
+                    [_markupShapes setValue:fireline forKey:feature.featureId];
+                }
+            }
+            
+        } else if(currentType == rectangle || currentType == polygon) {
+            MarkupPolygon *polygon = [[MarkupPolygon alloc] initWithMap:_mapView feature:feature];
+            if([feature.featureId isEqualToString: @"draft"]){
+                [_markupDraftShapes addObject:polygon];
+            }else{
+                [_markupShapes setValue:polygon forKey:feature.featureId];
+            }
+        } else if(currentType == text) {
+            MarkupText *text = [[MarkupText alloc] initWithMap:_mapView feature:feature];
+            if([feature.featureId isEqualToString: @"draft"]){
+                [_markupDraftShapes addObject:text];
+            }else{
+                [_markupShapes setValue:text forKey:feature.featureId];
+            }
+        }
+    });
+}
+
+-(void)removeFeatureFromMap:(NSString*) featureId {
+    
+    NSString* lookupString = [NSString stringWithFormat:@"%@",featureId];
+    
+    if([_markupShapes objectForKey: lookupString] != nil ){
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[_markupShapes objectForKey:lookupString] removeFromMap];
+            [_markupShapes removeObjectForKey:lookupString];
+        });
+    }
+}
+
+-(void)clearMapOfFeature{
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSArray* keys = _markupShapes.allKeys;
+        for(NSString* key in keys){
+            
+            [[_markupShapes objectForKey:key]removeFromMap];
+        }
+        [_markupShapes removeAllObjects];
+    });
+}
+
+-(void)clearMapOfDraftFeatures{
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for(int i = 0; i < _markupDraftShapes.count; i++){
+            [[_markupDraftShapes objectAtIndex:i] removeFromMap];
+        }
+        [_markupDraftShapes removeAllObjects];
+    });
+}
+
+-(void)resetMapFeatures{
+    [self clearMapOfFeature];
+}
+
+-(void) addMarkupUpdateFromServer :(NSNotification *)notification{
+    if(_currentShape == nil && !markupProcessing) {
+        
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+        dispatch_async(queue, ^{
+        
+            if(markupProcessing == false){
+                markupProcessing = true;
+                
+                //if room switched or first load then init map with local storage
+                if(_currentCollabRoomId == nil || _currentCollabRoomId != [_dataManager getSelectedCollabroomId]){
+                    
+                    [self clearMapOfFeature];
+                    [self clearMapOfDraftFeatures];
+                    
+                    for(MarkupFeature* feature in [_dataManager getAllMarkupFeaturesFromStoreAndForwardForCollabroomId: [_dataManager getSelectedCollabroomId]]){
+                        [self addFeatureToMap:feature];
+                    }
+                    for(MarkupFeature* feature in [_dataManager getAllMarkupFeaturesForCollabroomId:[_dataManager getSelectedCollabroomId]]){
+                        [self addFeatureToMap:feature];
+                    }
+
+                    if([ActiveWfsLayerManager isTrackingLayerOn:NSLocalizedString(@"NICS General Messages",nil)]){
+                        [self addAllGeneralMessageSymbolsToMap];
+                    }
+                    if([ActiveWfsLayerManager isTrackingLayerOn:NSLocalizedString(@"NICS Damage Surveys",nil)]){
+                        [self addAllDamageReportSymbolsToMap];
+                    }
+                    
+                    _currentCollabRoomId = [_dataManager getSelectedCollabroomId];
+                }
+                
+                //if this function was called from restclient receiving new data
+                if([notification.name isEqualToString:@"markupFeaturesUpdateReceived"]){
+                    
+//                        _mapView.mapType =  [[[notification userInfo] valueForKey:@"mapType"] intValue];
+                    
+                    NSString* jsonString =  [[notification userInfo] valueForKey:@"markupFeaturesJson"];
+                    NSError* error = nil;
+                    MarkupMessage *message = [[MarkupMessage alloc] initWithString:jsonString error:&error];
+                
+                    for(MarkupFeature* feature in message.features){
+                        [self addFeatureToMap:feature];
+                    }
+                    for(NSString* featureId in message.deletedFeature){
+                        [self removeFeatureFromMap:featureId];
+                    }
+                    
+                    [self clearMapOfDraftFeatures];
+                }
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[self tableView] reloadData];
                     [self checkIosVersionThenWfsUpdate];
-       /*
-                    if(_isFirstLoad && _markupShapes != nil){
-                        MarkupBaseShape *lastMarkup = [_markupShapes lastObject];
-                        [_mapView animateWithCameraUpdate:lastMarkup.points[0] ];
-                        _isFirstLoad = FALSE;
-                    }
-         */
                 });
-                markupProcessing = false;
-                _ignoreUpdate = NO;
-            });
+            }
+            markupProcessing = false;
+     });
+    }
+    
+}
+
+-(void)trackingLayerWasToggled:(NSNotification *)notification{
+    
+    int isOn = [[[notification userInfo] valueForKey:@"isOn"] intValue];
+    int layerIndex = [[[notification userInfo] valueForKey:@"indexOfToggledLayer"] intValue];
+    
+    TrackingLayer* trackingLayerToCompare = [[ActiveWfsLayerManager getTrackingLayers] objectAtIndex:layerIndex ];
+    
+    if([trackingLayerToCompare.title isEqualToString:NSLocalizedString(@"NICS General Messages",nil)]){
+        if(isOn == 1){
+            [self addAllGeneralMessageSymbolsToMap];
+        }else{
+            [self clearGeneralMessageSymbolsFromMap];
+        }
+    }else if([trackingLayerToCompare.title isEqualToString:NSLocalizedString(@"NICS Damage Surveys",nil)]){
+        if(isOn == 1){
+            [self addAllDamageReportSymbolsToMap];
+        }else{
+            [self clearDamageReportSymbolsFromMap];
         }
     }
+}
+
+-(void)clearGeneralMessageSymbolsFromMap{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSArray* keys = _generalMessageSymbols.allKeys;
+        for(NSString* key in keys){
+            [[_generalMessageSymbols objectForKey:key] removeFromMap];
+        }
+        [_generalMessageSymbols removeAllObjects];
+    });
+}
+
+-(void)GeneralMessageUpdateRecieved:(NSNotification *)notification{
+    
+    NSString* jsonString = [[notification userInfo] valueForKey:@"generalMessageJson"];
+    NSError* error = nil;
+    SimpleReportMessage *message = [[SimpleReportMessage alloc] initWithString:jsonString error:&error];
+    
+    for(SimpleReportPayload* payload in message.reports){
+        [payload parse];
+        [self addGeneralMessageSymbolToMap:payload];
+    }
+}
+
+-(void)addAllGeneralMessageSymbolsToMap{
+    for(SimpleReportPayload* payload in [_dataManager getAllSimpleReportsForIncidentId:[_dataManager getActiveIncidentId]]){
+        [self addGeneralMessageSymbolToMap:payload];
+    }
+}
+
+-(void)addGeneralMessageSymbolToMap:(SimpleReportPayload*)payload{
+    
+    if([ActiveWfsLayerManager isTrackingLayerOn:NSLocalizedString(@"NICS General Messages",nil)]){
+    
+        MarkupFeature *feature = [[MarkupFeature alloc]init];
+        feature.type = @"General Message";
+        feature.graphic = @"images/drawmenu/markers/helispot.png";
+        feature.username = payload.messageData.user;
+        feature.photoPath = payload.messageData.fullpath;
+        feature.reportTypeAndId = [[Enums formTypeEnumToStringAbbrev:SR] stringByAppendingFormat:@"%@%@",@"~", payload.id];
+        feature.seqtime = payload.seqtime;
+        
+        NSString* datestring = [[Utils getDateFormatter] stringFromDate:[NSDate dateWithTimeIntervalSince1970:[payload.seqtime longValue]/1000.0]];
+        
+        feature.featureattributes = [@"General Message" stringByAppendingFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@",
+                                     @"\n",NSLocalizedString(@"User:",nil),payload.messageData.user,
+                                     @"\n",NSLocalizedString(@"Recipient",nil),@":",payload.messageData.category,
+                                     @"\n",NSLocalizedString(@"Description",nil),@":",payload.messageData.msgDescription,
+                                     @"\n",
+                                     payload.messageData.latitude,@" , ",payload.messageData.longitude,
+                                     @"\n", datestring
+                                     ];
+        
+        NSDate* date = [NSDate dateWithTimeIntervalSince1970:[payload.seqtime longLongValue]/1000.0];
+        feature.lastupdate = [[Utils getDateFormatter] stringFromDate:date];
+        
+        feature.geometryFiltered =[NSArray arrayWithObjects:
+                                   [NSArray arrayWithObjects:payload.messageData.latitude , payload.messageData.longitude ,nil],
+                                   nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            MarkupReportSymbol *symbol = [[MarkupReportSymbol alloc] initWithMap:_mapView feature:feature];
+            [_generalMessageSymbols setValue:symbol forKey:[@"sr" stringByAppendingString:[feature.seqtime stringValue]]];
+        });
+    }
+}
+
+-(void)clearDamageReportSymbolsFromMap{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSArray* keys = _damageReportSymbols.allKeys;
+        for(NSString* key in keys){
+            [[_damageReportSymbols objectForKey:key] removeFromMap];
+        }
+        [_damageReportSymbols removeAllObjects];
+    });
+}
+
+-(void)DamageReportUpdateRecieved:(NSNotification *)notification{
+    
+    NSString* jsonString = [[notification userInfo] valueForKey:@"damageReportJson"];
+    NSError* error = nil;
+    DamageReportMessage *message = [[DamageReportMessage alloc] initWithString:jsonString error:&error];
+    
+    for(DamageReportPayload* payload in message.reports){
+        [payload parse];
+        [self addDamageReportSymbolToMap:payload];
+    }
+}
+
+-(void)addAllDamageReportSymbolsToMap{
+    for(DamageReportPayload* payload in [_dataManager getAllDamageReportsForIncidentId:[_dataManager getActiveIncidentId]]){
+        [self addDamageReportSymbolToMap:payload];
+    }
+}
+
+
+-(void)addDamageReportSymbolToMap:(DamageReportPayload*)payload{
+
+    if([ActiveWfsLayerManager isTrackingLayerOn:NSLocalizedString(@"NICS Damage Surveys",nil)]){
+    
+        MarkupFeature *feature = [[MarkupFeature alloc]init];
+        feature.type = @"Damage Report";
+        feature.graphic = @"images/drawmenu/markers/helispot.png";
+        feature.username = payload.messageData.user;
+        feature.photoPath = payload.messageData.drDfullPath;
+        feature.reportTypeAndId = [[Enums formTypeEnumToStringAbbrev:DR] stringByAppendingFormat:@"%@%@",@"~", payload.id];
+        feature.seqtime = payload.seqtime;
+        
+        NSString* datestring = [[Utils getDateFormatter] stringFromDate:[NSDate dateWithTimeIntervalSince1970:[payload.seqtime longValue]/1000.0]];
+        
+        feature.featureattributes = [@"Damage Report" stringByAppendingFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@",
+                                     @"\n",NSLocalizedString(@"User:",nil),payload.messageData.user,
+                                     @"\n",NSLocalizedString(@"Name",nil),@":",payload.messageData.drAownerFirstName, @" ", payload.messageData.drAownerLastName,
+                                     @"\n",NSLocalizedString(@"Address",nil),@":",payload.messageData.drBpropertyAddress,
+                                     @"\n",NSLocalizedString(@"City",nil),@":",payload.messageData.drBpropertyCity,
+                                     @"\n",NSLocalizedString(@"Zip Code",nil),@":",payload.messageData.drBpropertyZipCode,
+                                     @"\n",
+                                     payload.messageData.drBpropertyLatitude,@" , ",payload.messageData.drBpropertyLongitude,
+                                     @"\n", datestring
+                                     ];
+        
+        NSDate* date = [NSDate dateWithTimeIntervalSince1970:[payload.seqtime longLongValue]/1000.0];
+        feature.lastupdate = [[Utils getDateFormatter] stringFromDate:date];
+        
+        feature.geometryFiltered =[NSArray arrayWithObjects:
+                                   [NSArray arrayWithObjects:payload.messageData.drBpropertyLatitude , payload.messageData.drBpropertyLongitude ,nil],
+                                   nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            MarkupReportSymbol *symbol = [[MarkupReportSymbol alloc] initWithMap:_mapView feature:feature];
+            [_damageReportSymbols setValue:symbol forKey:[@"dr" stringByAppendingString:[feature.seqtime stringValue]]];
+        });
+    }
+}
+
+-(UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker{
+
+    ReportInfoWindow *infoWindow;
+    if([_dataManager isIpad]){
+        infoWindow= [[[NSBundle mainBundle] loadNibNamed:@"ReportInfoWindow" owner:self options:nil]objectAtIndex:0];
+    }else{
+        infoWindow= [[[NSBundle mainBundle] loadNibNamed:@"ReportInfoWindowSmall" owner:self options:nil]objectAtIndex:0];
+    }
+    
+    infoWindow.label1.text = marker.snippet;
+    infoWindow.mapview = _mapView;
+    infoWindow.marker = marker;
+    
+    if([marker.title isEqualToString:@"marker"]){
+        [infoWindow setupImage:marker.title];
+        [self setOpenReportButtonVisible:false];
+    }else if([marker.title isEqualToString:NSLocalizedString(@"Location", nil)]) {
+         marker.snippet = [NSString stringWithFormat:@"%f%@%f", marker.position.latitude, @" , " , marker.position.longitude];
+        [self setOpenReportButtonVisible:false];
+        return nil; //uses default GMS info windows
+    }else{
+        NSArray* splitTitle = [marker.title componentsSeparatedByString: @"~"];
+        infoWindow.reportType = splitTitle[0];
+        infoWindow.reportId = splitTitle[1];
+        [infoWindow setupImage:splitTitle[2]];
+        
+        [self setOpenReportButtonVisible:true];
+    }
+    _currentReportWindow = infoWindow;
+
+    return infoWindow;
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -316,30 +682,21 @@ bool *markupProcessing = false;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
     if(_markupShapes.count > 0) {
-        MarkupBaseShape* shape = _markupShapes[indexPath.row];
+        MarkupBaseShape* shape;
         
-        NSDate* date = [NSDate dateWithTimeIntervalSince1970:[shape.feature.seqTime longLongValue]/1000.0];
-        
+        shape = [[_markupShapes allValues] objectAtIndex:indexPath.row];
+
         UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCell:)];
         [cell addGestureRecognizer:longPressGesture];
         
         UILabel *label = (UILabel *)[cell.contentView viewWithTag:10];
 
-//        label.text = [NSString stringWithFormat:@"%@%@%@", [_dateFormatter stringFromDate:date], @" - ", shape.feature.username];
-        label.text = [NSString stringWithFormat:@"%@%@%@", shape.feature.lastupdate, @" - ", shape.feature.username];
+        NSString* datestring = [[Utils getDateFormatter] stringFromDate:[NSDate dateWithTimeIntervalSince1970:[shape.feature.seqtime longValue]]];
         
-        UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:20];
+        label.text = [NSString stringWithFormat:@"%@%@%@", datestring, @" - ", shape.feature.username];
 
-        if(!shape.feature.featureattributes) {
-            
-            if(shape.feature.labelText) {
-                timeLabel.text = [NSString stringWithFormat:@"%@%@%@%@",NSLocalizedString(@"Type: ",nil), shape.feature.type, @" - ", shape.feature.labelText];
-            } else {
-                timeLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Type: ",nil), shape.feature.type];
-            }
-        } else {
-            timeLabel.text = [NSString stringWithFormat:@"%@%@%@%@", NSLocalizedString(@"Type: ",nil), shape.feature.type, @" - ", shape.feature.featureattributes];
-        }
+        UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:20];
+        timeLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Type: ",nil), shape.feature.type];
     }
     
     return cell;
@@ -349,75 +706,44 @@ bool *markupProcessing = false;
     UIView *selectedView = [[UIView alloc]init];
     selectedView.backgroundColor = [UIColor colorWithRed:0.1953125 green:0.5 blue:0.609375 alpha:1.0];
     
+    if(indexPath.row >= _markupShapes.count){
+        return indexPath;
+    }
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selectedBackgroundView = selectedView;
     cell.backgroundColor = [UIColor clearColor];
     
-    MarkupBaseShape* shape = _markupShapes[indexPath.row];
-    
+    MarkupBaseShape* shape = [[_markupShapes allValues] objectAtIndex:indexPath.row];
     MarkupType type = [Enums convertToMarkupTypeFromString:shape.feature.type];
 
-    if(type == symbol || type == text) {
+    if(type == segment || type == rectangle || type == polygon || type == circle || type == text) {
+        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:[shape getPath]];
+        GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:100.f];
+        
+        [_mapView animateWithCameraUpdate:update];
+    }else{
         CLLocationCoordinate2D positionCoordinate;
         [[shape.points objectAtIndex:0] getValue:&positionCoordinate];
         
         [_mapView animateToLocation:positionCoordinate];
         [_mapView animateToZoom:12];
-    } else {
-        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:[shape getPath]];
-        GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:100.f];
-        
-        [_mapView animateWithCameraUpdate:update];
-        
     }
+
+    _mapView.selectedMarker = nil;
+    [self setOpenReportButtonVisible:false];
     
     return indexPath;
 }
 
 - (void)longPressCell:(UILongPressGestureRecognizer *)gesture
 {
-	// only when gesture was recognized, not when ended
-	if (gesture.state == UIGestureRecognizerStateBegan)
-	{
-		// get affected cell
-		UITableViewCell *cell = (UITableViewCell *)[gesture view];
-        
-		// get indexPath of cell
-		NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        
-        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        
-//        MarkupBaseShape* shape = _markupShapes[indexPath.row];
-//        if([shape.feature.nickname isEqualToString:@"Piyush Agarwal"]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Delete the selected shape?" message:@"Hello world" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-        objc_setAssociatedObject(alertView, &selectedIndex, [NSNumber numberWithInteger:indexPath.row], OBJC_ASSOCIATION_RETAIN);
-        [alertView show];
-//        }
-        #pragma warning change this to show confirm/cancel dialog for markup delete and only for current user permissions
 
-	}
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    /*      uncomment to allow user to delete markups from app
-     
-    if (buttonIndex == 0) {
-        NSLog(@"user pressed Cancel");
-    } else {
-        NSLog(@"user pressed OK");
-        
-        NSNumber *index = objc_getAssociatedObject(alertView, &selectedIndex);
-        MarkupBaseShape* shape = _markupShapes[[index integerValue]];
-        NSString* response = [_dataManager deleteMarkupFeatureById: shape.feature.featureId];
-        [shape removeFromMap];
-        [_markupShapes removeObject:shape];
 
-        [[self tableView] reloadData];
-        // do something with this action
-        NSLog(@"Long-pressed cell %@\n%@", shape.feature.nickname, response);
-    }
-     */
 }
 
 -(void)checkIosVersionThenWfsUpdate
@@ -486,47 +812,135 @@ bool *markupProcessing = false;
     marker.title = currentFeature.name;
     marker.snippet = [currentFeature.timestamp stringByAppendingString: [currentFeature.course stringValue]];//currentFeature.timestamp + [currentFeature.course stringValue];
         
-        
         [_wfsMarkers addObject:marker];
     }
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-    NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
     
-    _myCustomMarker.position = CLLocationCoordinate2DMake(coordinate.latitude,coordinate.longitude);
-    _myCustomMarker.title = NSLocalizedString(@"Location", nil);
+    if(_mapEditView.CurrentView == TypeSelectView){
     
+        _myCustomMarker.map = _mapView;
+        _myCustomMarker.position = coordinate;
+        _myCustomMarker.title = NSLocalizedString(@"Location", nil);
+        
+        self.dataManager.mapSelectedLatitude =coordinate.latitude;
+        self.dataManager.mapSelectedLongitude =coordinate.longitude;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"mapCustomLocationChanged" object:nil];
     
-    _myCustomMarker.snippet = [NSString stringWithFormat:@"%f%@%f", coordinate.latitude, @" , " , coordinate.longitude];
-    _myCustomMarker.map = _mapView;
+    }else if(_editMapPanelOpen){
+        [_mapEditView MapDidTapAtCoordinate:coordinate];
+    }
     
-    self.dataManager.mapSelectedLatitude =coordinate.latitude;
-    self.dataManager.mapSelectedLongitude =coordinate.longitude;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"mapCustomLocationChanged" object:nil];
+    [self setOpenReportButtonVisible:false];
     
 //    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
-- (IBAction)shapeButtonPressed:(UIButton *)button {
-    [_shapeButtonView setHidden: YES];
-    [_tableView setHidden: YES];
-    [_coordinateView setHidden: NO];
-    [_coordinateView setShape: (MarkupType)button.tag];
+-(void)mapView:(GMSMapView *)mapView didDragMarker:(GMSMarker *)marker{
+    if(_editMapPanelOpen){
+        [_mapEditView MapViewMarkerDidDrag:marker];
+    }
+
 }
 
-- (void)submitMarkupCoordinates:(NSArray *)coordinates {
-    [_shapeButtonView setHidden: NO];
-    [_tableView setHidden: NO];
-    [_coordinateView setHidden: YES];
+-(void)setOpenReportButtonVisible:(bool)isVisible{
+    
+    if(isVisible){
+        [_gotoReportButton setHidden:FALSE];
+        [_gotoReportButton setEnabled:TRUE];
+    }else{
+        [_gotoReportButton setHidden:TRUE];
+        [_gotoReportButton setEnabled:FALSE];
+    }
 }
 
-- (void)cancelMarkupCoordinates {
-    [_shapeButtonView setHidden: NO];
-    [_tableView setHidden: NO];
-    [_coordinateView setHidden: YES];
+-(void)GotoReport{
+
+    if(_currentReportWindow!=nil){
+        if([_dataManager isIpad]){
+            
+            NSMutableDictionary* reportInfo = [[NSMutableDictionary alloc]init];
+            [reportInfo setObject:_currentReportWindow.reportId forKey:@"reportId"];
+            [reportInfo setObject:_currentReportWindow.reportType forKey:@"reportType"];
+            
+            NSNotification *GotoReportDetailViewNotification = [NSNotification notificationWithName:@"GotoReportDetailView" object:reportInfo];
+            [[NSNotificationCenter defaultCenter] postNotification:GotoReportDetailViewNotification];
+            
+            if(myPopOver != nil){ //close fullscreen map if open
+               [myPopOver dismissPopoverAnimated:YES];
+               myPopOver = nil;
+            }
+            
+        }else if([_currentReportWindow.reportType isEqualToString:[Enums formTypeEnumToStringAbbrev:SR]]){
+            NSMutableArray *generalMessages = [_dataManager getAllSimpleReportsForIncidentId:[_dataManager getActiveIncidentId]];
+            
+            for(int i = 0; i < generalMessages.count;i++){
+                SimpleReportPayload* payload = [generalMessages objectAtIndex:i];
+                
+                if([_currentReportWindow.reportId isEqualToString: [payload.id stringValue]]){
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+                    SimpleReportDetailViewController *detailViewController = [storyboard instantiateViewControllerWithIdentifier:@"GeneralMessageDetailSceneID"];
+                    detailViewController.payload = payload;
+                    detailViewController.hideEditControls = YES;
+                    
+                    [self.navigationController pushViewController: detailViewController animated:YES];
+                }
+            }
+        }else if([_currentReportWindow.reportType isEqualToString:[Enums formTypeEnumToStringAbbrev:DR]]){
+            NSMutableArray *damageReports = [_dataManager getAllDamageReportsForIncidentId:[_dataManager getActiveIncidentId]];
+            
+            for(int i = 0; i < damageReports.count;i++){
+                DamageReportPayload* payload = [damageReports objectAtIndex:i];
+                
+                if([_currentReportWindow.reportId isEqualToString: [payload.id stringValue]]){
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+                    DamageReportDetailViewController *detailViewController = [storyboard instantiateViewControllerWithIdentifier:@"DamageReportDetailSceneID"];
+                    detailViewController.payload = payload;
+                    detailViewController.hideEditControls = YES;
+                    
+                    [self.navigationController pushViewController: detailViewController animated:YES];
+                }
+            }
+        }
+
+    }
+}
+
+-(void)zoomToPositionOnMapOpen:(double)lat : (double) lon{
+
+    CLLocationCoordinate2D positionCoordinate;
+    positionCoordinate.latitude=lat;
+    positionCoordinate.longitude=lon;
+    
+    _zoomingToReport = true;
+    _positionToZoomTo = positionCoordinate;
+}
+
+-(void)SetMapPosition:(NSNotification *)notification{
+    
+    CLLocationCoordinate2D positionCoordinate;
+    positionCoordinate.latitude=[[[notification userInfo] valueForKey:@"lat"] doubleValue];
+    positionCoordinate.longitude=[[[notification userInfo] valueForKey:@"lon"] doubleValue];
+    
+    [_mapView animateToLocation:positionCoordinate];
+    [_mapView animateToZoom:12];
+
+
+_mapView.selectedMarker = nil;
+[self setOpenReportButtonVisible:false];
+
+}
+
+-(void)SetMapCustomMarkerPosition:(NSNotification *)notification{
+    
+    CLLocationCoordinate2D positionCoordinate;
+    positionCoordinate.latitude=[[[notification userInfo] valueForKey:@"lat"] doubleValue];
+    positionCoordinate.longitude=[[[notification userInfo] valueForKey:@"lon"] doubleValue];
+    
+    [_myCustomMarker setPosition:positionCoordinate];
 }
 
 - (void) updateTitle:(NSString *)title {
@@ -538,6 +952,8 @@ bool *markupProcessing = false;
     [_fullscreenButton setImage:image forState:UIControlStateNormal];
     
     [_extendMapButton setHidden:TRUE];
+    [_editMapButton setHidden:TRUE];
+    _editMapPanelOpen = TRUE;
 }
 
 -(void)recieveMapType:(NSNotification *)notification{
@@ -552,6 +968,38 @@ bool *markupProcessing = false;
 
 -(void)setUiViewControllerToReturnTo:(UIViewController*)controller{
     self.previousViewToReturnTo = controller;
+}
+
+-(void) setCustomSymbol:(NSString*)imageName{
+    [_myCustomMarker setIcon:[UIImage imageNamed:imageName]];
+}
+
+-(void) hideCustomMarker{
+    _myCustomMarker.map = nil;
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    if(_editMapPanelOpen){
+        [Utils AdjustViewForKeyboard:self.view :true: _originalFrame:aNotification];
+    }
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    if(_editMapPanelOpen){
+        [Utils AdjustViewForKeyboard:self.view :FALSE:_originalFrame :aNotification];
+    }
+}
+
+-(void)refreshButtonPressed{
+    [_dataManager requestMarkupFeaturesRepeatedEvery:[[DataManager getMapUpdateFrequencyFromSettings] intValue] immediate:YES];
+}
+
+-(void)MapSettingsBarButtonPressed{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    UIViewController *vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"MapSettingsViewControllerID"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

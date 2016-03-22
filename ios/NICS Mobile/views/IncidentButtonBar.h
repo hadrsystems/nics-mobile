@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -42,14 +42,25 @@
 #import "ResourceRequestListViewController.h"
 #import "FieldReportDetailViewController.h"
 #import "FieldReportListViewController.h"
-#import "UxoReportDetailViewController.h"
-#import "UxoReportListViewController.h"
+#import "WeatherReportDetailViewController.h"
+#import "WeatherReportListViewController.h"
 #import "LoginViewController.h"
 #import "ChatContainerBasicViewController.h"
 #import "MapMarkupViewController.h"
+#import "OverviewViewControllerTablet.h"
 
 @class SimpleReportListViewController;
 @class SimpleReportDetailViewController;
+@class DamageReportDetailViewController;
+@class MapMarkupViewController;
+@class DamageReportListViewController;
+@class FieldReportListViewController;
+@class FieldReportDetailViewController;
+@class ResourceRequestListViewController;
+@class ResourceRequestDetailViewController;
+@class OverviewViewControllerTablet;
+@class WeatherReportDetailViewController;
+@class WeatherReportListViewController;
 
 @interface IncidentButtonBar : NSObject
 
@@ -57,6 +68,7 @@
 + (void)AddButtonPressed:(NSString*)currentReport;
 + (void)CancelButtonPressed:(NSString*)currentReport;
 + (void)SubmitButtonPressed:(NSString*)currentReport;
++ (void)FilterButtonPressed:(NSString*)currentReport;
 
 + (void)SetIncidentCanvasController:(IncidentCanvasUIViewController*)controller;
 + (IncidentCanvasUIViewController*) GetIncidentCanvasController;
@@ -69,40 +81,22 @@
 +(void)SetLoginView:(LoginViewController*)loginController;
 +(LoginViewController*)GetLoginView;
 
-+(void)SetGeneralMessageListview:(SimpleReportListViewController*)listController;
++(void)ClearAllViews;
+
++(void)SetOverview:(OverviewViewControllerTablet*)overview;
++(OverviewViewControllerTablet*)GetOverview;
+
 +(SimpleReportListViewController*)GetGeneralMessageListview;
-
-+(void)SetGeneralMessageDetailView:(SimpleReportDetailViewController*)detailController;
 +(SimpleReportDetailViewController*) GetGeneralMessageDetailView;
-
-+(void)SetDamageReportListview:(DamageReportListViewController*)listController;
 +(DamageReportListViewController*)GetDamageReportListview;
-
-+(void)SetDamageReportDetailView:(DamageReportDetailViewController*)detailController;
 +(DamageReportDetailViewController*) GetDamageReportDetailView;
-
-+(void)SetResourceRequestListview:(ResourceRequestListViewController*)listController;
 +(ResourceRequestListViewController*)GetResourceRequestListview;
-
-+(void)SetResourceRequestDetailView:(ResourceRequestDetailViewController*)detailController;
 +(ResourceRequestDetailViewController*) GetResourceRequestDetailView;
-
-+(void)SetFieldReportListview:(FieldReportListViewController*)listController;
 +(FieldReportListViewController*)GetFieldReportListview;
-
-+(void)SetFieldReportDetailView:(FieldReportDetailViewController*)detailController;
 +(FieldReportDetailViewController*) GetFieldReportDetailView;
-
-+(void)SetUxoReportListview:(UxoReportListViewController*)listController;
-+(UxoReportListViewController*)GetUxoReportListview;
-
-+(void)SetUxoReportDetailView:(UxoReportDetailViewController*)detailController;
-+(UxoReportDetailViewController*) GetUxoReportDetailView;
-
-+(void)SetChatController:(ChatContainerBasicViewController*)detailController;
++(WeatherReportListViewController*)GetWeatherReportListview;
++(WeatherReportDetailViewController*) GetWeatherReportDetailView;
 +(ChatContainerBasicViewController*) GetChatController;
-
-+(void)SetMapMarkupController:(MapMarkupViewController*)mapController;
 +(MapMarkupViewController*) GetMapMarkupController;
 
 + (void)SetAddButton:(UIButton*)button;
@@ -116,4 +110,7 @@
 
 + (void)SetSubmitButton:(UIButton*)button;
 + (UIButton*)GetSubmitButton;
+
++ (void)SetFilterButton:(UIButton*)button;
++ (UIButton*)GetFilterButton;
 @end

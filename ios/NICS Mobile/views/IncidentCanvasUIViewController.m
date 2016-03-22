@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -63,7 +63,7 @@ UIStoryboard *currentStoryboard;
     [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Damage Report",nil)];
 //    [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Resource Request",nil)];
 //    [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Field Report",nil)];
-    [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Explosives Report",nil)];
+    [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Weather Report",nil)];
     [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Cancel",nil)];
     
     [IncidentButtonBar SetIncidentCanvasController:self];
@@ -73,11 +73,15 @@ UIStoryboard *currentStoryboard;
     [IncidentButtonBar SetSaveDraftButton:_SaveDraftButton];
     [IncidentButtonBar SetCancelButton:_CancelButton];
     [IncidentButtonBar SetSubmitButton:_SubmitButton];
+    [IncidentButtonBar SetFilterButton:_FilterButton];
     
     [[IncidentButtonBar GetAddButton] setHidden:TRUE];
     [[IncidentButtonBar GetSaveDraftButton]setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton]setHidden:TRUE];
     [[IncidentButtonBar GetSubmitButton]setHidden:TRUE];
+    [[IncidentButtonBar GetFilterButton]setHidden:TRUE];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetCanvasToReportDetailView:) name:@"GotoReportDetailView" object:nil];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetCanvasToGeneralMessage:) name:@"IncidentSwitched" object:nil];
 }
@@ -101,8 +105,8 @@ UIStoryboard *currentStoryboard;
 //        case FieldReport:
 //            [self SetCanvasToFieldReport];
 //            break;
-        case UxoReport:
-            [self SetCanvasToUxoReport];
+        case WeatherReport:
+            [self SetCanvasToWeatherReport];
             break;
         case Cancel:
             
@@ -115,20 +119,9 @@ UIStoryboard *currentStoryboard;
 }
 
 - (IBAction)ChatButtonPressed:(id)sender {
-/*
- if(chatController == nil)
- {
- chatController = [currentStoryboard instantiateViewControllerWithIdentifier:@"ChatViewID"];
- }
- [self SetCanvas :chatController.view];
- [chatController viewDidAppear:YES];
-*/
+
+    [[IncidentButtonBar GetChatController] viewDidAppear:TRUE];
     
-    if([IncidentButtonBar GetChatController] == nil){
-        [IncidentButtonBar SetChatController:[currentStoryboard instantiateViewControllerWithIdentifier:@"ChatViewID"]];
-    }else{
-        [[IncidentButtonBar GetChatController] viewDidAppear:TRUE];
-    }
     _currentReport = @"Chat";
     [self SetCanvas:[IncidentButtonBar GetChatController].view];
     
@@ -136,20 +129,18 @@ UIStoryboard *currentStoryboard;
     [[IncidentButtonBar GetSaveDraftButton]setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton]setHidden:TRUE];
     [[IncidentButtonBar GetSubmitButton]setHidden:TRUE];
-    
-    
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
 }
 
 - (IBAction)SetCanvasToGeneralMessage:(id)sender {
-    if([IncidentButtonBar GetGeneralMessageListview] == nil){
-        [IncidentButtonBar SetGeneralMessageListview:[currentStoryboard instantiateViewControllerWithIdentifier:@"GeneralMessageViewID"]];
-    }else{
-        [[IncidentButtonBar GetGeneralMessageListview] viewDidAppear:TRUE];
-    }
+
+    [[IncidentButtonBar GetGeneralMessageListview] viewDidAppear:TRUE];
+    
     _currentReport = @"GeneralMessage";
     [self SetCanvas:[IncidentButtonBar GetGeneralMessageListview].view];
     
     [[IncidentButtonBar GetAddButton] setHidden:FALSE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
     [[IncidentButtonBar GetSaveDraftButton]setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton]setHidden:TRUE];
     [[IncidentButtonBar GetSubmitButton]setHidden:TRUE];
@@ -161,19 +152,19 @@ UIStoryboard *currentStoryboard;
     _currentReport = @"GeneralMessage";
     [self SetCanvas:[IncidentButtonBar GetGeneralMessageListview].view];
     [[IncidentButtonBar GetAddButton] setHidden:FALSE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
 }
 
 
 - (void)SetCanvasToDamageReport {
-    if([IncidentButtonBar GetDamageReportListview] == nil){
-        [IncidentButtonBar SetDamageReportListview:[currentStoryboard instantiateViewControllerWithIdentifier:@"DamageReportViewID"]];
-    }else{
-        [[IncidentButtonBar GetDamageReportListview] viewDidAppear:TRUE];
-    }
+
+    [[IncidentButtonBar GetDamageReportListview] viewDidAppear:TRUE];
+    
     _currentReport = @"DamageReport";
     [self SetCanvas:[IncidentButtonBar GetDamageReportListview].view];
     
     [[IncidentButtonBar GetAddButton] setHidden:FALSE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
     [[IncidentButtonBar GetSaveDraftButton]setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton]setHidden:TRUE];
     [[IncidentButtonBar GetSubmitButton]setHidden:TRUE];
@@ -184,18 +175,18 @@ UIStoryboard *currentStoryboard;
     _currentReport = @"DamageReport";
     [self SetCanvas:[IncidentButtonBar GetDamageReportListview].view];
     [[IncidentButtonBar GetAddButton] setHidden:FALSE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
 }
 
 - (void)SetCanvasToResourceRequest {
-    if([IncidentButtonBar GetResourceRequestListview] == nil){
-        [IncidentButtonBar SetResourceRequestListview:[currentStoryboard instantiateViewControllerWithIdentifier:@"ResourceRequestViewID"]];
-    }else{
-        [[IncidentButtonBar GetResourceRequestListview] viewDidAppear:TRUE];
-    }
+
+    [[IncidentButtonBar GetResourceRequestListview] viewDidAppear:TRUE];
+    
     _currentReport = @"ResourceRequest";
     [self SetCanvas:[IncidentButtonBar GetResourceRequestListview].view];
     
     [[IncidentButtonBar GetAddButton] setHidden:FALSE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
     [[IncidentButtonBar GetSaveDraftButton]setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton]setHidden:TRUE];
     [[IncidentButtonBar GetSubmitButton]setHidden:TRUE];
@@ -206,20 +197,18 @@ UIStoryboard *currentStoryboard;
     _currentReport = @"ResourceRequest";
     [self SetCanvas:[IncidentButtonBar GetResourceRequestListview].view];
     [[IncidentButtonBar GetAddButton] setHidden:FALSE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
 }
 
-
-
 - (void)SetCanvasToFieldReport {
-    if([IncidentButtonBar GetFieldReportListview] == nil){
-        [IncidentButtonBar SetFieldReportListview:[currentStoryboard instantiateViewControllerWithIdentifier:@"FieldReportViewID"]];
-    }else{
-        [[IncidentButtonBar GetFieldReportListview] viewDidAppear:TRUE];
-    }
+
+    [[IncidentButtonBar GetFieldReportListview] viewDidAppear:TRUE];
+    
     _currentReport = @"FieldReport";
     [self SetCanvas:[IncidentButtonBar GetFieldReportListview].view];
     
     [[IncidentButtonBar GetAddButton] setHidden:FALSE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
     [[IncidentButtonBar GetSaveDraftButton]setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton]setHidden:TRUE];
     [[IncidentButtonBar GetSubmitButton]setHidden:TRUE];
@@ -230,32 +219,94 @@ UIStoryboard *currentStoryboard;
     _currentReport = @"FieldReport";
     [self SetCanvas:[IncidentButtonBar GetFieldReportListview].view];
     [[IncidentButtonBar GetAddButton] setHidden:FALSE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
 }
 
-- (void)SetCanvasToUxoReport {
-    if([IncidentButtonBar GetUxoReportListview] == nil){
-        [IncidentButtonBar SetUxoReportListview:[currentStoryboard instantiateViewControllerWithIdentifier:@"UxoReportViewID"]];
-    }else{
-        [[IncidentButtonBar GetUxoReportListview] viewDidAppear:TRUE];
-    }
-    _currentReport = @"UxoReport";
-    [self SetCanvas:[IncidentButtonBar GetUxoReportListview].view];
+- (void)SetCanvasToWeatherReport {
+    
+    [[IncidentButtonBar GetWeatherReportListview] viewDidAppear:TRUE];
+    
+    _currentReport = @"WeatherReport";
+    [self SetCanvas:[IncidentButtonBar GetWeatherReportListview].view];
     
     [[IncidentButtonBar GetAddButton] setHidden:FALSE];
+    [[IncidentButtonBar GetFilterButton] setHidden:FALSE];
     [[IncidentButtonBar GetSaveDraftButton]setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton]setHidden:TRUE];
     [[IncidentButtonBar GetSubmitButton]setHidden:TRUE];
 }
 
-- (void)SetCanvasToUxoReportFromButtonBar {
-    [[IncidentButtonBar GetUxoReportListview] viewDidAppear:TRUE];
-    _currentReport = @"UxoReport";
-    [self SetCanvas:[IncidentButtonBar GetUxoReportListview].view];
+- (void)SetCanvasToWeatherReportFromButtonBar {
+    [[IncidentButtonBar GetWeatherReportListview] viewDidAppear:TRUE];
+    _currentReport = @"WeatherReport";
+    [self SetCanvas:[IncidentButtonBar GetWeatherReportListview].view];
     [[IncidentButtonBar GetAddButton] setHidden:FALSE];
+    [[IncidentButtonBar GetFilterButton] setHidden:FALSE];
+}
+
+- (void)SetCanvasToReportDetailView:(NSNotification *)notification {
+        
+    NSMutableDictionary * reportInfo = [notification object];
+    NSString* reportType = [reportInfo objectForKey:@"reportType"];
+    int reportId = [[reportInfo objectForKey:@"reportId"] intValue];
+    
+    DataManager* dataManager = [DataManager getInstance];
+    
+    if([reportType isEqualToString: [Enums formTypeEnumToStringAbbrev:SR]]){
+        
+        NSMutableArray *generalMessages = [dataManager getAllSimpleReportsForIncidentId:[dataManager getActiveIncidentId]];
+        
+        for(int i = 0; i < generalMessages.count;i++){
+            SimpleReportPayload* payload = [generalMessages objectAtIndex:i];
+            
+            if([payload.id intValue] == reportId){
+                
+                [IncidentButtonBar GetGeneralMessageDetailView].payload = payload;
+                [[IncidentButtonBar GetGeneralMessageListview] prepareForTabletCanvasSwap:FALSE:-2];
+                _currentReport = @"GeneralMessage";
+                return;
+            }
+        }
+        
+    }else if([reportType isEqualToString: [Enums formTypeEnumToStringAbbrev:DR]]){
+        
+        NSMutableArray *damageReports = [dataManager getAllDamageReportsForIncidentId:[dataManager getActiveIncidentId]];
+        
+        for(int i = 0; i < damageReports.count;i++){
+            DamageReportPayload* payload = [damageReports objectAtIndex:i];
+            
+            if([payload.id intValue] == reportId){
+                
+                [IncidentButtonBar GetDamageReportDetailView].payload = payload;
+                [[IncidentButtonBar GetDamageReportListview] prepareForTabletCanvasSwap:FALSE:-2];
+                _currentReport = @"DamageReport";
+                return;
+            }
+        }
+    }else if([reportType isEqualToString: [Enums formTypeEnumToStringAbbrev:WR]]){
+        
+        NSMutableArray *weatherReports = [dataManager getAllWeatherReportsForIncidentId:[dataManager getActiveIncidentId]];
+        
+        for(int i = 0; i < weatherReports.count;i++){
+            WeatherReportPayload* payload = [weatherReports objectAtIndex:i];
+            
+            if([payload.id intValue] == reportId){
+                
+                [IncidentButtonBar GetWeatherReportDetailView].payload = payload;
+                [[IncidentButtonBar GetWeatherReportListview] prepareForTabletCanvasSwap:FALSE:-2];
+                _currentReport = @"WeatherReport";
+                return;
+            }
+        }
+    }
 }
 
 - (void) SetCanvas:(UIView*)newController{
     selectedIncidentController = newController;
+    CGRect newFrame =_IncidentCanvas.frame;
+    newFrame.origin.x = 0;
+    newFrame.origin.y = 0;
+    newController.frame =newFrame;
     [[IncidentButtonBar GetIncidentCanvas] addSubview:selectedIncidentController ];
 }
 
@@ -278,14 +329,9 @@ UIStoryboard *currentStoryboard;
 - (IBAction)SubmitButtonPressed:(id)sender {
     [IncidentButtonBar SubmitButtonPressed:_currentReport];
 }
-    /*
-     #pragma mark - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
-     */
+
+- (IBAction)FilterButtonPressed:(id)sender {
+    [IncidentButtonBar FilterButtonPressed:_currentReport];
+}
 
 @end

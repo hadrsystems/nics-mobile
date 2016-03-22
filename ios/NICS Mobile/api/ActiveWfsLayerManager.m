@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,6 @@
 
 
 
-
 @interface ActiveWfsLayerManager ()
 
 @end
@@ -66,23 +65,34 @@ NSMutableArray* wfsFeatures;
 
     //init tracking layers
     trackingLayers = [[NSMutableArray alloc]init];
-    
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-BEU/XMY AVL",nil)  : @"ca_beu_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-COR-HMT AVL",nil)  : @"ca_corona_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-ORC AVL",nil)  : @"ca_ocfa_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-VNC AVL",nil)  : @"ca_ventura_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XFR AVL",nil)  : @"ca_fku_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XMY-XSL (RIV temp.) AVL",nil)  : @"avlnmea_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XRI AVL",nil)  : @"avlxriground_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XSD-RCIP AVL",nil)  : @"avlrcip_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XSL AVL",nil)  : @"ca_slu_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CDF AFF",nil)  : @"avlxriair_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"Delorme PLI",nil)  : @"avldelorme_view"]];
     [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"NICS Damage Surveys",nil)  : @"nics_dmgrpt"]];
     [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"NICS General Messages",nil)  : @"nics_sr"]];
     [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"NICS Mobile Users",nil) : @"phi_mdt_view"]];
     [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"SARApp PLI",nil)  : @"sar_view"]];
+    
+    if([DataManager getCalTrackingEnabledFromSettings]){
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-BEU/XMY AVL",nil)  : @"ca_beu_view"]];
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-COR-HMT AVL",nil)  : @"ca_corona_view"]];
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-ORC AVL",nil)  : @"ca_ocfa_view"]];
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-VNC AVL",nil)  : @"ca_ventura_view"]];
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XFR AVL",nil)  : @"ca_fku_view"]];
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XMY-XSL (RIV temp.) AVL",nil)  : @"avlnmea_view"]];
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XRI AVL",nil)  : @"avlxriground_view"]];
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XSD-RCIP AVL",nil)  : @"avlrcip_view"]];
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XSL AVL",nil)  : @"ca_slu_view"]];
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CDF AFF",nil)  : @"avlxriair_view"]];
+        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"Delorme PLI",nil)  : @"avldelorme_view"]];
+    }
+}
 
++(BOOL) isTrackingLayerOn:(NSString*)layerName{
+
+    for(TrackingLayer* layer in trackingLayers){
+        if([layer.title isEqualToString:layerName]){
+            return layer.active;
+        }
+    }
+    return false;
 }
 
 +(NSMutableArray*) getTrackingLayers{ return trackingLayers;}

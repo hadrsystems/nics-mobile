@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -40,6 +40,13 @@ float marginSize;
 double doubleHitTestBuffer;
 double lastHitTestTime;
 
+- (id)init
+{
+    self = [super init];
+    [self setup];
+    return self;
+}
+
 - (void)setup {
     [super setup];
     self.type = @"location";
@@ -52,7 +59,7 @@ double lastHitTestTime;
 //    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.superview.frame.size.width, self.view.frame.size.height);
     
 //    self.field = self.latitudeTextView;
-    self.label = self.locationLabel;
+//    self.label = self.locationLabel;
     
     
     [self.interactableViews addObject:self.latitudeTextView];
@@ -60,6 +67,9 @@ double lastHitTestTime;
     
     self.latitudeTextView.returnKeyType = UIReturnKeyDefault;
     self.longitudeTextView.returnKeyType = UIReturnKeyDefault;
+    
+    [self.latitudeTextView setDelegate:self];
+    [self.longitudeTextView setDelegate:self];
     
     marginSize = 5;
     doubleHitTestBuffer = 0.25;
@@ -87,8 +97,6 @@ double lastHitTestTime;
     self.longitudeTextView.frame = frameLon;
     [self.longitudeTextView setPlaceHolderText:NSLocalizedString(@"Longitude",nil)];
     
-
-
     frameMyLocationBtn.origin.x =frameLon.origin.x + frameLon.size.width + marginSize;
     frameMyLocationBtn.origin.y =frameLon.origin.y;
     self.myLocationButton.frame =frameMyLocationBtn;
@@ -96,6 +104,11 @@ double lastHitTestTime;
     frameMyLocationBtn.origin.x = self.myLocationButton.frame.origin.x + self.myLocationButton.frame.size.width + marginSize;
     self.mapLocationButton.frame = frameMyLocationBtn;
     
+}
+
+-(void)setLatLon : (NSString*)lat : (NSString*) lon {
+    [self.latitudeTextView setText:lat];
+    [self.longitudeTextView setText:lon];
 }
 
 -(void)setData : (NSString*)lat : (NSString*) lon : (bool)readOnly{
@@ -108,6 +121,11 @@ double lastHitTestTime;
     [self.myLocationButton setHidden:readOnly];
     [self.mapLocationButton setHidden:readOnly];
 
+    _readOnly = readOnly;
+}
+
+-(void)setLabel: (NSString*) text{
+    _locationLabel.text = text;
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
@@ -148,8 +166,10 @@ double lastHitTestTime;
 }
 
 -(void)mapCustomLocationChanged{
-    [self.latitudeTextView setText: [NSString stringWithFormat:@"%f", self.dataManager.mapSelectedLatitude ]];
-    [self.longitudeTextView setText: [NSString stringWithFormat:@"%f", self.dataManager.mapSelectedLongitude ]];
+    if(!_readOnly){
+        [self.latitudeTextView setText: [NSString stringWithFormat:@"%f", self. dataManager.mapSelectedLatitude ]];
+        [self.longitudeTextView setText: [NSString stringWithFormat:@"%f", self.dataManager.mapSelectedLongitude ]];
+    }
 }
 
 //-(void)prepareForSegue:(UIStoryboardSegue *)segue
@@ -162,12 +182,41 @@ double lastHitTestTime;
 //}
 
 -(void)setFieldsToMyLocation{
-    [self.latitudeTextView setText: [NSString stringWithFormat:@"%f", self.dataManager.currentLocation.coordinate.latitude]];
-    [self.longitudeTextView setText: [NSString stringWithFormat:@"%f", self.dataManager.currentLocation.coordinate.longitude]];
+    if(!_readOnly){
+        [self.latitudeTextView setText: [NSString stringWithFormat:@"%f", self.dataManager.currentLocation.coordinate.latitude]];
+        [self.longitudeTextView setText: [NSString stringWithFormat:@"%f", self.dataManager.currentLocation.coordinate.longitude]];
+    }
+    [self notifyMapToMoveCustomMarker];
+}
+
+//- (BOOL) textViewShouldBeginEditing:(UITextView *)textView {
+//    return YES;
+//}
+//
+//
+//-(void) textViewDidEndEditing:(UITextView *)textView {
+//
+//
+//}
+
+-(void)textViewDidChange:(UITextView *)textView {
+    [self notifyMapToMoveCustomMarker];
+}
+
+-(void)notifyMapToMoveCustomMarker{
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: self.latitudeTextView.text,@"lat",self.longitudeTextView.text,@"lon", nil];
+    
+    NSNotification *setMapPositionNotification = [NSNotification notificationWithName:@"SetMapCustomMarkerPosition" object:self userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotification:setMapPositionNotification];
 }
 
 -(void)cleanNotificationListener{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)hideButtons{
+    [_myLocationButton setHidden:YES];
+    [_mapLocationButton setHidden:YES];
 }
 
 @end

@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  WeatherView.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -42,6 +42,7 @@
 #import "FormImageSelector.h"
 #import "FormEditText.h"
 #import "FormSpinner.h"
+#import "FormColorPicker.h"
 #import "FormSchema.h"
 #import "JSONModelLib.h"
 #import "AssignmentMessage.h"

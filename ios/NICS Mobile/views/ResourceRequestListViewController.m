@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -43,20 +43,40 @@ UIStoryboard *currentStoryboard;
     [super viewDidLoad];
     
     _dataManager = [DataManager getInstance];
-    [_dataManager requestResourceRequestsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
+    [_dataManager requestResourceRequestsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"resourceRequestsUpdateReceived" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"IncidentSwitched" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ResourceRequestsPolledNothing) name:@"ResrouceRequestsPolledNothing" object:nil];
     
     if([_dataManager getIsIpad] == true){
         currentStoryboard = [UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil];
     }
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor blackColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshResourceRequests)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                forKey:NSForegroundColorAttributeName];
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Checking for new reports", nil)  attributes:attrsDictionary];
+    self.refreshControl.attributedTitle = attributedTitle;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refreshResourceRequests{
+    [_dataManager requestSimpleReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings]intValue] immediate:YES];
+}
+-(void)ResourceRequestsPolledNothing{
+    [self.refreshControl endRefreshing];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -74,6 +94,7 @@ UIStoryboard *currentStoryboard;
     }
     
     [[self tableView] reloadData];
+    [self.refreshControl endRefreshing];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -165,15 +186,11 @@ UIStoryboard *currentStoryboard;
 
 - (void)prepareForTabletCanvasSwap:(BOOL)isEdit :(NSInteger)index{
     
-    bool newReport = false;
-    if([IncidentButtonBar GetResourceRequestDetailView] == nil){
-        [IncidentButtonBar SetResourceRequestDetailView:[currentStoryboard instantiateViewControllerWithIdentifier:@"ResourceRequestDetailViewID"]];
-        newReport = true;
-    }
-    
     ResourceRequestPayload *payload;
     if(_reports.count > 0 && index >= 0) {
         payload = _reports[index];
+    } else if( index == -2){
+        payload = [IncidentButtonBar GetResourceRequestDetailView].payload;
     } else {
         payload = [ResourceRequestPayload new];
     }
@@ -188,27 +205,22 @@ UIStoryboard *currentStoryboard;
             [[IncidentButtonBar GetSaveDraftButton] setHidden:TRUE];
             [[IncidentButtonBar GetSubmitButton] setHidden:TRUE];
         }
-        [IncidentButtonBar GetResourceRequestDetailView].payload = payload;
         
     } else if (isEdit==true) {
         [IncidentButtonBar GetResourceRequestDetailView].hideEditControls = NO;
-        [IncidentButtonBar GetResourceRequestDetailView].payload = payload;
         [[IncidentButtonBar GetSaveDraftButton] setHidden:FALSE];
         [[IncidentButtonBar GetSubmitButton] setHidden:FALSE];
         
     } else {
-        [IncidentButtonBar GetResourceRequestDetailView].payload = payload;
         [[IncidentButtonBar GetSaveDraftButton] setHidden:TRUE];
         [[IncidentButtonBar GetSubmitButton] setHidden:TRUE];
     }
     
-    if(newReport == false){
-        [IncidentButtonBar GetResourceRequestDetailView].payload = payload;
-        [[IncidentButtonBar GetResourceRequestDetailView] configureView];
-        
-    }
+    [IncidentButtonBar GetResourceRequestDetailView].payload = payload;
+    [[IncidentButtonBar GetResourceRequestDetailView] configureView];
     
     [[IncidentButtonBar GetAddButton] setHidden:TRUE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton] setHidden:FALSE];
     
     [[IncidentButtonBar GetIncidentCanvas] addSubview:[IncidentButtonBar GetResourceRequestDetailView].view ];

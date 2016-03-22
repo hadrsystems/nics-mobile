@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  DatabaseManager.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -42,7 +42,7 @@
         NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentDir = [documentPaths objectAtIndex:0];
         
-        _databaseQueue = [FMDatabaseQueue databaseQueueWithPath:[documentDir stringByAppendingPathComponent:@"phinics.db"]];
+        _databaseQueue = [FMDatabaseQueue databaseQueueWithPath:[documentDir stringByAppendingPathComponent:@"nics.db"]];
         
         _chatReceiveTable = [[ChatTable alloc] initWithName: @"chatReceiveTable" databaseQueue:_databaseQueue];
         _chatSendTable = [[ChatTable alloc] initWithName: @"chatSendTable" databaseQueue:_databaseQueue];
@@ -59,8 +59,8 @@
         _simpleReportReceiveTable = [[SimpleReportTable alloc] initWithName:@"simpleReportReceiveTable" databaseQueue:_databaseQueue];
         _simpleReportSendTable = [[SimpleReportTable alloc] initWithName:@"simpleReportSendTable" databaseQueue:_databaseQueue];
         
-        _uxoReportReceiveTable = [[UxoReportTable alloc] initWithName:@"uxoReportReceiveTable" databaseQueue:_databaseQueue];
-        _uxoReportSendTable = [[UxoReportTable alloc] initWithName:@"uxoReportSendTable" databaseQueue:_databaseQueue];
+        _weatherReportReceiveTable = [[WeatherReportTable alloc] initWithName:@"weatherReportReceiveTable" databaseQueue:_databaseQueue];
+        _weatherReportSendTable = [[WeatherReportTable alloc] initWithName:@"weatherReportSendTable" databaseQueue:_databaseQueue];
         
         _markupReceiveTable = [[MarkupTable alloc] initWithName:@"markupReceiveTable" databaseQueue:_databaseQueue];
         _markupSendTable = [[MarkupTable alloc] initWithName:@"markupSendTable" databaseQueue:_databaseQueue];
@@ -68,10 +68,31 @@
         _mdtSendTable = [[MDTTable alloc] initWithName:@"mdtSendTable" databaseQueue:_databaseQueue];
         
         _personalLogTable = [[ChatTable alloc] initWithName:@"personalLogTable" databaseQueue:_databaseQueue];
+        
+        
     }
     return self;
 }
 
+
+-(void)ClearAllLocalDatabases{
+    [_chatReceiveTable deleteAllRows];
+    [_chatSendTable deleteAllRows];
+    [_damageReportReceiveTable deleteAllRows];
+    [_damageReportSendTable deleteAllRows];
+    [_fieldReportReceiveTable deleteAllRows];
+    [_fieldReportSendTable deleteAllRows];
+    [_resourceRequestReceiveTable deleteAllRows];
+    [_resourceRequestSendTable deleteAllRows];
+    [_simpleReportReceiveTable deleteAllRows];
+    [_simpleReportSendTable deleteAllRows];
+    [_weatherReportReceiveTable deleteAllRows];
+    [_weatherReportSendTable deleteAllRows];
+    [_markupReceiveTable deleteAllRows];
+    [_markupSendTable deleteAllRows];
+    [_mdtSendTable deleteAllRows];
+    [_personalLogTable deleteAllRows];
+}
 
 #pragma mark Chat Message History/Store & Forward
 - (BOOL)addChatMessagesToHistory:(NSArray<ChatPayload> *) payloadArray {
@@ -290,45 +311,46 @@
     return [_simpleReportReceiveTable getLastReportTimestampForIncidentId:incidentId];
 }
 
-#pragma mark UXO Report History/Store & Forward
-- (BOOL)addUxoReportsToHistory:(NSArray<UxoReportPayload> *) payloadArray {
-    return [_uxoReportReceiveTable addDataArray:payloadArray];
+#pragma mark Weather Report History/Store & Forward
+- (BOOL)addWeatherReportsToHistory:(NSArray<WeatherReportPayload> *) payloadArray {
+    return [_weatherReportReceiveTable addDataArray:payloadArray];
 }
 
-- (BOOL)addUxoReportToHistory:(UxoReportPayload *) payload {
-    return [_uxoReportReceiveTable addData: payload];
+- (BOOL)addWeatherReportToHistory:(WeatherReportPayload *) payload {
+    return [_weatherReportReceiveTable addData: payload];
 }
 
-- (BOOL)addUxoReportsToStoreAndForward:(NSArray<UxoReportPayload> *) payloadArray {
-    return [_uxoReportSendTable addDataArray:payloadArray];
+- (BOOL)addWeatherReportsToStoreAndForward:(NSArray<WeatherReportPayload> *) payloadArray {
+    return [_weatherReportSendTable addDataArray:payloadArray];
 }
 
-- (BOOL)addUxoReportToStoreAndForward:(UxoReportPayload *) payload {
-    return [_uxoReportSendTable addData: payload];
+- (BOOL)addWeatherReportToStoreAndForward:(WeatherReportPayload *) payload {
+    return [_weatherReportSendTable addData: payload];
 }
 
-- (void)deleteUxoReportFromStoreAndForward:(UxoReportPayload *) payload {
-    [_uxoReportSendTable removeData: payload];
+- (void)deleteWeatherReportFromStoreAndForward:(WeatherReportPayload *) payload {
+    [_weatherReportSendTable removeData: payload];
 }
 
-- (NSMutableArray<UxoReportPayload> *)getAllUxoReportsForIncidentId: (NSNumber *)incidentId since: (NSNumber *)timestamp {
-    NSMutableArray<UxoReportPayload>* temp = [_uxoReportReceiveTable getUxoReportsForIncidentId:incidentId since:timestamp];
-    [temp addObjectsFromArray:[_uxoReportSendTable getUxoReportsForIncidentId:incidentId since:timestamp]];
+- (NSMutableArray<WeatherReportPayload> *)getAllWeatherReportsForIncidentId: (NSNumber *)incidentId since: (NSNumber *)timestamp {
+    NSMutableArray<WeatherReportPayload>* temp = [_weatherReportReceiveTable getWeatherReportsForIncidentId:incidentId since:timestamp];
+    [temp addObjectsFromArray:[_weatherReportSendTable getWeatherReportsForIncidentId:incidentId since:timestamp]];
     
-    [temp sortUsingComparator:^NSComparisonResult(UxoReportPayload *obj1, UxoReportPayload *obj2) {
+    [temp sortUsingComparator:^NSComparisonResult(WeatherReportPayload *obj1, WeatherReportPayload *obj2) {
         return [obj2.seqtime compare:obj1.seqtime];
     }];
     
     return temp;
 }
 
-- (NSMutableArray<UxoReportPayload> *)getAllUxoReportsFromStoreAndForward {
-    return [_uxoReportSendTable getAllUxoReports];
+- (NSMutableArray<WeatherReportPayload> *)getAllWeatherReportsFromStoreAndForward {
+    return [_weatherReportSendTable getAllWeatherReports];
 }
 
-- (NSNumber *)getLastUxoReportTimestampForIncidentId: (NSNumber *) incidentId {
-    return [_uxoReportReceiveTable getLastReportTimestampForIncidentId:incidentId];
+- (NSNumber *)getLastWeatherReportTimestampForIncidentId: (NSNumber *) incidentId {
+    return [_weatherReportReceiveTable getLastReportTimestampForIncidentId:incidentId];
 }
+
 
 
 #pragma mark Markup Features History/Store & Forward
@@ -356,7 +378,29 @@
     return [_markupReceiveTable getLastMarkupFeatureTimestampForCollabroomId:collabroomId];
 }
 
+- (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesFromStoreAndForwardForCollabroomId: (NSNumber *)collabroomId since: (NSNumber *)timestamp {
+    return [_markupSendTable getMarkupFeaturesForCollabroomId:collabroomId since:timestamp];
+}
 
+-(void) removeAllFeaturesInCollabroom:(NSNumber*)collabRoomId{
+    [_markupReceiveTable removeAllFeaturesInCollabroom: collabRoomId];
+}
+
+- (void)deleteMarkupFeatureFromStoreAndForward:(MarkupFeature *)feature{
+    [_markupSendTable removeData: feature];
+}
+
+- (void)deleteMarkupFeatureFromStoreAndForwardByFeatureId:(NSString *)featureId{
+    [_markupSendTable removeDataByFeatureId: featureId];
+}
+
+- (void)deleteMarkupFeatureFromReceiveTableByFeatureId:(NSString *)featureId{
+    [_markupReceiveTable removeDataByFeatureId: featureId];
+}
+
+- (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesFromStoreAndForward{
+    return [_markupSendTable getAllMarkupFeatures];
+}
 
 - (BOOL)addPersonalLogMessage:(ChatPayload *) payload {
     return [_personalLogTable addData: payload];

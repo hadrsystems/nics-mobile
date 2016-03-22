@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  MarkupMessage.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -40,5 +40,7 @@
 @interface MarkupMessage : Message
 
 @property NSMutableArray<MarkupFeature>* features;
+@property NSMutableArray* deletedFeature;
+
 
 @end

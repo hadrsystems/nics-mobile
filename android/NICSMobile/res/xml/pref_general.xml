@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ <!--|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,14 +27,10 @@
  |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  |~^~|-->
-<!--
 
-
-
--->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory
+ <PreferenceCategory
         android:key="header"
         android:title="@string/pref_header_general" />
 
@@ -74,9 +70,9 @@
          android:key="custom_server_enabled"
          />
     <ListPreference
-        android:defaultValue="https://yourdomain/api/v1/"
-        android:entries="@array/pref_server_list_titles"
-        android:entryValues="@array/pref_server_list_values"
+        android:defaultValue="@string/config_server_default"
+        android:entries="@array/config_server_list_titles"
+        android:entryValues="@array/config_server_list_values"
         android:key="server_list"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
@@ -84,7 +80,7 @@
         android:title="@string/pref_title_select_server" />
     
     <EditTextPreference 
-         android:defaultValue="https://yourdomain/api/v1/"
+         android:defaultValue="@string/config_server_default"
         android:key="custom_server_url"
         android:summary="Specify your own NICS Server."
         android:title="Custom NICS Server URL" />
@@ -97,9 +93,9 @@
      />
     
      <ListPreference
-     android:defaultValue="https://yourdomain/geoserver/"
-     android:entries="@array/pref_geo_server_list_titles"
-     android:entryValues="@array/pref_geo_server_list_values"
+     android:defaultValue="@string/config_geo_server_default"
+     android:entries="@array/config_geo_server_list_titles"
+     android:entryValues="@array/config_geo_server_list_values"
      android:key="geo_server_list"
      android:negativeButtonText="@null"
      android:positiveButtonText="@null"
@@ -107,7 +103,7 @@
      android:title="@string/pref_title_select_geo_server" />
     
     <EditTextPreference 
-        android:defaultValue="https://yourdomain/geoserver/"
+        android:defaultValue="@string/config_geo_server_default"
         android:key="custom_geo_server_url"
         android:summary="Specify GeoServer for WMS/WFS layers"
         android:title="NICS GeoServer URL" />
@@ -119,9 +115,9 @@
      />
     
      <ListPreference
-     android:defaultValue="https://yourdomain/openam/"
-     android:entries="@array/pref_auth_server_list_titles"
-     android:entryValues="@array/pref_auth_server_list_values"
+     android:defaultValue="@string/config_auth_server_default"
+     android:entries="@array/config_auth_server_list_titles"
+     android:entryValues="@array/config_auth_server_list_values"
      android:key="auth_server_list"
      android:negativeButtonText="@null"
      android:positiveButtonText="@null"
@@ -129,10 +125,22 @@
      android:title="@string/pref_title_select_auth_server" />
     
     <EditTextPreference 
-   		android:defaultValue="https://yourdomain/openam/" 
+   		android:defaultValue="@string/config_auth_server_default"
         android:key="custom_auth_server_url"
         android:summary="Specify server for Open AM Authentication"
         android:title="NICS Authentication URL" />
+    
+    <CheckBoxPreference 
+     android:title="@string/pref_title_custom_domain_toggle"
+     android:defaultValue="false"
+     android:key="custom_domain_name_enabled"
+     android:summary="@string/pref_summary_custom_domain_toggle"/>
+    
+    <EditTextPreference 
+   		android:defaultValue=""
+        android:key="custom_cookie_domain"
+        android:summary="@string/pref_summary_nics_domain_name"
+        android:title="@string/pref_title_nics_domain_name"/>
     
     <ListPreference
         android:defaultValue="0"
@@ -143,7 +151,5 @@
         android:positiveButtonText="@null"
         android:summary="@string/pref_description_coordinate_display_format"
         android:title="@string/pref_title_coordinate_display_format" />
-
 </PreferenceScreen>
-
 

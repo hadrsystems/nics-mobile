@@ -1,0 +1,766 @@
+[[Uncategorized]]
+	[all]
+		en = All
+		es = All
+		fr = All
+	[dr_property_owner_information_displayname]
+		en = Property Owner Information
+		comment = Damage Report
+		es = Dueño de la propiedad Información
+		it = Property Owner Information(italian)
+	[dr_last_name_displayname]
+		en = Last Name
+		es = Nombre
+		it = Last Name(italian)
+	[dr_first_name_displayname]
+		en = First Name
+		es = Apellido
+		it = First Name(italian)
+	[dr_landline_phone_displayname]
+		en = Landline Phone
+		es = Teléfono fijo
+		it = Landline Phone(italian)
+	[dr_cell_phone_displayname]
+		en = Cell Phone
+		es = Teléfono móvil
+		it = Cell Phone(italian)
+	[dr_email_displayname]
+		en = Email
+		es = Correo electrónico
+		it = Email(italian)
+	[dr_property_information_displayname]
+		en = Property Information
+		es = Propiedad de la información
+		it = Property Information(italian)
+	[dr_address_displayname]
+		en = Address
+		es = Dirección
+		it = Address(italian)
+	[dr_city_displayname]
+		en = City
+		es = Ciudad
+		it = City(italian)
+	[dr_zip_code_displayname]
+		en = Zip Code
+		es = Código postal
+		it = Zip Code(italian)
+	[dr_coordinate_displayname]
+		en = Coordinate
+		es = Coordinate
+		it = Coordinate(italian)
+	[dr_damage_information_displayname]
+		en = Damage Information
+		es = Información de daños
+		it = Damage Information(italian)
+	[dr_damage_information_data_displayname]
+		en = Damage Information Data
+		es = Información de daños data
+		it = Damage Information Data(italian)
+	[dr_image_displayname]
+		en = Image
+		es = Imagen
+		it = Image(italian)
+	[dr_propertydamagetype_blank]
+		en = 
+		es = 
+		it = 
+	[dr_propertydamagetype_minor]
+		en = Minor: 10 percent
+		es = Poco grave: 10%
+		it = Minor: 10 percent(italian)
+	[dr_propertydamagetype_major]
+		en = Major: 10 to 50 percent
+		es = Importante: 10% to 50%
+		it = Major: 10 to 50 percent(italian)
+	[dr_propertydamagetype_destroyed]
+		en = Destroyed: 50+ percent
+		es = Destruido: +50%
+		it = Destroyed: 50+ percent(italian)
+	[dr_propertytype_notset]
+		en = Not Set
+		es = no se establece
+		it = Not Set(italian)
+	[dr_propertytype_car]
+		en = Car
+		es = Coche
+		it = Car(italian)
+	[dr_propertytype_commercialmultistory]
+		en = Commercial - Multi-Story
+		es = Local comercial de varias alturas
+		it = Commercial - Multi-Story(italian)
+	[dr_propertytype_commercialsinglestory]
+		en = Commercial - Single Story
+		es = Local comercial  a solo una altura
+		it = Commercial - Single Story(italian)
+	[dr_propertytype_doublewidetrailer]
+		en = Double Wide Trailer
+		es = Remolque de doble ancho
+		it = Double Wide Trailer(italian)
+	[dr_propertytype_motorhome]
+		en = Motorhome
+		es = vehículo de remolque, móvible
+		it = Motorhome(italian)
+	[dr_propertytype_otherbarn]
+		en = Other - Barn
+		es = Otros - granero
+		it = Other - Barn(italian)
+	[dr_propertytype_othergarage]
+		en = Other - Garage
+		es = Otros - garaje
+		it = Other - Garage(italian)
+	[dr_propertytype_otheroutbuilding]
+		en = Other - Out Building
+		es = Otros - Exterior del edificio
+		it = Other - Out Building(italian)
+	[dr_propertytype_residencemultifamily]
+		en = Residence - Multi-Family
+		es = Residencia - multifamiliar
+		it = Residence - Multi-Family(italian)
+	[dr_propertytype_residencemultistorymultifamily]
+		en = Residence - Multi-Story Multi-Family
+		es = Residencia - de varias alturas multifamiliar
+		it = Residence - Multi-Story Multi-Family(italian)
+	[dr_propertytype_residencemultistorysinglefamily]
+		en = Residence - Multi-Story Single Family
+		es = Residencia - unifamiliar
+		it = Residence - Multi-Story Single Family(italian)
+	[dr_propertytype_residencesinglefamily]
+		en = Residence - Single Family
+		es = Residence - Single Family(italian)
+		it = Residence - Single Family(italian)
+	[dr_propertytype_singlewidetrailer]
+		en = Single Wide Trailer
+		es = remolque sencillo
+		it = Single Wide Trailer(italian)
+	[dr_propertytype_trailer]
+		en = Trailer
+		es = Trailer
+		it = Trailer(italian)
+	[dr_propertytype_truck]
+		en = Truck
+		es = Camión
+		it = Truck(italian)
+	[dr_propertytype_van]
+		en = Van
+		es = Furgoneta
+		it = Van(italian)
+	[wr_sourcetype_beltweatherkit]
+		en = Belt Weather Kit
+		comment = Weather Report
+		es = Belt Weather Kit(italian)
+		it = Belt Weather Kit(italian)
+	[wr_sourcetype_kestral]
+		en = Kestral
+		es = Kestral(italian)
+		it = Kestral(italian)
+	[wr_sourcetype_electronic]
+		en = Electronic
+		es = Electronic(italian)
+		it = Electronic(italian)
+	[wr_windtype_north]
+		en = North
+		es = North(italian)
+		it = North(italian)
+	[wr_windtype_south]
+		en = South
+		es = South(italian)
+		it = South(italian)
+	[wr_windtype_east]
+		en = East
+		es = East(italian)
+		it = East(italian)
+	[wr_windtype_west]
+		en = West
+		es = West(italian)
+		it = West(italian)
+	[wr_windtype_northeast]
+		en = North East
+		es = North East(italian)
+		it = North East(italian)
+	[wr_windtype_northwest]
+		en = North West
+		es = North West(italian)
+		it = North West(italian)
+	[wr_windtype_southeast]
+		en = South East
+		es = South East(italian)
+		it = South East(italian)
+	[wr_windtype_southwest]
+		en = South West
+		es = South West(italian)
+		it = South West(italian)
+	[wr_datasource_displayname]
+		en = Data Source
+		es = Data Source(italian)
+		it = Data Source(italian)
+	[wr_coordinate_displayname]
+		en = Coordinate
+		es = Coordinate(italian)
+		it = Coordinate(italian)
+	[wr_elevation_displayname]
+		en = Elevation
+		es = Elevation(italian)
+		it = Elevation(italian)
+	[wr_drybulbtemp_displayname]
+		en = Dry Bulb Temperature
+		es = Dry Bulb Temperature(italian)
+		it = Dry Bulb Temperature(italian)
+	[wr_wetbulbtemp_displayname]
+		en = Wet Bulb Temperature
+		es = Wet Bulb Temperature(italian)
+		it = Wet Bulb Temperature(italian)
+	[wr_relativehumidity_displayname]
+		en = Relative Humidity
+		es = Relative Humidity(italian)
+		it = Relative Humidity(italian)
+	[wr_winddirection_displayname]
+		en = Wind Direction
+		es = Wind Direction(italian)
+		it = Wind Direction(italian)
+	[wr_windspeed_displayname]
+		en = Wind Speed
+		es = Wind Speed(italian)
+		it = Wind Speed(italian)
+	[wr_aspect_displayname]
+		en = Aspect
+		es = Aspect(italian)
+		it = Aspect(italian)
+	[wr_physicallocation_displayname]
+		en = Physical Location
+		es = Physical Location(italian)
+		it = Physical Location(italian)
+	[wr_timetaken_displayname]
+		en = Time Taken
+		es = Time Taken(italian)
+		it = Time Taken(italian)
+	[resreq_description_displayname]
+		en = Description
+		comment = Resource Request
+		es = Description(italian)
+		it = Description(italian)
+	[resreq_type_displayname]
+		en = Type
+		es = Type(italian)
+		it = Type(italian)
+	[resreq_source_displayname]
+		en = Source
+		es = Source(italian)
+		it = Source(italian)
+	[resreq_quantity_displayname]
+		en = Quantity
+		es = Quantity(italian)
+		it = Quantity(italian)
+	[resreq_priority_displayname]
+		en = Priority
+		es = Priority(italian)
+		it = Priority(italian)
+	[resreq_location_displayname]
+		en = Location
+		es = Location(italian)
+		it = Location(italian)
+	[resreq_eta_displayname]
+		en = ETA
+		es = ETA(italian)
+		it = ETA(italian)
+	[resreq_status_displayname]
+		en = Status
+		es = Status(italian)
+		it = Status(italian)
+	[resreq_resreqtype_vessel]
+		en = Vessel
+		es = Vessel(italian)
+		it = Vessel(italian)
+	[resreq_resreqtype_vehicle]
+		en = Vehicle
+		es = Vehicle(italian)
+		it = Vehicle(italian)
+	[resreq_resreqtype_overhead]
+		en = Overhead
+		es = Overhead(italian)
+		it = Overhead(italian)
+	[resreq_resreqtype_equipment]
+		en = Equipment
+		es = Equipment(italian)
+		it = Equipment(italian)
+	[resreq_resreqtype_aircraft]
+		en = Aircraft
+		es = Aircraft(italian)
+		it = Aircraft(italian)
+	[resreq_resreqtype_helo]
+		en = Helo
+		es = Helo(italian)
+		it = Helo(italian)
+	[resreq_resreqtype_crew]
+		en = Crew
+		es = Crew(italian)
+		it = Crew(italian)
+	[resreq_priority_urgent]
+		en = Urgent
+		es = Urgent(italian)
+		it = Urgent(italian)
+	[resreq_priority_regular]
+		en = Regular
+		es = Regular(italian)
+		it = Regular(italian)
+	[sr_categorytype_none]
+		en = None
+		comment = General Message
+		es = None(es-translate)
+		it = None(italian)
+	[sr_categorytype_agency_representative]
+		en = Agency Representative
+		es = Representante de la agencia
+		it = Agency Representative(italian)
+	[sr_categorytype_comp_claim_damage_advisory]
+		en = Comp/Claim/Damage Advisory
+		es = Asesoría queja/solicitud/daño
+		it = Comp/Claim/Damage Advisory(italian)
+	[sr_categorytype_finance_section]
+		en = Finance Section
+		es = Sección de finanzas
+		it = Finance Section(italian)
+	[sr_categorytype_ground_support_request]
+		en = Ground Support Request
+		es = Solicitud de apoyo en tierra
+		it = Ground Support Request(italian)
+	[sr_categorytype_incident_commander]
+		en = Incident Commander
+		es = Responsable de incidencia
+		it = Incident Commander(italian)
+	[sr_categorytype_liason_officer]
+		en = Liaison Officer
+		es = Oficial de enlace
+		it = Liaison Officer(italian)
+	[sr_categorytype_logistics_section]
+		en = Logistics Section
+		es = Sección de logística
+		it = Logistics Section(italian)
+	[sr_categorytype_operations_section]
+		en = Operations Section
+		es = Sección de operaciones
+		it = Operations Section(italian)
+	[sr_categorytype_other]
+		en = Other (See Message)
+		es = Otro (ver mensaje)
+		it = Other (See Message)(italian)
+	[sr_categorytype_plans_section]
+		en = Plans Section
+		es = Sección de planes
+		it = Plans Section(italian)
+	[sr_categorytype_public_information_officer]
+		en = Public Information Officer
+		es = Director de información
+		it = Public Information Officer(italian)
+	[sr_categorytype_safety_officer]
+		en = Safety Officer
+		es = Safety Officer
+		it = Safety Officer(italian)
+	[sr_categorytype_suppression_repair]
+		en = Suppression Repair
+		es = Represión y  reparación
+		it = Suppression Repair(italian)
+	[sr_category_displayname]
+		en = Recipient
+		es = Destinatario
+		it = Recipient(italian)
+	[sr_location_displayname]
+		en = Location
+		es = Localización
+		it = Location(italian)
+	[sr_message_displayname]
+		en = Message
+		es = Mensajes
+		it = Message(italian)
+	[sr_message_hint]
+		en = Message
+		es = Mensajes
+		it = Message(italian)
+	[fr_incident_identification_displayname]
+		en = Incident Identification
+		comment = Field Report
+		es = Incident Identification(italian)
+		it = Incident Identification(italian)
+	[fr_incident_id_displayname]
+		en = Incident Id
+		es = Incident Id(italian)
+		it = Incident Id(italian)
+	[fr_incident_name_displayname]
+		en = Incident Name
+		es = Incident Name(italian)
+		it = Incident Name(italian)
+	[fr_pollution_case_displayname]
+		en = Pollution Case #
+		es = Pollution Case #(italian)
+		it = Pollution Case #(italian)
+	[fr_source_of_incident_displayname]
+		en = Source of Incident
+		es = Source of Incident(italian)
+		it = Source of Incident(italian)
+	[fr_location_of_incident_displayname]
+		en = Location of Incident
+		es = Location of Incident(italian)
+		it = Location of Incident(italian)
+	[fr_date_of_incident_displayname]
+		en = Date of Incident
+		es = Date of Incident(italian)
+		it = Date of Incident(italian)
+	[fr_investigators_displayname]
+		en = Investigators
+		es = Investigators(italian)
+		it = Investigators(italian)
+	[fr_activity_displayname]
+		en = Activity #
+		es = Activity #(italian)
+		it = Activity #(italian)
+	[fr_enforcement_displayname]
+		en = Enforcement #
+		es = Enforcement #(italian)
+		it = Enforcement #(italian)
+	[fr_ticket_displayname]
+		en = Ticket #
+		es = Ticket #(italian)
+		it = Ticket #(italian)
+	[fr_federal_project_displayname]
+		en = Federal Project #
+		es = Federal Project #(italian)
+		it = Federal Project #(italian)
+	[fr_discharge_data_displayname]
+		en = Discharge Data
+		es = Discharge Data(italian)
+		it = Discharge Data(italian)
+	[fr_material_spilled_displayname]
+		en = Material Spilled
+		es = Material Spilled(italian)
+		it = Material Spilled(italian)
+	[fr_total_spilled_est_displayname]
+		en = Total Spilled (est)
+		es = Total Spilled (est)(italian)
+		it = Total Spilled (est)(italian)
+	[fr_total_potential_displayname]
+		en = Total Potential
+		es = Total Potential(italian)
+		it = Total Potential(italian)
+	[fr_total_recovered_displayname]
+		en = Total Recovered
+		es = Total Recovered(italian)
+		it = Total Recovered(italian)
+	[fr_source_displayname]
+		en = Source
+		es = Source(italian)
+		it = Source(italian)
+	[fr_water_body_displayname]
+		en = Water Body
+		es = Water Body(italian)
+		it = Water Body(italian)
+	[fr_description_of_spill_displayname]
+		en = Description of Spill
+		es = Description of Spill(italian)
+		it = Description of Spill(italian)
+	[fr_description_of_cause_displayname]
+		en = Description of Cause
+		es = Description of Cause(italian)
+		it = Description of Cause(italian)
+	[fr_path_of_discharge_displayname]
+		en = Path of Discharge
+		es = Path of Discharge(italian)
+		it = Path of Discharge(italian)
+	[fr_weather_and_tides_displayname]
+		en = Weather and Tides
+		es = Weather and Tides(italian)
+		it = Weather and Tides(italian)
+	[fr_wind_direction_displayname]
+		en = Wind Direction
+		es = Wind Direction(italian)
+		it = Wind Direction(italian)
+	[fr_sea_height_displayname]
+		en = Sea Height
+		es = Sea Height(italian)
+		it = Sea Height(italian)
+	[fr_current_direction_displayname]
+		en = Current Direction
+		es = Current Direction(italian)
+		it = Current Direction(italian)
+	[fr_visibility_displayname]
+		en = Visibility
+		es = Visibility(italian)
+		it = Visibility(italian)
+	[fr_sunset_displayname]
+		en = Sunset
+		es = Sunset(italian)
+		it = Sunset(italian)
+	[fr_air_temp_displayname]
+		en = Air Temp
+		es = Air Temp(italian)
+		it = Air Temp(italian)
+	[fr_wind_speed_displayname]
+		en = Wind Speed
+		es = Wind Speed(italian)
+		it = Wind Speed(italian)
+	[fr_current_speed_displayname]
+		en = Current Speed
+		es = Current Speed(italian)
+		it = Current Speed(italian)
+	[fr_precipitation_displayname]
+		en = Precipitation
+		es = Precipitation(italian)
+		it = Precipitation(italian)
+	[fr_sunrise_displayname]
+		en = Sunrise
+		es = Sunrise(italian)
+		it = Sunrise(italian)
+	[fr_water_temp_displayname]
+		en = Water Temp
+		es = Water Temp(italian)
+		it = Water Temp(italian)
+	[fr_individual_company_displayname]
+		en = Individual / Company
+		es = Individual / Company(italian)
+		it = Individual / Company(italian)
+	[fr_individual_company_address_displayname]
+		en = Individual / Company Address
+		es = Individual / Company Address(italian)
+		it = Individual / Company Address(italian)
+	[fr_individual_company_phone_displayname]
+		en = Individual / Company Phone
+		es = Individual / Company Phone(italian)
+		it = Individual / Company Phone(italian)
+	[fr_relationship_displayname]
+		en = Relationship
+		es = Relationship(italian)
+		it = Relationship(italian)
+	[fr_license_or_doc_displayname]
+		en = License or Doc #
+		es = License or Doc #(italian)
+		it = License or Doc #(italian)
+	[fr_witness_1_name_displayname]
+		en = Witness 1 Name
+		es = Witness 1 Name(italian)
+		it = Witness 1 Name(italian)
+	[fr_witness_1_address_displayname]
+		en = Witness 1 Address
+		es = Witness 1 Address(italian)
+		it = Witness 1 Address(italian)
+	[fr_witness_1_phone_displayname]
+		en = Witness 1 Phone
+		es = Witness 1 Phone(italian)
+		it = Witness 1 Phone(italian)
+	[fr_witness_2_name_displayname]
+		en = Witness 2 Name
+		es = Witness 2 Name(italian)
+		it = Witness 2 Name(italian)
+	[fr_witness_2_address_displayname]
+		en = Witness 2 Address
+		es = Witness 2 Address(italian)
+		it = Witness 2 Address(italian)
+	[fr_witness_2_phone_displayname]
+		en = Witness 2 Phone
+		es = Witness 2 Phone(italian)
+		it = Witness 2 Phone(italian)
+	[fr_oil_samples_displayname]
+		en = Oil Samples
+		es = Oil Samples(italian)
+		it = Oil Samples(italian)
+	[fr_samples_taken_displayname]
+		en = Samples Taken
+		es = Samples Taken(italian)
+		it = Samples Taken(italian)
+	[fr_number_displayname]
+		en = Number
+		es = Number(italian)
+		it = Number(italian)
+	[fr_suspected_source_displayname]
+		en = Suspected Source
+		es = Suspected Source(italian)
+		it = Suspected Source(italian)
+	[fr_identification_displayname]
+		en = Identification
+		es = Identification(italian)
+		it = Identification(italian)
+	[fr_date_displayname]
+		en = Date
+		es = Date(italian)
+		it = Date(italian)
+	[fr_time_displayname]
+		en = Time
+		es = Time(italian)
+		it = Time(italian)
+	[fr_witness_displayname]
+		en = Witness
+		es = Witness(italian)
+		it = Witness(italian)
+	[fr_sample_source_displayname]
+		en = Sample Source
+		es = Sample Source(italian)
+		it = Sample Source(italian)
+	[fr_clean_sample_displayname]
+		en = Clean Sample
+		es = Clean Sample(italian)
+		it = Clean Sample(italian)
+	[fr_suspect_source_sample_1_displayname]
+		en = Suspect Source Sample 1
+		es = Suspect Source Sample 1(italian)
+		it = Suspect Source Sample 1(italian)
+	[fr_suspect_source_sample_2_displayname]
+		en = Suspect Source Sample 2
+		es = Suspect Source Sample 2(italian)
+		it = Suspect Source Sample 2(italian)
+	[fr_suspect_source_sample_3_displayname]
+		en = Suspect Source Sample 3
+		es = Suspect Source Sample 3(italian)
+		it = Suspect Source Sample 3(italian)
+	[fr_suspect_source_sample_4_displayname]
+		en = Suspect Source Sample 4
+		es = Suspect Source Sample 4(italian)
+		it = Suspect Source Sample 4(italian)
+	[fr_vessel_displayname]
+		en = Vessel
+		es = Vessel(italian)
+		it = Vessel(italian)
+	[fr_vessel_name_displayname]
+		en = Vessel Name
+		es = Vessel Name(italian)
+		it = Vessel Name(italian)
+	[fr_call_sign_displayname]
+		en = Call Sign
+		es = Call Sign(italian)
+		it = Call Sign(italian)
+	[fr_flag_displayname]
+		en = Flag
+		es = Flag(italian)
+		it = Flag(italian)
+	[fr_owner_operator_displayname]
+		en = Owner / Operator
+		es = Owner / Operator(italian)
+		it = Owner / Operator(italian)
+	[fr_operator_phone_displayname]
+		en = Operator Phone
+		es = Operator Phone(italian)
+		it = Operator Phone(italian)
+	[fr_gross_tonnage_displayname]
+		en = Gross Tonnage
+		es = Gross Tonnage(italian)
+		it = Gross Tonnage(italian)
+	[fr_type_of_vessel_displayname]
+		en = Type of Vessel
+		es = Type of Vessel(italian)
+		it = Type of Vessel(italian)
+	[fr_designation_displayname]
+		en = Designation
+		es = Designation(italian)
+		it = Designation(italian)
+	[fr_address_displayname]
+		en = Address
+		es = Address(italian)
+		it = Address(italian)
+	[fr_agent_displayname]
+		en = Agent
+		es = Agent(italian)
+		it = Agent(italian)
+	[fr_agent_phone_displayname]
+		en = Agent Phone
+		es = Agent Phone(italian)
+		it = Agent Phone(italian)
+	[fr_COFR_displayname]
+		en = COFR
+		es = COFR(italian)
+		it = COFR(italian)
+	[fr_SOPEP_displayname]
+		en = SOPEP
+		es = SOPEP(italian)
+		it = SOPEP(italian)
+	[fr_oil_trans_procedures_displayname]
+		en = Oil Trans Procedures
+		es = Oil Trans Procedures(italian)
+		it = Oil Trans Procedures(italian)
+	[fr_IOPP_displayname]
+		en = IOPP
+		es = IOPP(italian)
+		it = IOPP(italian)
+	[fr_oil_record_book_displayname]
+		en = Oil Record Book
+		es = Oil Record Book(italian)
+		it = Oil Record Book(italian)
+	[fr_declaration_of_inspection_displayname]
+		en = Declaration of Inspection
+		es = Declaration of Inspection(italian)
+		it = Declaration of Inspection(italian)
+	[fr_person_in_charge_displayname]
+		en = Person in Charge
+		es = Person in Charge(italian)
+		it = Person in Charge(italian)
+	[fr_master_displayname]
+		en = Master
+		es = Master(italian)
+		it = Master(italian)
+	[fr_chief_engineer_displayname]
+		en = Chief Engineer
+		es = Chief Engineer(italian)
+		it = Chief Engineer(italian)
+	[fr_keel_laid_date_displayname]
+		en = Keel Laid Date
+		es = Keel Laid Date(italian)
+		it = Keel Laid Date(italian)
+	[fr_facility_and_other_parties_displayname]
+		en = Facility and Other Parties
+		es = Facility and Other Parties(italian)
+		it = Facility and Other Parties(italian)
+	[fr_facility_displayname]
+		en = Facility
+		es = Facility(italian)
+		it = Facility(italian)
+	[fr_type_displayname]
+		en = Type
+		es = Type(italian)
+		it = Type(italian)
+	[fr_facility_address_displayname]
+		en = Facility Address
+		es = Facility Address(italian)
+		it = Facility Address(italian)
+	[fr_facility_phone_displayname]
+		en = Facility Phone
+		es = Facility Phone(italian)
+		it = Facility Phone(italian)
+	[fr_owner_op_displayname]
+		en = Owner / Operator
+		es = Owner / Operator(italian)
+		it = Owner / Operator(italian)
+	[fr_operations_manager_displayname]
+		en = Operations Manager
+		es = Operations Manager(italian)
+		it = Operations Manager(italian)
+	[fr_other_party_displayname]
+		en = Other Party
+		es = Other Party(italian)
+		it = Other Party(italian)
+	[fr_other_vessel_displayname]
+		en = Other Vessel
+		es = Other Vessel(italian)
+		it = Other Vessel(italian)
+	[fr_other_facility_displayname]
+		en = Other Facility
+		es = Other Facility(italian)
+		it = Other Facility(italian)
+	[fr_other_facility_address_displayname]
+		en = Other Facility Address
+		es = Other Facility Address(italian)
+		it = Other Facility Address(italian)
+	[fr_other_facility_phone_displayname]
+		en = Other Facility Phone
+		es = Other Facility Phone(italian)
+		it = Other Facility Phone(italian)
+	[fr_factors_displayname]
+		en = Factors
+		es = Factors(italian)
+		it = Factors(italian)
+	[fr_aggravating_minus_displayname]
+		en = Aggravating (-)
+		es = Aggravating (-)(italian)
+		it = Aggravating (-)(italian)
+	[fr_mitigating_plus_displayname]
+		en = Mitigating (+)
+		es = Mitigating (+)(italian)
+		it = Mitigating (+)(italian)
+	[fr_notes_displayname]
+		en = Notes
+		es = Notes(italian)
+		it = Notes(italian)

@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,12 +30,13 @@
  */
 //
 //  FormEditText.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
 #import <UIKit/UIKit.h>
 #import "FormWidget.h"
+#import "DataManager.h"
 
 @interface FormSpinner : FormWidget <UITextViewDelegate, UIActionSheetDelegate>
 
@@ -50,5 +51,6 @@
 - (id)initWithTitle:(NSString *)title options:(NSArray *)options;
 - (void)refreshLayout:(UIView *)view;
 -(CustomTextView*) getTextView;
-
+-(void)setSpinnerWidth:(double)width;
+-(void)setSpinnerPosition:(double)x :(double)y;
 @end

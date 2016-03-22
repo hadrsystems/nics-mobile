@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircleEditView">
+            <connections>
+                <outlet property="CircleColorPickerButton" destination="9f8-Gk-S9i" id="dLk-W6-bH2"/>
+                <outlet property="view" destination="Sc8-SB-OwO" id="bGz-x9-aHJ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Sc8-SB-OwO" userLabel="CircleView">
+            <rect key="frame" x="0.0" y="0.0" width="512" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXD-Uh-ub1">
+                    <rect key="frame" x="8" y="8" width="60" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="ALs-YD-YB1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Confirm" backgroundImage="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="CircleViewConfirmButtonPressed:" destination="-1" eventType="touchUpInside" id="5sF-2K-VV8"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCz-EG-VwQ">
+                    <rect key="frame" x="76" y="8" width="60" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="AuU-xO-x8a"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Cancel" backgroundImage="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="CircleViewCancelButtonPressed:" destination="-1" eventType="touchUpInside" id="U81-ag-4rX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9f8-Gk-S9i">
+                    <rect key="frame" x="144" y="8" width="152" height="52"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <color key="tintColor" red="1" green="0.10768036559999999" blue="0.15951115129999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Color">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="CircleColorPickerButtonPressed:" destination="-1" eventType="touchUpInside" id="dMc-by-DMY"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <accessibility key="accessibilityConfiguration" label="CircleView"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="wXD-Uh-ub1" secondAttribute="bottom" constant="8" id="5k8-Oh-sad"/>
+                <constraint firstItem="9f8-Gk-S9i" firstAttribute="leading" secondItem="uCz-EG-VwQ" secondAttribute="trailing" constant="8" id="8ef-gB-oNi"/>
+                <constraint firstItem="9f8-Gk-S9i" firstAttribute="top" secondItem="Sc8-SB-OwO" secondAttribute="top" constant="8" id="9xb-k3-anu"/>
+                <constraint firstItem="wXD-Uh-ub1" firstAttribute="leading" secondItem="Sc8-SB-OwO" secondAttribute="leading" constant="8" id="B1w-0A-Zkc"/>
+                <constraint firstAttribute="trailing" secondItem="9f8-Gk-S9i" secondAttribute="trailing" constant="8" id="PgG-Ww-ggl"/>
+                <constraint firstAttribute="bottom" secondItem="9f8-Gk-S9i" secondAttribute="bottom" constant="8" id="Tiu-ws-YaH"/>
+                <constraint firstItem="uCz-EG-VwQ" firstAttribute="top" secondItem="Sc8-SB-OwO" secondAttribute="top" constant="8" id="Vtk-YB-SX6"/>
+                <constraint firstItem="wXD-Uh-ub1" firstAttribute="top" secondItem="Sc8-SB-OwO" secondAttribute="top" constant="8" id="gac-ed-gtr"/>
+                <constraint firstAttribute="bottom" secondItem="uCz-EG-VwQ" secondAttribute="bottom" constant="8" id="qdd-z9-Tte"/>
+                <constraint firstItem="uCz-EG-VwQ" firstAttribute="leading" secondItem="wXD-Uh-ub1" secondAttribute="trailing" constant="8" id="tw9-j9-vKS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="1262" y="85"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="button" width="330" height="80"/>
+    </resources>
+</document>

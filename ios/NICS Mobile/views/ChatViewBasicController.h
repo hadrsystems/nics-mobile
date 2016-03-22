@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -42,6 +42,8 @@
 @property DataManager *dataManager;
 @property NSMutableArray<ChatPayload>* messages;
 @property NSDateFormatter *dateFormatter;
+@property bool willPollMoreChats;
+@property long chatPolledAt;
 
 -(void) addMessageToTable;
 -(void) addMessageToTableFromNotification:(NSNotification *) notification;

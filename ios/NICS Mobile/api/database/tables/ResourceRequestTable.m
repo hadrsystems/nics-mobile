@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  ResourceRequestTable.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -119,6 +119,7 @@ static NSDictionary * tableColumnsDictionary;
         ResourceRequestPayload *payload = [[ResourceRequestPayload alloc] initWithString:[result objectForKey:@"json"] error:&error];
         [payload parse];
         [payload setId:[result objectForKey:@"id"]];
+        [payload setFormtypeid:[result objectForKey:@"formtypeid"]];
         
         if(error != nil) {
             NSLog(@"%@", [error localizedDescription]);

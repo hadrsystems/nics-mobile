@@ -144,19 +144,9 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>lrfEnabled</string>
+			<string>calTracking</string>
 			<key>Title</key>
-			<string>Laser Range Finder</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>debugEnabled</string>
-			<key>Title</key>
-			<string>Show Debug Tab</string>
+			<string>Enable California Tracking</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -177,16 +167,18 @@
 			<string>Select NICS Server</string>
 			<key>Titles</key>
 			<array>
-				<string>Your Instance</string>
+				<string>Your Instance Title 1</string>
+				<string>Your Instance Title 2</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>https://yourdomain/api/v1/</string>
+				<string>https://yourdomain1/api/v1/</string>
+				<string>https://yourdomain2/api/v1/</string>
 			</array>
 			<key>Key</key>
 			<string>selectedServer</string>
 			<key>DefaultValue</key>
-			<string>https://yourdomain/api/v1/</string>
+			<string>https://yourdomain1/api/v1/</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -195,16 +187,18 @@
 			<string>Select NICS Authentication Server</string>
 			<key>Titles</key>
 			<array>
-				<string>Your Identity</string>
+				<string>Your Instance authserver Title 1</string>
+				<string>Your Instance authserver Title 2</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>https://yourdomain/openam/</string>
+				<string>https://yourauthdomain1/openam/</string>
+				<string>https://yourauthdomain2/openam/</string>
 			</array>
 			<key>Key</key>
 			<string>selectedAuthServer</string>
 			<key>DefaultValue</key>
-			<string>https://yourdomain/openam/</string>
+			<string>https://yourauthdomain1/openam/</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -213,19 +207,70 @@
 			<string>Select NICS Geo Server</string>
 			<key>Titles</key>
 			<array>
-				<string>Your Mapserver</string>
+				<string>Your Instance geoserver Title 1</string>
+				<string>Your Instance geoserver Title 2</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>https://yourdomain/geoserver/</string>
+				<string>https://yourdomain1/geoserver/</string>
+				<string>https://yourdomain2/geoserver/</string>
 			</array>
 			<key>Key</key>
 			<string>selectedGeoServer</string>
 			<key>DefaultValue</key>
-			<string>https://yourdomain/geoserver/</string>
+			<string>https://yourdomain1/geoserver/</string>
 		</dict>
+        <dict>
+            <key>DefaultValue</key>
+            <false/>
+            <key>Key</key>
+            <string>useCustomServer</string>
+            <key>Title</key>
+            <string>Use Custom Servers</string>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+            <key>Title</key>
+            <string>Custom NICS Server:</string>
+            <key>Key</key>
+            <string>customNicsServer</string>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+            <key>Title</key>
+            <string>Custom Authentication Server:</string>
+            <key>Key</key>
+            <string>customAuthServer</string>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+            <key>Title</key>
+            <string>Custom Geo Server:</string>
+            <key>Key</key>
+            <string>customGeoServer</string>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+            <key>Title</key>
+            <string>Custom Domain:</string>
+            <key>Key</key>
+            <string>customCookieDomain</string>
+        </dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>
+	<key>CookieDomains</key>
+	<dict>
+		<key>https://yourdomain1/api/v1/</key>
+		<string>.yourdomain1.tld</string>
+		<key>https://yourdomain2/api/v1/</key>
+		<string>.yourdomain2.tld</string>
+	</dict>
 </dict>
 </plist>

@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -46,23 +46,37 @@ UIStoryboard *currentStoryboard;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"fieldReportsUpdateReceived" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"IncidentSwitched" object:nil];
-    [_dataManager requestFieldReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FieldReportsPolledNothing) name:@"FieldReportsPolledNothing" object:nil];
+    [_dataManager requestFieldReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
     
     if([_dataManager getIsIpad]  == true){
         currentStoryboard = [UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil];
     }
     
-    if([_dataManager isIpad]){  //hacky method to get tableview displayed properly
-        CGRect thisFrame = self.view.frame;
-        thisFrame.size.width = 512;
-        self.view.frame = thisFrame;
-    }
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor blackColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshFieldReports)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                forKey:NSForegroundColorAttributeName];
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Checking for new reports", nil)  attributes:attrsDictionary];
+    self.refreshControl.attributedTitle = attributedTitle;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refreshFieldReports{
+    [_dataManager requestFieldReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings]intValue] immediate:YES];
+}
+-(void)FieldReportsPolledNothing{
+    [self.refreshControl endRefreshing];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -80,6 +94,7 @@ UIStoryboard *currentStoryboard;
     }
     
     [[self tableView] reloadData];
+    [self.refreshControl endRefreshing];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -171,15 +186,11 @@ UIStoryboard *currentStoryboard;
 
 - (void)prepareForTabletCanvasSwap:(BOOL)isEdit :(NSInteger)index{
     
-    bool newReport = false;
-    if([IncidentButtonBar GetFieldReportDetailView] == nil){
-        [IncidentButtonBar SetFieldReportDetailView:[currentStoryboard instantiateViewControllerWithIdentifier:@"FieldReportDetailViewID"]];
-        newReport = true;
-    }
-    
     FieldReportPayload *payload;
     if(_reports.count > 0 && index >= 0) {
         payload = _reports[index];
+    } else if( index == -2){
+        payload = [IncidentButtonBar GetFieldReportDetailView].payload;
     } else {
         payload = [[FieldReportPayload alloc]init];
     }
@@ -194,27 +205,22 @@ UIStoryboard *currentStoryboard;
             [[IncidentButtonBar GetSaveDraftButton] setHidden:TRUE];
             [[IncidentButtonBar GetSubmitButton] setHidden:TRUE];
         }
-        [IncidentButtonBar GetFieldReportDetailView].payload = payload;
         
     } else if (isEdit==true) {
         [IncidentButtonBar GetFieldReportDetailView].hideEditControls = NO;
-        [IncidentButtonBar GetFieldReportDetailView].payload = payload;
         [[IncidentButtonBar GetSaveDraftButton] setHidden:FALSE];
         [[IncidentButtonBar GetSubmitButton] setHidden:FALSE];
         
     } else {
-        [IncidentButtonBar GetFieldReportDetailView].payload = payload;
         [[IncidentButtonBar GetSaveDraftButton] setHidden:TRUE];
         [[IncidentButtonBar GetSubmitButton] setHidden:TRUE];
     }
     
-    if(newReport == false){
-        [IncidentButtonBar GetFieldReportDetailView].payload = payload;
-        [[IncidentButtonBar GetFieldReportDetailView] configureView];
-    
-    }
+    [IncidentButtonBar GetFieldReportDetailView].payload = payload;
+    [[IncidentButtonBar GetFieldReportDetailView] configureView];
     
     [[IncidentButtonBar GetAddButton] setHidden:TRUE];
+    [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
     [[IncidentButtonBar GetCancelButton] setHidden:FALSE];
     
     [[IncidentButtonBar GetIncidentCanvas] addSubview:[IncidentButtonBar GetFieldReportDetailView].view ];

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ <!--|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,6 @@
 	<string name="FIELDREPORT">Informe de campo</string>
 	<string name="GENERALMESSAGE">Mensaje general</string>
 	<string name="WEATHERREPORT">Weather Report</string>
-	<string name="UXOREPORT">Informe de explosivos</string>
-	<string name="CATANREQUEST">Catan Request</string>
 	<string name="LOGOUT">Desconexión</string>
 	<string name="MAPCOLLABORATION">Map Collaboration</string>
 	<string name="OVERVIEW">Descripción general</string>
@@ -60,15 +58,21 @@
 	<string name="RESOURCEREQUEST">Solicitud de medios</string>
 	<string name="USERINFO">Información del usuario</string>
 	<string name="add">Add</string>
+	<string name="filter">Filter</string>
+	<string name="no_reports_to_filter">No Reports To Filter (es translate)</string>
+	<string name="you_are_not_seeing_all_available_reports">You are not seeing all available reports.</string>
+	<string name="date_range">Date Range (ES Translate)</string>
 	<string name="assigned_to">Assigned To: %s</string>
 	<string name="browse_gallery">Explorar la galería</string>
 	<string name="capture_image">Capturar imagen</string>
 	<string name="cancel">Cancelar</string>
 	<string name="recipient">Destinatario</string>
+	<string name="select_color">Select Color (es translate)</string>
 	<string name="color_picker_title">Color Picker</string>
 	<string name="common">Common</string>
 	<string name="copy_as_new_report">Copy as New Report</string>
 	<string name="mark_all_as_read">Mark all as read</string>
+	<string name="refresh">Refresh (es translate)</string>
 	<string name="message">Mensaje</string>
 	<string name="device_not_connected_to_network">Device is not connected to a network.</string>
 	<string name="location">Localización (latitud, longitud -decimal)</string>
@@ -94,23 +98,26 @@
 	<string name="confirm_form_cancel">If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.</string>
 	<string name="confirm_continue_to_title">Continue to %s list?</string>
 	<string name="confirm_continue_to_description">You are currently editing a %s. If you leave this page without saving as draft or submitting to the server then your changes will be lost. Press OK to cancel this entry, or Cancel to continue editing the form.</string>
+	<string name="open_map_and_tap_to_place_marker">Open map and tap to place marker. (es translate)</string>
 	<string name="draft">&lt;Borrador&gt;</string>
 	<string name="national_guard">National Guard</string>
 	<string name="symbol_picker">Symbol Picker</string>
 	<string name="add_item">Add Item</string>
 	<string name="debug_log">Debug Log</string>
 	<string name="enter_chat_message">Enter chat message…</string>
+	<string name="select_collabroom_to_join_your_teams_chat">Select collabroom to join your team\&#39;s chat. (es translate)</string>
+	<string name="no_chat_messages_have_been_posted_in_this_room_yet">No chat messages have been posted in this room yet. (es translate)</string>
 	<string name="enter_debug_log_comment">Enter debug log comment…</string>
 	<string name="no_messages_received">No messages received.\n</string>
 	<string name="no_debug_messages_logged">No debug messages logged.\n</string>
+	<string name="reports_not_available_for_your_organization">Reports are not available for your organization (es translate)</string>
 	<string name="no_damage_reports_exist">No damage surveys exist - please click the \&#39;+\&#39; sign to create a new survey.</string>
 	<string name="no_field_reports_exist">No field reports exist - please click the \&#39;+\&#39; sign to create a new report.</string>
 	<string name="no_resource_requests_exist">No resource requests exist - please click the \&#39;+\&#39; sign to create a new request.</string>
 	<string name="no_simple_reports_exist">No general messages exist - please click the \&#39;+\&#39; sign to create a new message.</string>
 	<string name="no_weather_reports_exist">No weather reports exist - please click the \&#39;+\&#39; sign to create a new report.</string>
-	<string name="no_uxo_reports_exist">No Explosive reports exist - please click the \&#39;+\&#39; sign to create a new report.</string>
+	<string name="go_to_report_on_map">Go to report on map</string>
 	<string name="no_rooms_accessible">You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.</string>
-	<string name="no_catan_requests_exist">No Catan Requests exist.</string>
 	<string name="n_a">N/A</string>
 	<!-- Don't Translate -->
 	<string name="select_an_incident">Selecciona incidencia</string>
@@ -139,7 +146,8 @@
 	<string name="server_">Servidor: %s</string>
 	<string name="prompt_email">Correo electrónico</string>
 	<string name="prompt_password">Contraseña</string>
-	<string name="action_sign_in_register">&lt;b&gt;Registrarse&lt;/b&gt;</string>
+	<string name="action_sign_in_register">Registrarse</string>
+	<string name="tablet_layout_checkbox_text">Tablet Layout \n (beta: hasn\&#39;t been tested on all devices yet) (es translate)</string>
 	<string name="error_invalid_email">This email address is invalid</string>
 	<string name="error_invalid_password">This password is too short</string>
 	<string name="error_incorrect_password">This password is incorrect</string>
@@ -163,6 +171,10 @@
 	<string name="pref_description_select_geo_server">NOTE: Changing geo servers will require you to re-login.</string>
 	<string name="pref_title_select_auth_server">Select NICS Authentication Server</string>
 	<string name="pref_description_select_auth_server">NOTE: Changing authentication servers will require you to re-login.</string>
+	<string name="pref_title_nics_domain_name">NICS Domain Name</string>
+	<string name="pref_summary_nics_domain_name">Specify domain for custom server</string>
+	<string name="pref_title_custom_domain_toggle">Use Custom Domain Name?</string>
+	<string name="pref_summary_custom_domain_toggle">NOTE: Changing the domain will log you out and restart NICS</string>
 	<string name="pref_description_mdt_sync_rate">NOTE: Faster GPS updates will consume a significant amount of battery power!</string>
 	<string name="pref_title_coordinate_display_format">Coordinate Display Format</string>
 	<string name="pref_description_coordinate_display_format">Select how you would like lat/long coordinates to be displayed.</string>
@@ -179,6 +191,9 @@
 	<string name="pref_title_collabroom_sync_frequency">Map/Chat Update Frequency</string>
 	<string name="pref_title_mdt_sync_frequency">MDT Update Frequency</string>
 	<string name="pref_title_wfs_sync_frequency">WFS Layer Update Frequency</string>
+	<string name="pref_title_clear_local_map_data">Clear Local Map Data</string>
+	<string name="pref_title_clear_local_chat_data">Clear Local Chat Data</string>
+	<string name="pref_title_clear_local_reports_data">Clear Local Reports Data</string>
 	<!-- Example settings for Notifications -->
 	<string name="pref_header_notifications">Notifications</string>
 	<string name="pref_title_new_message_notifications">New message notifications</string>

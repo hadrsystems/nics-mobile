@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  AppDelegate.m
-//  PHINICS
+//  nics
 //
 //
 
@@ -39,8 +39,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-   // [GMSServices provideAPIKey:@"AIzaSyBTtinWMxOGlOFDatKrpSdcrD0qUoLPRmw"];
-    [GMSServices provideAPIKey:@"AIzaSyAF-gP3tcXqD3OYz3HmLdZmatsHv7AYKUk"];     //new key registered under phinics.mit.ll@gmail.com
+    [GMSServices provideAPIKey:@"YOU GOOGLE MAPS API KEY HERE"];
     
     // Override point for customization after application launch.
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -76,6 +75,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    [ActiveWfsLayerManager initialize];
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 
 //    NSNotification *AppHasBeenResumed = [NSNotification notificationWithName:@"AppHasBeenResumed" object:nil];

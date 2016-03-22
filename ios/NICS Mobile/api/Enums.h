@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  RestClient.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -74,14 +74,14 @@ typedef enum {
     RESREQ = 9,
     NINE_110 = 10,
     DR = 11,
-    UXO = 12,
-    SVRRPT = 13,
-    AGRRPT = 14,
+    AAA = 12,
+    BBB = 13,
+    CCC = 14,
     WR = 15
 } FormType;
-#define FormTypeArrayAbbrev @"ROC",@"RESC",@"ABC",@"TWO_15",@"SITREP",@"ASSGN",@"SR",@"FR",@"TASK",@"RESREQ",@"NINE_110",@"DR",@"UXO",@"SVRRPT",@"AGRRPT",@"WR",nil
+#define FormTypeArrayAbbrev @"ROC",@"RESC",@"ABC",@"TWO_15",@"SITREP",@"ASSGN",@"SR",@"FR",@"TASK",@"RESREQ",@"NINE_110",@"DR",@"AAA",@"BBB",@"CCC",@"WR",nil
 
-#define FormTypeArrayFull @"Report on Condition",@"RESC",@"ABC",@"215",@"SITREP",@"Assignment Form",@"Simple Report",@"Field Report",@"Task",@"Resource Request",@"9110 - Notification Report",@"Damage Report",@"Explosive Report",@"Catan Survivor Request",@"Catan Survivor Aggrogate Request",@"Weather Report",nil
+#define FormTypeArrayFull @"Report on Condition",@"RESC",@"ABC",@"215",@"SITREP",@"Assignment Form",@"Simple Report",@"Field Report",@"Task",@"Resource Request",@"9110 - Notification Report",@"Damage Report",@"AAA",@"BBB",@"CCC",@"Weather Report",nil
 
 +(NSString*) formTypeEnumToStringAbbrev:(FormType)enumVal;
 +(NSString*) formTypeEnumToStringFull:(FormType)enumVal;
@@ -102,7 +102,10 @@ typedef enum {
     rectangle = 120,
     polygon = 130,
     circle = 140,
-    text = 150
+    text = 150,
+    AaaReportMarkup = 160,
+    GeneralMessageMarkup = 170,
+    DamageReportMarkup = 180
 } MarkupType;
 
 + (NSDictionary *) simpleReportCategoriesDictionary;

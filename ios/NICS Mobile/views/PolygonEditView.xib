@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PolygonEditView">
+            <connections>
+                <outlet property="PolygonColorPickerButton" destination="vHQ-45-ZHN" id="E3A-QF-6Aa"/>
+                <outlet property="PolygonRemoveLastPointButton" destination="jTX-Pq-eFj" id="ph8-cs-9vF"/>
+                <outlet property="view" destination="GBJ-mr-gOM" id="O7Y-W2-f6U"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="GBJ-mr-gOM" userLabel="PolygonView">
+            <rect key="frame" x="0.0" y="0.0" width="512" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="277-ZB-SEk">
+                    <rect key="frame" x="76" y="8" width="60" height="53"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="nL2-wA-xWv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Cancel" backgroundImage="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="PolygonCancelButtonPressed:" destination="-1" eventType="touchUpInside" id="1ys-I1-GXA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oo4-dv-mNs">
+                    <rect key="frame" x="8" y="8" width="60" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="mGg-pL-RI9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Confirm" backgroundImage="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="PolygonConfirmButtonPressed:" destination="-1" eventType="touchUpInside" id="Jb8-Sd-oBE"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTX-Pq-eFj">
+                    <rect key="frame" x="144" y="8" width="60" height="53"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="jn0-CI-lnI"/>
+                    </constraints>
+                    <state key="normal" image="remove_marker" backgroundImage="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="PolygonRemoveLastPointButtonPressed:" destination="-1" eventType="touchUpInside" id="6F4-C1-73w"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHQ-45-ZHN">
+                    <rect key="frame" x="212" y="8" width="149" height="54"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <color key="tintColor" red="1" green="0.10768036559999999" blue="0.15951115129999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Color">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="PolygonColorPickerButtonPressed:" destination="-1" eventType="touchUpInside" id="Ndf-Xs-EYw"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <accessibility key="accessibilityConfiguration" label="PolygonView"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="277-ZB-SEk" secondAttribute="bottom" constant="8" id="0oh-gg-PQJ"/>
+                <constraint firstAttribute="bottom" secondItem="vHQ-45-ZHN" secondAttribute="bottom" constant="8" id="3dR-Uu-iQW"/>
+                <constraint firstAttribute="trailing" secondItem="vHQ-45-ZHN" secondAttribute="trailing" constant="8" id="4tz-fb-kkq"/>
+                <constraint firstAttribute="bottom" secondItem="oo4-dv-mNs" secondAttribute="bottom" constant="8" id="Asy-1u-G6X"/>
+                <constraint firstItem="oo4-dv-mNs" firstAttribute="top" secondItem="GBJ-mr-gOM" secondAttribute="top" constant="8" id="Ef7-pK-9XO"/>
+                <constraint firstAttribute="bottom" secondItem="jTX-Pq-eFj" secondAttribute="bottom" constant="8" id="IdN-xE-3mP"/>
+                <constraint firstItem="vHQ-45-ZHN" firstAttribute="top" secondItem="GBJ-mr-gOM" secondAttribute="top" constant="8" id="Yhw-1l-vUd"/>
+                <constraint firstItem="277-ZB-SEk" firstAttribute="leading" secondItem="oo4-dv-mNs" secondAttribute="trailing" constant="8" id="aWk-Bw-LX9"/>
+                <constraint firstItem="vHQ-45-ZHN" firstAttribute="leading" secondItem="jTX-Pq-eFj" secondAttribute="trailing" constant="8" id="glz-SA-BO2"/>
+                <constraint firstItem="oo4-dv-mNs" firstAttribute="leading" secondItem="GBJ-mr-gOM" secondAttribute="leading" constant="8" id="qRh-ws-uXx"/>
+                <constraint firstItem="jTX-Pq-eFj" firstAttribute="leading" secondItem="277-ZB-SEk" secondAttribute="trailing" constant="8" id="sG3-u3-aD1"/>
+                <constraint firstItem="vHQ-45-ZHN" firstAttribute="width" secondItem="jTX-Pq-eFj" secondAttribute="width" id="w9R-Zg-U21"/>
+                <constraint firstItem="277-ZB-SEk" firstAttribute="top" secondItem="GBJ-mr-gOM" secondAttribute="top" constant="8" id="y9G-B8-F6s"/>
+                <constraint firstItem="jTX-Pq-eFj" firstAttribute="top" secondItem="GBJ-mr-gOM" secondAttribute="top" constant="8" id="zK7-ct-OZV"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="w9R-Zg-U21"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="665" y="265"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="button" width="330" height="80"/>
+        <image name="remove_marker" width="32" height="32"/>
+    </resources>
+</document>

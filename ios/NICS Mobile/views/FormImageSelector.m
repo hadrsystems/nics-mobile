@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  FormEditText.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -35,6 +35,13 @@
 #import "IncidentButtonBar.h"
 
 @implementation FormImageSelector
+
+- (id)init
+{
+    self = [super init];
+    [self setup];
+    return self;
+}
 
 - (void)setup {
     [super setup];
@@ -78,7 +85,7 @@
     _formView = view;
     [_CameraImageView setImage: nil];
     _popoverOpen = NO;
-    
+    _readOnly = readOnly;
     
     if(readOnly){
         [_CaptureImageButton setHidden:YES];
@@ -156,19 +163,21 @@
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *touchedView = [super hitTest:point withEvent:event];
     
-    if(point.x > self.BrowseImageButton.frame.origin.x && point.x < self.BrowseImageButton.frame.origin.x + self.BrowseImageButton.frame.size.width && point.y > self.BrowseImageButton.frame.origin.y && point.y < self.BrowseImageButton.frame.origin.y + self.BrowseImageButton.frame.size.height) {
-        
-        if(_popoverOpen == false){
-            [self BrowseGalleryButtonPressed];
+    if(!_readOnly){
+        if(point.x > self.BrowseImageButton.frame.origin.x && point.x < self.BrowseImageButton.frame.origin.x + self.BrowseImageButton.frame.size.width && point.y > self.BrowseImageButton.frame.origin.y && point.y < self.BrowseImageButton.frame.origin.y + self.BrowseImageButton.frame.size.height) {
+            
+            if(_popoverOpen == false){
+                [self BrowseGalleryButtonPressed];
+            }
+            
+        }else if(point.x > self.CaptureImageButton.frame.origin.x && point.x < self.CaptureImageButton.frame.origin.x + self.CaptureImageButton.frame.size.width && point.y > self.CaptureImageButton.frame.origin.y && point.y < self.CaptureImageButton.frame.origin.y + self.CaptureImageButton.frame.size.height) {
+            
+            if(_popoverOpen == false){
+                [self captureImageButtonPressed];
+            }
+        }else{
+            _popoverOpen = NO;
         }
-        
-    }else if(point.x > self.CaptureImageButton.frame.origin.x && point.x < self.CaptureImageButton.frame.origin.x + self.CaptureImageButton.frame.size.width && point.y > self.CaptureImageButton.frame.origin.y && point.y < self.CaptureImageButton.frame.origin.y + self.CaptureImageButton.frame.size.height) {
-        
-        if(_popoverOpen == false){
-            [self captureImageButtonPressed];
-        }
-    }else{
-        _popoverOpen = NO;
     }
     
     return touchedView;
@@ -205,8 +214,9 @@
     
     if([self.dataManager getIsIpad] == true){
         UIPopoverController *myPopOver = [[UIPopoverController alloc]initWithContentViewController:imagePicker];
-        CGRect displayFrom = CGRectMake(1,1,1,1);
-        [myPopOver presentPopoverFromRect:displayFrom inView:_formView.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+        CGRect displayFrom = _formView.view.frame;
+        [myPopOver presentPopoverFromRect:displayFrom inView: [IncidentButtonBar GetOverview].view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+        
         _popoverOpen = YES;
     }else{
         [[self.dataManager getOverviewController] presentViewController:imagePicker animated:YES completion:nil];
@@ -247,6 +257,11 @@
     _popoverOpen = NO;
 }
 
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    _popoverOpen = NO;
+     [picker dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
 {

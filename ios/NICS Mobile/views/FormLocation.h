@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -43,10 +43,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *myLocationButton;
 @property (weak, nonatomic) IBOutlet UIButton *mapLocationButton;
 
+@property bool readOnly;
 
 - (void)configureFields;
 - (void)setData : (NSString*)lat : (NSString*) lon : (bool)readOnly;
+-(void)setLatLon : (NSString*)lat : (NSString*) lon;
+-(void)setLabel: (NSString*) text;
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
 -(void)cleanNotificationListener;
-    
+-(void)hideButtons;
+
 @end

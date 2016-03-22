@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  MarkupFeature.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -47,7 +47,7 @@
 @property NSNumber<Optional> *id;
 @property NSString<Optional> *dashStyle;
 @property NSString<Optional> *featureattributes;
-@property NSString *featureId;
+@property NSString<Optional> *featureId;
 @property NSString<Optional> *fillColor;
 @property NSString<Optional> *graphic;
 @property NSNumber<Optional> *graphicHeight;
@@ -57,10 +57,11 @@
 @property NSNumber<Optional> *labelSize;
 @property NSString<Optional> *labelText;
 @property NSString *username;
+@property NSNumber<Optional> *usersessionId;
 @property NSNumber<Optional> *seqNum;
 @property NSString<Optional> *strokeColor;
 @property NSNumber<Optional> *strokeWidth;
-@property NSNumber<Optional> *seqTime;
+@property NSNumber<Optional> *seqtime;
 @property NSString<Optional> *topic;
 @property NSString *type;
 @property NSNumber *opacity;
@@ -68,7 +69,9 @@
 @property NSArray<Optional> *geometryFiltered;
 @property NSNumber<Optional> *radius;
 @property NSNumber<Optional> *rotation;
-@property NSString *lastupdate;
+@property NSString<Optional> *lastupdate;
+@property NSString<Optional> *photoPath;
+@property NSString<Optional> *reportTypeAndId;
 
 -(NSMutableDictionary *) toSqlMapping;
 -(NSString *) getPointsString;

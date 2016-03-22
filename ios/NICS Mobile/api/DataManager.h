@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  DataManager.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -63,7 +63,7 @@
 @property NSTimer *chatMessagesPollingTimer;
 @property NSTimer *damageReportPollingTimer;
 @property NSTimer *fieldReportPollingTimer;
-@property NSTimer *uxoReportPollingTimer;
+@property NSTimer *weatherReportPollingTimer;
 @property NSTimer *markupFeaturesPollingTimer;
 @property NSTimer *resourceRequestPollingTimer;
 @property NSTimer *simpleReportPollingTimer;
@@ -83,22 +83,28 @@
 @property double mapSelectedLongitude;
 
 @property bool isIpad;
+@property bool isLoggedIn;
 @property bool appSuspended;
 @property BOOL TrafficDisplay;
 @property BOOL IndoorDisplay;
 @property int CurrentMapType;
+@property NSString *currentCookieDomain;
 
 +(id) getInstance;
 
 -(void)AppHasBeenSuspended:(NSNotification*)_notification;
 -(void)AppHasBeenResumed:(NSNotification*)_notification;
 
+- (void)registerDefaultsFromSettingsBundle;
+- (void)ResetLocalUserData;
+
 #pragma mark Polling Requests
+- (void) disableAllPollingTimers;
 - (void) requestActiveAssignmentRepeatedEvery:(int)seconds;
 - (void) requestChatMessagesRepeatedEvery:(int)seconds immediate:(BOOL)immediate;
 - (void) requestDamageReportsRepeatedEvery:(int)seconds immediate:(BOOL)immediate;
 - (void) requestFieldReportsRepeatedEvery:(int)seconds immediate:(BOOL)immediate;
-- (void) requestUxoReportsRepeatedEvery:(int)seconds immediate:(BOOL)immediate;
+- (void) requestWeatherReportsRepeatedEvery:(int)seconds immediate:(BOOL)immediate;
 - (void) requestMarkupFeaturesRepeatedEvery:(int)seconds immediate:(BOOL)immediate;
 - (void) requestResourceRequestsRepeatedEvery:(int)seconds immediate:(BOOL)immediate;
 - (void) requestSimpleReportsRepeatedEvery:(int)seconds immediate:(BOOL)immediate;
@@ -188,21 +194,20 @@
 
 - (NSNumber *)getLastSimpleReportTimestampForIncidentId: (NSNumber *) incidentId;
 
-#pragma mark Uxo Report History/Store & Forward
-- (BOOL)addUxoReportToHistory:(UxoReportPayload *) payload;
-- (BOOL)addUxoReportsToHistory:(NSArray<UxoReportPayload> *) payloadArray;
+#pragma mark Weather Report History/Store & Forward
+- (BOOL)addWeatherReportToHistory:(WeatherReportPayload *) payload;
+- (BOOL)addWeatherReportsToHistory:(NSArray<WeatherReportPayload> *) payloadArray;
 
-- (BOOL)addUxoReportToStoreAndForward:(UxoReportPayload *) payload;
-- (BOOL)addUxoReportsToStoreAndForward:(NSArray<UxoReportPayload> *) payloadArray;
+- (BOOL)addWeatherReportToStoreAndForward:(WeatherReportPayload *) payload;
+- (BOOL)addWeatherReportsToStoreAndForward:(NSArray<WeatherReportPayload> *) payloadArray;
 
-- (void)deleteUxoReportFromStoreAndForward:(UxoReportPayload *) payload;
+- (void)deleteWeatherReportFromStoreAndForward:(WeatherReportPayload *) payload;
 
-- (NSMutableArray<UxoReportPayload> *)getAllUxoReportsForIncidentId: (NSNumber *)incidentId;
-- (NSMutableArray<UxoReportPayload> *)getAllUxoReportsForIncidentId: (NSNumber *)incidentId since: (NSNumber *)timestamp;
-- (NSMutableArray<UxoReportPayload> *)getAllUxoReportsFromStoreAndForward;
+- (NSMutableArray<WeatherReportPayload> *)getAllWeatherReportsForIncidentId: (NSNumber *)incidentId;
+- (NSMutableArray<WeatherReportPayload> *)getAllWeatherReportsForIncidentId: (NSNumber *)incidentId since: (NSNumber *)timestamp;
+- (NSMutableArray<WeatherReportPayload> *)getAllWeatherReportsFromStoreAndForward;
 
-- (NSNumber *)getLastUxoReportTimestampForIncidentId: (NSNumber *) collabroomId;
-
+- (NSNumber *)getLastWeatherReportTimestampForIncidentId: (NSNumber *) collabroomId;
 
 #pragma mark Markup Features History/Store & Forward
 - (BOOL)addMarkupFeaturesToHistory:(NSArray<MarkupFeature> *) payloadArray;
@@ -213,13 +218,17 @@
 
 - (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesForCollabroomId: (NSNumber *)collabroomId;
 - (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesForCollabroomId: (NSNumber *)collabroomId since: (NSNumber *) timestamp;
+- (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesFromStoreAndForward;
+- (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesFromStoreAndForwardForCollabroomId:(NSNumber *)collabroomId;
+
+- (void)deleteMarkupFeatureFromStoreAndForward:(MarkupFeature *) feature;
+- (void)deleteMarkupFeatureFromStoreAndForwardByFeatureId:(NSString *)featureId;
+- (void)deleteMarkupFeatureFromReceiveTableByFeatureId:(NSString *)featureId;
 
 - (NSNumber *)getLastMarkupFeatureTimestampForCollabroomId: (NSNumber *) collabroomId;
 
 - (NSString *)deleteMarkupFeatureById:(NSString *) featureId;
-
-
-
+- (void) removeAllFeaturesInCollabroom:(NSNumber*)collabRoomId;
 
 
 - (BOOL)addPersonalLogMessage:(ChatPayload *) payload;
@@ -263,16 +272,19 @@
 - (NSMutableDictionary *)getCollabroomList;
 - (NSMutableDictionary *)getCollabroomNamesList;
 - (NSMutableArray *)getCollabroomPayloadArray;
-    
+
 - (NSString *)getServerFromSettings;
 - (NSString *)getAuthServerFromSettings;
 - (NSString *)getGeoServerFromSettings;
+- (NSString *)getCookieDomainForCurrentServer;
+- (bool)getUseCustomServerFromSettings;
 
-+ (int)getChatUpdateFrequencyFromSettings;
-+ (int)getMapUpdateFrequencyFromSettings;
-+ (int)getReportsUpdateFrequencyFromSettings;
++ (NSNumber *)getChatUpdateFrequencyFromSettings;
++ (NSNumber *)getMapUpdateFrequencyFromSettings;
++ (NSNumber *)getReportsUpdateFrequencyFromSettings;
 + (int)getMdtUpdateFrequencyFromSettings;
-+ (int)getWfsUpdateFrequencyFromSettings;
++ (NSNumber *)getWfsUpdateFrequencyFromSettings;
++ (bool)getCalTrackingEnabledFromSettings;
 
 -(void)setOverviewController:(UINavigationController *)controller;
 -(UINavigationController*)getOverviewController;

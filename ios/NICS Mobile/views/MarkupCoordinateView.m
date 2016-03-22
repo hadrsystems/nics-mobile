@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  MarkupCoordinateView.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -35,14 +35,21 @@
 
 @implementation MarkupCoordinateView
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setup];
-    }
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super initWithCoder:aDecoder];
+//    if (self) {
+//        [self setup];
+//    }
+//    return self;
+//}
+
+- (id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    [self setup];
     return self;
 }
+
 
 - (void)setup {
     _dataManager = [DataManager getInstance];
@@ -54,7 +61,6 @@
     _dimView.backgroundColor = [UIColor blackColor];
     _dimView.alpha = 0.75f;
     _dimView.userInteractionEnabled = NO;
-    
     
     _colorPickerImageView = [[ColorPickerImageView alloc] initWithImage:[colorPickerImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:_scrollView.superview.frame.size interpolationQuality:kCGInterpolationHigh]];
     _colorPickerImageView.center = CGPointMake(320.0/2, 392.0/2);

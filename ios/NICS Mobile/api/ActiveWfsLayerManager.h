@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -32,6 +32,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataManager.h"
 
 @interface TrackingLayer : NSObject
 
@@ -46,6 +47,7 @@
 @interface ActiveWfsLayerManager : NSObject
 
 +(void) initialize;
++(BOOL) isTrackingLayerOn:(NSString*)layerName;
 +(NSMutableArray*) getTrackingLayers;
 +(void) setTrackingLayerActiveAtIndex: (int)index : (bool) isActive;
 

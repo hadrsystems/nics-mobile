@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  FormView.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -65,6 +65,7 @@
     self.frame = CGRectMake(0,0, self.superview.frame.size.width -10, self.frame.size.height);
     
     [_collapseView reloadCollapseClick];
+    [_collapseView openCollapseClickCellAtIndex:0 animated:NO];
 }
 
 -(void)setAsDraft:(bool)isDraft{
@@ -96,7 +97,6 @@
 //    frame.size.width = self.superview.superview.frame.size.width;
 //    textView.frame = frame;
     [_collapseView reloadCollapseClick];
-
     [_collapseView openCollapseClickCellsWithIndexes:_openedSections animated:NO];
 //    _focusedTextView = nil;
 }
@@ -278,8 +278,6 @@
                         [self initTextView:textView];
                         
                     }
-
-                    
 //                    editText.frame = CGRectMake(editText.frame.origin.x, editText.frame.origin.y, self.view.superview.frame.size.width, editText.frame.size.height);
                     
                     [_viewMap setObject:editText forKey:field.key];
@@ -295,8 +293,6 @@
                         [textView setEditable:YES];
                         [textView setText:[field defaultText]];
                     }
-                    
-
                     
                     [_viewMap setObject:spinner forKey:field.key];
                     [_allInteractableFields addObject:spinner];
@@ -316,10 +312,17 @@
                     [_viewMap setObject:imageSelector forKey:field.key];
                     [_allInteractableFields addObject:imageSelector];
                     
+                } else if([field.type isEqualToString:@"color"]) {
+                    FormColorPicker *colorPicker = [[FormColorPicker alloc] init];
+                    colorPicker.label.text = NSLocalizedString(field.name,nil);
+                    [colorPicker setLayout:self.superview.frame];
+                    
+                    [_viewMap setObject:colorPicker forKey:field.key];
+                    [_allInteractableFields addObject:colorPicker];
+                    
                 }else if([field.type isEqualToString:@"location"]) {
                     FormLocation *formLocation = [[FormLocation alloc] init];
                     formLocation.label.text = NSLocalizedString(field.name,nil);
-                    
                     
                     for(NSInteger i = 0; i < formLocation.interactableViews.count; i++){
                         CustomTextView * textView = [formLocation.interactableViews objectAtIndex:i];
@@ -359,7 +362,6 @@
             
         } else if([object isKindOfClass:[FormSpinner class]]) {
             
-            
             FormSpinner * tempSpinner = (FormSpinner *)object;
             for(NSInteger i = 0; i < tempSpinner.interactableViews.count; i++){
                 CustomTextView * textView = [tempSpinner.interactableViews objectAtIndex:i];
@@ -377,9 +379,12 @@
         
         } else if([object isKindOfClass:[FormImageSelector class]]) {
             [dataDictionary setObject:[((FormImageSelector *)object) getData] forKey:key];    //getfullpath from widget
+        }else if([object isKindOfClass:[FormColorPicker class]]) {
+            FormColorPicker* colorPicker = ((FormColorPicker *)object);
+            NSString *colorValue = [colorPicker getData];
+            [dataDictionary setObject:colorValue forKey:key];
         }
     }
-    
     return dataDictionary;
 }
 
@@ -411,11 +416,14 @@
         if( [[[_sections objectAtIndex:index] fields] indexOfObject:field] != [[[_sections objectAtIndex:index] fields] count] - 1 ) {
             totalHeight += (view.label.frame.size.height *2) + 16;  //+ view.field.frame.size.height + 16;
         } else {
-            totalHeight += (view.label.frame.size.height *2) + 16;;//+ view.field.frame.size.height;
+            totalHeight += (view.label.frame.size.height *2) + 16;//+ view.field.frame.size.height;
         }
         
         if([view.type isEqualToString:@"spinner"]) {
             [spinnerList addObject:view];
+        }
+        if([view.type isEqualToString:@"location"]) {
+            totalHeight += 60;
         }
         if([view.type isEqualToString:@"damageInformation"]) {
             totalHeight += view.frame.size.height;
@@ -454,7 +462,6 @@
                     textView.textColor = [UIColor grayColor];
                 }
             }
-            
         }
         if([widget.type isEqualToString:@"location"]){
             FormLocation* location = (FormLocation *)widget;
@@ -466,9 +473,7 @@
                 lonKey = [key stringByReplacingOccurrencesOfString: @"Latitude" withString:@"Longitude"];
             }
             
-            
 //            [location.longitudeTextView setText:[data valueForKey: lonKey]];
-            
             
             [location setData:[data valueForKey:key] :[data valueForKey: lonKey] :readOnly];
             
@@ -479,11 +484,12 @@
         }else if([widget.type isEqualToString:@"imageSelector"]){
             FormImageSelector* imageSelector = (FormImageSelector *)widget;
             [imageSelector setData:[data valueForKey:key] : self :  readOnly];    //set fullpath in widget from payload
+        }else if([widget.type isEqualToString:@"color"]){
+            FormColorPicker* colorPicker = (FormColorPicker *)widget;
+            [colorPicker setData:[data valueForKey:key] :  readOnly];    //set fullpath in widget from payload
         }
     
-    
         [_collapseView reloadCollapseClick];
-        
     }
     
     for(FormSchemaSection *section in _sections) {
@@ -495,6 +501,8 @@
         }
         [_collapseView closeCollapseClickCellAtIndex:index animated:NO];
     }
+    
+     [_collapseView openCollapseClickCellAtIndex:0 animated:NO];
 }
 
 
@@ -515,7 +523,6 @@
         }
  
     }
-    
     return touchedView;
 }
 

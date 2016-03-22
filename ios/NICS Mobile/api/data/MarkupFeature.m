@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  MarkupFeature.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -52,7 +52,11 @@
         [dataDictionary setObject:@"" forKey:@"featureattributes"];
     }
     
-    [dataDictionary setObject:self.featureId forKey:@"featureId"];
+    if(self.featureId != nil) {
+        [dataDictionary setObject:self.featureId forKey:@"featureId"];
+    }else{
+        [dataDictionary setObject:@"" forKey:@"featureId"];
+    }
     
     if(self.fillColor != nil) {
         [dataDictionary setObject:self.fillColor forKey:@"fillColor"];
@@ -122,10 +126,10 @@
         [dataDictionary setObject:@0 forKey:@"strokeWidth"];
     }
     
-     if(self.seqNum != nil) {
-         [dataDictionary setObject:self.seqTime forKey:@"time"];
+     if(self.seqtime != nil) {
+         [dataDictionary setObject:self.seqtime forKey:@"seqtime"];
      }else{
-         [dataDictionary setObject:@1 forKey:@"time"];
+         [dataDictionary setObject:@1 forKey:@"seqtime"];
      }
     
     if(self.topic != nil) {
@@ -147,7 +151,11 @@
      }
     
 
-    [dataDictionary setObject:[self getPointsString] forKey:@"geometry"];
+//    [dataDictionary setObject:[self getPointsString] forKey:@"geometry"];
+    [dataDictionary setObject:self.geometry forKey:@"geometry"];
+    if(self.geometryFiltered ==nil){
+        [self filterGeometry];
+    }
     [dataDictionary setObject:self.geometryFiltered forKey:@"geometryFiltered"];
 
     if(self.radius != nil) {
@@ -163,10 +171,15 @@
         [dataDictionary setObject:@0 forKey:@"rotation"];
     }
     
-    [dataDictionary setObject:[self lastupdate] forKey:@"lastupdate"];
+//    if(self.lastupdate != nil){
+//        [dataDictionary setObject:[self lastupdate] forKey:@"lastupdate"];
+//    }else{
+//        [dataDictionary setObject:@"" forKey:@"lastupdate"];
+//    }
     
-    [dataDictionary setObject:[self toJSONString] forKey:@"json"];
-    
+    NSString* jsonString =[self toJSONString];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+    [dataDictionary setObject:jsonString forKey:@"json"];
     
     return dataDictionary;
 }
@@ -190,7 +203,19 @@
 -(NSMutableArray *) getCLPointsArray {
     NSMutableArray *clPointsArray = [NSMutableArray new];
     
+    if(self.geometryFiltered.count==0){
+        [self filterGeometry];
+    }
+    
+
+    
     for(NSArray *pointArray in self.geometryFiltered) {
+        if(pointArray.count < 1){
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(0, 0);
+            [clPointsArray addObject:[NSValue valueWithBytes:&coordinate objCType:@encode(CLLocationCoordinate2D)]];
+            return clPointsArray;
+        }
+        
         double latitude = [[pointArray objectAtIndex:0] doubleValue];
         double longitude = [[pointArray objectAtIndex:1] doubleValue];
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
@@ -238,7 +263,6 @@
     }
     
     _geometryFiltered = fullySeperated;
-    _seqTime = [NSNumber numberWithDouble: CACurrentMediaTime()];
 }
 
 @end

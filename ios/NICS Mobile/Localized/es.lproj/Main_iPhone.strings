@@ -14,9 +14,6 @@
 /* Class = "UILabel"; text = "No Damage Reports have been posted in this incident yet."; ObjectID = "20l-MD-9Xg"; */
 "20l-MD-9Xg.text" = "No se han registrado informes de daños para esta incidencia";
 
-/* Class = "UINavigationItem"; title = "Explosive Reports"; ObjectID = "3dm-Xb-Cc1"; */
-"3dm-Xb-Cc1.title" = "Informes UXO municiones sin detonar";
-
 /* Class = "UINavigationItem"; title = "Map"; ObjectID = "3sG-7z-WY9"; */
 "3sG-7z-WY9.title" = "Mapa";
 
@@ -106,9 +103,6 @@
 
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "JZV-8h-oRi"; */
 "JZV-8h-oRi.text" = "Capa de seguimineto";
-
-/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "KMh-4F-Wxu"; */
-"KMh-4F-Wxu.text" = "No existen registros de explosiones para esta incidencia.";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "KNe-sX-U2w"; */
 "KNe-sX-U2w.text" = "Nombre";

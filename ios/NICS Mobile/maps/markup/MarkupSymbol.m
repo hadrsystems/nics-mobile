@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  MarkupSymbol.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -42,7 +42,7 @@
     
     if(self) {
         self.points = [feature getCLPointsArray];
-        
+
         CLLocationCoordinate2D markerLocation;
         [[self.points objectAtIndex:0] getValue:&markerLocation];
         
@@ -58,9 +58,8 @@
         _marker.infoWindowAnchor = CGPointMake(0.5, 0.5);
         _marker.map = self.mapView;
         
-        _marker.title = [NSLocalizedString(@"User: ",nil) stringByAppendingString:feature.username];
+        _marker.title = feature.type; //        [NSLocalizedString(@"User: ",nil) stringByAppendingString:feature.username];
         _marker.snippet = feature.featureattributes;
-
     }
 
     return self;

@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -51,18 +51,21 @@ UIStoryboard *currentStoryboard;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    _dataManager = [DataManager getInstance];
     currentStoryboard = [UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil];
     
-    //default canvas to map
-    if(mapController == nil)
-    {
-        mapController = [currentStoryboard
-                         instantiateViewControllerWithIdentifier:@"MapViewID"];
-        [IncidentButtonBar SetMapMarkupController:mapController];
-    }
+    mapController = [IncidentButtonBar GetMapMarkupController];
+    
+    CGRect mapFrame = mapController.view.frame;
+    mapFrame.size.width = _RoomCanvas.frame.size.width;
+    mapFrame.size.height = _RoomCanvas.frame.size.height;
+    mapController.view.frame = mapFrame;
     
     [self SetCanvas :mapController.view ];
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(MapRefreshButtonLongPress:)];
+    [longPress setMinimumPressDuration:3];
+    [_MapRefreshButton addGestureRecognizer:longPress];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,4 +109,22 @@ UIStoryboard *currentStoryboard;
     selectedRoomController = newController;
     [_RoomCanvas addSubview:selectedRoomController ];
 }
+
+
+- (IBAction)MapRefreshButtonPressed:(id)sender {
+    [_dataManager requestMarkupFeaturesRepeatedEvery:[[DataManager getMapUpdateFrequencyFromSettings] intValue] immediate:YES];
+}
+
+-(void)MapRefreshButtonLongPress:(UILongPressGestureRecognizer*)gesture {
+    if ( gesture.state == UIGestureRecognizerStateEnded ) {
+        
+        NSNotification *resetMapFeaturesNotification = [NSNotification notificationWithName:@"resetMapFeatures" object:self];
+        [[NSNotificationCenter defaultCenter] postNotification:resetMapFeaturesNotification];
+        
+        [_dataManager removeAllFeaturesInCollabroom:[_dataManager getSelectedCollabroomId]];
+        [_dataManager requestMarkupFeaturesRepeatedEvery:[[DataManager getMapUpdateFrequencyFromSettings] intValue] immediate:YES];
+    
+    }
+}
+
 @end

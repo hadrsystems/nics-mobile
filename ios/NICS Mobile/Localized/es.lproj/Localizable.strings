@@ -96,9 +96,6 @@
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "L9O-Sl-a8r"; */
 "L9O-Sl-a8r.text" = "Capa de seguimineto";
 
-/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "LkN-rW-2Wn"; */
-"LkN-rW-2Wn.text" = "No existen registros de explosiones para esta incidencia";
-
 /* Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "MhW-5A-pco"; */
 "MhW-5A-pco.normalTitle" = "Explorar la galería";
 
@@ -125,9 +122,6 @@
 
 /* Class = "UILabel"; text = "Remember Username"; ObjectID = "RKm-7P-Umu"; */
 "RKm-7P-Umu.text" = "Recordar usuario";
-
-/* Class = "UINavigationItem"; title = "UXO Reports"; ObjectID = "Rhx-eX-gmf"; */
-"Rhx-eX-gmf.title" = "Informes UXO municiones sin detonar";
 
 /* Class = "UITableViewController"; title = "Damage Report List"; ObjectID = "Ru3-1u-Jg3"; */
 "Ru3-1u-Jg3.title" = "Lista de informes de daños";
@@ -215,6 +209,10 @@
 
 /* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "joI-0d-ntB"; */
 "joI-0d-ntB.normalTitle" = "Desconexión";
+
+"Clear Local Data and Logout" = "Clear Local Data & Logout(ES-Translate)";
+
+"Confirm Data Delete" = "Confirm Data Delete(ES-Translate)";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "kn4-g3-Chz"; */
 "kn4-g3-Chz.text" = "Nombre";
@@ -309,9 +307,6 @@
 /* Class = "UILabel"; text = "No Damage Reports have been posted in this incident yet."; ObjectID = "20l-MD-9Xg"; */
 "20l-MD-9Xg.text" = "No se han registrado informes de daños para esta incidencia";
 
-/* Class = "UINavigationItem"; title = "Explosive Reports"; ObjectID = "3dm-Xb-Cc1"; */
-"3dm-Xb-Cc1.title" = "Informes UXO municiones sin detonar";
-
 /* Class = "UINavigationItem"; title = "Map"; ObjectID = "3sG-7z-WY9"; */
 "3sG-7z-WY9.title" = "Mapa";
 
@@ -401,9 +396,6 @@
 
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "JZV-8h-oRi"; */
 "JZV-8h-oRi.text" = "Capa de seguimineto";
-
-/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "KMh-4F-Wxu"; */
-"KMh-4F-Wxu.text" = "No existen registros de explosiones para esta incidencia.";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "KNe-sX-U2w"; */
 "KNe-sX-U2w.text" = "Nombre";
@@ -673,6 +665,8 @@
 
 "OK" = "Aceptar/ ok";
 
+"All" = "All";
+
 /* Displayed for a bried period of time while the user is logging in and the app is loading */
 "Logging in..." = "Iniciar sesión...";
 
@@ -703,8 +697,6 @@
 "Resource Request" = "Solicitud de medios/recursos";
 
 "Field Report" = "Informe de campo";
-
-"Explosives Report" = "Informe de explosivos";
 
 /* Shown in the report list view when a report is either a saved Draft, or is currently sending to NICS */
 "Draft" = "Borrador";
@@ -932,64 +924,6 @@
 
 "Destroyed: 50+ percent" = "Destruido: +50%";
 
-/* Explosive Report Form Fields */
-"Reporting Unit" = "Unidad informante/notificadora";
-
-"Reporting Location" = "Lugar de conotificación";
-
-"Contact Info" = "Información de contacto";
-
-"Explosive Type" = "Tipo de explosivo";
-
-/* Explosive type drop down choices */
-"Select Explosive Type" = "Selecciona tipo de explosivo";
-
-"Dropped" = "dejar caer";
-
-"Projected" = "Proyectado,";
-
-"Placed" = "Colocados,";
-
-"Possible IED" = "posible artefacto explosivo improvisado";
-
-"Thrown" = "Tirados or arrojados";
-
-"Size" = "Tamaño";
-
-"Shape" = "Forma";
-
-"Color" = "Color";
-
-"Condition" = "Condición";
-
-/* Condition drop down choices */
-"Select Condition" = "Selecciona condición";
-
-"Intact" = "Intacto";
-
-"Leaking" = "Filtrando";
-
-"CBRN Contamination" = "contaminacion quimica, biologica,radiologica y nuclear";
-
-"Resource Threatened" = "Fuente amenazada";
-
-"Impact On Mission" = "Impacto/consecuencias sobre la misión";
-
-"Protective Measures" = "Medidas de protección";
-
-"Recommended Priority" = "Prioridad recomendada";
-
-/* Recommended Priority drop down choices */
-"Select Recommended Priority" = "Selecciona prioridad recomendada";
-
-"Immediate" = "Inmediato";
-
-"Indirect" = "Indirecto";
-
-"Minor" = "Poco grave";
-
-"No Threat" = "Sin amenaza";
-
 "Notes" = "Observaciones";
 
 "Incident Identification" = "Identificación de incidencia";
@@ -1193,6 +1127,8 @@
 
 "Status" = "Estatus";
 
+"Date Range" = "Date Range (ES Translate)";
+
 /* Map markup */
 "Type: " = "Tipo: ";
 
@@ -1238,6 +1174,10 @@
 
 "Enabled" = "Enabled";
 
+"Checking for new reports" = "Checking for new reports (es translate)";
+
+"Checking for new messages" = "Checking for new messages (es translate)";
+
 /* Translations for settings menu */
 "Chat Update Frequency" = "Chat Update Frequency";
 
@@ -1271,3 +1211,5 @@
 "1.5 Minutes" = "1.5 Minutes";
 
 "2 Minutes" = "2 Minutes";
+
+"User Name" = "Nombre de usuario";

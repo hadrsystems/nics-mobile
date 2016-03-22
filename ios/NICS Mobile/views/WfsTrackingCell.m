@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -48,6 +48,14 @@
 - (IBAction)activeSwitchToggled:(id)sender {
     
     [ActiveWfsLayerManager setTrackingLayerActiveAtIndex:_index :_activeSwitch.isOn];
-
+    
+    int inOnInt = _activeSwitch.isOn;
+    
+     NSDictionary *trackingLayerToggledDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:inOnInt],@"isOn",[NSNumber numberWithInt:_index],@"indexOfToggledLayer", nil];
+    
+//    NSDictionary *trackingLayerToggledDictionary = [NSDictionary dictionaryWithObjectsAndKeys:_index,@"key", nil];
+    
+    NSNotification *UpdateMapNotification = [NSNotification notificationWithName:@"wfsLayerWasToggled" object:self userInfo:trackingLayerToggledDictionary];
+    [[NSNotificationCenter defaultCenter] postNotification:UpdateMapNotification];
 }
 @end

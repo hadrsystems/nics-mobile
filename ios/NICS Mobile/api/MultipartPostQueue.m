@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -69,8 +69,6 @@ static NSNotificationCenter *notificationCenter;
 
     if(reportPayload.formtypeid == [NSNumber numberWithLong:SR]){
         [self postSimpleReport:reportPayload];
-    }else if (reportPayload.formtypeid == [NSNumber numberWithLong:UXO]){
-        [self postUxoReports:reportPayload];
     }else if (reportPayload.formtypeid == [NSNumber numberWithLong:DR]){
         [self postDamageReports:reportPayload];
     }
@@ -119,39 +117,6 @@ static NSNotificationCenter *notificationCenter;
     } failureBlock:^(NSError *error) {
 
     }];
-}
-
-
--(void) postUxoReports: (UxoReportPayload*) payload{
-    [assetsLibrary assetForURL:[NSURL URLWithString:payload.messageData.fullPath] resultBlock:^(ALAsset *asset) {
-        NSInteger statusCode = -1;
-
-        ALAssetRepresentation *rep = [asset defaultRepresentation];
-        NSNumber *length = [NSNumber numberWithLongLong:rep.size];
-
-        Byte *buffer = (Byte*)malloc([length unsignedLongValue]);
-        NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:[length unsignedLongValue] error:nil];
-
-        NSData *imageData = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-
-        if(imageData) {
-            NSMutableDictionary *requestParams = [NSMutableDictionary new];
-            [requestParams setObject:[[UIDevice currentDevice].identifierForVendor UUIDString] forKey:@"deviceId"];
-            [requestParams setObject:payload.incidentid forKey:@"incidentId"];
-            [requestParams setObject:payload.usersessionid forKey:@"usersessionid"];
-            [requestParams setObject:payload.seqtime forKey:@"seqtime"];
-            [requestParams setObject:@"0" forKey:@"deviceId"];
-            [requestParams setObject:payload.message forKey:@"msg"];
-
-    activeConnection = [RestClient synchronousMultipartPostToUrl:[NSString stringWithFormat:@"%@%@%@", @"reports/", payload.incidentid,  @"/UXO"] postData:imageData imageName:payload.messageData.fullPath requestParams:requestParams statusCode:&statusCode];
-
-        [activeConnection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-        [activeConnection start];
-    }
-
-    }failureBlock:^(NSError *error) {
-     }];
-
 }
 
 -(void) postDamageReports: (DamageReportPayload*) payload{
@@ -233,15 +198,11 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
         if(reportPayload != nil){
             if(reportPayload.formtypeid == [NSNumber numberWithLong:SR]){
                 [dataManager deleteSimpleReportFromStoreAndForward:reportPayload];
-                [dataManager requestSimpleReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
-                
-            }else if (reportPayload.formtypeid == [NSNumber numberWithLong:UXO]){
-                [dataManager deleteUxoReportFromStoreAndForward:reportPayload];
-                [dataManager requestUxoReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
+                [dataManager requestSimpleReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
                 
             }else if (reportPayload.formtypeid == [NSNumber numberWithLong:DR]){
                 [dataManager deleteDamageReportFromStoreAndForward:reportPayload];
-                [dataManager requestDamageReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
+                [dataManager requestDamageReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
                 
             }
         }
@@ -282,7 +243,6 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 -(void)addCahcedReportsToSendQueue{
     
     NSMutableArray* Reports = [dataManager getAllSimpleReportsFromStoreAndForward];
-    [Reports addObjectsFromArray:[dataManager getAllUxoReportsFromStoreAndForward]];
     [Reports addObjectsFromArray:[dataManager getAllDamageReportsFromStoreAndForward]];
     
     for(ReportPayload *payload in Reports) {

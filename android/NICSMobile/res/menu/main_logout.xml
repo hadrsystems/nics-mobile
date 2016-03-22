@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ <!--|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,27 +27,14 @@
  |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  |~^~|-->
-<!--
 
-
-
--->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:nics="http://schemas.android.com/apk/res-auto" >
-
-    <item
-        android:id="@+id/action_settings"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom"
-        android:title="@string/action_settings"
-        nics:showAsAction="ifRoom"/>
     
     <item
         android:id="@+id/action_low_data_mode"
         android:icon="@drawable/stat_sys_r_signal_4_cdma"
         android:orderInCategory="101"
-        android:showAsAction="ifRoom"
         android:title="@string/action_low_data_mode"
         nics:showAsAction="ifRoom"/>
     
@@ -55,9 +42,15 @@
         android:id="@+id/action_switch_orgs"
         android:icon="@drawable/ic_menu_cc"
         android:orderInCategory="102"
-        android:showAsAction="ifRoom"
         nics:showAsAction="ifRoom"
         android:title="@string/action_switch_orgs"/>
+     
+         <item
+        android:id="@+id/action_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="103"
+        android:title="@string/action_settings"
+        nics:showAsAction="ifRoom"/>
     
     <item
         android:id="@+id/action_about"
@@ -77,6 +70,6 @@
         android:showAsAction="never"
         android:title="@string/action_help"/>
 
-    <!-- <item android:id="@+id/chat_action_provider" android:icon="@drawable/chat_no_notification" android:showAsAction="always" android:title="@string/markup_maptype" android:actionProviderClass="edu.mit.ll.phinics.android.action.providers.ChatActionProvider"/> -->
+    <!-- <item android:id="@+id/chat_action_provider" android:icon="@drawable/chat_no_notification" android:showAsAction="always" android:title="@string/markup_maptype" android:actionProviderClass="edu.mit.ll.nics.android.action.providers.ChatActionProvider"/> -->
 
 </menu>

@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  RestClient.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -41,7 +41,7 @@ static BOOL receivingSimpleReports = NO;
 static BOOL receivingDamageReports = NO;
 static BOOL receivingFieldReports = NO;
 static BOOL receivingResourceRequests = NO;
-static BOOL receivingUxoReports = NO;
+static BOOL receivingWeatherReports = NO;
 static BOOL receivingChatMessages = NO;
 static BOOL receivingMapMarkupFeatures = NO;
 static BOOL receivingWfsFeatures = NO;
@@ -49,9 +49,10 @@ static BOOL sendingSimpleReports = NO;
 static BOOL sendingFieldReports = NO;
 static BOOL sendingDamageReports = NO;
 static BOOL sendingResourceRequests = NO;
-static BOOL sendingUxoReports = NO;
+static BOOL sendingWeatherReports = NO;
 static BOOL sendingChatMessages = NO;
 static BOOL sendingMDTs = NO;
+static BOOL sendingMapFeature = NO;
 //static BOOL sendingMapMarkupFeatures = NO;
 
 static NSString* authValue;
@@ -71,16 +72,19 @@ static MultipartPostQueue* mMultipartPostQueue;
 
 + (NSString *) synchronousGetFromUrl:(NSString *)url statusCode:(NSInteger *)statusCode {
 
+    NSLog([@"Get: " stringByAppendingString:url]);
     return [myOpenAmAuth synchronousGetFromUrl:url statusCode:statusCode];
 }
 
 + (NSString *) synchronousPostToUrl:(NSString *)url postData:(NSData *)postData length:(NSUInteger)length statusCode:(NSInteger *)statusCode {
     
+        NSLog([@"Post: " stringByAppendingString:url]);
         return [myOpenAmAuth synchronousPostToUrl:url postData:postData length:length statusCode:statusCode];
 }
 
 + (NSURLConnection *) synchronousMultipartPostToUrl:(NSString *)url postData:(NSData *)postData imageName:(NSString *)imageName requestParams:(NSMutableDictionary *)requestParams statusCode:(NSInteger *)statusCode {
     
+        NSLog([@"Multipart Post: " stringByAppendingString:url]);
         return [myOpenAmAuth synchronousMultipartPostToUrl:url postData:postData imageName:imageName requestParams:requestParams statusCode:statusCode];
 }
 
@@ -132,6 +136,35 @@ static MultipartPostQueue* mMultipartPostQueue;
                 [self getAllIncidentsForUserId: payload.userId];
                 [self getUserDataById: payload.userId];
                 [self getUserOrgs: payload.userId];
+                
+                NSString *currentRoomName = [dataManager getSelectedCollabroomName];
+                NSString *currentIncidentName = [dataManager getActiveIncidentName];
+                
+                if(currentIncidentName != nil){
+                    IncidentPayload* selectedIncident = [[dataManager getIncidentsList] objectForKey:currentIncidentName];
+                    
+                    if(selectedIncident != nil){
+                        [dataManager requestCollabroomsForIncident:selectedIncident];
+                    }
+                }
+                dataManager.isLoggedIn = true;
+//
+//                        selectedIncident.collabrooms = [dataManager getCollabroomPayloadArray];
+//                        
+//                        CollabroomPayload *selectedCollabroom;
+//                        
+//                        if(currentRoomName != nil){
+//                            for(CollabroomPayload *collabroomPayload in selectedIncident.collabrooms) {
+//                                if([collabroomPayload.name isEqualToString:currentRoomName]){
+//                                    selectedCollabroom = collabroomPayload;
+//                                    [dataManager setSelectedCollabRoomId:collabroomPayload.collabRoomId  collabRoomName:collabroomPayload.name];
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//                
+                
                 completion(true,NSLocalizedString(@"Success", nil));
             }else{
                completion(false, [NSString stringWithFormat: @"%ld", statusCode] );
@@ -152,6 +185,8 @@ static MultipartPostQueue* mMultipartPostQueue;
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    dataManager.isLoggedIn = false;
     
     return [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 }
@@ -239,8 +274,6 @@ static MultipartPostQueue* mMultipartPostQueue;
 }
 
 +(void) getCollabroomsForIncident:(IncidentPayload*)incident offset:(NSNumber *)offset limit:(NSNumber *)limit completion:(void (^)(BOOL))completion{
-    
-
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     dispatch_async(queue, ^{
@@ -351,9 +384,14 @@ static MultipartPostQueue* mMultipartPostQueue;
                 [dataManager addSimpleReportsToHistory:message.reports];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSNotification *simpleReportsReceivedNotification = [NSNotification notificationWithName:@"simpleReportsUpdateReceived" object:message];
+                    
+                    NSDictionary *simpleReportMessageDictionary = [NSDictionary dictionaryWithObjectsAndKeys:json,@"generalMessageJson", nil];
+                    NSNotification *simpleReportsReceivedNotification = [NSNotification notificationWithName:@"simpleReportsUpdateReceived" object:self userInfo:simpleReportMessageDictionary];
                     [notificationCenter postNotification:simpleReportsReceivedNotification];
                 });
+            }else{
+                NSNotification *simpleReportsReceivedNotification = [NSNotification notificationWithName:@"GeneralMessagesPolledNothing" object:self];
+                [notificationCenter postNotification:simpleReportsReceivedNotification];
             }
             
             receivingSimpleReports = NO;
@@ -393,6 +431,9 @@ static MultipartPostQueue* mMultipartPostQueue;
                     NSNotification *fieldReportsReceivedNotification = [NSNotification notificationWithName:@"fieldReportsUpdateReceived" object:message];
                     [notificationCenter postNotification:fieldReportsReceivedNotification];
                 });
+            }else{
+                NSNotification *fieldReportsReceivedNotification = [NSNotification notificationWithName:@"FieldReportsPolledNothing" object:self];
+                [notificationCenter postNotification:fieldReportsReceivedNotification];
             }
             
             receivingFieldReports = NO;
@@ -448,11 +489,14 @@ static MultipartPostQueue* mMultipartPostQueue;
                  [dataManager addDamageReportsToHistory:message.reports];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSNotification *DamageReportsReceivedNotification = [NSNotification notificationWithName:@"damageReportsUpdateReceived" object:message];
+                    NSDictionary *damageReportMessageDictionary = [NSDictionary dictionaryWithObjectsAndKeys:json,@"damageReportJson", nil];
+                    NSNotification *DamageReportsReceivedNotification = [NSNotification notificationWithName:@"damageReportsUpdateReceived" object:self userInfo:damageReportMessageDictionary];
                     [notificationCenter postNotification:DamageReportsReceivedNotification];
                 });
+            }else{
+                NSNotification *damageReportsReceivedNotification = [NSNotification notificationWithName:@"DamageReportsPolledNothing" object:self];
+                [notificationCenter postNotification:damageReportsReceivedNotification];
             }
-            
             receivingDamageReports = NO;
             completion(YES);
         });
@@ -490,6 +534,9 @@ static MultipartPostQueue* mMultipartPostQueue;
                     NSNotification *resourceRequestsReceivedNotification = [NSNotification notificationWithName:@"resourceRequestsUpdateReceived" object:message];
                     [notificationCenter postNotification:resourceRequestsReceivedNotification];
                 });
+            }else{
+                NSNotification *resourceRequestsReceivedNotification = [NSNotification notificationWithName:@"ResrouceRequestsPolledNothing" object:self];
+                [notificationCenter postNotification:resourceRequestsReceivedNotification];
             }
             
             receivingResourceRequests = NO;
@@ -502,7 +549,7 @@ static MultipartPostQueue* mMultipartPostQueue;
     if(!sendingResourceRequests) {
         sendingResourceRequests = YES;
         NSMutableArray* resourceRequests = [dataManager getAllResourceRequestsFromStoreAndForward];
-        
+
         for(ResourceRequestPayload *payload in resourceRequests) {
             if([payload.isDraft isEqual:@0]) {
                 NSString *jsonString = [payload toJSONStringPost];
@@ -527,47 +574,71 @@ static MultipartPostQueue* mMultipartPostQueue;
     }
 }
 
-+(void) getUxoReportsForIncidentId:(NSNumber *)incidentId offset:(NSNumber *)offset limit:(NSNumber *)limit completion:(void (^)(BOOL))completion{
-    if(!receivingUxoReports && ![incidentId  isEqual: @-1]) {
-        receivingUxoReports = YES;
++(void) getWeatherReportsForIncidentId:(NSNumber *)incidentId offset:(NSNumber *)offset limit:(NSNumber *)limit completion:(void (^)(BOOL))completion{
+    if(!receivingWeatherReports && ![incidentId  isEqual: @-1]) {
+        receivingWeatherReports = YES;
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
         dispatch_async(queue, ^{
             NSInteger statusCode = -1;
             
-            NSString* json = [self synchronousGetFromUrl:[NSString stringWithFormat:@"%@%@%@%lld", @"reports/",[dataManager getActiveIncidentId], @"/UXO?sortOrder=desc&fromDate=", [[dataManager getLastUxoReportTimestampForIncidentId:incidentId] longLongValue] + 1] statusCode:&statusCode];
+            NSString* json = [self synchronousGetFromUrl:[NSString stringWithFormat:@"%@%@%@%lld", @"reports/", [dataManager getActiveIncidentId], @"/WR?sortOrder=desc&fromDate=", [[dataManager getLastWeatherReportTimestampForIncidentId:incidentId] longLongValue] + 1] statusCode:&statusCode];
             NSError* error = nil;
             
-            UxoReportMessage *message = [[UxoReportMessage alloc] initWithString:json error:&error];
+            WeatherReportMessage *message = [[WeatherReportMessage alloc] initWithString:json error:&error];
             [message parse];
             
             if([message.reports count] > 0) {
-                [dataManager addUxoReportsToHistory:message.reports];
+                [dataManager addWeatherReportsToHistory:message.reports];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSNotification *uxoReportsReceivedNotification = [NSNotification notificationWithName:@"UxoReportsUpdateReceived" object:message];
-                    [notificationCenter postNotification:uxoReportsReceivedNotification];
+                    NSNotification *weatherReportsReceivedNotification = [NSNotification notificationWithName:@"weatherReportsUpdateReceived" object:message];
+                    [notificationCenter postNotification:weatherReportsReceivedNotification];
                 });
+            }else{
+                NSNotification *weatherReportsReceivedNotification = [NSNotification notificationWithName:@"WeatherReportsPolledNothing" object:self];
+                [notificationCenter postNotification:weatherReportsReceivedNotification];
             }
             
-            receivingUxoReports = NO;
+            receivingWeatherReports = NO;
             completion(YES);
         });
     }
 }
 
-
-+(void) postUxoReports {
-    
-    NSMutableArray* uxoReports = [dataManager getAllUxoReportsFromStoreAndForward];
-    
-    for(UxoReportPayload *payload in uxoReports) {
-        if([payload.isDraft isEqual:@0]) {
-            [mMultipartPostQueue addPayloadToSendQueue:payload];
-            break;
++(void) postWeatherReports {
+    if(!sendingWeatherReports) {
+        sendingWeatherReports = YES;
+        NSMutableArray* weatherReports = [dataManager getAllWeatherReportsFromStoreAndForward];
+        
+        for(WeatherReportPayload *payload in weatherReports) {
+            if([payload.isDraft isEqual:@0]) {
+                
+                NSArray* keys = [NSArray arrayWithObjects:@"formId",
+                        @"formtypeid", @"incidentid", @"incidentname",
+                        @"seqnum", @"seqtime",@"usersessionid",@"message", nil];
+                
+                NSString *jsonString = [payload toJSONStringWithKeys:keys];
+                NSData *postData = [NSData dataWithBytes:[jsonString UTF8String] length:[jsonString length]];
+                
+                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+                dispatch_async(queue, ^{
+                    
+                    NSInteger statusCode = -1;
+                    NSString* result = [self synchronousPostToUrl:[NSString stringWithFormat:@"%@%@%@", @"reports/", [dataManager getActiveIncidentId],  @"/WR"] postData:postData length:[jsonString length] statusCode:&statusCode];
+                    
+                    if(statusCode == 200 || statusCode == 201) {
+                        [dataManager deleteWeatherReportFromStoreAndForward:payload];
+                        [dataManager requestWeatherReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
+                        NSLog(@"%@%@", @"Successfully sent Weather Report...\n", result);
+                    } else {
+                        NSLog(@"%@%@", @"Failed to send Weather Report...\n", result);
+                    }
+                });
+            }
         }
+        sendingWeatherReports = NO;
     }
 }
-
 
 +(void) getMarkupHistoryForCollabroomId:(NSNumber *)collabRoomId completion:(void (^)(BOOL))completion{
     if(!receivingMapMarkupFeatures && ![collabRoomId  isEqual: @-1]) {
@@ -575,14 +646,15 @@ static MultipartPostQueue* mMultipartPostQueue;
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
         dispatch_async(queue, ^{
             NSInteger statusCode = -1;
+            long timestampOfLastFeature = [[dataManager getLastMarkupFeatureTimestampForCollabroomId:collabRoomId] longValue] + 1;
             
-            NSString* json = [self synchronousGetFromUrl:[NSString stringWithFormat:@"%@%@%s%@%@%@%ld", @"features/collabroom/", [dataManager getSelectedCollabroomId], "?geoType=4326", @"&userId=",[dataManager getUserId],@"&dateColumn=seqTime&sortOrder=desc", [[dataManager getLastMarkupFeatureTimestampForCollabroomId:collabRoomId] longValue] + 1] statusCode:&statusCode];
+            NSString* json = [self synchronousGetFromUrl:[NSString stringWithFormat:@"%@%@%s%@%@%@%ld%@", @"features/collabroom/", [dataManager getSelectedCollabroomId], "?geoType=4326", @"&userId=",[dataManager getUserId],@"&fromDate=", timestampOfLastFeature , @"&dateColumn=seqtime"] statusCode:&statusCode];
          
             NSError* error = nil;
             
             MarkupMessage *message = [[MarkupMessage alloc] initWithString:json error:&error];
-            
-            if([message.features count] > 0) {
+
+            if([message.features count] > 0 || [message.deletedFeature count] > 0 ) {
                 for(MarkupFeature *feature in message.features) {
                     feature.collabRoomId = [dataManager getSelectedCollabroomId];
                     [feature filterGeometry];
@@ -594,19 +666,73 @@ static MultipartPostQueue* mMultipartPostQueue;
                 
                 [dataManager addMarkupFeaturesToHistory:payload.features];
 
+                if(timestampOfLastFeature > 1){
+                    for(NSString *featureId in message.deletedFeature){
+                        [dataManager deleteMarkupFeatureFromReceiveTableByFeatureId:featureId];
+                    }
+                }
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSNotification *markupFeaturesReceivedNotification = [NSNotification notificationWithName:@"markupFeaturesUpdateReceived" object:message];
+                    
+                    NSDictionary *markupMessageDictionary = [NSDictionary dictionaryWithObjectsAndKeys:json,@"markupFeaturesJson", nil];
+                    NSNotification *markupFeaturesReceivedNotification = [NSNotification notificationWithName:@"markupFeaturesUpdateReceived" object:self userInfo:markupMessageDictionary];
+                    
                     [notificationCenter postNotification:markupFeaturesReceivedNotification];
                 });
             }
         });
-        
         receivingMapMarkupFeatures = NO;
         completion(YES);
     }
 }
 
++(void)postMapMarkupFeatures{
+    
+    if(!sendingMapFeature) {
+        sendingMapFeature = YES;
+        NSMutableArray* features = [dataManager getAllMarkupFeaturesFromStoreAndForward];
+        
+        for(MarkupFeature *feature in features) {
 
+            NSArray *keys;
+            
+            if([feature.type isEqualToString: @"marker"]){
+                keys = [NSArray arrayWithObjects:@"fillColor",
+                                        @"geometry", @"graphic", @"graphicHeight",
+                                        @"graphicWidth", @"opacity",@"strokeColor",@"strokeWidth",@"type",@"username",@"usersessionId",@"seqtime", nil];
+            }else if([feature.type isEqualToString: @"circle"]){
+                 keys = [NSArray arrayWithObjects:@"fillColor",@"geometry",@"opacity",@"strokeColor",@"strokeWidth",@"type",@"username",@"usersessionId",@"seqtime",nil];
+            }else if([feature.type isEqualToString: @"sketch"]){
+                keys = [NSArray arrayWithObjects:@"fillColor",@"geometry",@"opacity",@"strokeColor",@"strokeWidth",@"type",@"username",@"usersessionId",@"seqtime",nil];
+            }else if([feature.type isEqualToString: @"square"] || [feature.type isEqualToString: @"polygon"]){
+                keys = [NSArray arrayWithObjects:@"fillColor",@"geometry",@"opacity",@"strokeColor",@"strokeWidth",@"type",@"username",@"usersessionId",@"seqtime",nil];
+            }
+
+            NSString *jsonString = [feature toJSONStringWithKeys:keys];
+            
+            if([feature.type isEqualToString: @"marker"]){
+                jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+            }
+            
+            NSData *postData = [NSData dataWithBytes:[jsonString UTF8String] length:[jsonString length]];
+            
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+            dispatch_async(queue, ^{
+                
+                NSInteger statusCode = -1;
+                NSString* result = [self synchronousPostToUrl:[NSString stringWithFormat:@"%@%@%@", @"features/collabroom/", feature.collabRoomId,  @"?geoType=4326"] postData:postData length:[jsonString length] statusCode:&statusCode];
+                
+                if(statusCode == 200 || statusCode == 201) {
+                    NSLog(@"%@%@", @"Successfully posted Map Feature...\n", result);
+                    [dataManager deleteMarkupFeatureFromStoreAndForward:feature];
+                } else {
+                    NSLog(@"%@%@", @"Failed to send Map Feature...\n", result);
+                }
+            });
+        }
+        sendingMapFeature = NO;
+    }
+}
 
 +(void) getWeatherUpdateForLatitude:(double)latitude longitude:(double) longitude completion:(void (^)(BOOL successful)) completion {
     
@@ -626,8 +752,6 @@ static MultipartPostQueue* mMultipartPostQueue;
     });
 }
 
-
-
 +(void) getChatMessagesForCollabroomId:(NSNumber *)collabRoomId completion:(void (^)(BOOL))completion {
     if(!receivingChatMessages && ![collabRoomId  isEqual: @-1]) {
         receivingChatMessages = YES;
@@ -635,9 +759,10 @@ static MultipartPostQueue* mMultipartPostQueue;
         dispatch_async(queue, ^{
             NSInteger statusCode = -1;
 
-            NSString* json = [self synchronousGetFromUrl:[NSString stringWithFormat:@"%@%@%@%ld", @"chatmsgs/",collabRoomId, @"?fromDate=", [[dataManager getLastChatMessageTimestampForCollabroomId:collabRoomId] longValue] + 1]statusCode:&statusCode];
-            NSError* error = nil;
+            double latestTimestamp = [[dataManager getLastChatMessageTimestampForCollabroomId:collabRoomId] doubleValue] + 1;
             
+            NSString* json = [self synchronousGetFromUrl:[NSString stringWithFormat:@"%@%@%@%@%@", @"chatmsgs/",collabRoomId,@"?sortOrder=desc&fromDate=", [NSNumber numberWithDouble:latestTimestamp],@"&dateColumn=created"]statusCode:&statusCode];
+            NSError* error = nil;
             
             NSError *jsonError;
             NSData *objectData = [json dataUsingEncoding:NSUTF8StringEncoding];
@@ -649,54 +774,41 @@ static MultipartPostQueue* mMultipartPostQueue;
             }else{
                 return;
             }
-            
-
             //this should set automatically but the nics6 json format for chat is really big right now and will probably change
             //So i am setting it manually below until the format is final.
             
             ChatMessage *message = [[ChatMessage alloc] initWithString:json error:&error];
-//            ChatMessage *message = [[ChatMessage alloc]init];
-//            message.chats = (ChatPayload*)[jsonDict objectForKey:@"chats"];
-            
-//            NSUInteger count = 0;
 
             NSMutableArray* chats = [jsonDict objectForKey:@"chats"];
-            NSNumber* lastChatTimestamp = [dataManager getLastChatMessageTimestampForCollabroomId:collabRoomId];
             NSUInteger count = 0;
             
             NSUInteger forLoopCounter = 0;
             if([message.chats count] > 0) {
                 for(ChatPayload *payload in message.chats) {
                     
-                    if([payload.created doubleValue] > [lastChatTimestamp doubleValue]){
+                    payload.incidentId = [dataManager getActiveIncidentId];
+                    payload.id = payload.chatid;
                     
-                        payload.incidentId = [dataManager getActiveIncidentId];
-                        payload.id = payload.chatid;
-                        
-                        jsonDict = [chats objectAtIndex:forLoopCounter];
-                        
-                        payload.userId = [[[jsonDict objectForKey:@"userorg"] objectForKey:@"user"] objectForKey:@"userId"];
-                        payload.userOrgName = [[[jsonDict objectForKey:@"userorg"] objectForKey:@"org"] objectForKey:@"name"];
-                        payload.nickname = [[[jsonDict objectForKey:@"userorg"] objectForKey:@"user"] objectForKey:@"username"];
-                        count++;
-                        
-                        [dataManager addChatMessageToHistory:payload];
-                    }
+                    jsonDict = [chats objectAtIndex:forLoopCounter];
+                    
+                    payload.userId = [[[jsonDict objectForKey:@"userorg"] objectForKey:@"user"] objectForKey:@"userId"];
+                    payload.userOrgName = [[[jsonDict objectForKey:@"userorg"] objectForKey:@"org"] objectForKey:@"name"];
+                    payload.nickname = [[[jsonDict objectForKey:@"userorg"] objectForKey:@"user"] objectForKey:@"username"];
+                    count++;
+                    
+                    [dataManager addChatMessageToHistory:payload];
                     forLoopCounter++;
                 }
-                
             }
             
-            
-//                [dataManager addChatMessagesToHistory:message.chats];
             if(count > 0){
                 dispatch_async(dispatch_get_main_queue(), ^{
-                        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: lastChatTimestamp,@"lastChatTimestamp", nil];
-                    
-                    NSNotification *chatMessagesReceivedNotification = [NSNotification notificationWithName:@"chatMessagesUpdateReceived" object:self userInfo:dict];
+                    NSNotification *chatMessagesReceivedNotification = [NSNotification notificationWithName:@"chatMessagesUpdateReceived" object:self userInfo:nil];
                     [notificationCenter postNotification:chatMessagesReceivedNotification];
                 });
-//            }
+            }else{
+                NSNotification *chatMessagesReceivedNotification = [NSNotification notificationWithName:@"chatMessagesPolledNothing" object:self userInfo:nil];
+                [notificationCenter postNotification:chatMessagesReceivedNotification];
             }
             
             receivingChatMessages = NO;
@@ -874,10 +986,6 @@ static MultipartPostQueue* mMultipartPostQueue;
 
 + (void)setSendingSimpleReport:(BOOL)value {
     sendingSimpleReports = value;
-}
-
-+ (void)setSendingUxoReport:(BOOL)value {
-    sendingUxoReports = value;
 }
 
 @end

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
+ |~^~|All rights reserved.
+ |~^~|
+ |~^~|Redistribution and use in source and binary forms, with or without
+ |~^~|modification, are permitted provided that the following conditions are met:
+ |~^~|
+ |~^~|1. Redistributions of source code must retain the above copyright notice, this
+ |~^~|list of conditions and the following disclaimer.
+ |~^~|
+ |~^~|2. Redistributions in binary form must reproduce the above copyright notice,
+ |~^~|this list of conditions and the following disclaimer in the documentation
+ |~^~|and/or other materials provided with the distribution.
+ |~^~|
+ |~^~|3. Neither the name of the copyright holder nor the names of its contributors
+ |~^~|may be used to endorse or promote products derived from this software without
+ |~^~|specific prior written permission.
+ |~^~|
+ |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ |~^~|-->
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapEditView">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="js5-WA-WcP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" userLabel="TypeSelectView">
+            <rect key="frame" x="0.0" y="0.0" width="512" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Enm-rH-x9T">
+                    <rect key="frame" x="240" y="8" width="50" height="50"/>
+                    <state key="normal" image="line" backgroundImage="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="LineButtonPressed:" destination="-1" eventType="touchUpInside" id="wQV-yG-Zfc"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zg0-rS-evA">
+                    <rect key="frame" x="124" y="8" width="50" height="50"/>
+                    <state key="normal" image="trapezoid" backgroundImage="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="PolygonButtonPressed:" destination="-1" eventType="touchUpInside" id="A3k-so-yDj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uuk-AE-dJe">
+                    <rect key="frame" x="182" y="8" width="50" height="50"/>
+                    <state key="normal" image="circle" backgroundImage="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="CircleButtonPressed:" destination="-1" eventType="touchUpInside" id="Oyt-gP-FKE"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UyS-Jz-Ojm">
+                    <rect key="frame" x="66" y="8" width="50" height="50"/>
+                    <state key="normal" image="rectangle" backgroundImage="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="SquareButtonPressed:" destination="-1" eventType="touchUpInside" id="jts-Oc-GR7"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kML-gw-8gf">
+                    <rect key="frame" x="8" y="8" width="50" height="50"/>
+                    <state key="normal" image="symbol" backgroundImage="button">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="SymbolButtonPressed:" destination="-1" eventType="touchUpInside" id="bTf-BH-maY"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <accessibility key="accessibilityConfiguration" label="TypeSelectView"/>
+            <constraints>
+                <constraint firstItem="Enm-rH-x9T" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="4gb-aJ-Mmt"/>
+                <constraint firstItem="UyS-Jz-Ojm" firstAttribute="width" secondItem="Zg0-rS-evA" secondAttribute="width" id="BtA-Zj-G1o"/>
+                <constraint firstAttribute="bottom" secondItem="Enm-rH-x9T" secondAttribute="bottom" constant="8" id="C0g-qi-c10"/>
+                <constraint firstItem="Enm-rH-x9T" firstAttribute="leading" secondItem="Uuk-AE-dJe" secondAttribute="trailing" constant="8" id="GJc-l0-eKg"/>
+                <constraint firstAttribute="trailing" secondItem="Enm-rH-x9T" secondAttribute="trailing" constant="8" id="Hoz-JQ-2fm"/>
+                <constraint firstAttribute="bottom" secondItem="UyS-Jz-Ojm" secondAttribute="bottom" constant="8" id="Ttz-V3-nck"/>
+                <constraint firstAttribute="bottom" secondItem="Zg0-rS-evA" secondAttribute="bottom" constant="8" id="Yj7-ou-cXs"/>
+                <constraint firstAttribute="bottom" secondItem="Uuk-AE-dJe" secondAttribute="bottom" constant="8" id="eZB-SG-BK8"/>
+                <constraint firstItem="UyS-Jz-Ojm" firstAttribute="width" secondItem="Uuk-AE-dJe" secondAttribute="width" id="iLR-84-6aO"/>
+                <constraint firstItem="Zg0-rS-evA" firstAttribute="leading" secondItem="UyS-Jz-Ojm" secondAttribute="trailing" constant="8" id="iiW-qa-rh5"/>
+                <constraint firstAttribute="bottom" secondItem="kML-gw-8gf" secondAttribute="bottom" constant="8" id="kHZ-oi-XMK"/>
+                <constraint firstItem="UyS-Jz-Ojm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="ntD-tg-h9u"/>
+                <constraint firstItem="kML-gw-8gf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="oNi-BU-73p"/>
+                <constraint firstItem="Uuk-AE-dJe" firstAttribute="leading" secondItem="Zg0-rS-evA" secondAttribute="trailing" constant="8" id="onv-B6-wft"/>
+                <constraint firstItem="Zg0-rS-evA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="pgI-P5-CNx"/>
+                <constraint firstItem="UyS-Jz-Ojm" firstAttribute="leading" secondItem="kML-gw-8gf" secondAttribute="trailing" constant="8" id="pvP-qG-Xcc"/>
+                <constraint firstItem="UyS-Jz-Ojm" firstAttribute="width" secondItem="kML-gw-8gf" secondAttribute="width" id="r4E-8J-n9G"/>
+                <constraint firstItem="kML-gw-8gf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="say-Fp-cbq"/>
+                <constraint firstItem="Uuk-AE-dJe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="wtJ-v0-Y8z"/>
+                <constraint firstItem="UyS-Jz-Ojm" firstAttribute="width" secondItem="Enm-rH-x9T" secondAttribute="width" id="zha-Ge-X5N"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-140" y="85"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="button" width="330" height="80"/>
+        <image name="circle" width="32" height="32"/>
+        <image name="line" width="32" height="32"/>
+        <image name="rectangle" width="32" height="32"/>
+        <image name="symbol" width="32" height="32"/>
+        <image name="trapezoid" width="38" height="32"/>
+    </resources>
+</document>

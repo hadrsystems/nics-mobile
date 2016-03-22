@@ -1,0 +1,27 @@
+{
+    "meta": {
+        "name": "Weather Report",
+        "type": "meta"
+    },
+    "sections": [
+                 {
+                 "name": "Weather Report",
+                 "fields":  [
+                             { "key": "wr-dataSource", "name": "Data Source", "type": "spinner",
+                             "options": ["Belt Weather Kit", "Kestral", "Electronic"] },
+                             { "key": "wr-latitude", "name": "Location (Lat,Lon - decimal)", "type": "location" },
+                             { "key": "wr-elevation", "name": "Elevation", "type": "string"},
+                             { "key": "wr-drybulbtemp", "name": "Dry Bulb Temp", "type": "string" },
+                             { "key": "wr-wetbulbtemp", "name": "Wet Bulb Temp", "type": "string" },
+                             { "key": "wr-relativehumidity", "name": "Relative Humidity", "type": "string"},
+                             { "key": "wr-winddirection", "name": "Wind Direction", "type": "spinner",
+                             "options": ["North", "South", "East", "West", "North East", "North West","South East", "South West"] },
+                             { "key": "wr-windspeed", "name": "Wind Speed", "type": "string"},
+                              { "key": "wr-aspect", "name": "Aspect", "type": "spinner",
+                              "options": ["North", "South", "East", "West", "North East", "North West","South East", "South West"] },
+                             { "key": "wr-physicallocation", "name": "Physical Location", "type": "string"},
+                             { "key": "wr-timetaken", "name": "Time Taken", "type": "string" }
+                             ]
+                 }
+                 ]
+}

@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  MarkupTable.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -43,8 +43,11 @@
 - (id)initWithName:(NSString *)tableName databaseQueue:(FMDatabaseQueue *)databaseQueue;
 - (BOOL) addData:(MarkupFeature *) data;
 - (BOOL) addDataArray:(NSArray *) dataArray;
-
+- (void) removeData:(MarkupFeature *) feature;
+- (void) removeDataByFeatureId:(NSString *) featureId;
+- (void) removeAllFeaturesInCollabroom:(NSNumber*)collabRoomId;
+    
 - (NSNumber *) getLastMarkupFeatureTimestampForCollabroomId: (NSNumber *)collabroomId;
 - (NSMutableArray<MarkupFeature> *) getMarkupFeaturesForCollabroomId: (NSNumber *)collabroomId since: (NSNumber *)timestamp;
-
+- (NSMutableArray<MarkupFeature> *) getAllMarkupFeatures;
 @end

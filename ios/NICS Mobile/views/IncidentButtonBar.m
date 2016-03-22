@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -46,6 +46,7 @@
  */
 
 static LoginViewController *loginViewController;
+static OverviewViewControllerTablet *tabletOverviewViewController;
 
 static ChatContainerBasicViewController *chatController;
 
@@ -61,8 +62,8 @@ static ResourceRequestDetailViewController *resourceRequestDetailview;
 static FieldReportListViewController *fieldReportListview;
 static FieldReportDetailViewController *fieldReportDetailview;
 
-static UxoReportListViewController *uxoReportListview;
-static UxoReportDetailViewController *uxoReportDetailview;
+static WeatherReportListViewController *weatherReportListview;
+static WeatherReportDetailViewController *weatherReportDetailview;
 
 static MapMarkupViewController *mapMarkupView;
 
@@ -73,20 +74,22 @@ static UIButton *SaveDraftButton;
 static UIButton *AddButton;
 static UIButton *CancelButton;
 static UIButton *SubmitButton;
+static UIButton *FilterButton;
 
 + (void)AddButtonPressed:(NSString*)currentReport{
     
     [AddButton setHidden:TRUE];
+    [FilterButton setHidden:TRUE];
     if([currentReport isEqualToString:@"GeneralMessage"]){
-        [generalMessageListview prepareForTabletCanvasSwap:TRUE:0];
+        [generalMessageListview prepareForTabletCanvasSwap:TRUE:-1];
     }else if([currentReport isEqualToString:@"DamageReport"]){
         [damageReportListview prepareForTabletCanvasSwap:TRUE:-1];
     }else if([currentReport isEqualToString:@"ResourceRequest"]){
         [resourceRequestListview prepareForTabletCanvasSwap:TRUE:-1];
     }else if([currentReport isEqualToString:@"FieldReport"]){
         [fieldReportListview prepareForTabletCanvasSwap:TRUE:-1];
-    }else if([currentReport isEqualToString:@"UxoReport"]){
-        [uxoReportListview prepareForTabletCanvasSwap:TRUE:-1];
+    }else if([currentReport isEqualToString:@"WeatherReport"]){
+        [weatherReportListview prepareForTabletCanvasSwap:TRUE:-1];
     }
 }
 
@@ -104,8 +107,8 @@ static UIButton *SubmitButton;
          [resourceRequestDetailview saveTabletDraftButtonPressed];
      }else if([currentReport isEqualToString:@"FieldReport"]){
          [fieldReportDetailview saveTabletDraftButtonPressed];
-     }else if([currentReport isEqualToString:@"UxoReport"]){
-         [uxoReportDetailview saveTabletDraftButtonPressed];
+     }else if([currentReport isEqualToString:@"WeatherReport"]){
+         [weatherReportDetailview saveTabletDraftButtonPressed];
      }
 }
 
@@ -123,8 +126,8 @@ static UIButton *SubmitButton;
         [resourceRequestDetailview cancelTabletButtonPressed];
     }else if([currentReport isEqualToString:@"FieldReport"]){
         [fieldReportDetailview cancelTabletButtonPressed];
-    }else if([currentReport isEqualToString:@"UxoReport"]){
-        [uxoReportDetailview cancelTabletButtonPressed];
+    }else if([currentReport isEqualToString:@"WeatherReport"]){
+        [weatherReportDetailview cancelTabletButtonPressed];
     }
 }
 
@@ -142,17 +145,36 @@ static UIButton *SubmitButton;
         [resourceRequestDetailview submitTabletReportButtonPressed];
     }else if([currentReport isEqualToString:@"FieldReport"]){
         [fieldReportDetailview submitTabletReportButtonPressed];
-    }else if([currentReport isEqualToString:@"UxoReport"]){
-        [uxoReportDetailview submitTabletReportButtonPressed];
+    }else if([currentReport isEqualToString:@"WeatherReport"]){
+        [weatherReportDetailview submitTabletReportButtonPressed];
     }
 }
 
 + (void)OpenImagePickerCameraForTablet:(UIImagePickerController*)imagePicker{
     [loginViewController presentViewController:imagePicker animated:YES completion:nil];
 }
-
 +(void)SetLoginView:(LoginViewController*)loginController{loginViewController = loginController;}
 +(LoginViewController*)GetLoginView{return loginViewController;}
+
++(void)ClearAllViews{
+    tabletOverviewViewController = nil;
+    chatController = nil;
+    generalMessageListview = nil;
+    generalMessageDetailView = nil;
+    damageReportListview = nil;
+    damageReportDetailview = nil;
+    resourceRequestListview = nil;
+    resourceRequestDetailview = nil;
+    fieldReportListview = nil;
+    fieldReportDetailview = nil;
+    weatherReportListview = nil;
+    weatherReportDetailview = nil;
+    mapMarkupView = nil;
+    incidentCanvasController = nil;
+}
+
++(void)SetOverview:(OverviewViewControllerTablet*)overview{tabletOverviewViewController = overview;}
++(OverviewViewControllerTablet*)GetOverview{return tabletOverviewViewController;}
 
 +(void)SetIncidentCanvasController:(IncidentCanvasUIViewController*)controller{incidentCanvasController = controller;}
 +(IncidentCanvasUIViewController*) GetIncidentCanvasController{return incidentCanvasController;}
@@ -160,44 +182,82 @@ static UIButton *SubmitButton;
 + (void)SetIncidentCanvas:(UIView*)view{incidentCanvas = view;}
 + (UIView*) GetIncidentCanvas{return incidentCanvas;}
 
-+(void)SetGeneralMessageListview:(SimpleReportListViewController*)listController{generalMessageListview = listController;}
-+(SimpleReportListViewController*)GetGeneralMessageListview{ return generalMessageListview;}
-
-+(void)SetGeneralMessageDetailView:(SimpleReportDetailViewController*)detailController{generalMessageDetailView = detailController;}
-+(SimpleReportDetailViewController*)GetGeneralMessageDetailView{return generalMessageDetailView;}
-
-+(void)SetDamageReportListview:(DamageReportListViewController*)listController{damageReportListview = listController;}
-+(DamageReportListViewController*)GetDamageReportListview{return damageReportListview;}
-
-+(void)SetDamageReportDetailView:(DamageReportDetailViewController*)detailController{damageReportDetailview = detailController;}
-+(DamageReportDetailViewController*) GetDamageReportDetailView{return damageReportDetailview;}
-
-+(void)SetResourceRequestListview:(ResourceRequestListViewController*)listController{resourceRequestListview = listController;}
-+(ResourceRequestListViewController*)GetResourceRequestListview{return resourceRequestListview;}
-
-+(void)SetResourceRequestDetailView:(ResourceRequestDetailViewController*)detailController{resourceRequestDetailview = detailController;}
-+(ResourceRequestDetailViewController*) GetResourceRequestDetailView{return resourceRequestDetailview;}
-
-+(void)SetFieldReportListview:(FieldReportListViewController*)listController{fieldReportListview = listController;}
-+(FieldReportListViewController*)GetFieldReportListview{return fieldReportListview;}
-
-+(void)SetFieldReportDetailView:(FieldReportDetailViewController*)detailController{fieldReportDetailview = detailController;}
-+(FieldReportDetailViewController*)GetFieldReportDetailView{return fieldReportDetailview;}
-
-+(void)SetUxoReportListview:(UxoReportListViewController*)listController{uxoReportListview = listController;}
-+(UxoReportListViewController*)GetUxoReportListview{return uxoReportListview;}
-
-+(void)SetUxoReportDetailView:(UxoReportDetailViewController*)detailController{uxoReportDetailview = detailController;}
-+(UxoReportDetailViewController*)GetUxoReportDetailView{return uxoReportDetailview;}
-
-
-+(void)SetChatController:(ChatContainerBasicViewController*)detailController{chatController = detailController;}
-+(ChatContainerBasicViewController*) GetChatController{return chatController;}
-
-+(void)SetMapMarkupController:(MapMarkupViewController *)mapController{
-    mapMarkupView = mapController;
++(SimpleReportListViewController*)GetGeneralMessageListview{
+    if(generalMessageListview == nil){
+        generalMessageListview =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"GeneralMessageViewID"];
+    }
+    return generalMessageListview;
 }
+
++(SimpleReportDetailViewController*)GetGeneralMessageDetailView{
+    if(generalMessageDetailView == nil){
+        generalMessageDetailView =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"SimpleReportDetailViewID"];
+    }
+    return generalMessageDetailView;}
+
++(DamageReportListViewController*)GetDamageReportListview{
+    if(damageReportListview == nil){
+        damageReportListview =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"DamageReportViewID"];
+    }
+    return damageReportListview;
+}
+
++(DamageReportDetailViewController*) GetDamageReportDetailView{
+    if(damageReportDetailview == nil){
+        damageReportDetailview =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"DamageReportDetailViewID"];
+    }
+    return damageReportDetailview;}
+
++(ResourceRequestListViewController*)GetResourceRequestListview{
+    if(resourceRequestListview == nil){
+        resourceRequestListview =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"ResourceRequestViewID"];
+    }
+    return resourceRequestListview;
+}
+
++(ResourceRequestDetailViewController*) GetResourceRequestDetailView{
+    if(resourceRequestDetailview == nil){
+        resourceRequestDetailview =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"ResourceRequestDetailViewID"];
+    }
+    return resourceRequestDetailview;}
+
++(FieldReportListViewController*)GetFieldReportListview{
+    if(fieldReportListview == nil){
+        fieldReportListview =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"FieldReportViewID"];
+    }
+    return fieldReportListview;
+}
+
++(FieldReportDetailViewController*)GetFieldReportDetailView{
+    if(fieldReportDetailview == nil){
+        fieldReportDetailview =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"FieldReportDetailViewID"];
+    }
+    return fieldReportDetailview;}
+
++(WeatherReportListViewController*)GetWeatherReportListview{
+    if(weatherReportListview == nil){
+        weatherReportListview =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"WeatherReportViewID"];
+    }
+    return weatherReportListview;
+}
+
++(WeatherReportDetailViewController*)GetWeatherReportDetailView{
+    if(weatherReportDetailview == nil){
+        weatherReportDetailview =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"weatherReportDetailViewID"];
+    }
+    return weatherReportDetailview;}
+
+
++(ChatContainerBasicViewController*) GetChatController{
+    if(chatController == nil){
+        chatController =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"ChatViewID"];
+    }
+    return chatController;}
+
 +(MapMarkupViewController*) GetMapMarkupController{
+    if(mapMarkupView == nil){
+        mapMarkupView =[[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"MapViewID"];
+    }
     return mapMarkupView;
 }
 
@@ -212,5 +272,8 @@ static UIButton *SubmitButton;
 
 + (void) SetSubmitButton:(UIButton*)button{SubmitButton = button;}
 +(UIButton*) GetSubmitButton{return SubmitButton;}
+
++ (void)SetFilterButton:(UIButton*)button{FilterButton = button;}
++ (UIButton*)GetFilterButton{return FilterButton;}
 
 @end

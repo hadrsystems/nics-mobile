@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -38,5 +38,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *MessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *UserLabel;
 @property (weak, nonatomic) IBOutlet UILabel *TimeStampLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end

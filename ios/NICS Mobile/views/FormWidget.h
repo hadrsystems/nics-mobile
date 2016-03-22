@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  FormWidget.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -48,6 +48,7 @@
 
 @property NSMutableArray* interactableViews;
 @property DataManager *dataManager;
+@property CGRect formFrame;
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
 - (void)setup;

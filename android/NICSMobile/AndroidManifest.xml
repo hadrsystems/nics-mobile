@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ <!--|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -32,9 +32,9 @@
 
 
 -->
-<manifest package="edu.mit.ll.phinics.android"
+<manifest package="edu.mit.ll.nics.android"
     android:versionCode="1"
-    android:versionName="6.1" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:versionName="6.2" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />
 
@@ -55,10 +55,10 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="edu.mit.ll.phinics.android.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="edu.mit.ll.nics.android.permission.MAPS_RECEIVE" />
 
     <permission
-        android:name="edu.mit.ll.phinics.android.permission.MAPS_RECEIVE"
+        android:name="edu.mit.ll.nics.android.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
     <application
@@ -78,14 +78,14 @@
         
     -->    
         <activity
-            android:name="edu.mit.ll.phinics.android.MainActivity"
+            android:name="edu.mit.ll.nics.android.MainActivity"
             android:launchMode="singleTop"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden">
             android:configChanges="locale|orientation"
         </activity>
         <activity
-            android:name="edu.mit.ll.phinics.android.LoginActivity"
+            android:name="edu.mit.ll.nics.android.LoginActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:windowSoftInputMode="stateHidden|adjustPan" >
@@ -98,7 +98,7 @@
         </activity>
 
         <activity
-            android:name="edu.mit.ll.phinics.android.SettingsActivity"
+            android:name="edu.mit.ll.nics.android.SettingsActivity"
             android:label="@string/action_settings"
             android:launchMode="singleTop"
             android:windowSoftInputMode="stateHidden">
@@ -106,14 +106,13 @@
         </activity>
         
         <activity
-            android:name="edu.mit.ll.phinics.android.AboutActivity"
+            android:name="edu.mit.ll.nics.android.AboutActivity"
             android:label="@string/action_about"
             android:launchMode="singleTop"
             android:windowSoftInputMode="stateHidden">
             android:configChanges="locale|orientation"
         </activity>
-        <!-- <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />  -->
-        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDzWQXxFZwJ9L_oLX5tuh1P463XbeflyUk" />
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="@string/config_google_maps_api_key"/>
     </application>
 
 </manifest>

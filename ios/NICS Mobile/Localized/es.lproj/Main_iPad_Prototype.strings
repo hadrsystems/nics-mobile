@@ -95,9 +95,6 @@
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "L9O-Sl-a8r"; */
 "L9O-Sl-a8r.text" = "Capa de seguimineto";
 
-/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "LkN-rW-2Wn"; */
-"LkN-rW-2Wn.text" = "No existen registros de explosiones para esta incidencia";
-
 /* Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "MhW-5A-pco"; */
 "MhW-5A-pco.normalTitle" = "Explorar la galería";
 
@@ -124,9 +121,6 @@
 
 /* Class = "UILabel"; text = "Remember Username"; ObjectID = "RKm-7P-Umu"; */
 "RKm-7P-Umu.text" = "Recordar usuario";
-
-/* Class = "UINavigationItem"; title = "UXO Reports"; ObjectID = "Rhx-eX-gmf"; */
-"Rhx-eX-gmf.title" = "Informes UXO municiones sin detonar";
 
 /* Class = "UITableViewController"; title = "Damage Report List"; ObjectID = "Ru3-1u-Jg3"; */
 "Ru3-1u-Jg3.title" = "Lista de informes de daños";

@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -53,6 +53,8 @@ NSNotificationCenter *notificationCenter;
     [super viewDidLoad];
 
     _dataManager = [DataManager getInstance];
+    [IncidentButtonBar SetOverview:self];
+    [_dataManager setOverviewController:self];
     notificationCenter = [NSNotificationCenter defaultCenter];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetPullTimersFromOptions) name:@"DidBecomeActive" object:nil];
@@ -114,13 +116,13 @@ NSNotificationCenter *notificationCenter;
         NSNotification *IncidentSwitchedNotification = [NSNotification notificationWithName:@"IncidentSwitched" object:_selectedIncident.incidentname];
         [notificationCenter postNotification:IncidentSwitchedNotification];
         
-        [_dataManager requestSimpleReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestDamageReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestFieldReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestResourceRequestsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
+        [_dataManager requestSimpleReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestDamageReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestFieldReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestResourceRequestsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
         [_dataManager requestMdtRepeatedEvery:[DataManager getMdtUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestWfsUpdateRepeatedEvery:[DataManager getWfsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestUxoReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
+        [_dataManager requestWfsUpdateRepeatedEvery:[[DataManager getWfsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestWeatherReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
     }
     
     if(_selectedCollabroom == nil){
@@ -136,23 +138,21 @@ NSNotificationCenter *notificationCenter;
         NSNotification *IncidentSwitchedNotification = [NSNotification notificationWithName:@"CollabRoomSwitched" object:_selectedIncident.incidentname];
         [notificationCenter postNotification:IncidentSwitchedNotification];
         
-        [_dataManager requestChatMessagesRepeatedEvery:[DataManager getChatUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestMarkupFeaturesRepeatedEvery:[DataManager getMapUpdateFrequencyFromSettings] immediate:YES];
+        [_dataManager requestChatMessagesRepeatedEvery:[[DataManager getChatUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestMarkupFeaturesRepeatedEvery:[[DataManager getMapUpdateFrequencyFromSettings] intValue] immediate:YES];
     }
 }
 
 -(void)SetPullTimersFromOptions{
-    [_dataManager requestChatMessagesRepeatedEvery:[DataManager getChatUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestSimpleReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestDamageReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestFieldReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestResourceRequestsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestMarkupFeaturesRepeatedEvery:[DataManager getMapUpdateFrequencyFromSettings] immediate:NO];
+    [_dataManager requestChatMessagesRepeatedEvery:[[DataManager getChatUpdateFrequencyFromSettings] intValue] immediate:NO];
+    [_dataManager requestSimpleReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:NO];
+    [_dataManager requestDamageReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:NO];
+    [_dataManager requestFieldReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:NO];
+    [_dataManager requestResourceRequestsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:NO];
+    [_dataManager requestMarkupFeaturesRepeatedEvery:[[DataManager getMapUpdateFrequencyFromSettings] intValue] immediate:NO];
     [_dataManager requestMdtRepeatedEvery:[DataManager getMdtUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestWfsUpdateRepeatedEvery:[DataManager getWfsUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestUxoReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-//    [_dataManager requestActiveAssignmentRepeatedEvery:30];
-    
+    [_dataManager requestWfsUpdateRepeatedEvery:[[DataManager getWfsUpdateFrequencyFromSettings] intValue] immediate:NO];
+    [_dataManager requestWeatherReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:NO];
 }
 
 - (IBAction)selectIncidentButtonPressed:(UIButton *)button {
@@ -166,7 +166,6 @@ NSNotificationCenter *notificationCenter;
     for(CollabroomPayload *collabroomPayload in _selectedIncident.collabrooms) {
         [collabrooms setObject:collabroomPayload.collabRoomId forKey:collabroomPayload.name];
     }
-    
     
     if(_selectedIncident.collabrooms != nil) {
         [_dataManager clearCollabRoomList];
@@ -246,18 +245,16 @@ NSNotificationCenter *notificationCenter;
     if(_selectedIncident != nil) {
         [_dataManager setActiveIncident:_selectedIncident];
         
-        [_dataManager requestSimpleReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestDamageReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestFieldReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestResourceRequestsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
+        [_dataManager requestSimpleReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestDamageReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestFieldReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestResourceRequestsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
         [_dataManager requestMdtRepeatedEvery:[DataManager getMdtUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestWfsUpdateRepeatedEvery:[DataManager getWfsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestUxoReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
+        [_dataManager requestWfsUpdateRepeatedEvery:[[DataManager getWfsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestWeatherReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
         
         [_selectIncidentButton setTitle:_selectedIncident.incidentname forState:UIControlStateNormal];
-        
         IncidentSwitchedNotification = [NSNotification notificationWithName:@"IncidentSwitched" object:_selectedIncident.incidentname];
-        
 
     } else {
         [_selectIncidentButton setTitle:NSLocalizedString(@"Select Incident", nil) forState:UIControlStateNormal];
@@ -267,8 +264,8 @@ NSNotificationCenter *notificationCenter;
     if(_selectedCollabroom != nil) {
         [_dataManager setSelectedCollabRoomId:_selectedCollabroom.collabRoomId collabRoomName:_selectedCollabroom.name];
         
-        [_dataManager requestChatMessagesRepeatedEvery:[DataManager getChatUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestMarkupFeaturesRepeatedEvery:[DataManager getMapUpdateFrequencyFromSettings] immediate:YES];
+        [_dataManager requestChatMessagesRepeatedEvery:[[DataManager getChatUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestMarkupFeaturesRepeatedEvery:[[DataManager getMapUpdateFrequencyFromSettings] intValue] immediate:YES];
         
       //  [_selectRoomButton setTitle:_selectedCollabroom.name forState:UIControlStateNormal];
         [_selectRoomButton setTitle:[_selectedCollabroom.name stringByReplacingOccurrencesOfString:replaceString withString:@""] forState:UIControlStateNormal];
@@ -312,6 +309,10 @@ NSNotificationCenter *notificationCenter;
         [_collabroomsLoadingIndicator stopAnimating];
         _selectedIncident.collabrooms = [_dataManager getCollabroomPayloadArray];
     });
-
 }
+
+-(void)navigateBackToLoginScreen{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 @end

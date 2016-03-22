@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -68,7 +68,7 @@ static MultipartPostQueue* mMultipartPostQueue;
 
 -(NSDictionary*)getCookies{
     NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @".yourdomain.tld", NSHTTPCookieDomain,
+                                [dataManager getCookieDomainForCurrentServer], NSHTTPCookieDomain,
                                 @"/", NSHTTPCookiePath,  // IMPORTANT!
                                 @"iPlanetDirectoryPro", NSHTTPCookieName,
                                 _AuthValue, NSHTTPCookieValue,
@@ -76,7 +76,7 @@ static MultipartPostQueue* mMultipartPostQueue;
     NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:properties];
     
     NSDictionary *properties2 = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @".yourdomain.tld", NSHTTPCookieDomain,
+                                [dataManager getCookieDomainForCurrentServer], NSHTTPCookieDomain,
                                 @"/", NSHTTPCookiePath,  // IMPORTANT!
                                 @"AMAuthCookie", NSHTTPCookieName,
                                 _AuthValue, NSHTTPCookieValue,

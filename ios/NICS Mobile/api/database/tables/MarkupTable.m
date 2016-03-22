@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  MarkupTable.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -58,38 +58,32 @@ static NSDictionary * tableColumnsDictionary;
                                     @"integer",             @"seqNum",
                                     @"text",                @"strokeColor",
                                     @"real",                @"strokeWidth",
-                                    @"integer",             @"time",
+                                    @"integer",             @"seqtime",
                                     @"text",                @"topic",
                                     @"text",                @"type",
                                     @"real",                @"opacity",
                                     @"text",                @"geometry",
-                                  @"text",                @"geometryFiltered",
+                                    @"text",                @"geometryFiltered",
                                     @"real",                @"radius",
                                     @"real",                @"rotation",
-                                    @"text",                @"lastupdate",
                                     @"text",                @"json",
                                     nil
                                  ];
         
         [self createTableFromDictionary:tableColumnsDictionary];
-        
-
     }
     return self;
 }
 
-
 - (BOOL) addData:(MarkupFeature *) data
 {
-    return [self insertRowForTableDictionary:tableColumnsDictionary dataDictionary:[data toDictionary]];
+    return [self insertRowForTableDictionary:tableColumnsDictionary dataDictionary:[data toSqlMapping]];
 }
 
 - (BOOL) addDataArray:(NSArray *) dataArray {
     NSMutableArray* messagePayloads = [[NSMutableArray alloc] init];
     
     if(dataArray.count > 0) {
-        [self deleteRowsByKey:@"collabRoomId" value:((MarkupFeature *)dataArray[0]).collabRoomId];
-        
         for(MarkupFeature *payload in dataArray) {
             [messagePayloads addObject:[payload toSqlMapping]];
         }
@@ -98,11 +92,23 @@ static NSDictionary * tableColumnsDictionary;
     return [self insertAllRowsForTableDictionary:tableColumnsDictionary dataArray:messagePayloads];
 }
 
+-(void) removeAllFeaturesInCollabroom:(NSNumber*)collabRoomId{
+    [self deleteRowsByKey:@"collabRoomId" value:collabRoomId];
+}
+
+- (void) removeData:(MarkupFeature *) feature{
+    [self deleteRowsByKey:@"id" value:feature.id];
+}
+
+- (void) removeDataByFeatureId:(NSString *) featureId{
+    [self deleteRowsByKey:@"featureId" value:featureId];
+}
+
 - (NSNumber *) getLastMarkupFeatureTimestampForCollabroomId: (NSNumber *)collabroomId {
-    NSDictionary* result = [[self selectRowsByKey:@"collabRoomId" value:collabroomId orderedBy:[NSArray arrayWithObject:@"time"] isDescending:YES] firstObject];
+    NSDictionary* result = [[self selectRowsByKey:@"collabRoomId" value:collabroomId orderedBy:[NSArray arrayWithObject:@"seqtime"] isDescending:YES] firstObject];
     
     if(result != nil) {
-        return [result objectForKey:@"time"];
+        return [result objectForKey:@"seqtime"];
     } else {
         return @0;
     }
@@ -111,16 +117,34 @@ static NSDictionary * tableColumnsDictionary;
 - (NSMutableArray<MarkupFeature> *) getMarkupFeaturesForCollabroomId: (NSNumber *)collabroomId since: (NSNumber *)timestamp {
     NSDictionary * keys = [[NSDictionary alloc] initWithObjectsAndKeys:
                             collabroomId,     @"collabRoomId = ?",
-                            timestamp,        @"time > ?",
+                            timestamp,        @"seqtime > ?",
                             nil];
-    NSMutableArray *results = [self selectRowsByKeyDictionary:keys orderedBy:[NSArray arrayWithObject:@"time"] isDescending:YES];
+    NSMutableArray *results = [self selectRowsByKeyDictionary:keys orderedBy:[NSArray arrayWithObject:@"seqtime"] isDescending:YES];
     
     NSMutableArray *parsedResults = [NSMutableArray new];
     
     NSError *error;
     
     for(NSDictionary *result in results) {
-        [parsedResults addObject:[[MarkupFeature alloc] initWithString:[result objectForKey:@"json"] error:&error]];
+        MarkupFeature* feature = [[MarkupFeature alloc] initWithString:[result objectForKey:@"json"] error:&error];
+        [feature setId:[result objectForKey:@"id"]];
+        [parsedResults addObject:feature];
+    }
+    
+    return (NSMutableArray<MarkupFeature>*) parsedResults;
+}
+
+- (NSMutableArray<MarkupFeature> *) getAllMarkupFeatures {
+    NSMutableArray *results = [self selectAllRowsAndOrderedBy:[NSArray arrayWithObject:@"seqtime"] isDescending:YES];
+    
+    NSMutableArray *parsedResults = [NSMutableArray new];
+    
+    NSError *error;
+    
+    for(NSDictionary *result in results) {
+        MarkupFeature* feature = [[MarkupFeature alloc] initWithString:[result objectForKey:@"json"] error:&error];
+        [feature setId:[result objectForKey:@"id"]];
+        [parsedResults addObject:feature];
     }
     
     return (NSMutableArray<MarkupFeature>*) parsedResults;

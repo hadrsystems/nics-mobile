@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  DatabaseManager.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -43,7 +43,7 @@
 #import "ResourceRequestTable.h"
 #import "ResourceRequestPayload.h"
 #import "SimpleReportTable.h"
-#import "UxoReportTable.h"
+#import "WeatherReportTable.h"
 #import "MarkupTable.h"
 #import "MDTTable.h"
 
@@ -69,14 +69,16 @@
 @property SimpleReportTable *simpleReportReceiveTable;
 @property SimpleReportTable *simpleReportSendTable;
 
-@property UxoReportTable *uxoReportReceiveTable;
-@property UxoReportTable *uxoReportSendTable;
+@property WeatherReportTable *weatherReportReceiveTable;
+@property WeatherReportTable *weatherReportSendTable;
 
 @property MarkupTable *markupReceiveTable;
 @property MarkupTable *markupSendTable;
 
 @property MDTTable *mdtSendTable;
 
+
+-(void)ClearAllLocalDatabases;
 
 #pragma mark Chat Message History/Store & Forward
 - (BOOL)addChatMessagesToHistory:(NSArray<ChatPayload> *) payloadArray;
@@ -154,19 +156,19 @@
 
 - (NSNumber *)getLastSimpleReportTimestampForIncidentId: (NSNumber *) incidentId;
 
-#pragma mark Uxo Report History/Store & Forward
-- (BOOL)addUxoReportsToHistory:(NSArray<UxoReportPayload> *) payloadArray;
-- (BOOL)addUxoReportToHistory:(UxoReportPayload *) payload;
+#pragma mark Weather Report History/Store & Forward
+- (BOOL)addWeatherReportsToHistory:(NSArray<WeatherReportPayload> *) payloadArray;
+- (BOOL)addWeatherReportToHistory:(WeatherReportPayload *) payload;
 
-- (BOOL)addUxoReportsToStoreAndForward:(NSArray<UxoReportPayload> *) payloadArray;
-- (BOOL)addUxoReportToStoreAndForward:(UxoReportPayload *) payload;
+- (BOOL)addWeatherReportsToStoreAndForward:(NSArray<WeatherReportPayload> *) payloadArray;
+- (BOOL)addWeatherReportToStoreAndForward:(WeatherReportPayload *) payload;
 
-- (void)deleteUxoReportFromStoreAndForward:(UxoReportPayload *) payload;
+- (void)deleteWeatherReportFromStoreAndForward:(WeatherReportPayload *) payload;
 
-- (NSMutableArray<UxoReportPayload> *)getAllUxoReportsForIncidentId: (NSNumber *)incidentId since: (NSNumber *) timestamp;
-- (NSMutableArray<UxoReportPayload> *)getAllUxoReportsFromStoreAndForward;
+- (NSMutableArray<WeatherReportPayload> *)getAllWeatherReportsForIncidentId: (NSNumber *)incidentId since: (NSNumber *) timestamp;
+- (NSMutableArray<WeatherReportPayload> *)getAllWeatherReportsFromStoreAndForward;
 
-- (NSNumber *)getLastUxoReportTimestampForIncidentId: (NSNumber *) incidentId;
+- (NSNumber *)getLastWeatherReportTimestampForIncidentId: (NSNumber *) incidentId;
 
 
 #pragma mark Markup Features History/Store & Forward
@@ -177,9 +179,13 @@
 - (BOOL)addMarkupFeatureToStoreAndForward:(MarkupFeature *) payload;
 
 - (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesForCollabroomId: (NSNumber *)collabroomId since: (NSNumber *) timestamp;
-
+- (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesFromStoreAndForward;
+- (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesFromStoreAndForwardForCollabroomId: (NSNumber *)collabroomId since: (NSNumber *) timestamp;
+- (void)deleteMarkupFeatureFromStoreAndForward:(MarkupFeature *) feature;
+- (void)deleteMarkupFeatureFromStoreAndForwardByFeatureId:(NSString *)featureId;
+- (void)deleteMarkupFeatureFromReceiveTableByFeatureId:(NSString *)featureId;
 - (NSNumber *)getLastMarkupFeatureTimestampForCollabroomId: (NSNumber *) collabroomId;
-
+- (void) removeAllFeaturesInCollabroom:(NSNumber*)collabRoomId;
 
 
 

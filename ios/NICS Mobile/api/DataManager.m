@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -25,9 +25,10 @@
  |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
  |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
+
 //
 //  DataManager.m
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -52,11 +53,19 @@ int BackgroundMdtPostCounter = 0;
     if (self = [super init]) {
         
         NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-        NSString *phinicsString = @"PHINICS";
-        [[NSUserDefaults standardUserDefaults] setSecret:[phinicsString stringByAppendingString:idfv]];
+        NSString *nicsString = @"nics";
+        
+        [self registerDefaultsFromSettingsBundle];
+        
+        [[NSUserDefaults standardUserDefaults] setSecret:[nicsString stringByAppendingString:idfv]];
         
         _userPreferences = [NSUserDefaults standardUserDefaults];
         _databaseManager = [[DatabaseManager alloc] init];
+        
+
+        
+        
+        [self getCookieDomainForCurrentServer];
         
         _notificationCenter = [NSNotificationCenter defaultCenter];
         
@@ -72,8 +81,6 @@ int BackgroundMdtPostCounter = 0;
             [_locationManager requestAlwaysAuthorization];
             [_locationManager startUpdatingLocation];
         }
-        
-        [ActiveWfsLayerManager initialize];
         
         self.appSuspended = FALSE;
         
@@ -99,6 +106,33 @@ int BackgroundMdtPostCounter = 0;
     return self;
 }
 
+- (void)registerDefaultsFromSettingsBundle {
+    NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
+    if(!settingsBundle) {
+        NSLog(@"Could not find Settings.bundle");
+        return;
+    }
+    
+    NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
+    NSArray *preferences = [settings objectForKey:@"PreferenceSpecifiers"];
+    
+    NSMutableDictionary *defaultsToRegister = [[NSMutableDictionary alloc] initWithCapacity:[preferences count]];
+    for(NSDictionary *prefSpecification in preferences) {
+        NSString *key = [prefSpecification objectForKey:@"Key"];
+        if(key && [[prefSpecification allKeys] containsObject:@"DefaultValue"]) {
+            [defaultsToRegister setObject:[prefSpecification objectForKey:@"DefaultValue"] forKey:key];
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
+}
+
+-(void)ResetLocalUserData{
+    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+    [_databaseManager ClearAllLocalDatabases];
+}
+
 -(void)AppHasBeenSuspended:(NSNotification*)_notification{
     _appSuspended = TRUE;
 }
@@ -110,8 +144,6 @@ int BackgroundMdtPostCounter = 0;
 {
      _appSuspended = TRUE;
 }
-
-
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation *location = [locations lastObject];
@@ -134,25 +166,58 @@ int BackgroundMdtPostCounter = 0;
 //        [RestClient getWeatherUpdateForLatitude:location.coordinate.latitude longitude:location.coordinate.longitude completion:nil];
         
         
-        
-        //   _appSuspended = TRUE;
-        
-    if(_appSuspended){
-        
-        BackgroundMdtPostCounter++;
-        if(BackgroundMdtPostCounter >= 30)
-        {
-            NSLog(@"locMan: send location suspended");
-            [self requestMDT];
-            BackgroundMdtPostCounter = 0;
+        if(_isLoggedIn){
+            if(_appSuspended){
+                BackgroundMdtPostCounter++;
+                if(BackgroundMdtPostCounter >= 30)
+                {
+                    NSLog(@"locMan: send location suspended");
+                    [self requestMDT];
+                    BackgroundMdtPostCounter = 0;
+                }
+            }
+            
         }
-        //  }else{
-        //      BackgroundMdtPostCounter = 0;
     }
-        
-    }
-    
+}
 
+- (void) disableAllPollingTimers{
+    if( _assignmentsPollingTimer!=nil){
+        [_assignmentsPollingTimer invalidate];
+        _assignmentsPollingTimer = nil;
+    }
+    if( _chatMessagesPollingTimer!=nil){
+        [_chatMessagesPollingTimer invalidate];
+        _chatMessagesPollingTimer = nil;
+    }
+    if( _damageReportPollingTimer!=nil){
+        [_damageReportPollingTimer invalidate];
+        _damageReportPollingTimer = nil;
+    }
+    if( _fieldReportPollingTimer!=nil){
+        [_fieldReportPollingTimer invalidate];
+        _fieldReportPollingTimer = nil;
+    }
+    if( _weatherReportPollingTimer!=nil){
+        [_weatherReportPollingTimer invalidate];
+        _weatherReportPollingTimer = nil;
+    }
+    if( _markupFeaturesPollingTimer!=nil){
+        [_markupFeaturesPollingTimer invalidate];
+        _markupFeaturesPollingTimer = nil;
+    }
+    if( _resourceRequestPollingTimer!=nil){
+        [_resourceRequestPollingTimer invalidate];
+        _resourceRequestPollingTimer = nil;
+    }
+    if( _simpleReportPollingTimer!=nil){
+        [_simpleReportPollingTimer invalidate];
+        _simpleReportPollingTimer = nil;
+    }
+    if( _wfsPollingTimer!=nil){
+        [_wfsPollingTimer invalidate];
+        _wfsPollingTimer = nil;
+    }
 }
 
 - (void) requestMdtRepeatedEvery:(int)seonds immediate:(BOOL)immediate{
@@ -251,18 +316,18 @@ int BackgroundMdtPostCounter = 0;
     });
 }
 
-- (void) requestUxoReportsRepeatedEvery:(int)seconds immediate:(BOOL)immediate {
+- (void) requestWeatherReportsRepeatedEvery:(int)seconds immediate:(BOOL)immediate {
     if(immediate) {
-        [self requestUxoReports];
+        [self requestWeatherReports];
     }
     
-    if(_uxoReportPollingTimer != nil) {
-        [_uxoReportPollingTimer invalidate];
-        _uxoReportPollingTimer = nil;
+    if(_weatherReportPollingTimer != nil) {
+        [_weatherReportPollingTimer invalidate];
+        _weatherReportPollingTimer = nil;
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        _uxoReportPollingTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(requestUxoReports) userInfo:nil repeats:YES];
+        _weatherReportPollingTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(requestWeatherReports) userInfo:nil repeats:YES];
     });
 }
 
@@ -379,11 +444,11 @@ long long lastMdtSync = 0;
     }];
 }
 
--(void) requestUxoReports {
-    NSLog(@"Requesting UXO reports update...");
-    [RestClient getUxoReportsForIncidentId:[self getActiveIncidentId] offset:@0 limit:@0 completion:^(BOOL successful) {
+-(void) requestWeatherReports {
+    NSLog(@"Requesting Weather reports update...");
+    [RestClient getWeatherReportsForIncidentId:[self getActiveIncidentId] offset:@0 limit:@0 completion:^(BOOL successful) {
         if(successful) {
-            NSLog(@"Refreshed UXO Report Information");
+            NSLog(@"Refreshed Weather Report Information");
         }
     }];
 }
@@ -636,47 +701,48 @@ long long lastMdtSync = 0;
     return [_databaseManager getLastSimpleReportTimestampForIncidentId:incidentId];
 }
 
-#pragma mark Uxo Report History/Store & Forward
-- (BOOL)addUxoReportToHistory:(UxoReportPayload *) payload {
-    return [_databaseManager addUxoReportToHistory: payload];
+#pragma mark Weather Report History/Store & Forward
+- (BOOL)addWeatherReportToHistory:(WeatherReportPayload *) payload {
+    return [_databaseManager addWeatherReportToHistory: payload];
 }
 
-- (BOOL)addUxoReportsToHistory:(NSArray<UxoReportPayload> *) payloadArray {
-    return [_databaseManager addUxoReportsToHistory: payloadArray];
+- (BOOL)addWeatherReportsToHistory:(NSArray<WeatherReportPayload> *) payloadArray {
+    return [_databaseManager addWeatherReportsToHistory: payloadArray];
 }
 
-- (BOOL)addUxoReportsToStoreAndForward:(NSArray<UxoReportPayload> *) payloadArray {
-    return [_databaseManager addUxoReportsToStoreAndForward: payloadArray];
+- (BOOL)addWeatherReportsToStoreAndForward:(NSArray<WeatherReportPayload> *) payloadArray {
+    return [_databaseManager addWeatherReportsToStoreAndForward: payloadArray];
 }
 
-- (BOOL)addUxoReportToStoreAndForward:(UxoReportPayload *) payload {
-    BOOL success =  [_databaseManager addUxoReportToStoreAndForward: payload];
+- (BOOL)addWeatherReportToStoreAndForward:(WeatherReportPayload *) payload {
+    BOOL success =  [_databaseManager addWeatherReportToStoreAndForward: payload];
     if(success) {
-        [RestClient postUxoReports];
+        [RestClient postWeatherReports];
     }
     
     return success;
 }
 
-- (void)deleteUxoReportFromStoreAndForward:(UxoReportPayload *) payload {
-    return [_databaseManager deleteUxoReportFromStoreAndForward: payload];
+- (void)deleteWeatherReportFromStoreAndForward:(WeatherReportPayload *) payload {
+    return [_databaseManager deleteWeatherReportFromStoreAndForward: payload];
 }
 
-- (NSMutableArray<UxoReportPayload> *)getAllUxoReportsForIncidentId: (NSNumber *)incidentId {
-    return [_databaseManager getAllUxoReportsForIncidentId: incidentId since:@0];
+- (NSMutableArray<WeatherReportPayload> *)getAllWeatherReportsForIncidentId: (NSNumber *)incidentId {
+    return [_databaseManager getAllWeatherReportsForIncidentId: incidentId since:@0];
 }
 
-- (NSMutableArray<UxoReportPayload> *)getAllUxoReportsForIncidentId: (NSNumber *)incidentId since: (NSNumber *)timestamp {
-    return [_databaseManager getAllUxoReportsForIncidentId:incidentId since:timestamp];
+- (NSMutableArray<WeatherReportPayload> *)getAllWeatherReportsForIncidentId: (NSNumber *)incidentId since: (NSNumber *)timestamp {
+    return [_databaseManager getAllWeatherReportsForIncidentId:incidentId since:timestamp];
 }
 
-- (NSMutableArray<UxoReportPayload> *)getAllUxoReportsFromStoreAndForward {
-    return [_databaseManager getAllUxoReportsFromStoreAndForward];
+- (NSMutableArray<WeatherReportPayload> *)getAllWeatherReportsFromStoreAndForward {
+    return [_databaseManager getAllWeatherReportsFromStoreAndForward];
 }
 
-- (NSNumber *)getLastUxoReportTimestampForIncidentId: (NSNumber *) incidentId {
-    return [_databaseManager getLastUxoReportTimestampForIncidentId:incidentId];
+- (NSNumber *)getLastWeatherReportTimestampForIncidentId: (NSNumber *) incidentId {
+    return [_databaseManager getLastWeatherReportTimestampForIncidentId:incidentId];
 }
+
 
 #pragma mark Markup Features History/Store & Forward
 - (BOOL)addMarkupFeaturesToHistory:(NSArray<MarkupFeature> *) payloadArray {
@@ -688,11 +754,19 @@ long long lastMdtSync = 0;
 }
 
 - (BOOL)addMarkupFeaturesToStoreAndForward:(NSArray<MarkupFeature> *) payloadArray {
-    return [_databaseManager addMarkupFeaturesToStoreAndForward:payloadArray];
+    bool success = [_databaseManager addMarkupFeaturesToStoreAndForward:payloadArray];
+    if(success){
+        [RestClient postMapMarkupFeatures];
+    }
+    return success;
 }
 
 - (BOOL)addMarkupFeatureToStoreAndForward:(MarkupFeature *) payload {
-    return [_databaseManager addMarkupFeatureToStoreAndForward: payload];
+    bool success = [_databaseManager addMarkupFeatureToStoreAndForward: payload];
+    if(success){
+        [RestClient postMapMarkupFeatures];
+    }
+    return success;
 }
 
 - (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesForCollabroomId: (NSNumber *)collabroomId {
@@ -703,6 +777,25 @@ long long lastMdtSync = 0;
     return [_databaseManager getAllMarkupFeaturesForCollabroomId:collabroomId since:timestamp];
 }
 
+- (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesFromStoreAndForward {
+    return [_databaseManager getAllMarkupFeaturesFromStoreAndForward];
+}
+
+- (NSMutableArray<MarkupFeature> *)getAllMarkupFeaturesFromStoreAndForwardForCollabroomId: (NSNumber *)collabroomId {
+    return [_databaseManager getAllMarkupFeaturesFromStoreAndForwardForCollabroomId:collabroomId since:@0];
+}
+
+- (void)deleteMarkupFeatureFromStoreAndForward:(MarkupFeature *)feature{
+    return [_databaseManager deleteMarkupFeatureFromStoreAndForward: feature];
+}
+
+- (void)deleteMarkupFeatureFromStoreAndForwardByFeatureId:(NSString *)featureId{
+    return [_databaseManager deleteMarkupFeatureFromStoreAndForwardByFeatureId: featureId];
+}
+- (void)deleteMarkupFeatureFromReceiveTableByFeatureId:(NSString *)featureId{
+    return [_databaseManager deleteMarkupFeatureFromReceiveTableByFeatureId: featureId];
+}
+
 - (NSNumber *)getLastMarkupFeatureTimestampForCollabroomId: (NSNumber *) collabroomId {
     return [_databaseManager getLastMarkupFeatureTimestampForCollabroomId:collabroomId];
 }
@@ -711,23 +804,27 @@ long long lastMdtSync = 0;
     return [RestClient deleteMarkupFeatureById: featureId];
 }
 
+- (void) removeAllFeaturesInCollabroom:(NSNumber*)collabRoomId{
+    [_databaseManager removeAllFeaturesInCollabroom:collabRoomId];
+}
+
 - (void)setLoginSessionData:(LoginPayload *)loginSessionData {
-    [_userPreferences setSecretObject:loginSessionData.workspaceId forKey:@"PHINICS_WORKSPACE_ID"];
-    [_userPreferences setSecretObject:loginSessionData.username forKey:@"PHINICS_USERNAME"];
-    [_userPreferences setSecretObject:loginSessionData.userId forKey:@"PHINICS_USER_ID"];
-    [_userPreferences setSecretObject:loginSessionData.userSessionId forKey:@"PHINICS_USERSESSION_ID"];
+    [_userPreferences setSecretObject:loginSessionData.workspaceId forKey:@"nics_WORKSPACE_ID"];
+    [_userPreferences setSecretObject:loginSessionData.username forKey:@"nics_USERNAME"];
+    [_userPreferences setSecretObject:loginSessionData.userId forKey:@"nics_USER_ID"];
+    [_userPreferences setSecretObject:loginSessionData.userSessionId forKey:@"nics_USERSESSION_ID"];
 }
 
 - (NSString *)getUsername {
-    return [_userPreferences secretStringForKey:@"PHINICS_USERNAME"];
+    return [_userPreferences secretStringForKey:@"nics_USERNAME"];
 }
 
 - (NSNumber *)getUserId {
-    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"PHINICS_USER_ID"]];
+    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"nics_USER_ID"]];
 }
 
 - (NSNumber *)getUserSessionId {
-    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"PHINICS_USERSESSION_ID"]];
+    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"nics_USERSESSION_ID"]];
 }
 
 - (BOOL)addPersonalLogMessage:(ChatPayload *) payload {
@@ -735,70 +832,70 @@ long long lastMdtSync = 0;
 }
 
 - (NSNumber *)getActiveWorkspaceId {
-    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"PHINICS_WORKSPACE_ID"]];
+    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"nics_WORKSPACE_ID"]];
 }
 - (NSNumber *)getActiveIncidentId {
-    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"PHINICS_INCIDENT_ID"]];
+    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"nics_INCIDENT_ID"]];
 }
 
 - (NSString *)getActiveIncidentName {
-    return [_userPreferences secretStringForKey:@"PHINICS_INCIDENT_NAME"];
+    return [_userPreferences secretStringForKey:@"nics_INCIDENT_NAME"];
 }
 
 - (NSNumber *)getActiveCollabroomId {
-    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"PHINICS_COLLABROOM_ID"]];
+    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"nics_COLLABROOM_ID"]];
 }
 
 - (NSString *)getActiveCollabroomName {
-    return [_userPreferences secretStringForKey:@"PHINICS_COLLABROOM_NAME"];
+    return [_userPreferences secretStringForKey:@"nics_COLLABROOM_NAME"];
 }
 
 //- (void)setActiveCollabroomName: (NSString*) collabName {
-//    [_userPreferences setSecretObject:collabName forKey:@"PHINICS_COLLABROOM_NAME"];
+//    [_userPreferences setSecretObject:collabName forKey:@"nics_COLLABROOM_NAME"];
 //}
 
 - (NSNumber *)getSelectedCollabroomId {
-    return [NSNumber numberWithInteger:[_userPreferences secretIntegerForKey:@"PHINICS_SELECTED_COLLABROOM_ID"]];
+    return [NSNumber numberWithInt:[_userPreferences secretIntegerForKey:@"nics_SELECTED_COLLABROOM_ID"]];
 }
 
 - (NSString *)getSelectedCollabroomName {
-    return [_userPreferences secretStringForKey:@"PHINICS_SELECTED_COLLABROOM_NAME"];
+    return [_userPreferences secretStringForKey:@"nics_SELECTED_COLLABROOM_NAME"];
 }
 
 -(BOOL)getRememberUser{
-    return [_userPreferences secretBoolForKey:@"PHINICS_REMEMBER_USER"];
+    return [_userPreferences secretBoolForKey:@"nics_REMEMBER_USER"];
 }
 
 -(BOOL)getAutoLogin{
-    return [_userPreferences secretBoolForKey:@"PHINICS_AUTO_LOGIN"];
+    return [_userPreferences secretBoolForKey:@"nics_AUTO_LOGIN"];
 }
 
 - (NSString *)getPassword {
-    return [_userPreferences secretStringForKey:@"PHINICS_PASSWORD"];
+    return [_userPreferences secretStringForKey:@"nics_PASSWORD"];
 }
 
 - (void)setActiveWorkspaceId:(NSNumber *)workspaceId{
-    [_userPreferences setSecretObject:workspaceId forKey:@"PHINICS_WORKSPACE_ID"];
+    [_userPreferences setSecretObject:workspaceId forKey:@"nics_WORKSPACE_ID"];
 }
 
 - (void)setActiveIncident:(IncidentPayload *)incident {
-    [_userPreferences setSecretObject:incident.incidentid forKey:@"PHINICS_INCIDENT_ID"];
-    [_userPreferences setSecretObject:incident.incidentname forKey:@"PHINICS_INCIDENT_NAME"];
-    [_userPreferences setSecretObject:incident.lat forKey:@"PHINICS_INCIDENT_LATITUDE"];
-    [_userPreferences setSecretObject:incident.lon forKey:@"PHINICS_INCIDENT_LONGITUDE"];
+    [_userPreferences setSecretObject:incident.incidentid forKey:@"nics_INCIDENT_ID"];
+    [_userPreferences setSecretObject:incident.incidentname forKey:@"nics_INCIDENT_NAME"];
+    [_userPreferences setSecretObject:incident.lat forKey:@"nics_INCIDENT_LATITUDE"];
+    [_userPreferences setSecretObject:incident.lon forKey:@"nics_INCIDENT_LONGITUDE"];
     
     _currentIncident = incident;
 }
 
 - (void)setCurrentIncident:(IncidentPayload *)incident collabRoomId:(NSNumber *)collabRoomId collabRoomName:(NSString *)collabRoomName {
-    [_userPreferences setSecretObject:incident.incidentid forKey:@"PHINICS_INCIDENT_ID"];
-    [_userPreferences setSecretObject:incident.incidentname forKey:@"PHINICS_INCIDENT_NAME"];
-    [_userPreferences setSecretObject:incident.lat forKey:@"PHINICS_INCIDENT_LATITUDE"];
-    [_userPreferences setSecretObject:incident.lon forKey:@"PHINICS_INCIDENT_LONGITUDE"];
+    [_userPreferences setSecretObject:incident.incidentid forKey:@"nics_INCIDENT_ID"];
+    [_userPreferences setSecretObject:incident.incidentname forKey:@"nics_INCIDENT_NAME"];
+    [_userPreferences setSecretObject:incident.lat forKey:@"nics_INCIDENT_LATITUDE"];
+    [_userPreferences setSecretObject:incident.lon forKey:@"nics_INCIDENT_LONGITUDE"];
     
     if(![collabRoomId  isEqual: @-1]) {
-        [_userPreferences setSecretObject:collabRoomId forKey:@"PHINICS_COLLABROOM_ID"];
-        [_userPreferences setSecretObject:collabRoomName forKey:@"PHINICS_COLLABROOM_NAME"];
+        [_userPreferences setSecretObject:collabRoomId forKey:@"nics_COLLABROOM_ID"];
+        [_userPreferences setSecretObject:collabRoomName forKey:@"nics_COLLABROOM_NAME"];
     }
     
     _currentIncident = incident;
@@ -808,34 +905,33 @@ long long lastMdtSync = 0;
     NSString *selectedCollabroom = [self getSelectedCollabroomName];
     
     if(selectedCollabroom == nil || ![selectedCollabroom isEqualToString:collabRoomName]) {
-        [_userPreferences setSecretObject:collabRoomId forKey:@"PHINICS_SELECTED_COLLABROOM_ID"];
-        [_userPreferences setSecretObject:collabRoomName forKey:@"PHINICS_SELECTED_COLLABROOM_NAME"];
+        [_userPreferences setSecretObject:collabRoomId forKey:@"nics_SELECTED_COLLABROOM_ID"];
+        [_userPreferences setSecretObject:collabRoomName forKey:@"nics_SELECTED_COLLABROOM_NAME"];
     }
-    
 }
 
 - (void)setRememberUser:(BOOL)value{
-    [_userPreferences setSecretBool:value forKey:@"PHINICS_REMEMBER_USER"];
+    [_userPreferences setSecretBool:value forKey:@"nics_REMEMBER_USER"];
 }
 
 - (void)setAutoLogin:(BOOL)value{
-    [_userPreferences setSecretBool:value forKey:@"PHINICS_AUTO_LOGIN"];
+    [_userPreferences setSecretBool:value forKey:@"nics_AUTO_LOGIN"];
 }
 
 - (void)setUserName:(NSString *)userName{
-    [_userPreferences setSecretObject:userName forKey:@"PHINICS_USERNAME"];
+    [_userPreferences setSecretObject:userName forKey:@"nics_USERNAME"];
 }
 
 - (void)setPassword:(NSString *)password{
-    [_userPreferences setSecretObject:password forKey:@"PHINICS_PASSWORD"];
+    [_userPreferences setSecretObject:password forKey:@"nics_PASSWORD"];
 }
 
 - (void)setAuthToken:(NSString *)authToken{
-    [_userPreferences setSecretObject:authToken forKey:@"PHINICS_AuthToken"];
+    [_userPreferences setSecretObject:authToken forKey:@"nics_AuthToken"];
 }
 
 - (NSString *)getAuthToken{
-    return [_userPreferences secretStringForKey:@"PHINICS_AuthToken"];
+    return [_userPreferences secretStringForKey:@"nics_AuthToken"];
 }
 
 - (NSMutableDictionary *)getIncidentsList {
@@ -884,91 +980,68 @@ long long lastMdtSync = 0;
 }
 
 - (NSString *)getServerFromSettings{
-    NSDictionary *location = [[NSUserDefaults standardUserDefaults] valueForKey:@"selectedServer"];
-    NSString *value = (NSString *)location;
-    
-    if(value == nil)
-    {
-        NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys: @"https://yourdomain/api/v1/", @"selectedServer", nil];
-        [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
-        return [self getServerFromSettings];
+    if([self getUseCustomServerFromSettings]){
+        return [[NSUserDefaults standardUserDefaults] valueForKey:@"customNicsServer"];
+    }else{
+        return [[NSUserDefaults standardUserDefaults] valueForKey:@"selectedServer"];
     }
-    
-    return value;
 }
 
 - (NSString *)getAuthServerFromSettings{
-    NSDictionary *location = [[NSUserDefaults standardUserDefaults] valueForKey:@"selectedAuthServer"];
-    NSString *value = (NSString *)location;
-    
-    if(value == nil)    {
-        NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys: @"https://yourdomain/openam/", @"selectedAuthServer", nil];
-        [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
-        return [self getAuthServerFromSettings];
+    if([self getUseCustomServerFromSettings]){
+        return [[NSUserDefaults standardUserDefaults] valueForKey:@"customAuthServer"];
+    }else{
+        return [[NSUserDefaults standardUserDefaults] valueForKey:@"selectedAuthServer"];
     }
-    
-    return value;
 }
 
 - (NSString *)getGeoServerFromSettings{
-    NSDictionary *location = [[NSUserDefaults standardUserDefaults] valueForKey:@"selectedGeoServer"];
-    NSString *value = (NSString *)location;
-    
-    if(value == nil)
-    {
-        NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys: @"https://yourdomain/geoserver/", @"selectedGeoServer", nil];
-        [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
-        return [self getGeoServerFromSettings];
+    if([self getUseCustomServerFromSettings]){
+        return [[NSUserDefaults standardUserDefaults] valueForKey:@"customGeoServer"];
+    }else{
+        return [[NSUserDefaults standardUserDefaults] valueForKey:@"selectedGeoServer"];
     }
-    
-    return value;
 }
 
-+ (int)getChatUpdateFrequencyFromSettings{
-    NSDictionary *location = [[NSUserDefaults standardUserDefaults] valueForKey:@"chatUpdateFrequency"];
-    int value = [(NSNumber *)location intValue];
+- (NSString *)getCookieDomainForCurrentServer{
     
-    if(value == 0){     //set default value
-        value = 30;
+    if([self getUseCustomServerFromSettings]){
+        return [[NSUserDefaults standardUserDefaults] valueForKey:@"customCookieDomain"];
+    }else{
+        NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
+        if(!settingsBundle) {
+            NSLog(@"Could not find Settings.bundle");
+            return nil;
+        }
+        
+        NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
+        NSDictionary *domains = [settings objectForKey:@"CookieDomains"];
+        return [domains objectForKey:[self getServerFromSettings]];
     }
     
-    return value;
 }
-+ (int)getMapUpdateFrequencyFromSettings{
-    NSDictionary *location = [[NSUserDefaults standardUserDefaults] valueForKey:@"mapUpdateFrequency"];
-    int value = [(NSNumber *)location intValue];
-    
-    if(value == 0){      //set default value
-        value = 30;
-    }
-    return value;
+
+- (bool)getUseCustomServerFromSettings{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"useCustomServer"];
 }
-+ (int)getReportsUpdateFrequencyFromSettings{
-    NSDictionary *location = [[NSUserDefaults standardUserDefaults] valueForKey:@"reportsUpdateFrequency"];
-    int value = [(NSNumber *)location intValue];
-    
-    if(value == 0){      //set default value
-        value = 30;
-    }
-    return value;
+
++ (NSNumber *)getChatUpdateFrequencyFromSettings{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"chatUpdateFrequency"];
+}
++ (NSNumber *)getMapUpdateFrequencyFromSettings{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"mapUpdateFrequency"];
+}
++ (NSNumber *)getReportsUpdateFrequencyFromSettings{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"reportsUpdateFrequency"];
 }
 + (int)getMdtUpdateFrequencyFromSettings{
-    NSDictionary *location = [[NSUserDefaults standardUserDefaults] valueForKey:@"mdtUpdateFrequency"];
-    int value = [(NSNumber *)location intValue];
-    
-    if(value == 0){    //set default value
-        value = 60;
-    }
-    return value;
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"mdtUpdateFrequency"];
 }
-+ (int)getWfsUpdateFrequencyFromSettings{
-    NSDictionary *location = [[NSUserDefaults standardUserDefaults] valueForKey:@"wfsUpdateFrequency"];
-    int value = [(NSNumber *)location intValue];
-    
-    if(value == 0){     //set default value
-        value = 60;
-    }
-    return value;
++ (NSNumber *)getWfsUpdateFrequencyFromSettings{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"wfsUpdateFrequency"];
+}
++ (bool)getCalTrackingEnabledFromSettings{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"calTracking"];
 }
 
 -(void)setOverviewController:(UINavigationController *)controller{

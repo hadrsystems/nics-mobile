@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <!--|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+ <!--|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -87,27 +87,6 @@
         <item>es</item>
         <item>fr</item>
         <item>it</item>
-    </string-array>
-    
-    <string-array name="pref_server_list_titles">
-        <item>Your Instance</item>
-    </string-array>
-    <string-array name="pref_server_list_values">
-        <item>http://yourdomain/api/v1/</item>
-    </string-array>
-
-        <string-array name="pref_geo_server_list_titles">
-        <item>Your Mapserver</item>
-    </string-array>
-    <string-array name="pref_geo_server_list_values">
-        <item>http://yourdomain/geoserver/</item>
-    </string-array>
-    
-            <string-array name="pref_auth_server_list_titles">
-        <item>Your Identity</item>
-    </string-array>
-    <string-array name="pref_auth_server_list_values">
-        <item>http://yourdomain/openam/</item>
     </string-array>
     
     <string name="pref_header_other">Additional Features</string>

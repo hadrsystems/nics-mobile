@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
 //
 //  DetailViewController.m
-//  PHINICS
+//  nics
 //
 //
 
@@ -95,7 +95,7 @@
     }
     
     // Update the user interface for the detail item.
-    if(_payload != nil) {
+    if(_payload.id != nil) {
         _latitudeView.text = [_payload.messageData.latitude stringValue];
         _longitudeView.text = [_payload.messageData.longitude stringValue];
         [_categoryView getTextView].text = _payload.messageData.category;
@@ -120,6 +120,25 @@
                 [_imageLoadingView setHidden:YES];
             }
              ];
+
+        }else if(splitImagePath[0] == nil){
+            if(_imagePath != nil){
+                
+                [_assetsLibrary assetForURL:[NSURL URLWithString:_imagePath] resultBlock:^(ALAsset *asset) {
+                    _imageView.image = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage]];
+                    [_imageLoadingView stopAnimating];
+                    [_imageLoadingView setHidden:YES];
+                    
+                } failureBlock:^(NSError *error) {
+                    [_imageLoadingView stopAnimating];
+                    [_imageLoadingView setHidden:YES];
+                }
+                 ];
+            }else{
+                [_imageLoadingView stopAnimating];
+                [_imageLoadingView setHidden:YES];
+            }
+            
         }else{
 
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -133,6 +152,8 @@
             if(pngData != nil){
                 UIImage *image = [UIImage imageWithData:pngData];
                 _imageView.image = image;
+                [_imageLoadingView stopAnimating];
+                [_imageLoadingView setHidden:YES];
             }else{
                 [self downloadImageWithURL:[NSURL URLWithString:_imagePath] completionBlock:^(BOOL succeeded, UIImage *image) {
                     if(succeeded) {
@@ -343,16 +364,16 @@
 
 - (void)submitTabletReportButtonPressed {
     
-    if(_imagePath && _isImageSaved) {
+//    if(_imagePath && _isImageSaved) {
         [_dataManager deleteSimpleReportFromStoreAndForward:_payload];
         _payload = [self getPayload:NO];
         [_dataManager addSimpleReportToStoreAndForward:_payload];
         [[IncidentButtonBar GetIncidentCanvasController] SetCanvasToGeneralMessageFromButtonBar];
         
-    } else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error",nil) message:NSLocalizedString(@"Please select or take an image to submit.",nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles: nil];
-        [alertView show];
-    }
+//    } else {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error",nil) message:NSLocalizedString(@"Please select or take an image to submit.",nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles: nil];
+//        [alertView show];
+//    }
 }
 
 - (IBAction)saveDraftButtonPressed:(UIButton *)button {

@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  */
 //
 //  ReportPayload.h
-//  Phinics_iOS
+//  nics_iOS
 //
 //
 
@@ -60,24 +60,3 @@
 
 -(NSString *)toJSONStringPost;
 @end
-
-
-/*
-
- @property NSNumber<Optional> *id;
- @property NSNumber<Optional> *isDraft;
- //@property NSNumber<Optional> *createdUTC;
- //@property NSNumber<Optional> *lastUpdatedUTC;
- //@property NSNumber<Optional> *senderUserId;
- @property NSNumber<Optional> *formId;
- @property NSNumber<Optional> *formTypeId;
- @property NSNumber *incidentid;
- @property NSNumber *usersessionid;
- @property NSNumber *seqtime;
- @property NSNumber<Optional> *seqnum;
- @property NSNumber<Optional> *status;
- @property NSString *message;
- @property NSString<Optional> *incidentName;
- @property NSNumber<Optional> *progress;
-
-*/

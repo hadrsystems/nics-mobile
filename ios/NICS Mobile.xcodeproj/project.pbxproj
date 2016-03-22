@@ -9,24 +9,43 @@
 /* Begin PBXBuildFile section */
 		011688781AAE1F3D00800CD4 /* RoomCanvasUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 011688771AAE1F3D00800CD4 /* RoomCanvasUIViewController.m */; };
 		0116887B1AAE1F8C00800CD4 /* OverviewViewControllerTablet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0116887A1AAE1F8C00800CD4 /* OverviewViewControllerTablet.m */; };
+		0126382B1C161EA30086E3B3 /* ReportInfoWindowSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0126382A1C161EA30086E3B3 /* ReportInfoWindowSmall.xib */; };
+		0131FD481C10945A0001349E /* MarkupReportSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0131FD461C10945A0001349E /* MarkupReportSymbol.m */; };
+		013A5B721C230DF2009256EF /* CircleEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 013A5B711C230DF2009256EF /* CircleEditView.m */; };
 		013CD00C1BB1DC82004824CE /* OrganizationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 013CD00B1BB1DC82004824CE /* OrganizationMessage.m */; };
 		013CD00F1BB1DD0A004824CE /* OrganizationPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 013CD00E1BB1DD0A004824CE /* OrganizationPayload.m */; };
 		013CD0121BB1DE1E004824CE /* userorg.m in Sources */ = {isa = PBXBuildFile; fileRef = 013CD0111BB1DE1E004824CE /* userorg.m */; };
+		014262DB1C15CA8F009ED311 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 014262DA1C15CA8F009ED311 /* ReportCell.m */; };
+		014969031BFBC91D00F164E2 /* MapEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 014969021BFBC91D00F164E2 /* MapEditView.xib */; };
 		014AB5A81AB7512E00FF25A5 /* IncidentButtonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 014AB5A71AB7512E00FF25A5 /* IncidentButtonBar.m */; };
-		015B55D81B2C8E7A00240B16 /* UxoReportDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 015B55D51B2C8E7A00240B16 /* UxoReportDetailViewController.m */; };
-		015B55D91B2C8E7A00240B16 /* UxoReportListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 015B55D71B2C8E7A00240B16 /* UxoReportListViewController.m */; };
-		015B55DC1B2C926500240B16 /* UxoReportData.m in Sources */ = {isa = PBXBuildFile; fileRef = 015B55DB1B2C926500240B16 /* UxoReportData.m */; };
-		015B55DF1B2C946F00240B16 /* UxoReportMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 015B55DE1B2C946F00240B16 /* UxoReportMessage.m */; };
-		015B55E21B2C94E200240B16 /* UxoReportTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 015B55E11B2C94E200240B16 /* UxoReportTable.m */; };
-		015B55E51B2C961700240B16 /* UxoReportPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 015B55E41B2C961700240B16 /* UxoReportPayload.m */; };
-		015B55E71B2CAE8700240B16 /* uxoreport_schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 015B55E61B2CAE8700240B16 /* uxoreport_schema.json */; };
+		01582D791C29E17600307C76 /* WeatherReportData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01582D771C29E17600307C76 /* WeatherReportData.m */; };
+		01582D7E1C29E49300307C76 /* WeatherReportTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 01582D7C1C29E49300307C76 /* WeatherReportTable.m */; };
+		01582D831C29E84500307C76 /* WeatherReportMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01582D811C29E84500307C76 /* WeatherReportMessage.m */; };
+		01582D881C29E8A300307C76 /* WeatherReportPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 01582D861C29E8A300307C76 /* WeatherReportPayload.m */; };
+		01582D8E1C29EC7300307C76 /* WeatherReportDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01582D8B1C29EC7300307C76 /* WeatherReportDetailViewController.m */; };
+		01582D8F1C29EC7300307C76 /* WeatherReportListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01582D8D1C29EC7300307C76 /* WeatherReportListViewController.m */; };
+		01582D911C29F8A000307C76 /* weatherreport_schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 01582D901C29F8A000307C76 /* weatherreport_schema.json */; };
+		015C6F821BFBAEB2008F7EF5 /* MapEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 015C6F801BFBAEB2008F7EF5 /* MapEditView.m */; };
 		015DE5641AC5C6D300954D65 /* DamageInformationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 015DE5631AC5C6D300954D65 /* DamageInformationObject.m */; };
 		01661BBF1BA8B75100CE6453 /* OpenAMAuthenticationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 01661BBE1BA8B75100CE6453 /* OpenAMAuthenticationData.m */; };
 		0166C6791AE9527E00716F1A /* WfsTrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0166C6781AE9527E00716F1A /* WfsTrackingCell.m */; };
 		0166C67C1AE9532D00716F1A /* WfsTrackingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0166C67B1AE9532D00716F1A /* WfsTrackingTableViewController.m */; };
 		0166C67F1AE960CD00716F1A /* ActiveWfsLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0166C67E1AE960CD00716F1A /* ActiveWfsLayerManager.m */; };
 		016CD4B41AF7C1C80096F2F5 /* openAmAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 016CD4B31AF7C1C80096F2F5 /* openAmAuth.m */; };
+		017A58DC1C0F948000E683F0 /* ReportInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017A58DB1C0F948000E683F0 /* ReportInfoWindow.xib */; };
+		017A58E01C0F950200E683F0 /* ReportInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 017A58DE1C0F950200E683F0 /* ReportInfoWindow.m */; };
+		0184741D1C2321EB000133AF /* CircleEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0184741C1C2321EB000133AF /* CircleEditView.xib */; };
+		018474211C2322CF000133AF /* SymbolEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0184741F1C2322CF000133AF /* SymbolEditView.m */; };
+		018474221C2322CF000133AF /* SymbolEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 018474201C2322CF000133AF /* SymbolEditView.xib */; };
+		018474261C23231A000133AF /* SquareEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 018474241C23231A000133AF /* SquareEditView.m */; };
+		018474271C23231A000133AF /* SquareEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 018474251C23231A000133AF /* SquareEditView.xib */; };
+		0184742B1C23234E000133AF /* PolygonEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 018474291C23234E000133AF /* PolygonEditView.m */; };
+		0184742C1C23234E000133AF /* PolygonEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0184742A1C23234E000133AF /* PolygonEditView.xib */; };
+		018474301C232379000133AF /* LineEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0184742E1C232379000133AF /* LineEditView.m */; };
+		018474311C232379000133AF /* LineEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0184742F1C232379000133AF /* LineEditView.xib */; };
 		0198DC091AF016FB00F0B637 /* MapTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0198DC081AF016FB00F0B637 /* MapTypeViewController.m */; };
+		019BAC6D1C21BD99007067EE /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019BAC6C1C21BD99007067EE /* ColorPicker.xib */; };
+		019BAC701C21C7DD007067EE /* ColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 019BAC6F1C21C7DD007067EE /* ColorPicker.m */; };
 		01A6542D1BB587D000FFCAEF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01A6542F1BB587D000FFCAEF /* Localizable.strings */; };
 		01A7AEFC1BB583AB00F01926 /* Main_iPad_Prototype.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01A7AEFE1BB583AB00F01926 /* Main_iPad_Prototype.storyboard */; };
 		01AB5DE81AD44B1600A879B0 /* ChatViewBasicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AB5DE71AD44B1600A879B0 /* ChatViewBasicController.m */; };
@@ -35,9 +54,16 @@
 		01B04DE21BDA7490001898BB /* FormLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B04DE11BDA7490001898BB /* FormLocation.m */; };
 		01B04DE41BDA74BC001898BB /* FormLocation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B04DE31BDA74BC001898BB /* FormLocation.xib */; };
 		01C3238B1BB31ED0004DC747 /* MultipartPostQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C3238A1BB31ED0004DC747 /* MultipartPostQueue.m */; };
+		01C8BE711BFD1A9A00FF99B0 /* SelectSymbolMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C8BE6F1BFD1A9A00FF99B0 /* SelectSymbolMenuViewController.m */; };
+		01C8BE741BFE2DD800FF99B0 /* SelectSymbolMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01C8BE731BFE2DD800FF99B0 /* SelectSymbolMenuViewController.xib */; };
+		01C8BE761BFE2FA200FF99B0 /* SymbolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01C8BE751BFE2FA200FF99B0 /* SymbolCell.xib */; };
+		01C8BE7F1BFE404400FF99B0 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C8BE7D1BFE404400FF99B0 /* Constants.m */; };
 		01D538131AB09FA000DF1579 /* IncidentCanvasUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D538121AB09FA000DF1579 /* IncidentCanvasUIViewController.m */; };
 		01D77CD41BB58CD2008B38BB /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01D77CD61BB58CD2008B38BB /* Main_iPhone.storyboard */; };
 		01D77CE51BB5C872008B38BB /* FormDamageInformation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D77CE71BB5C872008B38BB /* FormDamageInformation.xib */; };
+		01DEEBBC1C4ECDE700501DBF /* FormColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DEEBBA1C4ECDE700501DBF /* FormColorPicker.m */; };
+		01DEEBBD1C4ECDE700501DBF /* FormColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01DEEBBB1C4ECDE700501DBF /* FormColorPicker.xib */; };
+		01F3F0F41C4849B200F65AE9 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01F3F0F31C4849B200F65AE9 /* images.xcassets */; };
 		01F4CF1D1AE7FD34009F6747 /* WfsFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F4CF1C1AE7FD34009F6747 /* WfsFeature.m */; };
 		01F6AF6D1BE2A42700EED9B7 /* FormImageSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F6AF6B1BE2A42700EED9B7 /* FormImageSelector.m */; };
 		01F6AF6E1BE2A42700EED9B7 /* FormImageSelector.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F6AF6C1BE2A42700EED9B7 /* FormImageSelector.xib */; };
@@ -51,7 +77,6 @@
 		3A141ABF18DB34AD00466AD3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A141AA718DB34AC00466AD3 /* UIKit.framework */; };
 		3A141AC718DB34AD00466AD3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A141AC518DB34AD00466AD3 /* InfoPlist.strings */; };
 		3A141AC918DB34AD00466AD3 /* NICS_MobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A141AC818DB34AD00466AD3 /* NICS_MobileTests.m */; };
-		3A37D31418DB668D00A2A203 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A37D31318DB668D00A2A203 /* Images.xcassets */; };
 		3A3C9CF618DB403D00EEBA17 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A3C9CF418DB403D00EEBA17 /* Main_iPad.storyboard */; };
 		3A3C9E1F18DB441200EEBA17 /* FieldReportData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3C9D6E18DB441200EEBA17 /* FieldReportData.m */; };
 		3A3C9E2018DB441200EEBA17 /* MarkupFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3C9D7018DB441200EEBA17 /* MarkupFeature.m */; };
@@ -172,27 +197,37 @@
 		011688771AAE1F3D00800CD4 /* RoomCanvasUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomCanvasUIViewController.m; sourceTree = "<group>"; };
 		011688791AAE1F8C00800CD4 /* OverviewViewControllerTablet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewControllerTablet.h; sourceTree = "<group>"; };
 		0116887A1AAE1F8C00800CD4 /* OverviewViewControllerTablet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewControllerTablet.m; sourceTree = "<group>"; };
+		0126382A1C161EA30086E3B3 /* ReportInfoWindowSmall.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportInfoWindowSmall.xib; sourceTree = "<group>"; };
+		0131FD451C10945A0001349E /* MarkupReportSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkupReportSymbol.h; sourceTree = "<group>"; };
+		0131FD461C10945A0001349E /* MarkupReportSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkupReportSymbol.m; sourceTree = "<group>"; };
+		013A5B701C230DF2009256EF /* CircleEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleEditView.h; sourceTree = "<group>"; };
+		013A5B711C230DF2009256EF /* CircleEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleEditView.m; sourceTree = "<group>"; };
 		013CD00A1BB1DC82004824CE /* OrganizationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizationMessage.h; sourceTree = "<group>"; };
 		013CD00B1BB1DC82004824CE /* OrganizationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizationMessage.m; sourceTree = "<group>"; };
 		013CD00D1BB1DD0A004824CE /* OrganizationPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizationPayload.h; sourceTree = "<group>"; };
 		013CD00E1BB1DD0A004824CE /* OrganizationPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizationPayload.m; sourceTree = "<group>"; };
 		013CD0101BB1DE1E004824CE /* userorg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userorg.h; sourceTree = "<group>"; };
 		013CD0111BB1DE1E004824CE /* userorg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userorg.m; sourceTree = "<group>"; };
+		014262D91C15CA8F009ED311 /* ReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCell.h; sourceTree = "<group>"; };
+		014262DA1C15CA8F009ED311 /* ReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCell.m; sourceTree = "<group>"; };
+		014969021BFBC91D00F164E2 /* MapEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapEditView.xib; sourceTree = "<group>"; };
 		014AB5A61AB7512E00FF25A5 /* IncidentButtonBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncidentButtonBar.h; sourceTree = "<group>"; };
 		014AB5A71AB7512E00FF25A5 /* IncidentButtonBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncidentButtonBar.m; sourceTree = "<group>"; };
-		015B55D41B2C8E7A00240B16 /* UxoReportDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UxoReportDetailViewController.h; sourceTree = "<group>"; };
-		015B55D51B2C8E7A00240B16 /* UxoReportDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UxoReportDetailViewController.m; sourceTree = "<group>"; };
-		015B55D61B2C8E7A00240B16 /* UxoReportListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UxoReportListViewController.h; sourceTree = "<group>"; };
-		015B55D71B2C8E7A00240B16 /* UxoReportListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UxoReportListViewController.m; sourceTree = "<group>"; };
-		015B55DA1B2C926500240B16 /* UxoReportData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UxoReportData.h; sourceTree = "<group>"; };
-		015B55DB1B2C926500240B16 /* UxoReportData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UxoReportData.m; sourceTree = "<group>"; };
-		015B55DD1B2C946F00240B16 /* UxoReportMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UxoReportMessage.h; sourceTree = "<group>"; };
-		015B55DE1B2C946F00240B16 /* UxoReportMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UxoReportMessage.m; sourceTree = "<group>"; };
-		015B55E01B2C94E200240B16 /* UxoReportTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UxoReportTable.h; sourceTree = "<group>"; };
-		015B55E11B2C94E200240B16 /* UxoReportTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UxoReportTable.m; sourceTree = "<group>"; };
-		015B55E31B2C961700240B16 /* UxoReportPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UxoReportPayload.h; sourceTree = "<group>"; };
-		015B55E41B2C961700240B16 /* UxoReportPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UxoReportPayload.m; sourceTree = "<group>"; };
-		015B55E61B2CAE8700240B16 /* uxoreport_schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uxoreport_schema.json; sourceTree = "<group>"; };
+		01582D761C29E17600307C76 /* WeatherReportData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherReportData.h; sourceTree = "<group>"; };
+		01582D771C29E17600307C76 /* WeatherReportData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherReportData.m; sourceTree = "<group>"; };
+		01582D7B1C29E49300307C76 /* WeatherReportTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherReportTable.h; sourceTree = "<group>"; };
+		01582D7C1C29E49300307C76 /* WeatherReportTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherReportTable.m; sourceTree = "<group>"; };
+		01582D801C29E84500307C76 /* WeatherReportMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherReportMessage.h; sourceTree = "<group>"; };
+		01582D811C29E84500307C76 /* WeatherReportMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherReportMessage.m; sourceTree = "<group>"; };
+		01582D851C29E8A300307C76 /* WeatherReportPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherReportPayload.h; sourceTree = "<group>"; };
+		01582D861C29E8A300307C76 /* WeatherReportPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherReportPayload.m; sourceTree = "<group>"; };
+		01582D8A1C29EC7300307C76 /* WeatherReportDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherReportDetailViewController.h; sourceTree = "<group>"; };
+		01582D8B1C29EC7300307C76 /* WeatherReportDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherReportDetailViewController.m; sourceTree = "<group>"; };
+		01582D8C1C29EC7300307C76 /* WeatherReportListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherReportListViewController.h; sourceTree = "<group>"; };
+		01582D8D1C29EC7300307C76 /* WeatherReportListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherReportListViewController.m; sourceTree = "<group>"; };
+		01582D901C29F8A000307C76 /* weatherreport_schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weatherreport_schema.json; sourceTree = "<group>"; };
+		015C6F7F1BFBAEB2008F7EF5 /* MapEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapEditView.h; sourceTree = "<group>"; };
+		015C6F801BFBAEB2008F7EF5 /* MapEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapEditView.m; sourceTree = "<group>"; };
 		015DE5621AC5C6D300954D65 /* DamageInformationObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DamageInformationObject.h; sourceTree = "<group>"; };
 		015DE5631AC5C6D300954D65 /* DamageInformationObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DamageInformationObject.m; sourceTree = "<group>"; };
 		01661BBD1BA8B75100CE6453 /* OpenAMAuthenticationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenAMAuthenticationData.h; sourceTree = "<group>"; };
@@ -205,8 +240,27 @@
 		0166C67E1AE960CD00716F1A /* ActiveWfsLayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveWfsLayerManager.m; sourceTree = "<group>"; };
 		016CD4B21AF7C1C80096F2F5 /* openAmAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openAmAuth.h; sourceTree = "<group>"; };
 		016CD4B31AF7C1C80096F2F5 /* openAmAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = openAmAuth.m; sourceTree = "<group>"; };
+		017A58DB1C0F948000E683F0 /* ReportInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportInfoWindow.xib; sourceTree = "<group>"; };
+		017A58DD1C0F950200E683F0 /* ReportInfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportInfoWindow.h; sourceTree = "<group>"; };
+		017A58DE1C0F950200E683F0 /* ReportInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportInfoWindow.m; sourceTree = "<group>"; };
+		0184741C1C2321EB000133AF /* CircleEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleEditView.xib; sourceTree = "<group>"; };
+		0184741E1C2322CF000133AF /* SymbolEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymbolEditView.h; sourceTree = "<group>"; };
+		0184741F1C2322CF000133AF /* SymbolEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolEditView.m; sourceTree = "<group>"; };
+		018474201C2322CF000133AF /* SymbolEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SymbolEditView.xib; sourceTree = "<group>"; };
+		018474231C23231A000133AF /* SquareEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareEditView.h; sourceTree = "<group>"; };
+		018474241C23231A000133AF /* SquareEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareEditView.m; sourceTree = "<group>"; };
+		018474251C23231A000133AF /* SquareEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SquareEditView.xib; sourceTree = "<group>"; };
+		018474281C23234E000133AF /* PolygonEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolygonEditView.h; sourceTree = "<group>"; };
+		018474291C23234E000133AF /* PolygonEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolygonEditView.m; sourceTree = "<group>"; };
+		0184742A1C23234E000133AF /* PolygonEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PolygonEditView.xib; sourceTree = "<group>"; };
+		0184742D1C232379000133AF /* LineEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineEditView.h; sourceTree = "<group>"; };
+		0184742E1C232379000133AF /* LineEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineEditView.m; sourceTree = "<group>"; };
+		0184742F1C232379000133AF /* LineEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineEditView.xib; sourceTree = "<group>"; };
 		0198DC071AF016FB00F0B637 /* MapTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTypeViewController.h; sourceTree = "<group>"; };
 		0198DC081AF016FB00F0B637 /* MapTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTypeViewController.m; sourceTree = "<group>"; };
+		019BAC6C1C21BD99007067EE /* ColorPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
+		019BAC6E1C21C7DD007067EE /* ColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPicker.h; sourceTree = "<group>"; };
+		019BAC6F1C21C7DD007067EE /* ColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPicker.m; sourceTree = "<group>"; };
 		01A654291BB584F200FFCAEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad_Prototype.storyboard; sourceTree = "<group>"; };
 		01A6542A1BB5852F00FFCAEF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main_iPad_Prototype.strings; sourceTree = "<group>"; };
 		01A6542C1BB5865A00FFCAEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad_Prototype.strings; sourceTree = "<group>"; };
@@ -223,6 +277,12 @@
 		01B04DE31BDA74BC001898BB /* FormLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormLocation.xib; sourceTree = "<group>"; };
 		01C323891BB31ED0004DC747 /* MultipartPostQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipartPostQueue.h; sourceTree = "<group>"; };
 		01C3238A1BB31ED0004DC747 /* MultipartPostQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipartPostQueue.m; sourceTree = "<group>"; };
+		01C8BE6E1BFD1A9A00FF99B0 /* SelectSymbolMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSymbolMenuViewController.h; sourceTree = "<group>"; };
+		01C8BE6F1BFD1A9A00FF99B0 /* SelectSymbolMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSymbolMenuViewController.m; sourceTree = "<group>"; };
+		01C8BE731BFE2DD800FF99B0 /* SelectSymbolMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectSymbolMenuViewController.xib; sourceTree = "<group>"; };
+		01C8BE751BFE2FA200FF99B0 /* SymbolCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SymbolCell.xib; sourceTree = "<group>"; };
+		01C8BE7C1BFE404400FF99B0 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		01C8BE7D1BFE404400FF99B0 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		01D538111AB09FA000DF1579 /* IncidentCanvasUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncidentCanvasUIViewController.h; sourceTree = "<group>"; };
 		01D538121AB09FA000DF1579 /* IncidentCanvasUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncidentCanvasUIViewController.m; sourceTree = "<group>"; };
 		01D77CD51BB58CD2008B38BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -237,6 +297,10 @@
 		01D77CE91BB5C896008B38BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FormDamageInformation.strings; sourceTree = "<group>"; };
 		01D77CEB1BB5C899008B38BB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/FormDamageInformation.strings; sourceTree = "<group>"; };
 		01D77CED1BB5C89A008B38BB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FormDamageInformation.strings; sourceTree = "<group>"; };
+		01DEEBB91C4ECDE700501DBF /* FormColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormColorPicker.h; sourceTree = "<group>"; };
+		01DEEBBA1C4ECDE700501DBF /* FormColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormColorPicker.m; sourceTree = "<group>"; };
+		01DEEBBB1C4ECDE700501DBF /* FormColorPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormColorPicker.xib; sourceTree = "<group>"; };
+		01F3F0F31C4849B200F65AE9 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		01F4CF1B1AE7FD34009F6747 /* WfsFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WfsFeature.h; sourceTree = "<group>"; };
 		01F4CF1C1AE7FD34009F6747 /* WfsFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WfsFeature.m; sourceTree = "<group>"; };
 		01F6AF6A1BE2A42700EED9B7 /* FormImageSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormImageSelector.h; sourceTree = "<group>"; };
@@ -257,7 +321,6 @@
 		3A141AC418DB34AD00466AD3 /* NICS MobileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NICS MobileTests-Info.plist"; sourceTree = "<group>"; };
 		3A141AC618DB34AD00466AD3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A141AC818DB34AD00466AD3 /* NICS_MobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NICS_MobileTests.m; sourceTree = "<group>"; };
-		3A37D31318DB668D00A2A203 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3A3C9CF418DB403D00EEBA17 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		3A3C9D6D18DB441200EEBA17 /* FieldReportData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldReportData.h; sourceTree = "<group>"; };
 		3A3C9D6E18DB441200EEBA17 /* FieldReportData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldReportData.m; sourceTree = "<group>"; };
@@ -507,6 +570,40 @@
 			name = WfsTrackingMenu;
 			sourceTree = "<group>";
 		};
+		019BAC711C220BD4007067EE /* MapEdit */ = {
+			isa = PBXGroup;
+			children = (
+				0198DC071AF016FB00F0B637 /* MapTypeViewController.h */,
+				0198DC081AF016FB00F0B637 /* MapTypeViewController.m */,
+				015C6F7F1BFBAEB2008F7EF5 /* MapEditView.h */,
+				015C6F801BFBAEB2008F7EF5 /* MapEditView.m */,
+				014969021BFBC91D00F164E2 /* MapEditView.xib */,
+				01C8BE6E1BFD1A9A00FF99B0 /* SelectSymbolMenuViewController.h */,
+				01C8BE6F1BFD1A9A00FF99B0 /* SelectSymbolMenuViewController.m */,
+				01C8BE731BFE2DD800FF99B0 /* SelectSymbolMenuViewController.xib */,
+				01C8BE751BFE2FA200FF99B0 /* SymbolCell.xib */,
+				019BAC6C1C21BD99007067EE /* ColorPicker.xib */,
+				019BAC6E1C21C7DD007067EE /* ColorPicker.h */,
+				019BAC6F1C21C7DD007067EE /* ColorPicker.m */,
+				013A5B701C230DF2009256EF /* CircleEditView.h */,
+				013A5B711C230DF2009256EF /* CircleEditView.m */,
+				0184741C1C2321EB000133AF /* CircleEditView.xib */,
+				0184741E1C2322CF000133AF /* SymbolEditView.h */,
+				0184741F1C2322CF000133AF /* SymbolEditView.m */,
+				018474201C2322CF000133AF /* SymbolEditView.xib */,
+				018474231C23231A000133AF /* SquareEditView.h */,
+				018474241C23231A000133AF /* SquareEditView.m */,
+				018474251C23231A000133AF /* SquareEditView.xib */,
+				018474281C23234E000133AF /* PolygonEditView.h */,
+				018474291C23234E000133AF /* PolygonEditView.m */,
+				0184742A1C23234E000133AF /* PolygonEditView.xib */,
+				0184742D1C232379000133AF /* LineEditView.h */,
+				0184742E1C232379000133AF /* LineEditView.m */,
+				0184742F1C232379000133AF /* LineEditView.xib */,
+			);
+			name = MapEdit;
+			sourceTree = "<group>";
+		};
 		01A8C73F1ABB468E00B367F0 /* Form Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,6 +612,9 @@
 				01F6AF6C1BE2A42700EED9B7 /* FormImageSelector.xib */,
 				015DE5621AC5C6D300954D65 /* DamageInformationObject.h */,
 				015DE5631AC5C6D300954D65 /* DamageInformationObject.m */,
+				01DEEBB91C4ECDE700501DBF /* FormColorPicker.h */,
+				01DEEBBA1C4ECDE700501DBF /* FormColorPicker.m */,
+				01DEEBBB1C4ECDE700501DBF /* FormColorPicker.xib */,
 				3AFDD1B01953248F0034CD81 /* FormDamageInformation.h */,
 				3AFDD1B11953248F0034CD81 /* FormDamageInformation.m */,
 				01D77CE71BB5C872008B38BB /* FormDamageInformation.xib */,
@@ -547,10 +647,6 @@
 		01A8C7411ABB471A00B367F0 /* Reports */ = {
 			isa = PBXGroup;
 			children = (
-				015B55D41B2C8E7A00240B16 /* UxoReportDetailViewController.h */,
-				015B55D51B2C8E7A00240B16 /* UxoReportDetailViewController.m */,
-				015B55D61B2C8E7A00240B16 /* UxoReportListViewController.h */,
-				015B55D71B2C8E7A00240B16 /* UxoReportListViewController.m */,
 				3A70105918E09F8900C3DC42 /* DamageReportDetailViewController.h */,
 				3A70105A18E09F8900C3DC42 /* DamageReportDetailViewController.m */,
 				3A70105B18E09F8900C3DC42 /* DamageReportListViewController.h */,
@@ -567,6 +663,12 @@
 				3A3C9E1718DB441200EEBA17 /* SimpleReportDetailViewController.m */,
 				3A3C9E1818DB441200EEBA17 /* SimpleReportListViewController.h */,
 				3A3C9E1918DB441200EEBA17 /* SimpleReportListViewController.m */,
+				014262D91C15CA8F009ED311 /* ReportCell.h */,
+				014262DA1C15CA8F009ED311 /* ReportCell.m */,
+				01582D8A1C29EC7300307C76 /* WeatherReportDetailViewController.h */,
+				01582D8B1C29EC7300307C76 /* WeatherReportDetailViewController.m */,
+				01582D8C1C29EC7300307C76 /* WeatherReportListViewController.h */,
+				01582D8D1C29EC7300307C76 /* WeatherReportListViewController.m */,
 			);
 			name = Reports;
 			sourceTree = "<group>";
@@ -574,14 +676,17 @@
 		01A8C7421ABB475300B367F0 /* MapMarkup */ = {
 			isa = PBXGroup;
 			children = (
+				019BAC711C220BD4007067EE /* MapEdit */,
 				0166C6761AE9522900716F1A /* WfsTrackingMenu */,
 				3A3C9E0918DB441200EEBA17 /* MapMarkupViewController.h */,
 				3A3C9E0A18DB441200EEBA17 /* MapMarkupViewController.m */,
 				3A3C9E0B18DB441200EEBA17 /* MarkupCoordinateView.h */,
 				3A3C9E0C18DB441200EEBA17 /* MarkupCoordinateView.m */,
 				3A3C9E0D18DB441200EEBA17 /* MarkupCoordinateView.xib */,
-				0198DC071AF016FB00F0B637 /* MapTypeViewController.h */,
-				0198DC081AF016FB00F0B637 /* MapTypeViewController.m */,
+				017A58DB1C0F948000E683F0 /* ReportInfoWindow.xib */,
+				0126382A1C161EA30086E3B3 /* ReportInfoWindowSmall.xib */,
+				017A58DD1C0F950200E683F0 /* ReportInfoWindow.h */,
+				017A58DE1C0F950200E683F0 /* ReportInfoWindow.m */,
 			);
 			name = MapMarkup;
 			sourceTree = "<group>";
@@ -620,8 +725,8 @@
 		3A141AA918DB34AC00466AD3 /* NICS Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				01F3F0F31C4849B200F65AE9 /* images.xcassets */,
 				3AC64FA718E9D624002262FB /* Settings.bundle */,
-				3A37D31318DB668D00A2A203 /* Images.xcassets */,
 				3A3C9D6B18DB441200EEBA17 /* api */,
 				3A141AB218DB34AC00466AD3 /* AppDelegate.h */,
 				3A141AB318DB34AC00466AD3 /* AppDelegate.m */,
@@ -700,8 +805,6 @@
 			children = (
 				013CD0101BB1DE1E004824CE /* userorg.h */,
 				013CD0111BB1DE1E004824CE /* userorg.m */,
-				015B55DA1B2C926500240B16 /* UxoReportData.h */,
-				015B55DB1B2C926500240B16 /* UxoReportData.m */,
 				3A70106B18E0C40900C3DC42 /* DamageInformation.h */,
 				3A70106C18E0C40900C3DC42 /* DamageInformation.m */,
 				3A70105F18E0A00C00C3DC42 /* DamageReportData.h */,
@@ -722,6 +825,10 @@
 				01F4CF1C1AE7FD34009F6747 /* WfsFeature.m */,
 				01661BBD1BA8B75100CE6453 /* OpenAMAuthenticationData.h */,
 				01661BBE1BA8B75100CE6453 /* OpenAMAuthenticationData.m */,
+				01C8BE7C1BFE404400FF99B0 /* Constants.h */,
+				01C8BE7D1BFE404400FF99B0 /* Constants.m */,
+				01582D761C29E17600307C76 /* WeatherReportData.h */,
+				01582D771C29E17600307C76 /* WeatherReportData.m */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -739,8 +846,6 @@
 		3A3C9D7C18DB441200EEBA17 /* tables */ = {
 			isa = PBXGroup;
 			children = (
-				015B55E01B2C94E200240B16 /* UxoReportTable.h */,
-				015B55E11B2C94E200240B16 /* UxoReportTable.m */,
 				3A3C9D7D18DB441200EEBA17 /* ChatTable.h */,
 				3A3C9D7E18DB441200EEBA17 /* ChatTable.m */,
 				3A70106818E0C27100C3DC42 /* DamageReportTable.h */,
@@ -757,6 +862,8 @@
 				3A3C9D8818DB441200EEBA17 /* ResourceRequestTable.m */,
 				3A3C9D8918DB441200EEBA17 /* SimpleReportTable.h */,
 				3A3C9D8A18DB441200EEBA17 /* SimpleReportTable.m */,
+				01582D7B1C29E49300307C76 /* WeatherReportTable.h */,
+				01582D7C1C29E49300307C76 /* WeatherReportTable.m */,
 			);
 			path = tables;
 			sourceTree = "<group>";
@@ -764,8 +871,6 @@
 		3A3C9D8F18DB441200EEBA17 /* messages */ = {
 			isa = PBXGroup;
 			children = (
-				015B55DD1B2C946F00240B16 /* UxoReportMessage.h */,
-				015B55DE1B2C946F00240B16 /* UxoReportMessage.m */,
 				3A3C9D9018DB441200EEBA17 /* AssignmentMessage.h */,
 				3A3C9D9118DB441200EEBA17 /* AssignmentMessage.m */,
 				3A3C9D9218DB441200EEBA17 /* ChatMessage.h */,
@@ -794,6 +899,8 @@
 				3A3C9DA718DB441200EEBA17 /* UserMessage.m */,
 				013CD00A1BB1DC82004824CE /* OrganizationMessage.h */,
 				013CD00B1BB1DC82004824CE /* OrganizationMessage.m */,
+				01582D801C29E84500307C76 /* WeatherReportMessage.h */,
+				01582D811C29E84500307C76 /* WeatherReportMessage.m */,
 			);
 			path = messages;
 			sourceTree = "<group>";
@@ -843,8 +950,6 @@
 		3A3C9DB118DB441200EEBA17 /* forms */ = {
 			isa = PBXGroup;
 			children = (
-				015B55E31B2C961700240B16 /* UxoReportPayload.h */,
-				015B55E41B2C961700240B16 /* UxoReportPayload.m */,
 				3A70106518E0A23C00C3DC42 /* DamageReportPayload.h */,
 				3A70106618E0A23C00C3DC42 /* DamageReportPayload.m */,
 				3A3C9DB218DB441200EEBA17 /* FieldReportPayload.h */,
@@ -861,6 +966,8 @@
 				3A3C9DBD18DB441200EEBA17 /* ResourceRequestPayload.m */,
 				3A3C9DBE18DB441200EEBA17 /* SimpleReportPayload.h */,
 				3A3C9DBF18DB441200EEBA17 /* SimpleReportPayload.m */,
+				01582D851C29E8A300307C76 /* WeatherReportPayload.h */,
+				01582D861C29E8A300307C76 /* WeatherReportPayload.m */,
 			);
 			path = forms;
 			sourceTree = "<group>";
@@ -888,6 +995,8 @@
 				3A3C9DE718DB441200EEBA17 /* MarkupSymbol.m */,
 				3A48B40118E1CB4A00109967 /* MarkupText.h */,
 				3A48B40218E1CB4A00109967 /* MarkupText.m */,
+				0131FD451C10945A0001349E /* MarkupReportSymbol.h */,
+				0131FD461C10945A0001349E /* MarkupReportSymbol.m */,
 			);
 			path = markup;
 			sourceTree = "<group>";
@@ -895,11 +1004,11 @@
 		3A3C9DE818DB441200EEBA17 /* schemas */ = {
 			isa = PBXGroup;
 			children = (
-				015B55E61B2CAE8700240B16 /* uxoreport_schema.json */,
 				3A70106E18E0C82100C3DC42 /* damagereport_schema.json */,
 				3A3C9DE918DB441200EEBA17 /* fieldreport_schema.json */,
 				3A3C9DEA18DB441200EEBA17 /* resourcerequest_schema.json */,
 				3A3C9DEB18DB441200EEBA17 /* tasking_schema.json */,
+				01582D901C29F8A000307C76 /* weatherreport_schema.json */,
 			);
 			path = schemas;
 			sourceTree = "<group>";
@@ -1043,24 +1152,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A70106F18E0C82100C3DC42 /* damagereport_schema.json in Resources */,
+				019BAC6D1C21BD99007067EE /* ColorPicker.xib in Resources */,
 				3A141AAE18DB34AC00466AD3 /* InfoPlist.strings in Resources */,
 				3A3C9E5A18DB441300EEBA17 /* resourcerequest_schema.json in Resources */,
 				01F6AF6E1BE2A42700EED9B7 /* FormImageSelector.xib in Resources */,
-				015B55E71B2CAE8700240B16 /* uxoreport_schema.json in Resources */,
+				01C8BE761BFE2FA200FF99B0 /* SymbolCell.xib in Resources */,
 				3A3C9E6E18DB441300EEBA17 /* MarkupCoordinateView.xib in Resources */,
 				3A3C9E5C18DB441300EEBA17 /* userinfo_schema.json in Resources */,
+				018474271C23231A000133AF /* SquareEditView.xib in Resources */,
+				018474311C232379000133AF /* LineEditView.xib in Resources */,
+				014969031BFBC91D00F164E2 /* MapEditView.xib in Resources */,
+				0184741D1C2321EB000133AF /* CircleEditView.xib in Resources */,
 				01B04DE41BDA74BC001898BB /* FormLocation.xib in Resources */,
 				3A3C9E6418DB441300EEBA17 /* FormEditText.xib in Resources */,
-				3A37D31418DB668D00A2A203 /* Images.xcassets in Resources */,
 				3A3C9E6618DB441300EEBA17 /* FormSpinner.xib in Resources */,
+				0126382B1C161EA30086E3B3 /* ReportInfoWindowSmall.xib in Resources */,
+				01C8BE741BFE2DD800FF99B0 /* SelectSymbolMenuViewController.xib in Resources */,
+				01F3F0F41C4849B200F65AE9 /* images.xcassets in Resources */,
 				3AC64FA818E9D624002262FB /* Settings.bundle in Resources */,
+				018474221C2322CF000133AF /* SymbolEditView.xib in Resources */,
+				01582D911C29F8A000307C76 /* weatherreport_schema.json in Resources */,
 				3A3C9CF618DB403D00EEBA17 /* Main_iPad.storyboard in Resources */,
 				3A3C9E5B18DB441300EEBA17 /* tasking_schema.json in Resources */,
 				3A3C9E6818DB441300EEBA17 /* FormView.xib in Resources */,
 				01D77CE51BB5C872008B38BB /* FormDamageInformation.xib in Resources */,
+				017A58DC1C0F948000E683F0 /* ReportInfoWindow.xib in Resources */,
 				01D77CD41BB58CD2008B38BB /* Main_iPhone.storyboard in Resources */,
 				01A7AEFC1BB583AB00F01926 /* Main_iPad_Prototype.storyboard in Resources */,
+				0184742C1C23234E000133AF /* PolygonEditView.xib in Resources */,
 				01A6542D1BB587D000FFCAEF /* Localizable.strings in Resources */,
+				01DEEBBD1C4ECDE700501DBF /* FormColorPicker.xib in Resources */,
 				3A3C9E7718DB441300EEBA17 /* WeatherView.xib in Resources */,
 				3A3C9E5918DB441300EEBA17 /* fieldreport_schema.json in Resources */,
 			);
@@ -1119,23 +1240,26 @@
 				3A3C9E2518DB441200EEBA17 /* DatabaseManager.m in Sources */,
 				3A3C9E3918DB441200EEBA17 /* TaskFormMessage.m in Sources */,
 				01D538131AB09FA000DF1579 /* IncidentCanvasUIViewController.m in Sources */,
+				019BAC701C21C7DD007067EE /* ColorPicker.m in Sources */,
 				3A70106A18E0C27100C3DC42 /* DamageReportTable.m in Sources */,
 				3A3C9E2618DB441200EEBA17 /* ChatTable.m in Sources */,
 				3A3C9E2918DB441200EEBA17 /* MarkupTable.m in Sources */,
 				3A3C9E4C18DB441300EEBA17 /* TaskPayload.m in Sources */,
 				3A3C9E7418DB441300EEBA17 /* SimpleReportListViewController.m in Sources */,
 				014AB5A81AB7512E00FF25A5 /* IncidentButtonBar.m in Sources */,
-				015B55E21B2C94E200240B16 /* UxoReportTable.m in Sources */,
 				3A3C9E2D18DB441200EEBA17 /* DataManager.m in Sources */,
 				3A3C9E6518DB441300EEBA17 /* FormSpinner.m in Sources */,
+				01582D881C29E8A300307C76 /* WeatherReportPayload.m in Sources */,
 				01F6AF6D1BE2A42700EED9B7 /* FormImageSelector.m in Sources */,
-				015B55DF1B2C946F00240B16 /* UxoReportMessage.m in Sources */,
+				015C6F821BFBAEB2008F7EF5 /* MapEditView.m in Sources */,
 				3A3C9E4218DB441300EEBA17 /* FormSchemaSection.m in Sources */,
 				01F4CF1D1AE7FD34009F6747 /* WfsFeature.m in Sources */,
 				3A3C9E2318DB441200EEBA17 /* ResourceRequestData.m in Sources */,
+				018474261C23231A000133AF /* SquareEditView.m in Sources */,
 				3A3C9E2F18DB441200EEBA17 /* AssignmentMessage.m in Sources */,
 				3A141AB418DB34AC00466AD3 /* AppDelegate.m in Sources */,
 				3A70106718E0A23C00C3DC42 /* DamageReportPayload.m in Sources */,
+				017A58E01C0F950200E683F0 /* ReportInfoWindow.m in Sources */,
 				3A48B40318E1CB4A00109967 /* MarkupText.m in Sources */,
 				3A3C9E2818DB441200EEBA17 /* FieldReportTable.m in Sources */,
 				013CD0121BB1DE1E004824CE /* userorg.m in Sources */,
@@ -1144,14 +1268,20 @@
 				3A3C9E6118DB441300EEBA17 /* FieldReportDetailViewController.m in Sources */,
 				3A3C9E5018DB441300EEBA17 /* WeatherPayload.m in Sources */,
 				3A141AB018DB34AC00466AD3 /* main.m in Sources */,
+				018474301C232379000133AF /* LineEditView.m in Sources */,
 				3A3C9E4518DB441300EEBA17 /* SimpleReportPayload.m in Sources */,
+				01DEEBBC1C4ECDE700501DBF /* FormColorPicker.m in Sources */,
+				01582D791C29E17600307C76 /* WeatherReportData.m in Sources */,
 				3A3C9E6D18DB441300EEBA17 /* MarkupCoordinateView.m in Sources */,
 				3A3C9E5718DB441300EEBA17 /* MarkupSegment.m in Sources */,
+				01582D7E1C29E49300307C76 /* WeatherReportTable.m in Sources */,
 				3A3C9E3B18DB441300EEBA17 /* AssignmentPayload.m in Sources */,
 				3A3C9E3618DB441200EEBA17 /* Message.m in Sources */,
 				3A3C9E4918DB441300EEBA17 /* MDTPayload.m in Sources */,
+				01C8BE7F1BFE404400FF99B0 /* Constants.m in Sources */,
 				3A3C9E5418DB441300EEBA17 /* Utils.m in Sources */,
 				3A70105E18E09F8900C3DC42 /* DamageReportListViewController.m in Sources */,
+				0131FD481C10945A0001349E /* MarkupReportSymbol.m in Sources */,
 				3A3C9E5318DB441300EEBA17 /* UIImage+Resize.m in Sources */,
 				3A3C9E4618DB441300EEBA17 /* IncidentPayload.m in Sources */,
 				01661BBF1BA8B75100CE6453 /* OpenAMAuthenticationData.m in Sources */,
@@ -1175,7 +1305,6 @@
 				3A3C9E2418DB441200EEBA17 /* SimpleReportData.m in Sources */,
 				0166C6791AE9527E00716F1A /* WfsTrackingCell.m in Sources */,
 				3A3C9E2A18DB441200EEBA17 /* MDTTable.m in Sources */,
-				015B55DC1B2C926500240B16 /* UxoReportData.m in Sources */,
 				3A3C9E3D18DB441300EEBA17 /* CollabroomPayload.m in Sources */,
 				01AB5DF11AD4601C00A879B0 /* ChatContainerBasicViewController.m in Sources */,
 				3A3C9E3F18DB441300EEBA17 /* FieldReportPayload.m in Sources */,
@@ -1193,7 +1322,9 @@
 				3A3C9E2018DB441200EEBA17 /* MarkupFeature.m in Sources */,
 				3A3C9E2C18DB441200EEBA17 /* SimpleReportTable.m in Sources */,
 				0116887B1AAE1F8C00800CD4 /* OverviewViewControllerTablet.m in Sources */,
+				01C8BE711BFD1A9A00FF99B0 /* SelectSymbolMenuViewController.m in Sources */,
 				3A3C9E4D18DB441300EEBA17 /* UserPayload.m in Sources */,
+				018474211C2322CF000133AF /* SymbolEditView.m in Sources */,
 				0166C67F1AE960CD00716F1A /* ActiveWfsLayerManager.m in Sources */,
 				3A70106D18E0C40900C3DC42 /* DamageInformation.m in Sources */,
 				3A3C9E5118DB441300EEBA17 /* WeatherTimePayload.m in Sources */,
@@ -1209,27 +1340,30 @@
 				3A3C9E3E18DB441300EEBA17 /* CurrentObservationPayload.m in Sources */,
 				3A3C9E3218DB441200EEBA17 /* FieldReportMessage.m in Sources */,
 				0198DC091AF016FB00F0B637 /* MapTypeViewController.m in Sources */,
+				0184742B1C23234E000133AF /* PolygonEditView.m in Sources */,
 				3A3C9E2B18DB441200EEBA17 /* ResourceRequestTable.m in Sources */,
 				3A3C9E3718DB441200EEBA17 /* ResourceRequestMessage.m in Sources */,
 				3A3C9E3318DB441200EEBA17 /* IncidentMessage.m in Sources */,
+				01582D8F1C29EC7300307C76 /* WeatherReportListViewController.m in Sources */,
 				01AB5DF41AD467BA00A879B0 /* ChatViewCell.m in Sources */,
 				3A3C9E6218DB441300EEBA17 /* FieldReportListViewController.m in Sources */,
+				01582D831C29E84500307C76 /* WeatherReportMessage.m in Sources */,
 				3A70106418E0A1EB00C3DC42 /* DamageReportMessage.m in Sources */,
 				3A3C9E4318DB441300EEBA17 /* ReportPayload.m in Sources */,
+				013A5B721C230DF2009256EF /* CircleEditView.m in Sources */,
 				3A3C9E4718DB441300EEBA17 /* LoginPayload.m in Sources */,
 				3A3C9E6C18DB441300EEBA17 /* MapMarkupViewController.m in Sources */,
 				01AB5DE81AD44B1600A879B0 /* ChatViewBasicController.m in Sources */,
 				015DE5641AC5C6D300954D65 /* DamageInformationObject.m in Sources */,
 				3A3C9E5E18DB441300EEBA17 /* ColorPickerImageView.m in Sources */,
 				3A3C9E6A18DB441300EEBA17 /* GARViewController.m in Sources */,
-				015B55D81B2C8E7A00240B16 /* UxoReportDetailViewController.m in Sources */,
 				3A3C9E5818DB441300EEBA17 /* MarkupSymbol.m in Sources */,
-				015B55E51B2C961700240B16 /* UxoReportPayload.m in Sources */,
 				3A3C9E3418DB441200EEBA17 /* LoginMessage.m in Sources */,
+				014262DB1C15CA8F009ED311 /* ReportCell.m in Sources */,
 				011688781AAE1F3D00800CD4 /* RoomCanvasUIViewController.m in Sources */,
 				3A70106118E0A00C00C3DC42 /* DamageReportData.m in Sources */,
-				015B55D91B2C8E7A00240B16 /* UxoReportListViewController.m in Sources */,
 				3A3C9E4418DB441300EEBA17 /* ResourceRequestPayload.m in Sources */,
+				01582D8E1C29EC7300307C76 /* WeatherReportDetailViewController.m in Sources */,
 				3A3C9E4F18DB441300EEBA17 /* WeatherLocationPayload.m in Sources */,
 				01C3238B1BB31ED0004DC747 /* MultipartPostQueue.m in Sources */,
 				3A3C9E3818DB441200EEBA17 /* SimpleReportMessage.m in Sources */,

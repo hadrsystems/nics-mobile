@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -110,29 +110,28 @@
         
         NSNotification *IncidentSwitchedNotification = [NSNotification notificationWithName:@"IncidentSwitched" object:_selectedIncident.incidentname];
         
-        [_dataManager requestSimpleReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestDamageReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestFieldReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestResourceRequestsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
+        [_dataManager requestSimpleReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestDamageReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestFieldReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestResourceRequestsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
         [_dataManager requestMdtRepeatedEvery:[DataManager getMdtUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestWfsUpdateRepeatedEvery:[DataManager getWfsUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestUxoReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
+        [_dataManager requestWfsUpdateRepeatedEvery:[[DataManager getWfsUpdateFrequencyFromSettings] intValue] immediate:YES];
     }
     
     if(_selectedCollabroom == nil){
         [_selectRoomButton setTitle:NSLocalizedString(@"Select Room",nil) forState:UIControlStateNormal];
         [_ChatButtonView setHidden:TRUE];
+        [_dataManager setSelectedCollabRoomId:[NSNumber numberWithInt:-1] collabRoomName:@"N/A"];
     }else{
         
         [_dataManager setSelectedCollabRoomId:_selectedCollabroom.collabRoomId collabRoomName:_selectedCollabroom.name];
         
         NSString* incidentNameReplace = [_selectedIncident.incidentname stringByAppendingString:@"-"];
-        [_selectRoomButton setTitle:[_selectedCollabroom.name stringByReplacingOccurrencesOfString:incidentNameReplace withString:@""] forState:UIControlStateNormal]; forState:UIControlStateNormal;
+        [_selectRoomButton setTitle:[_selectedCollabroom.name stringByReplacingOccurrencesOfString:incidentNameReplace withString:@""] forState:UIControlStateNormal];
+        NSNotification *CollabRoomSwitchedNotification = [NSNotification notificationWithName:@"CollabRoomSwitched" object:_selectedIncident.incidentname];
         
-        NSNotification *IncidentSwitchedNotification = [NSNotification notificationWithName:@"CollabRoomSwitched" object:_selectedIncident.incidentname];
-        
-        [_dataManager requestChatMessagesRepeatedEvery:[DataManager getChatUpdateFrequencyFromSettings] immediate:YES];
-        [_dataManager requestMarkupFeaturesRepeatedEvery:[DataManager getMapUpdateFrequencyFromSettings] immediate:YES];
+        [_dataManager requestChatMessagesRepeatedEvery:[[DataManager getChatUpdateFrequencyFromSettings] intValue] immediate:YES];
+        [_dataManager requestMarkupFeaturesRepeatedEvery:[[DataManager getMapUpdateFrequencyFromSettings] intValue] immediate:YES];
         
         [_selectRoomButton setHidden:FALSE];
         [_ChatButtonView setHidden:FALSE];
@@ -145,24 +144,23 @@
     [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Damage Report",nil)];
 //    [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Resource Request",nil)];
 //    [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Field Report",nil)];
-    [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Explosives Report",nil)];
+    [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Weather Report",nil)];
     [_ReportsMenu addButtonWithTitle:NSLocalizedString(@"Cancel",nil)];
     
     _ReportsMenu.tag = 60;
 }
 
 //gets called everytime the app is brought back to the forground regardless of what view is currently open
-//do not call immediate:yes here
+//do not call immediate:yes heres
 -(void)SetPullTimersFromOptions{
-    [_dataManager requestChatMessagesRepeatedEvery:[DataManager getChatUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestSimpleReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestDamageReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestFieldReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestResourceRequestsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-     [_dataManager requestUxoReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestMarkupFeaturesRepeatedEvery:[DataManager getMapUpdateFrequencyFromSettings] immediate:NO];
+    [_dataManager requestChatMessagesRepeatedEvery:[[DataManager getChatUpdateFrequencyFromSettings] intValue] immediate:NO];
+    [_dataManager requestSimpleReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings]intValue] immediate:NO];
+    [_dataManager requestDamageReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings]intValue] immediate:NO];
+    [_dataManager requestFieldReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings]intValue] immediate:NO];
+    [_dataManager requestResourceRequestsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings]intValue] immediate:NO];
+    [_dataManager requestMarkupFeaturesRepeatedEvery:[[DataManager getMapUpdateFrequencyFromSettings]intValue] immediate:NO];
     [_dataManager requestMdtRepeatedEvery:[DataManager getMdtUpdateFrequencyFromSettings] immediate:NO];
-    [_dataManager requestWfsUpdateRepeatedEvery:[DataManager getWfsUpdateFrequencyFromSettings] immediate:NO];
+    [_dataManager requestWfsUpdateRepeatedEvery:[[DataManager getWfsUpdateFrequencyFromSettings]intValue] immediate:NO];
     //    [_dataManager requestActiveAssignmentRepeatedEvery:30];
     
 }
@@ -233,8 +231,6 @@
     if(actionSheet.tag == 50) {
         if(buttonIndex != _incidentMenu.cancelButtonIndex) {
             
-            NSMutableDictionary *collabrooms = [NSMutableDictionary new];
-            
             _selectedIncident = [[_dataManager getIncidentsList] objectForKey:[actionSheet buttonTitleAtIndex:buttonIndex]];
             
             [_dataManager requestCollabroomsForIncident:_selectedIncident];
@@ -258,7 +254,7 @@
 //                 [self performSegueWithIdentifier:@"segue_field_report" sender:self];
 //                break;
             case 1:
-                [self performSegueWithIdentifier:@"segue_uxo_report" sender:self];
+                [self performSegueWithIdentifier:@"segue_weather_report" sender:self];
                 break;
             default:
                 break;

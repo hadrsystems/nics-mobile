@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -32,34 +32,6 @@
 //
 
 #import "JSONModel.h"
-
-/*
- 
- {
- "type":"Feature",
- "id":"phi_mdt_view.fid-4752317f_14ce1994aab_-45f6",
- "geometry”:
-    {
-    "type":"Point",
-    "coordinates":[-71.26576910000001,42.459273]},
-    "geometry_name":"geom",
-    "properties":
-        {
-        "uid":431098,
-        "id":"michael.flood@ll.mit.edu",
-        "name":"michael.flood@ll.mit.edu",
-        "description":"",
-        "timestamp":"2015-04-22T15:14:48Z",
-        "speed":0,
-        "course":0,
-        "extendeddata":null,
-        "styler":null,
-        "age":51.087253
-        }
-    }
- }
- 
- */
 
 @interface WfsFeature : NSObject//JSONModel
 

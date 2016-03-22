@@ -1,4 +1,4 @@
-/*|~^~|Copyright (c) 2008-2015, Massachusetts Institute of Technology (MIT)
+/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
  |~^~|All rights reserved.
  |~^~|
  |~^~|Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,6 @@ bool useOpenAM = false;
     self.navigationItem.hidesBackButton = YES;
     
     dataManager = [DataManager getInstance];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"DidBecomeActive" object:nil];
     
     if(![[self.storyboard valueForKey:@"name"]  isEqual: @"Main_iPhone"])
     {
@@ -64,18 +63,26 @@ bool useOpenAM = false;
         [_SettingsButton setHidden:TRUE];
     }
     
+    _orgSelectMenu = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Select Incident",nil) delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"DidBecomeActive" object:nil];
+
     if([dataManager getIsIpad]){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
         [IncidentButtonBar SetLoginView:self];
     }
     
-    _orgSelectMenu = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Select Incident",nil) delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-}
-
--(void)viewWillAppear:(BOOL)animated {
-    
     self.currentServerLabel.text = [dataManager getServerFromSettings];
+    self.VersionLabel.text = [@"Version: " stringByAppendingString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+    
+    [_loadingView setHidden:true];
+    [_loginContentView setHidden:false];
+    [_settingsView setHidden:false];
+    [_activityIndicatorView stopAnimating];
     
     [_autoLoginSwitch setOn:[dataManager getAutoLogin]];
     [_rememberUsernameSwitch setOn:[dataManager getRememberUser]];
