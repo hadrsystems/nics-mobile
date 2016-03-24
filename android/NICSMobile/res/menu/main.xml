@@ -48,6 +48,6 @@
 	    android:showAsAction="never"
 	    android:title="@string/action_about"/>
 
-    <!-- <item android:id="@+id/chat_action_provider" android:icon="@drawable/chat_no_notification" android:showAsAction="always" android:title="@string/markup_maptype" android:actionProviderClass="edu.mit.ll.nics.android.action.providers.ChatActionProvider"/> -->
+    <!-- <item android:id="@+id/chat_action_provider" android:icon="@drawable/chat_no_notification" android:showAsAction="always" android:title="@string/markup_maptype" android:actionProviderClass="scout.edu.mit.ll.nics.android.action.providers.ChatActionProvider"/> -->
 
 </menu>

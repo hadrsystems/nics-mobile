@@ -39,7 +39,7 @@
     
         <fragment
             android:id="@+id/aboutFragment"
-            android:name="edu.mit.ll.nics.android.fragments.FormFragment"
+            android:name="scout.edu.mit.ll.nics.android.fragments.FormFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="0dp"
