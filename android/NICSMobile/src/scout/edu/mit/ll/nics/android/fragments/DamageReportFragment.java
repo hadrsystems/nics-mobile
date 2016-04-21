@@ -251,6 +251,7 @@ public class DamageReportFragment extends Fragment {
 					
 					messageData = new DamageReportData((new Gson().fromJson(mFormFragment.save().toString(), DamageReportFormData.class)));
 					messageData.setUser(mDataManager.getUsername());
+					messageData.setUserFull(mDataManager.getUserNickname());
 					
 					if(messageData.getPropertyLatitude() == null){
 						messageData.setPropertyLatitude("0");
@@ -282,6 +283,7 @@ public class DamageReportFragment extends Fragment {
 
 					messageData = new DamageReportData((new Gson().fromJson(mFormFragment.save().toString(), DamageReportFormData.class)));
 					messageData.setUser(mDataManager.getUsername());
+					messageData.setUserFull(mDataManager.getUserNickname());
 					
 					if(messageData.getPropertyLatitude() == null){
 						messageData.setPropertyLatitude("0");
@@ -399,6 +401,7 @@ public class DamageReportFragment extends Fragment {
 			
 			mCurrentData = new DamageReportData(new Gson().fromJson(mFormFragment.save().toString(), DamageReportFormData.class));
 			mCurrentData.setUser(mDataManager.getUsername());
+			mCurrentData.setUserFull(mDataManager.getUserNickname());
 			
 			mCurrentPayload.setMessageData(mCurrentData);
 		} else {

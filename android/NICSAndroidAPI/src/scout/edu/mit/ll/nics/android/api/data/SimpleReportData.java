@@ -33,6 +33,7 @@ package scout.edu.mit.ll.nics.android.api.data;
 public class SimpleReportData {
     private String assign;
     private String user;
+    private String userfull;
     private String status;
     private String desc;
     private SimpleReportCategoryType cat;
@@ -48,6 +49,7 @@ public class SimpleReportData {
 	public SimpleReportData(SimpleReportFormData messageData) {
 		
 		user = messageData.getUser();
+		userfull = messageData.getUserFull();
 		status = messageData.getStatus();
 		desc = messageData.getMessage();
 		cat = SimpleReportCategoryType.lookUp(messageData.getCategory());
@@ -77,6 +79,14 @@ public class SimpleReportData {
 	
 	public void setUser(String user) {
 		this.user = user;
+	}
+	
+	public String getUserFull() {
+		return userfull;
+	}
+	
+	public void setUserFull(String userfull) {
+		this.userfull = userfull;
 	}
 	
 	public String getStatus(){

@@ -39,6 +39,7 @@ import com.google.gson.annotations.SerializedName;
 public class ResourceRequestData {
 	
 	private String user;
+	private String userfull;
 	
 	@SerializedName("resreq-quantity")
 	private String quantity;
@@ -71,6 +72,7 @@ public class ResourceRequestData {
 	
 	public ResourceRequestData(ResourceRequestFormData messageData) {
 		user = messageData.getUser();
+		userfull = messageData.getUserFull();
 		quantity = messageData.getQuantity();
 		priority = messageData.getPriority();
 		description = messageData.getDescription();
@@ -89,6 +91,14 @@ public class ResourceRequestData {
 	public void setUser(String user) {
 		this.user = user;
 	}
+	
+	public String getUserFull() {
+		return userfull;
+	}
+	
+	public void setUserFull(String userfull) {
+		this.userfull = userfull;
+ 	}		 	
 
 	public String getQuantity() {
 		return quantity;

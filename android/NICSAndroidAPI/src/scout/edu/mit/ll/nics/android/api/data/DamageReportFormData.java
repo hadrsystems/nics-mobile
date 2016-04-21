@@ -39,6 +39,7 @@ import com.google.gson.reflect.TypeToken;
 public class DamageReportFormData {
 
 	private String user;
+	private String userfull;
 	private String status;
 	
 	// Property Owner information
@@ -82,6 +83,7 @@ public class DamageReportFormData {
 		
 	public DamageReportFormData(DamageReportData messageData) {
 		user = messageData.getUser();
+		userfull = messageData.getUserFull();
 		status = messageData.getStatus();
 
 		ownerLastName = messageData.getOwnerLastName();
@@ -107,6 +109,10 @@ public class DamageReportFormData {
 	public String getUser() {
 		return user;
 	}
+	
+	public String getUserFull() {
+		return userfull;
+	}		 	
 
 	public void setUser(String user) {
 		this.user = user;

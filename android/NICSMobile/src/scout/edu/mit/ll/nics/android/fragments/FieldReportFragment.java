@@ -237,6 +237,7 @@ public class FieldReportFragment extends Fragment {
 					
 					messageData = new FieldReportData((new Gson().fromJson(mFormFragment.save().toString(), FieldReportFormData.class)));
 					messageData.setUser(mDataManager.getUsername());
+					messageData.setUserFull(mDataManager.getUserNickname());
 					
 					payload = new FieldReportPayload();
 					
@@ -265,6 +266,7 @@ public class FieldReportFragment extends Fragment {
 					
 					messageData = new FieldReportData((new Gson().fromJson(mFormFragment.save().toString(), FieldReportFormData.class)));
 					messageData.setUser(mDataManager.getUsername());
+					messageData.setUserFull(mDataManager.getUserNickname());
 					messageData.setTransactionId(UUID.randomUUID().toString());
 					
 					payload = new FieldReportPayload();
@@ -332,6 +334,7 @@ public class FieldReportFragment extends Fragment {
 			mCurrentPayload.setSeqTime(currentTime);
 			
 			mCurrentData.setUser(mDataManager.getUsername());
+			mCurrentData.setUserFull(mDataManager.getUserNickname());
 			mCurrentData = new FieldReportData(new Gson().fromJson(mFormFragment.save().toString(), FieldReportFormData.class));
 			
 			mCurrentPayload.setMessageData(mCurrentData);

@@ -250,6 +250,7 @@ public class WeatherReportFragment extends Fragment {
 					
 					messageData = new WeatherReportData((new Gson().fromJson(mFormFragment.save().toString(), WeatherReportFormData.class)));
 					messageData.setUser(mDataManager.getUsername());
+					messageData.setUserFull(mDataManager.getUserNickname());
 					
 					payload = new WeatherReportPayload();
 					
@@ -278,6 +279,7 @@ public class WeatherReportFragment extends Fragment {
 					
 					messageData = new WeatherReportData((new Gson().fromJson(mFormFragment.save().toString(), WeatherReportFormData.class)));
 					messageData.setUser(mDataManager.getUsername());
+					messageData.setUserFull(mDataManager.getUserNickname());
 //					messageData.setTransactionId(UUID.randomUUID().toString());
 					
 					if(messageData.getLatitude() == null){
@@ -354,6 +356,7 @@ public class WeatherReportFragment extends Fragment {
 			mCurrentPayload.setSeqTime(currentTime);
 			
 			mCurrentData.setUser(mDataManager.getUsername());
+			mCurrentData.setUserFull(mDataManager.getUserNickname());
 			mCurrentData = new WeatherReportData(new Gson().fromJson(mFormFragment.save().toString(), WeatherReportFormData.class));
 			
 			mCurrentPayload.setMessageData(mCurrentData);

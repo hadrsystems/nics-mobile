@@ -968,3 +968,23 @@
 	[action_help]
 		en = NICS Help
 		fr = NICS Help
+	[about_legal_section_google_display_name]
+		en = Legal Notices - Google Maps
+		es = Legal Notices - Google Maps(es translate)
+		it = Legal Notices - Google Maps(it translate)
+	[about_funding_display_name]
+		en = 
+		es = (es translate)
+		it = (it translate)
+	[about_google_display_name]
+		en = 
+		es = (es translate)
+		it = (it translate)
+	[about_legal_section_icons_display_name]
+		en = Legal Notice - Icons
+		es = Legal Notice - Icons(es translate)
+		it = Legal Notice - Icons(it translate)
+	[about_icons_display_name]
+		en = 
+		es = (es translate)
+		it = (it translate)

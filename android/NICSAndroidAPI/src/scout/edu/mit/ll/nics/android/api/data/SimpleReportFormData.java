@@ -35,6 +35,7 @@ import com.google.gson.Gson;
 public class SimpleReportFormData {
 
 	private String user;
+	private String userfull;
 	private String status;
 	private String fullpath;
 	private int category;
@@ -45,6 +46,7 @@ public class SimpleReportFormData {
 		
 	public SimpleReportFormData(SimpleReportData messageData) {
 		user = messageData.getUser();
+		userfull = messageData.getUserFull();
 		status = messageData.getStatus();
 		fullpath = messageData.getFullpath();
 		
@@ -70,6 +72,10 @@ public class SimpleReportFormData {
 	public void setUser(String user) {
 		this.user = user;
 	}
+	
+	public String getUserFull() {
+		return userfull;
+ 	}		 	
 
 	public String getStatus(){
 		return status;

@@ -35,6 +35,7 @@ import com.google.gson.Gson;
 public class WeatherReportFormData {
 	
 	private String user;
+	private String userfull;
 	private String status;
 	private int datasource;
 	
@@ -54,6 +55,7 @@ public class WeatherReportFormData {
 	
 	public WeatherReportFormData(WeatherReportData messageData) {
 		user = messageData.getUser();
+		userfull = messageData.getUserFull();
 		status = messageData.getStatus();
 		if(messageData.getDataSource() != null){
 			datasource = messageData.getDataSource().getId();
@@ -89,6 +91,10 @@ public class WeatherReportFormData {
 
 	public void setUser(String user) {
 		this.user = user;
+	}
+	
+	public String getUserFull() {
+		return userfull;
 	}
 
 	public String getStatus(){
