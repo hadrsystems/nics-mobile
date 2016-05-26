@@ -41,6 +41,7 @@ import java.util.HashMap;
 import org.apache.http.Header;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicHeader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,6 +52,7 @@ import android.os.Build;
 import android.provider.Settings.Secure;
 import android.util.Log;
 import android.util.SparseArray;
+import android.util.Xml;
 
 import com.google.gson.GsonBuilder;
 import com.loopj.android.http.AsyncHttpClient;
@@ -58,11 +60,13 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import scout.edu.mit.ll.nics.android.api.data.DamageReportData;
+import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
 import scout.edu.mit.ll.nics.android.api.data.MarkupFeature;
 import scout.edu.mit.ll.nics.android.api.data.OperationalUnit;
 import scout.edu.mit.ll.nics.android.api.data.OrgCapabilities;
 import scout.edu.mit.ll.nics.android.api.data.SimpleReportCategoryType;
 import scout.edu.mit.ll.nics.android.api.data.SimpleReportData;
+import scout.edu.mit.ll.nics.android.api.data.geo.wfs.FeatureCollection;
 import scout.edu.mit.ll.nics.android.api.handlers.ChatResponseHandler;
 import scout.edu.mit.ll.nics.android.api.handlers.DamageReportNoImageResponseHandler;
 import scout.edu.mit.ll.nics.android.api.handlers.DamageReportResponseHandler;
@@ -78,6 +82,7 @@ import scout.edu.mit.ll.nics.android.api.messages.ChatMessage;
 import scout.edu.mit.ll.nics.android.api.messages.CollaborationRoomMessage;
 import scout.edu.mit.ll.nics.android.api.messages.DamageReportMessage;
 import scout.edu.mit.ll.nics.android.api.messages.FieldReportMessage;
+import scout.edu.mit.ll.nics.android.api.messages.TrackingLayerMessage;
 import scout.edu.mit.ll.nics.android.api.messages.WeatherReportMessage;
 import scout.edu.mit.ll.nics.android.api.messages.IncidentMessage;
 import scout.edu.mit.ll.nics.android.api.messages.LoginMessage;
@@ -93,6 +98,8 @@ import scout.edu.mit.ll.nics.android.api.payload.IncidentPayload;
 import scout.edu.mit.ll.nics.android.api.payload.LoginPayload;
 import scout.edu.mit.ll.nics.android.api.payload.MarkupPayload;
 import scout.edu.mit.ll.nics.android.api.payload.MobileDeviceTrackingPayload;
+import scout.edu.mit.ll.nics.android.api.payload.TrackingLayerPayload;
+import scout.edu.mit.ll.nics.android.api.payload.TrackingTokenPayload;
 import scout.edu.mit.ll.nics.android.api.payload.WeatherPayload;
 import scout.edu.mit.ll.nics.android.api.payload.forms.DamageReportPayload;
 import scout.edu.mit.ll.nics.android.api.payload.forms.FieldReportPayload;
@@ -186,7 +193,7 @@ public class RestClient {
     }
     
     //Test function to test JSON Parsing
-    public static void getHardCodedOrgCapabilities(){// {'name':'FR-Form','capId':10}, {'name':'RES-Form','capId':14},
+    public static void getHardCodedOrgCapabilities(){// {'name':'FR-Form','capId':10}, {'name':'RES-Form','capId':14},  , {'name':'SVR-Form','capId':14}
     	String content ="{'message':'ok','count':5,'capabilities':[{'name':'Chat','capId':14}, {'name':'MapMarkup','capId':14}, {'name':'WR-Form','capId':10}, {'name':'DR-Form','capId':10}],'orgCapability':null,'capabilitiesName':null}";
     	OrgCapabilities OrgCap = new OrgCapabilities();
     	OrgCap.setCapabilitiesFromJSON(content);
@@ -416,7 +423,7 @@ public class RestClient {
 				
 				Log.i("nicsRest", "Successfully deleted feature: " + featureId);
 				mDataManager.addPersonalHistory("Successfully deleted feature: " + featureId);
-				mDataManager.deleteMarkupHistoryForCollabroomByFeatureId(mDataManager.getSelectedCollabRoomId(), featureId);
+				mDataManager.deleteMarkupHistoryForCollabroomByFeatureId(mDataManager.getSelectedCollabRoom().getCollabRoomId(), featureId);
 			}
 
 			@Override
@@ -662,7 +669,7 @@ public class RestClient {
 						}
 					}
 				} else {
-					collabRoomName = mDataManager.getSelectedCollabRoomName();
+					collabRoomName = mDataManager.getSelectedCollabRoom().getName();
 					
 					if(collabRoomName == null || collabRoomName.isEmpty()) {
 						collabRoomName = mDataManager.getActiveCollabroomName();
@@ -698,7 +705,7 @@ public class RestClient {
 			        
 			        AssignmentPayload payload = mDataManager.getCurrentAssignment();
 			        
-			        if(mDataManager.getPreviousIncidentId() != payload.getPhiUnit().getIncidentId() && mDataManager.getPreviousCollabroomId() != payload.getPhiUnit().getCollabroomId()) {
+			        if(mDataManager.getPreviousIncidentId() != payload.getPhiUnit().getIncidentId() && mDataManager.getPreviousCollabroom().getCollabRoomId() != payload.getPhiUnit().getCollabroomId()) {
 			        	NotificationsHandler.getInstance(mContext).createAssignmentChangeNotification(payload);
 			        }
 					
@@ -775,7 +782,6 @@ public class RestClient {
 				
 				}
 			});
-
 	}
 	
 	public static void getSimpleReports(int offset, int limit, final long incidentId) {
@@ -974,7 +980,7 @@ public class RestClient {
 			});
 		}
 	}
-	
+
 	public static void getChatHistory(final long incidentId, final long collabRoomId) {
 		if(!mFetchingChatMessages && mParseChatMessagesTask == null && incidentId != -1 && collabRoomId != -1) {
 
@@ -1107,21 +1113,103 @@ public class RestClient {
 		}
 	}
 	
-	
-	public static void getWFSData(String layerName, int numResults, String mLastFeatureTimestamp, AsyncHttpResponseHandler responseHandler) {
-//		mAuthManager.getClient().getWithoutCredentials(mContext, mDataManager.getGeoServerURL() + "ows?service=WFS&outputFormat=json&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName=" + layerName + "&maxFeatures=" + numResults, responseHandler);
-	
-		/*
-		 AuthProvider is not playing well with getWFS
-		 This is currently a workaround that needs to be implemented into the authProvider.
-		 */
+	public static void getWFSLayers(){
 		
-		AsyncHttpClient mClient = new AsyncHttpClient();
-		mClient.setTimeout(60 * 1000);
-		mClient.setURLEncodingEnabled(false);
-		mClient.setMaxRetriesAndTimeout(2, 1000);
+			mAuthManager.getClient().get("datalayer/"+ mDataManager.getWorkspaceId() +"/tracking", new AsyncHttpResponseHandler() {
+				
+				@Override
+				public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+					String content = (responseBody != null) ? new String(responseBody) : "error";
+					TrackingLayerMessage message = mBuilder.create().fromJson(content, TrackingLayerMessage.class);
+					Log.i("nicsRest", "Succesfully received Tracking Layers: " + message.getCount());
+
+					mDataManager.setTrackingLayers(message.getLayers());
+				}
+				
+				@Override
+				public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+					String content = (responseBody != null) ? new String(responseBody) : "error";
+					Log.i("nicsRest", "Failed to receive Tracking Layers: " + content);
+					
+			}
+		});	
+	}
 	
-		mClient.get(mDataManager.getGeoServerURL() +"ows?service=WFS&outputFormat=json&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName=" + layerName + "&maxFeatures=" + numResults, responseHandler);
+	public static void getWFSData(final TrackingLayerPayload layer, int numResults, String mLastFeatureTimestamp, AsyncHttpResponseHandler responseHandler) {
+		
+//		AsyncHttpClient mClient = new AsyncHttpClient();
+//		mClient.setTimeout(60 * 1000);
+//		mClient.setURLEncodingEnabled(false);
+//		mClient.setMaxRetriesAndTimeout(2, 1000);
+		
+		if(layer.getDatasourceid() == null ){	// no token needed, pull layer
+			
+			if(layer.shouldExpectJson())
+			{
+				Log.d("NICS REST", layer.getInternalurl()+"?service=WFS&outputFormat=json&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName=" + layer.getLayername() + "&maxFeatures=" + numResults);
+				mAuthManager.getClient().get(layer.getInternalurl()+"?service=WFS&outputFormat=json&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName=" + layer.getLayername() + "&maxFeatures=" + numResults, responseHandler);
+				return;
+			}else{
+				Log.d("NICS REST", layer.getInternalurl()+"?service=WFS&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName=" + layer.getLayername() + "&maxFeatures=" + numResults);
+				mAuthManager.getClient().get(layer.getInternalurl()+"?service=WFS&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName=" + layer.getLayername() + "&maxFeatures=" + numResults, responseHandler);
+				return;
+			}
+		}else{
+			if(layer.getAuthtoken() == null){	//get token for layer
+				RestClient.getWFSDataToken(layer, numResults, mLastFeatureTimestamp, responseHandler);
+			}else{	//already have token so pull layer
+				if(layer.getAuthtoken().getExpires() <= System.currentTimeMillis()){	//token is expired so pull a new one
+					RestClient.getWFSDataToken(layer, numResults, mLastFeatureTimestamp, responseHandler);
+				}else{
+					if(layer.getAuthtoken().getToken() != null){
+						
+						if(layer.shouldExpectJson())
+						{
+							Log.d("NICS REST", layer.getInternalurl()+"?service=WFS&outputFormat=json&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName=" + layer.getLayername() + "&maxFeatures=" + numResults + "&token=" + layer.getAuthtoken().getToken());
+							mAuthManager.getClient().get(layer.getInternalurl()+"?service=WFS&outputFormat=json&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName=" + layer.getLayername() + "&maxFeatures=" + numResults + "&token=" + layer.getAuthtoken().getToken(), responseHandler);
+						}else{
+							Log.d("NICS REST", layer.getInternalurl()+"?service=WFS&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName=" + layer.getLayername() + "&maxFeatures=" + numResults + "&token=" + layer.getAuthtoken().getToken());
+							mAuthManager.getClient().get(layer.getInternalurl()+"?service=WFS&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName=" + layer.getLayername() + "&maxFeatures=" + numResults + "&token=" + layer.getAuthtoken().getToken(), responseHandler);
+						}
+					}	
+				}
+			}
+		}
+	}
+	
+	public static void getWFSDataToken(final TrackingLayerPayload layer,final int numResults,final String mLastFeatureTimestamp,final AsyncHttpResponseHandler responseHandler) {
+				
+		Log.d("NICS REST","WFS Data Token: " + mDataManager.getServer() + "datalayer/1/token/" + layer.getDatasourceid());
+		mAuthManager.getClient().get(mDataManager.getServer() + "datalayer/" + mDataManager.getWorkspaceId() + "/token/" + layer.getDatasourceid(),  new AsyncHttpResponseHandler() {
+			@SuppressWarnings("unchecked")
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+				String content = (responseBody != null) ? new String(responseBody) : "error";
+				try {
+					Log.d("NICS REST","Successfully received WFS Data Token: " + content);
+					TrackingTokenPayload token = mBuilder.create().fromJson(content, TrackingTokenPayload.class);
+					
+					if(token.getToken() == null){
+						token.setExpires(System.currentTimeMillis() + 120000);	//set not authorized token to expire in 2 minutes so rest client tries to pull it again later
+					}else{
+						RestClient.getWFSData(layer, numResults, mLastFeatureTimestamp, responseHandler);
+					}
+					
+					layer.setAuthtoken(token);
+					mDataManager.UpdateTrackingLayerData(layer);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+				String content = (responseBody != null) ? new String(responseBody) : "error";
+				Log.e("nicsRest", "Failed to authenticate WFS Layer: " + content);
+			}
+		});	
 	}
 	
 	public static Header[] getAuthData() {
@@ -1232,7 +1320,7 @@ public class RestClient {
 		        		
         			}else{	//no image
 		        		StringEntity entity = new StringEntity(report.toJsonString());
-		    			mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId()  + "/SR", entity, new SimpleReportNoImageResponseHandler(mDataManager, report.getId()));
+		    			mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId()  + "/SR", entity, new SimpleReportNoImageResponseHandler(mContext, mDataManager, report.getId()));
 		    			mSendingSimpleReports = true;
         			}
         		} catch(FileNotFoundException e) {
@@ -1256,7 +1344,7 @@ public class RestClient {
 		Log.w("nics_POST", "Removing damage report " + reportId + " from send queue.");
 		mDamageReportResponseHandlers.remove((int)reportId);
 	}
-
+		
 	public static void postFieldReports() {
 		if(!mSendingFieldReports) {
 			ArrayList<FieldReportPayload> fieldReports = mDataManager.getAllFieldReportStoreAndForwardReadyToSend();
@@ -1266,7 +1354,7 @@ public class RestClient {
 		        	if(!report.isDraft()) {
 		    			StringEntity entity = new StringEntity(report.toJsonString());
 		    			
-		    			mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId() + "/FR", entity, new FieldReportResponseHandler(mDataManager, report.getId()));
+		    			mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId() + "/FR", entity, new FieldReportResponseHandler(mContext, mDataManager, report.getId()));
 		    			mSendingFieldReports = true;
 		        	}
 				} catch(UnsupportedEncodingException e) {
@@ -1307,7 +1395,7 @@ public class RestClient {
 	            		mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId() + "/DMGRPT", params, handler);
 	        		}else{	//no image
 		        		StringEntity entity = new StringEntity(report.toJsonString());
-		    			mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId()  + "/DMGRPT", entity, new DamageReportNoImageResponseHandler(mDataManager, report.getId()));
+		    			mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId()  + "/DMGRPT", entity, new DamageReportNoImageResponseHandler(mContext, mDataManager, report.getId()));
 		    			mSendingDamageReports = true;
 	        		}
             		
@@ -1334,7 +1422,7 @@ public class RestClient {
 		        	if(!request.isDraft()) {
 		    			StringEntity entity = new StringEntity(request.toJsonString());
 		    			
-		    			mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId() + "/RESREQ", entity, new ResourceRequestResponseHandler(mDataManager, request.getId()));
+		    			mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId() + "/RESREQ", entity, new ResourceRequestResponseHandler(mContext, mDataManager, request.getId()));
 		    			mSendingResourceRequests = true;
 		        	}
 				} catch(UnsupportedEncodingException e) {
@@ -1352,7 +1440,8 @@ public class RestClient {
 				try {
 		        	if(!report.isDraft()) {
 		        		StringEntity entity = new StringEntity(report.toJsonString());
-		    			mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId()  + "/WR", entity, new WeatherReportResponseHandler(mDataManager, report.getId()));
+		    			String test = report.toJsonString();
+		    			mAuthManager.getClient().post("reports/"  + mDataManager.getActiveIncidentId()  + "/WR", entity, new WeatherReportResponseHandler(mContext, mDataManager, report.getId()));
 		    			mSendingWeatherReports = true;
 		        	}
 				} catch(UnsupportedEncodingException e) {
@@ -1366,9 +1455,16 @@ public class RestClient {
 		if(!mSendingChatMessages) {
 			ArrayList<ChatPayload> chatMessages = mDataManager.getAllChatStoreAndForward();
 			
-			for (ChatPayload payload : chatMessages) {				
+			for (ChatPayload payload : chatMessages) {
+				
+//				payload.setUserorgid(mDataManager.getUserOrgId());
+//				payload.setNickname(mDataManager.getUsername());
+//				payload.setUserOrgName(null);
+				
 				try {
 					StringEntity entity = new StringEntity(payload.toJsonString());
+	    			String test =  payload.toJsonString();
+//	    			mAuthManager.getClient().post("chatmsgs/" + mDataManager.getWorkspaceId() + "/" + message.getIncidentId() + "/" + message.getcollabroomid(), entity, new ChatResponseHandler(mDataManager, chatMessages));
 	    			mAuthManager.getClient().post("chatmsgs/" + payload.getcollabroomid(), entity, new ChatResponseHandler(mDataManager, chatMessages));
 	    			
 	    			mSendingChatMessages = true;
@@ -1388,7 +1484,7 @@ public class RestClient {
 			try {
 				if(message.getDeviceId() != null && !message.getDeviceId().isEmpty()) {
 					StringEntity entity = new StringEntity(message.toJsonString());
-
+					
 					mAuthManager.getClient().post("mdtracks", entity, new MDTResponseHandler(mDataManager, mdtMessages));
 				} else {
 					// invalid mdt due to lack of device id, so delete it
@@ -1408,8 +1504,9 @@ public class RestClient {
 				if(features.size() > 0) {					
 			    	try {
 						StringEntity entity = new StringEntity(features.get(0).toJsonStringWithWebLonLat());
+						String testDebug = features.get(0).toJsonStringWithWebLonLat();
 						
-						mAuthManager.getClient().post("features/collabroom/" + features.get(0).getCollabRoomId() + "?geoType=4326", entity, new MarkupResponseHandler(mDataManager, features));
+						mAuthManager.getClient().post("features/collabroom/" + features.get(0).getCollabRoomId() + "?geoType=4326", entity, new MarkupResponseHandler(mContext, mDataManager, features));
 						mSendingMarkupFeatures = true;
 					} catch(UnsupportedEncodingException e) {
 						
@@ -1417,6 +1514,14 @@ public class RestClient {
 				}
 			}
 		}
+	}
+	
+	public static void getGoogleMapsLegalInfo(AsyncHttpResponseHandler responseHandler){
+		AsyncHttpClient mClient = new AsyncHttpClient();
+		mClient.setTimeout(60 * 1000);
+		mClient.setURLEncodingEnabled(false);
+		mClient.setMaxRetriesAndTimeout(2, 1000);
+		mClient.get("http://www.google.com/mobile/legalnotices/", responseHandler);
 	}
 	
 	public static String getDeviceId() {

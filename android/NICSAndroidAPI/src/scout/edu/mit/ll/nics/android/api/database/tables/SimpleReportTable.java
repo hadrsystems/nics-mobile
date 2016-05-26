@@ -156,6 +156,21 @@ public class SimpleReportTable extends DatabaseTable <SimpleReportPayload> {
 
         return getData(sqlSelection, sqlSelectionArguments, orderBy, NO_LIMIT, database);
     }
+    
+    public ArrayList<SimpleReportPayload> getAllDataHasSent(long collaborationRoomId, SQLiteDatabase database) {
+        String orderBy = "seqtime DESC";
+        String sqlSelection = "sendStatus==? AND incidentId==?";
+        String[] sqlSelectionArguments = {String.valueOf(ReportSendStatus.SENT.getId ()), String.valueOf(collaborationRoomId)};
+
+        return getData(sqlSelection, sqlSelectionArguments, orderBy, NO_LIMIT, database);
+    }
+    
+    public ArrayList<SimpleReportPayload> getAllDataHasSent (String orderBy, SQLiteDatabase database) {
+        String sqlSelection = "sendStatus==?";
+        String[] sqlSelectionArguments = {String.valueOf (ReportSendStatus.SENT.getId ())};
+
+        return getData(sqlSelection, sqlSelectionArguments, orderBy, NO_LIMIT, database);
+    }
 
     @Override
     protected ArrayList<SimpleReportPayload> getData (String   sqlSelection, String[] sqlSelectionArguments, String   orderBy, String limit, SQLiteDatabase database) {

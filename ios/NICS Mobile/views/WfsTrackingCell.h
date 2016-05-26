@@ -36,7 +36,10 @@
 
 @interface WfsTrackingCell : UITableViewCell
 
+@property TrackingLayerPayload* trackingLayer;
 @property int index;
+
+-(void)initCell : (TrackingLayerPayload*) newLayer : (int) newIndex;
 
 @property (weak, nonatomic) IBOutlet UILabel *TrackingNameLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *activeSwitch;

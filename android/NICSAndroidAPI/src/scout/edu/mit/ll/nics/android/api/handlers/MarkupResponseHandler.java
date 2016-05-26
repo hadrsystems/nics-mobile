@@ -34,6 +34,8 @@ import java.util.ArrayList;
 
 import org.apache.http.Header;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -41,12 +43,15 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.RestClient;
 import scout.edu.mit.ll.nics.android.api.data.MarkupFeature;
+import scout.edu.mit.ll.nics.android.utils.Intents;
 
 public class MarkupResponseHandler extends AsyncHttpResponseHandler {
 	private DataManager mDataManager;
+	private Context mContext;
 	private ArrayList<MarkupFeature> mFeatures;
 	
-	public MarkupResponseHandler(DataManager dataManager, ArrayList<MarkupFeature> features) {
+	public MarkupResponseHandler(Context context, DataManager dataManager, ArrayList<MarkupFeature> features) {
+		mContext = context;
 		mFeatures = features;
 		mDataManager = dataManager;
 	}
@@ -69,8 +74,21 @@ public class MarkupResponseHandler extends AsyncHttpResponseHandler {
 	@Override
 	public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 		Log.e("nicsRest", "Failed to post Markup Feature information: " + error.getMessage());
+		String content = (responseBody != null) ? new String(responseBody) : "";
+				
+		for(MarkupFeature feature : mFeatures) {
+			mDataManager.deleteMarkupFeatureStoreAndForward(feature.getId());
+		}
 
+		Intent intent = new Intent();
+	    intent.setAction(Intents.nics_FAILED_TO_POST_MARKUP);
+	    if(content.contains("{")){
+	    	intent.putExtra("message", "Invalid Markup Data");
+	    }else{
+	    	intent.putExtra("message", content);
+	    }
+		mContext.sendBroadcast (intent);
+		
 		RestClient.setSendingMarkupFeatures(false);
 	}
-
 }

@@ -31,23 +31,29 @@
 package scout.edu.mit.ll.nics.android.utils;
 
 /**
+ * @author Glenn L. Primmer
  *
  * This defines the enumeration of the different log levels.
  */
 public enum FormType {
-    ROC      (0, "Report on Condition"),
-    RESC     (1, ""),
-    ABC      (2, ""),
-    TWO_15   (3, "215"),
-    SITREP	 (4, "SITREP"),
-    ASSGN    (5, "Assignment Form"),
-    SR       (6, "US Coast Guard Simple Report"),
-    FR       (7, "US Coast Guard Field Report"),
-    TASK	 (8, "Task"),
-    RESREQ   (9, "Resource Request"),
-    NINE_110 (10, "9110 - Notification Report"),
-    DR       (11, "Damage Report"),
-    WR		 (15, "Weather Report");
+	NONE     (0, ""),
+    ROC      (1, "Report on Condition"),
+    RESC     (2, ""),
+    ABC      (3, ""),
+    TWO_15   (4, "215"),
+    SITREP	 (5, "SITREP"),
+    ASSGN    (6, "Assignment Form"),
+    SR       (7, "US Coast Guard Simple Report"),
+    FR       (8, "US Coast Guard Field Report"),
+    TASK	 (9, "Task"),
+    RESREQ   (10, "Resource Request"),
+    NINE_110 (11, "9110 - Notification Report"),
+    DR       (12, "Damage Report"),
+    UXO      (13, "Explosive Report"),
+    SVRRPT   (14, "Catan Survivor Request"),
+    AGRRPT	 (15, "Catan Survivor Aggrogate Request"),
+    MITAM	 (16, "MITAM"),
+    WR		 (17, "Weather Report");
 
     /**
      * The log levels numerical value (safer than using ordinal)

@@ -32,30 +32,54 @@ package scout.edu.mit.ll.nics.android.api.handlers;
 
 import org.apache.http.Header;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.RestClient;
+import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
+import scout.edu.mit.ll.nics.android.api.messages.WeatherReportMessage;
+import scout.edu.mit.ll.nics.android.api.payload.forms.WeatherReportPayload;
+import scout.edu.mit.ll.nics.android.utils.Intents;
 
 public class WeatherReportResponseHandler extends AsyncHttpResponseHandler {
 	private DataManager mDataManager;
+	private Context mContext;
 	private long mReportId;
 	
-	public WeatherReportResponseHandler(DataManager dataManager, long reportId) {
+	public WeatherReportResponseHandler(Context context, DataManager dataManager, long reportId) {
+		mContext = context;
 		mReportId = reportId;
 		mDataManager = dataManager;
 	}
 	
 	@Override
 	public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-		String content = (responseBody != null) ? new String(responseBody) : "";
-		Log.e("nicsRest", "Success to post Weather Report information");
-		Log.e("nicsRest", "Deleting: " + mReportId + " success: " + mDataManager.deleteWeatherReportStoreAndForward(mReportId));
-		mDataManager.addPersonalHistory("Weather Report successfully sent: " + content + "\n");
-		mDataManager.requestWeatherReportRepeating(mDataManager.getIncidentDataRate(), true);
+		Log.e("nicsRest", "Success to post Weather Report information");	
 		
+		String content = (responseBody != null) ? new String(responseBody) : "";
+		WeatherReportMessage message = new Gson().fromJson(content, WeatherReportMessage.class);
+		for(WeatherReportPayload payload : message.getReports()) {
+			mDataManager.deleteWeatherReportStoreAndForward(mReportId);
+			payload.setSendStatus(ReportSendStatus.SENT);
+			payload.setProgress(100);
+			
+			Intent intent = new Intent();
+		    intent.setAction(Intents.nics_WEATHER_REPORT_PROGRESS);
+			intent.putExtra("reportId", mReportId);
+			double progress = 100;
+			intent.putExtra("progress", progress);
+			mContext.sendBroadcast (intent);
+			
+			payload.parse();
+			mDataManager.addWeatherReportToStoreAndForward(payload);
+		}
+		
+		mDataManager.requestWeatherReports();
 		RestClient.setSendingWeatherReports(false);
 	}
 	

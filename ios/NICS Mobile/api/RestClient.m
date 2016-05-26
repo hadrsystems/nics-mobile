@@ -133,9 +133,11 @@ static MultipartPostQueue* mMultipartPostQueue;
                 payload.workspaceId = [dataManager getActiveWorkspaceId];
                 
                 [dataManager setLoginSessionData:payload];
+                [dataManager setUserName:payload.username];
                 [self getAllIncidentsForUserId: payload.userId];
                 [self getUserDataById: payload.userId];
                 [self getUserOrgs: payload.userId];
+                [self getWFSDataLayers];
                 
                 NSString *currentRoomName = [dataManager getSelectedCollabroomName];
                 NSString *currentIncidentName = [dataManager getActiveIncidentName];
@@ -148,22 +150,6 @@ static MultipartPostQueue* mMultipartPostQueue;
                     }
                 }
                 dataManager.isLoggedIn = true;
-//
-//                        selectedIncident.collabrooms = [dataManager getCollabroomPayloadArray];
-//                        
-//                        CollabroomPayload *selectedCollabroom;
-//                        
-//                        if(currentRoomName != nil){
-//                            for(CollabroomPayload *collabroomPayload in selectedIncident.collabrooms) {
-//                                if([collabroomPayload.name isEqualToString:currentRoomName]){
-//                                    selectedCollabroom = collabroomPayload;
-//                                    [dataManager setSelectedCollabRoomId:collabroomPayload.collabRoomId  collabRoomName:collabroomPayload.name];
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                
                 
                 completion(true,NSLocalizedString(@"Success", nil));
             }else{
@@ -383,6 +369,13 @@ static MultipartPostQueue* mMultipartPostQueue;
             if([message.reports count] > 0) {
                 [dataManager addSimpleReportsToHistory:message.reports];
                 
+                NSMutableArray* Reports = [dataManager getAllSimpleReportsFromStoreAndForward];
+                for(SimpleReportPayload *payload in Reports) {
+                    if([payload.status isEqualToNumber:@(SENT)]) {
+                        [dataManager deleteSimpleReportFromStoreAndForward:payload];
+                    }
+                }
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     NSDictionary *simpleReportMessageDictionary = [NSDictionary dictionaryWithObjectsAndKeys:json,@"generalMessageJson", nil];
@@ -404,7 +397,7 @@ static MultipartPostQueue* mMultipartPostQueue;
     NSMutableArray* simpleReports = [dataManager getAllSimpleReportsFromStoreAndForward];
     
     for(SimpleReportPayload *payload in simpleReports) {
-        if([payload.isDraft isEqual:@0]) {
+        if([payload.isDraft isEqual:@0] && [payload.status isEqualToNumber:@(WAITING_TO_SEND)]) {
             [mMultipartPostQueue addPayloadToSendQueue:payload];
             break;
         }
@@ -427,6 +420,13 @@ static MultipartPostQueue* mMultipartPostQueue;
             if([message.reports count] > 0) {
                 [dataManager addFieldReportsToHistory:message.reports];
                 
+                NSMutableArray* Reports = [dataManager getAllFieldReportsFromStoreAndForward];
+                for(FieldReportPayload *payload in Reports) {
+                    if([payload.status isEqualToNumber:@(SENT)]) {
+                        [dataManager deleteFieldReportFromStoreAndForward:payload];
+                    }
+                }
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSNotification *fieldReportsReceivedNotification = [NSNotification notificationWithName:@"fieldReportsUpdateReceived" object:message];
                     [notificationCenter postNotification:fieldReportsReceivedNotification];
@@ -448,7 +448,7 @@ static MultipartPostQueue* mMultipartPostQueue;
         NSMutableArray* fieldReports = [dataManager getAllFieldReportsFromStoreAndForward];
         
         for(FieldReportPayload *payload in fieldReports) {
-            if([payload.isDraft isEqual:@0]) {
+            if([payload.isDraft isEqual:@0] && [payload.status isEqualToNumber:@(WAITING_TO_SEND)]) {
                 NSString *jsonString = [payload toJSONStringPost];
                 NSData *postData = [NSData dataWithBytes:[jsonString UTF8String] length:[jsonString length]];
                 
@@ -460,6 +460,10 @@ static MultipartPostQueue* mMultipartPostQueue;
                     
                     if(statusCode == 200 || statusCode == 201) {
                         [dataManager deleteFieldReportFromStoreAndForward:payload];
+                        [payload setStatus:[NSNumber numberWithInt:SENT]];
+                        [payload setProgress:[NSNumber numberWithDouble:100]];
+                        [dataManager addFieldReportToStoreAndForward:payload];
+                        
                         [dataManager requestFieldReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
                     } else {
                         NSLog(@"%@%@", @"Failed to send Field Report...\n", result);
@@ -486,7 +490,14 @@ static MultipartPostQueue* mMultipartPostQueue;
             [message parse];
             
             if([message.reports count] > 0) {
-                 [dataManager addDamageReportsToHistory:message.reports];
+                [dataManager addDamageReportsToHistory:message.reports];
+                
+                NSMutableArray* Reports = [dataManager getAllDamageReportsFromStoreAndForward];
+                for(DamageReportPayload *payload in Reports) {
+                    if([payload.status isEqualToNumber:@(SENT)]) {
+                        [dataManager deleteDamageReportFromStoreAndForward:payload];
+                    }
+                }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSDictionary *damageReportMessageDictionary = [NSDictionary dictionaryWithObjectsAndKeys:json,@"damageReportJson", nil];
@@ -507,7 +518,7 @@ static MultipartPostQueue* mMultipartPostQueue;
     NSMutableArray* damageReports = [dataManager getAllDamageReportsFromStoreAndForward];
     
     for(DamageReportPayload *payload in damageReports) {
-        if([payload.isDraft isEqual:@0]) {
+        if([payload.isDraft isEqual:@0] && [payload.status isEqualToNumber:@(WAITING_TO_SEND)]) {
             [mMultipartPostQueue addPayloadToSendQueue:payload];
             break;
         }
@@ -530,6 +541,13 @@ static MultipartPostQueue* mMultipartPostQueue;
             if([message.reports count] > 0) {
                 [dataManager addResourceRequestsToHistory:message.reports];
                 
+                NSMutableArray* Reports = [dataManager getAllResourceRequestsFromStoreAndForward];
+                for(ResourceRequestPayload *payload in Reports) {
+                    if([payload.status isEqualToNumber:@(SENT)]) {
+                        [dataManager deleteResourceRequestFromStoreAndForward:payload];
+                    }
+                }
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSNotification *resourceRequestsReceivedNotification = [NSNotification notificationWithName:@"resourceRequestsUpdateReceived" object:message];
                     [notificationCenter postNotification:resourceRequestsReceivedNotification];
@@ -551,7 +569,7 @@ static MultipartPostQueue* mMultipartPostQueue;
         NSMutableArray* resourceRequests = [dataManager getAllResourceRequestsFromStoreAndForward];
 
         for(ResourceRequestPayload *payload in resourceRequests) {
-            if([payload.isDraft isEqual:@0]) {
+            if([payload.isDraft isEqual:@0] && [payload.status isEqualToNumber:@(WAITING_TO_SEND)]) {
                 NSString *jsonString = [payload toJSONStringPost];
                 NSData *postData = [NSData dataWithBytes:[jsonString UTF8String] length:[jsonString length]];
                 
@@ -563,6 +581,10 @@ static MultipartPostQueue* mMultipartPostQueue;
                     
                     if(statusCode == 200 || statusCode == 201) {
                         [dataManager deleteResourceRequestFromStoreAndForward:payload];
+                        [payload setStatus:[NSNumber numberWithInt:SENT]];
+                        [payload setProgress:[NSNumber numberWithDouble:100]];
+                        [dataManager addResourceRequestToStoreAndForward:payload];
+                        
                         [dataManager requestResourceRequestsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
                     } else {
                         NSLog(@"%@%@", @"Failed to send Resource Request...\n", result);
@@ -590,8 +612,15 @@ static MultipartPostQueue* mMultipartPostQueue;
             if([message.reports count] > 0) {
                 [dataManager addWeatherReportsToHistory:message.reports];
                 
+                NSMutableArray* Reports = [dataManager getAllWeatherReportsFromStoreAndForward];
+                for(WeatherReportPayload *payload in Reports) {
+                    if([payload.status isEqualToNumber:@(SENT)]) {
+                        [dataManager deleteWeatherReportFromStoreAndForward:payload];
+                    }
+                }
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSNotification *weatherReportsReceivedNotification = [NSNotification notificationWithName:@"weatherReportsUpdateReceived" object:message];
+                    NSNotification *weatherReportsReceivedNotification = [NSNotification notificationWithName:@"WeatherReportsUpdateReceived" object:message];
                     [notificationCenter postNotification:weatherReportsReceivedNotification];
                 });
             }else{
@@ -611,7 +640,7 @@ static MultipartPostQueue* mMultipartPostQueue;
         NSMutableArray* weatherReports = [dataManager getAllWeatherReportsFromStoreAndForward];
         
         for(WeatherReportPayload *payload in weatherReports) {
-            if([payload.isDraft isEqual:@0]) {
+            if([payload.isDraft isEqual:@0] && [payload.status isEqualToNumber:@(WAITING_TO_SEND)]) {
                 
                 NSArray* keys = [NSArray arrayWithObjects:@"formId",
                         @"formtypeid", @"incidentid", @"incidentname",
@@ -628,7 +657,16 @@ static MultipartPostQueue* mMultipartPostQueue;
                     
                     if(statusCode == 200 || statusCode == 201) {
                         [dataManager deleteWeatherReportFromStoreAndForward:payload];
+                        [payload setStatus:[NSNumber numberWithInt:SENT]];
+                        [payload setProgress:[NSNumber numberWithDouble:100]];
+                        [dataManager addWeatherReportToStoreAndForward:payload];
+                        
                         [dataManager requestWeatherReportsRepeatedEvery:[DataManager getReportsUpdateFrequencyFromSettings] immediate:YES];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            NSNotification *weatherReportsReceivedNotification = [NSNotification notificationWithName:@"WeatherReportsUpdateReceived" object:nil];
+                            [notificationCenter postNotification:weatherReportsReceivedNotification];
+                        });
                         NSLog(@"%@%@", @"Successfully sent Weather Report...\n", result);
                     } else {
                         NSLog(@"%@%@", @"Failed to send Weather Report...\n", result);
@@ -858,13 +896,11 @@ static MultipartPostQueue* mMultipartPostQueue;
             dispatch_async(queue, ^{
                 
                 NSInteger statusCode = -1;
-                NSString* result = [self synchronousPostToUrl:[NSString stringWithFormat:@"%@", @"mdtracks/"] postData:postData length:[jsonString length] statusCode:&statusCode];
+                NSString* result = [self synchronousPostToUrl:[NSString stringWithFormat:@"%@", @"mdtracks"] postData:postData length:[jsonString length] statusCode:&statusCode];
                 
                 if(statusCode == 200 || statusCode == 201) {
                     NSString *inStr = [NSString stringWithFormat: @"%ld", (long)statusCode];
                     NSLog(@"%@%@", @"MDT sent ...\n", inStr);
-                    //[dataManager deleteChatMessageFromStoreAndForward:payload];
-                    //[dataManager requestChatMessagesRepeatedEvery:30 immediate:YES];
                 } else {
                     NSLog(@"%@%@", @"Failed to send MDT Message...\n", result);
                 }
@@ -888,7 +924,26 @@ static MultipartPostQueue* mMultipartPostQueue;
     return [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 }
 
-+ (void) getWFSData{
++ (void) getWFSDataLayers{
+    
+    NSInteger statusCode = -1;
+    
+    NSString* json = [self synchronousGetFromUrl:[NSString stringWithFormat:@"%@%@%@", @"datalayer/", [dataManager getActiveWorkspaceId], @"/tracking"] statusCode:&statusCode];
+    
+    NSError* error = nil;
+    
+    TrackingLayerMessage *message = [[TrackingLayerMessage alloc] initWithString:json error:&error];
+    
+    if(error != nil){
+        NSLog(@" error => %@ ", [error userInfo]);
+    }
+
+    if(message != nil){
+        [ActiveWfsLayerManager setTrackingLayers:message.data];
+    }
+}
+
++ (void) getActiveWFSData{
   if(receivingWfsFeatures == NO)
   {
       receivingWfsFeatures = YES;
@@ -897,51 +952,124 @@ static MultipartPostQueue* mMultipartPostQueue;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     dispatch_async(queue, ^{
     
-    NSMutableArray *ParsedWfsFeatures = [[NSMutableArray alloc] init];
-    
     for(int i = 0; i < [ActiveWfsLayerManager getTrackingLayers].count ; i++)
     {
-        TrackingLayer* currentLayer = [[ActiveWfsLayerManager getTrackingLayers] objectAtIndex:i];
+        TrackingLayerPayload* currentLayer = [[ActiveWfsLayerManager getTrackingLayers] objectAtIndex:i];
         
-        if(currentLayer.active){
-            NSMutableString *urlString = [[NSMutableString alloc] init];
-            [urlString setString: [[dataManager getGeoServerFromSettings] stringByAppendingString:@"/ows?service=WFS&outputFormat=json&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName="]];
-            [urlString appendString:currentLayer.typeNameURL];
-            [urlString appendString:@"&maxFeatures=500"];
-            
-            NSData *fullStringData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:urlString]];
-
-            if(fullStringData == nil){
-                failedToPull = YES;
+        if([dataManager getTrackingLayerEnabled:currentLayer.displayname]){
+           
+            if(currentLayer.datasourceid == nil){
+                [self getWfsDataForLayer : currentLayer];
             }else{
-            
-                NSError *JSONerror = nil;
-                NSMutableDictionary *featureCollectiondictionary = [NSJSONSerialization JSONObjectWithData:fullStringData options:NSJSONReadingMutableContainers error:&JSONerror];
-            
-                NSArray* allFeatures = featureCollectiondictionary[@"features"];
-                for ( NSDictionary *currentFeature in allFeatures)
-                {
-                    WfsFeature* newFeature = [[WfsFeature alloc] init];
-                    [newFeature setupWithDictionary: currentFeature];
-        
-                    [ParsedWfsFeatures addObject:newFeature];
+                if(currentLayer.authToken == nil){
+                    [self getWfsDataToken : currentLayer];
+                }else{
+                    if(currentLayer.authToken.expires <= [[NSDate date] timeIntervalSince1970] * 1000.00){
+                        [self getWfsDataToken : currentLayer];
+                    }else{
+                        if(currentLayer.authToken.token != nil){
+                            [self getWfsDataForLayer : currentLayer];
+                        }
+                    }
                 }
             }
         }
     }
+        
     receivingWfsFeatures = NO;
         
     if(failedToPull == NO)
     {
-        [ActiveWfsLayerManager setWfsFeatures:ParsedWfsFeatures];
-    
         NSNotification *WfsUpdateRecievedNotification = [NSNotification notificationWithName:@"WfsUpdateRecieved" object:nil];
         [notificationCenter postNotification:WfsUpdateRecievedNotification];
     }
     
     });
   }
-   
+}
+
++ (void)getWfsDataForLayer: (TrackingLayerPayload*) layer{
+ 
+    NSMutableArray *ParsedWfsFeatures = [[NSMutableArray alloc] init];
+    
+    NSMutableString *urlString = [[NSMutableString alloc] init];
+    if([layer shouldExpectJson]){
+        [urlString setString: [layer.internalurl stringByAppendingString:@"?service=WFS&outputFormat=json&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName="]];
+    }else{
+        [urlString setString: [layer.internalurl stringByAppendingString:@"?service=WFS&version=1.1.0&request=GetFeature&srsName=EPSG:4326&typeName="]];
+    }
+    
+    [urlString appendString:layer.layername];
+    [urlString appendString:@"&maxFeatures=500"];
+    
+    if(layer.authToken != nil){
+        if(layer.authToken.token != nil){
+            [urlString appendString:@"&token="];
+            [urlString appendString:layer.authToken.token];
+        }
+    }
+    
+    NSLog([@"Requesting wfs tracking update: " stringByAppendingString:urlString]);
+    NSData *fullStringData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:urlString]];
+    
+    if(fullStringData == nil){
+        NSLog([@"Failed to get WFS Layer: " stringByAppendingString:layer.layername]);
+        return;
+    }
+    
+    NSMutableDictionary *featureCollectiondictionary;
+    
+    if([layer shouldExpectJson]){
+        NSError *JSONerror = nil;
+        featureCollectiondictionary = [NSJSONSerialization JSONObjectWithData:fullStringData options:NSJSONReadingMutableContainers error:&JSONerror];
+        
+        NSArray* allFeatures = featureCollectiondictionary[@"features"];
+        for ( NSDictionary *currentFeature in allFeatures)
+        {
+            WfsFeature* newFeature = [[WfsFeature alloc] init];
+            [newFeature setupWithDictionary: currentFeature];
+            
+            [ParsedWfsFeatures addObject:newFeature];
+            
+            layer.features = ParsedWfsFeatures;
+            [ActiveWfsLayerManager UpdateTrackingLayer: layer];
+        }
+    }else{
+        WfsXmlParser *parser = [[WfsXmlParser alloc]init];
+        [parser parseXml: fullStringData: layer];
+        
+        parser.delegate = self;
+    }
+}
+
++ (void)WfsXmlParsingComplete: (NSMutableArray*)features: (TrackingLayerPayload*)layer{
+    
+
+}
+
++ (void)getWfsDataToken : (TrackingLayerPayload*) layer{
+    
+    NSInteger statusCode = -1;
+    
+    NSString* json = [self synchronousGetFromUrl:[NSString stringWithFormat:@"%@%@%@%@", @"datalayer/", [dataManager getActiveWorkspaceId], @"/token/",layer.datasourceid] statusCode:&statusCode];
+    
+    NSError* error = nil;
+    
+    TrackingTokenPayload *token = [[TrackingTokenPayload alloc] initWithString:json error:&error];
+
+    layer.authToken = token;
+    [ActiveWfsLayerManager UpdateTrackingLayer: layer];
+    
+    if(token != nil){
+        [self getWfsDataForLayer: layer];
+    }else if(token == nil){
+        layer.authToken = [[TrackingTokenPayload alloc]init];
+        layer.authToken.token = nil;
+        
+        long temp =  [[NSDate date] timeIntervalSince1970] * 1000.00;
+        layer.authToken.expires = temp + 120000;//set invalid token to expire in 2 minutes;
+    }
+        
 }
 
 + (void)getUserOrgs:(NSNumber*) userId{

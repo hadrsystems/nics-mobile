@@ -68,14 +68,14 @@ public class ResourceRequestFormData {
 	public String getUser() {
 		return user;
 	}
+	
+	public String getUserFull() {
+		return userfull;
+	}
 
 	public void setUser(String user) {
 		this.user = user;
 	}
-	
-	public String getUserFull() {
-			return userfull;
- 	}
 
 	public String getQuantity() {
 		return quantity;

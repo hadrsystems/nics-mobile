@@ -146,6 +146,17 @@ UIStoryboard *currentStoryboard;
         label.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Draft", nil),@">",data.user];
     } else if([payload.status isEqual:[NSNumber numberWithInt:WAITING_TO_SEND]]) {
         label.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Sending", nil),@">",data.user];
+        
+        //needs to be hooked up in storyboard and uncommented at some point
+        
+        //        if(payload.progress == 0) {
+        //            cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Sending", nil),@">",data.user];
+        //        }else if([payload.progress doubleValue] >= 100){
+        //            cell.NameLabel.text = data.user;
+        //        } else {
+        //            cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%.2f%@%@",NSLocalizedString(@"Sending", nil), [payload.progress doubleValue],@">",data.user];
+        //        }
+        
     } else {
         label.text = data.user;
     }

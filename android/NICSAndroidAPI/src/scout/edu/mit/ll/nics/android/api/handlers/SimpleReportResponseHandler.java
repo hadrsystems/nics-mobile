@@ -41,7 +41,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.RestClient;
-import scout.edu.mit.ll.nics.android.api.data.SimpleReportData;
+import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
 import scout.edu.mit.ll.nics.android.api.messages.SimpleReportMessage;
 import scout.edu.mit.ll.nics.android.api.payload.forms.SimpleReportPayload;
 import scout.edu.mit.ll.nics.android.utils.Intents;
@@ -57,8 +57,7 @@ public class SimpleReportResponseHandler extends AsyncHttpResponseHandler {
 		mContext = context;
 		mReportId = reportId;
 		mDataManager = dataManager;
-		mFailed = false;
-		
+		mFailed = false;	
 	}
 
 	@Override
@@ -83,22 +82,21 @@ public class SimpleReportResponseHandler extends AsyncHttpResponseHandler {
 
 	@Override
 	public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-		String content = (responseBody != null) ? new String(responseBody) : "";
-		
 		Log.e("nicsRest", "Success to post Simple Report information");
 		Log.e("nicsRest", "Deleting: " + mReportId + " success: " + mDataManager.deleteSimpleReportStoreAndForward(mReportId));
+		
+		String content = (responseBody != null) ? new String(responseBody) : "";
 		SimpleReportMessage message = new Gson().fromJson(content, SimpleReportMessage.class);
 		for(SimpleReportPayload payload : message.getReports()) {
+			mDataManager.deleteSimpleReportStoreAndForward(mReportId);
+			payload.setSendStatus(ReportSendStatus.SENT);
 			payload.parse();
-			
-			SimpleReportData data = payload.getMessageData();
-			mDataManager.addPersonalHistory("Simple Report successfully sent: " + data.getFullpath()+ " - " + data.getDescription() + "\n");
+			mDataManager.addSimpleReportToStoreAndForward(payload);
 		}
 		
 		RestClient.removeSimpleReportHandler(mReportId);
-		mDataManager.requestSimpleReportRepeating(mDataManager.getIncidentDataRate(), true);	
-		
 		RestClient.setSendingSimpleReports(false);
+		mDataManager.requestSimpleReports();
 	}
 
 	@Override

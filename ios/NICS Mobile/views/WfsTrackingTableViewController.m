@@ -67,11 +67,9 @@
 
     WfsTrackingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WfsTrackingCell" forIndexPath:indexPath];
     
-    TrackingLayer* layer = [ActiveWfsLayerManager getTrackingLayers][indexPath.row];
-    
-    cell.index = indexPath.row;
-    cell.TrackingNameLabel.text = layer.title;
-    [cell.activeSwitch setOn: layer.active];
+    TrackingLayerPayload* layer = [ActiveWfsLayerManager getTrackingLayers][indexPath.row];
+    [cell initCell: layer : indexPath.row];
+//    cell.TrackingNameLabel.text = layer.title;
     
     return cell;
 }

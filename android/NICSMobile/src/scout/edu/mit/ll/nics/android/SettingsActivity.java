@@ -36,9 +36,7 @@ import java.util.Locale;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -52,11 +50,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import scout.edu.mit.ll.nics.android.api.DataManager;
-//import scout.edu.mit.ll.nics.android.api.R;
-import scout.edu.mit.ll.nics.android.utils.Constants;
 import scout.edu.mit.ll.nics.android.utils.Intents;
 import scout.edu.mit.ll.nics.android.utils.LocationHandler;
 
@@ -114,13 +108,7 @@ public class SettingsActivity extends PreferenceActivity {
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
-
-		if (getIntent() != null) {
-			mIntent = getIntent();
-			mCurrentServer = mIntent.getStringExtra("currentServer");
-		}
 		mActivity = this;
-		
 		
 		setupSimplePreferencesScreen();
 	}
@@ -135,6 +123,11 @@ public class SettingsActivity extends PreferenceActivity {
 		if (!isSimplePreferences(this)) {
 			return;
 		}
+		
+		mServerChanged = false;
+		mCurrentServer = mDataManager.getServer();
+		mCurrentGeoServer = mDataManager.getGeoServerURL();
+		mCurrentAuthServer = mDataManager.getAuthServerURL();
 		
 		// In the simplified UI, fragments are not used at all and we instead
 		// use the older PreferenceActivity APIs.
@@ -514,6 +507,11 @@ public class SettingsActivity extends PreferenceActivity {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.pref_general);
 			
+			mServerChanged = false;
+			mCurrentServer = mDataManager.getServer();
+			mCurrentGeoServer = mDataManager.getGeoServerURL();
+			mCurrentAuthServer = mDataManager.getAuthServerURL();
+			
 			Preference mCategory = findPreference("header");
 			getPreferenceScreen().removePreference(mCategory);
 
@@ -551,7 +549,6 @@ public class SettingsActivity extends PreferenceActivity {
 				mCustomGeoServerPref.setEnabled(false);
 				mGeoServerListPref.setEnabled(true);
 			}
-			
 			
 			mUseCustomAuthServer = (CheckBoxPreference) findPreference("custom_auth_server_enabled");
 			mUseCustomAuthServer.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);

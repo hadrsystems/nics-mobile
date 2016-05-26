@@ -57,6 +57,7 @@ import com.google.gson.JsonObject;
 import scout.edu.mit.ll.nics.android.MainActivity;
 import scout.edu.mit.ll.nics.android.R;
 import scout.edu.mit.ll.nics.android.api.data.DamageReportData;
+import scout.edu.mit.ll.nics.android.api.payload.TrackingLayerPayload;
 import scout.edu.mit.ll.nics.android.api.payload.forms.DamageReportPayload;
 import scout.edu.mit.ll.nics.android.maps.markup.MarkupBaseShape;
 import scout.edu.mit.ll.nics.android.maps.markup.MarkupSymbol;
@@ -69,8 +70,8 @@ public class DamageReportLayer extends MarkupLayer {
 	private BroadcastReceiver srReceiver;
 	private boolean receiverRegistered = false;
 	
-	public DamageReportLayer(Context context, String name, GoogleMap map) {
-		super(context, name, map);
+	public DamageReportLayer(Context context, TrackingLayerPayload layer, GoogleMap map) {
+		super(context, layer, map);
 		mLayerFeatures = new HashMap<String, DamageReportPayload>();
 	}
 
@@ -111,11 +112,11 @@ public class DamageReportLayer extends MarkupLayer {
 			}
 		};
 		
-		Intent intent = new Intent(Intents.nics_POLLING_WFS_LAYER + mLayerName);
+		Intent intent = new Intent(Intents.nics_POLLING_WFS_LAYER + mLayerPayload.getLayername());
     	intent.putExtra("type", "wfslayer");
-    	intent.putExtra("layerName", mLayerName);
+    	intent.putExtra("layerName", mLayerPayload.getLayername());
     	
-    	mContext.registerReceiver(srReceiver, new IntentFilter(Intents.nics_POLLING_WFS_LAYER + mLayerName));
+    	mContext.registerReceiver(srReceiver, new IntentFilter(Intents.nics_POLLING_WFS_LAYER + mLayerPayload.getLayername()));
     	receiverRegistered = true;
     	
 		mPendingWFSLayerRequestIntent = PendingIntent.getBroadcast(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -153,7 +154,7 @@ public class DamageReportLayer extends MarkupLayer {
 		@Override
 		protected void onPostExecute(Integer result) {
 			super.onPostExecute(result);
-			Log.i("nicsDataManager", "Rendering " + result + " feature(s) in WFS Layer " + mLayerName);
+			Log.i("nicsDataManager", "Rendering " + result + " feature(s) in WFS Layer " + mLayerPayload.getLayername());
 			
 		}
 	}
@@ -182,15 +183,8 @@ public class DamageReportLayer extends MarkupLayer {
 		} catch (Exception e) {
 			coordinate = new LatLng(0, 0);
 		}
-		final MarkupSymbol symbol = new MarkupSymbol(mDataManager, attr.toString(), coordinate, generateTintedBitmap(R.drawable.damage_advisory, new int[] { 20, 20, 20, 20 }), null, new int[] { 255, 255, 255, 255 });
+		final MarkupSymbol symbol = new MarkupSymbol(mDataManager, mMap, attr.toString(), coordinate, generateTintedBitmap(R.drawable.damage_advisory, new int[] { 20, 20, 20, 20 }), null, new int[] { 255, 255, 255, 255 });
 		symbol.setFeatureId(String.valueOf(payload.getFormId()));
-		((MainActivity)mContext).runOnUiThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				symbol.setMarker(mMap.addMarker(symbol.getOptions()));
-			}
-		});
 		
 		return symbol;
 	}

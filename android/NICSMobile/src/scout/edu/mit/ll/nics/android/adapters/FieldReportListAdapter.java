@@ -41,12 +41,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import scout.edu.mit.ll.nics.android.R;
+import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.data.FieldReportData;
 import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
 import scout.edu.mit.ll.nics.android.api.payload.forms.FieldReportPayload;
 
 public class FieldReportListAdapter extends ArrayAdapter<FieldReportPayload> {
 	private List<FieldReportPayload> mItems;
+	private DataManager mDataManager;
 	private Context mContext;
 	
 	public FieldReportListAdapter(Context context, int resource,
@@ -55,6 +57,7 @@ public class FieldReportListAdapter extends ArrayAdapter<FieldReportPayload> {
 		super(context, resource, textViewResourceId, list);
 		
 		mContext = context;
+		mDataManager = DataManager.getInstance(context);
 		mItems = list;
 	}
 	
@@ -68,19 +71,29 @@ public class FieldReportListAdapter extends ArrayAdapter<FieldReportPayload> {
 
 		TextView name = (TextView)row.findViewById(R.id.fieldReportTitle);
 		
+		TextView size = (TextView)row.findViewById(R.id.fieldReportTime);
+		size.setText(new Date(payload.getSeqTime()).toString());
+		
 		if(payload.isDraft()) {
 			name.setText(mContext.getString(R.string.draft) + String.valueOf(data.getUser()));
-		} else if(payload.getSendStatus() == ReportSendStatus.WAITING_TO_SEND) {
-			name.setText(mContext.getString(R.string.sending) + String.valueOf(data.getUser()));
+		} else if(payload.getSendStatus() == ReportSendStatus.WAITING_TO_SEND && payload.getProgress() != 100.0) {
+			if(!payload.isFailedToSend()){
+				if(payload.getProgress() > 0){
+					name.setText(mContext.getString(R.string.sending_progress, payload.getProgress()) + String.valueOf(data.getUser()));
+				}else{
+					name.setText(mContext.getString(R.string.sending) + String.valueOf(data.getUser()));
+				}
+			}else{
+				name.setText(R.string.sending_failed + String.valueOf(data.getUser()));
+			}
+			if(!mDataManager.isOnline()) {
+				size.setText(R.string.device_not_connected_to_network);
+			}
 		} else {
 			name.setText(String.valueOf(data.getUser()));
 		}
 		
-		TextView size = (TextView)row.findViewById(R.id.fieldReportTime);
-		size.setText(new Date(payload.getSeqTime()).toString());
-		
-		return(row);
-		
+		return(row);		
 	}
 	
 	@Override

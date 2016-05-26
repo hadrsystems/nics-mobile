@@ -50,6 +50,7 @@ import scout.edu.mit.ll.nics.android.R;
 import scout.edu.mit.ll.nics.android.adapters.ResourceRequestListAdapter;
 import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
 import scout.edu.mit.ll.nics.android.api.data.ResourceRequestData;
+import scout.edu.mit.ll.nics.android.api.payload.forms.FieldReportPayload;
 import scout.edu.mit.ll.nics.android.api.payload.forms.ResourceRequestPayload;
 import scout.edu.mit.ll.nics.android.utils.Constants;
 import scout.edu.mit.ll.nics.android.utils.Intents;
@@ -60,6 +61,7 @@ public class ResourceRequestListFragment extends FormListFragment {
 	private ResourceRequestListAdapter mResourceRequestListAdapter;
 	private IntentFilter mResourceRequestReceiverFilter;
 	private IntentFilter mIncidentSwitchedReceiverFilter;
+	private IntentFilter mSentReportsClearedFilter;
 	private boolean resourceRequestReceiverRegistered;
 	private long mLastIncidentId = 0;
 	protected boolean mIsFirstLoad = true;
@@ -76,10 +78,12 @@ public class ResourceRequestListFragment extends FormListFragment {
 
 		mResourceRequestReceiverFilter = new IntentFilter( Intents.nics_NEW_RESOURCE_REQUEST_RECEIVED);
 		mIncidentSwitchedReceiverFilter = new IntentFilter(Intents.nics_INCIDENT_SWITCHED);
+		mSentReportsClearedFilter = new IntentFilter(Intents.nics_SENT_RESOURCE_REQUESTS_CLEARED);
 		
 		if(!resourceRequestReceiverRegistered) {
 			mContext.registerReceiver(resourceRequestReceiver, mResourceRequestReceiverFilter);
 			mContext.registerReceiver(incidentChangedReceiver, mIncidentSwitchedReceiverFilter);
+			mContext.registerReceiver(sentReportsClearedReceiver, mSentReportsClearedFilter);
 			resourceRequestReceiverRegistered = true;
 		}
 		
@@ -124,6 +128,7 @@ public class ResourceRequestListFragment extends FormListFragment {
 		if(!resourceRequestReceiverRegistered) {
 			mContext.registerReceiver(resourceRequestReceiver, mResourceRequestReceiverFilter);
 			mContext.registerReceiver(incidentChangedReceiver, mIncidentSwitchedReceiverFilter);
+			mContext.registerReceiver(sentReportsClearedReceiver, mSentReportsClearedFilter);
 			resourceRequestReceiverRegistered = true;
 		}
 		
@@ -152,6 +157,7 @@ public class ResourceRequestListFragment extends FormListFragment {
 		if(resourceRequestReceiverRegistered) {
 			mContext.unregisterReceiver(resourceRequestReceiver);
 			mContext.unregisterReceiver(incidentChangedReceiver);
+			mContext.unregisterReceiver(sentReportsClearedReceiver);
 			resourceRequestReceiverRegistered = false;
 		}
 	}
@@ -182,17 +188,8 @@ public class ResourceRequestListFragment extends FormListFragment {
 				payload.setSendStatus(ReportSendStatus.lookUp(bundle.getInt("sendStatus", 0)));
 				payload.parse();
 				
-				ResourceRequestData data = payload.getMessageData();
-
-				if(data.getUser().equals(mDataManager.getUsername()) && payload.getSeqTime() >= mDataManager.getLastResourceRequestTimestamp() - 10000) {
-					mResourceRequestListAdapter.clear();
-					mResourceRequestListAdapter.addAll(mDataManager.getResourceRequestHistoryForIncident(mDataManager.getActiveIncidentId()));
-					mResourceRequestListAdapter.addAll(mDataManager.getAllResourceRequestStoreAndForwardReadyToSend(mDataManager.getActiveIncidentId()));
-				} else {
-					mResourceRequestListAdapter.add(payload);
-				}
+				mResourceRequestListAdapter.add(payload);
 				mResourceRequestListAdapter.sort(reportComparator);
-				
 				mResourceRequestListAdapter.notifyDataSetChanged();
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -245,6 +242,22 @@ public class ResourceRequestListFragment extends FormListFragment {
 		}
 	}
 	
+	private BroadcastReceiver sentReportsClearedReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			long reportId = intent.getExtras().getLong("reportId");
+			for(int i = 0; i < mResourceRequestListAdapter.getCount() ; i++){
+				ResourceRequestPayload payload = mResourceRequestListAdapter.getItem(i);
+				if(payload.getFormId() == reportId && payload.isNew() == false){
+					mResourceRequestListAdapter.remove(payload);
+					mResourceRequestListAdapter.notifyDataSetChanged();
+					return;
+				}
+			}	
+		}
+	};
+	
 	private Comparator<? super ResourceRequestPayload> reportComparator = new Comparator<ResourceRequestPayload>() {
 		
 		@Override
@@ -256,7 +269,6 @@ public class ResourceRequestListFragment extends FormListFragment {
 	@Override
 	protected boolean itemIsDraft(int position) {
 		ResourceRequestPayload item = mResourceRequestListAdapter.getItem(position);
-	
 		return item.isDraft();
 	}
 

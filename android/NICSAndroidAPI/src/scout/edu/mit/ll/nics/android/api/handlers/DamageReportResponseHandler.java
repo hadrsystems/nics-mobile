@@ -36,10 +36,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.RestClient;
+import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
+import scout.edu.mit.ll.nics.android.api.messages.DamageReportMessage;
+import scout.edu.mit.ll.nics.android.api.payload.forms.DamageReportPayload;
 import scout.edu.mit.ll.nics.android.utils.Intents;
 
 public class DamageReportResponseHandler extends AsyncHttpResponseHandler {
@@ -78,18 +82,20 @@ public class DamageReportResponseHandler extends AsyncHttpResponseHandler {
 
 	@Override
 	public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-		String content = (responseBody != null) ? new String(responseBody) : "";
-		
 		Log.e("nicsRest", "Success to post Damage Report information");
-		Log.e("nicsRest", "Deleting: " + mReportId + " success: " + mDataManager.deleteDamageReportStoreAndForward(mReportId));
-		mDataManager.addPersonalHistory("Damage Report successfully sent: " + content + "\n");
 		
-
+		String content = (responseBody != null) ? new String(responseBody) : "";
+		DamageReportMessage message = new Gson().fromJson(content, DamageReportMessage.class);
+		for(DamageReportPayload payload : message.getReports()) {
+			mDataManager.deleteDamageReportStoreAndForward(mReportId);
+			payload.setSendStatus(ReportSendStatus.SENT);
+			payload.parse();
+			mDataManager.addDamageReportToStoreAndForward(payload);
+		}
+		
 		RestClient.removeDamageReportHandler(mReportId);
-		mDataManager.requestDamageReportRepeating(mDataManager.getIncidentDataRate(), true);
-		
 		RestClient.setSendingDamageReports(false);
-		
+		mDataManager.requestDamageReports();
 	}
 
 	@Override

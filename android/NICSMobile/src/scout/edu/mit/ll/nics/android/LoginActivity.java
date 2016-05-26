@@ -291,7 +291,7 @@ public class LoginActivity extends ActionBarActivity implements OnCheckedChangeL
 		if(requestCode == 1002 && data != null) {
 			if(data.getBooleanExtra("logoutAndClear", false)) {
 				mDataManager.setCurrentIncidentData(null, -1, "");	
-				mDataManager.setSelectedCollabRoom("N/A", -1);
+				mDataManager.setSelectedCollabRoom(null);
 			}
 		} else {
 			super.onActivityResult(requestCode, resultCode, data);
@@ -511,6 +511,8 @@ public class LoginActivity extends ActionBarActivity implements OnCheckedChangeL
 						
 						mLoginFormView.setVisibility(View.GONE);
 						mLoginStatusView.setVisibility(View.GONE);
+						
+						mDataManager.requestWfsLayers();
 					}
 				}
 			});

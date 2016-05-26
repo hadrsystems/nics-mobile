@@ -96,6 +96,9 @@
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "L9O-Sl-a8r"; */
 "L9O-Sl-a8r.text" = "Capa de seguimineto";
 
+/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "LkN-rW-2Wn"; */
+"LkN-rW-2Wn.text" = "No existen registros de explosiones para esta incidencia";
+
 /* Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "MhW-5A-pco"; */
 "MhW-5A-pco.normalTitle" = "Explorar la galería";
 
@@ -396,6 +399,9 @@
 
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "JZV-8h-oRi"; */
 "JZV-8h-oRi.text" = "Capa de seguimineto";
+
+/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "KMh-4F-Wxu"; */
+"KMh-4F-Wxu.text" = "No existen registros de explosiones para esta incidencia.";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "KNe-sX-U2w"; */
 "KNe-sX-U2w.text" = "Nombre";
@@ -698,6 +704,8 @@
 
 "Field Report" = "Informe de campo";
 
+"Explosives Report" = "Informe de explosivos";
+
 /* Shown in the report list view when a report is either a saved Draft, or is currently sending to NICS */
 "Draft" = "Borrador";
 
@@ -727,6 +735,8 @@
 "Delorme PLI" = "Delorme PLI";
 
 "NICS Damage Surveys" = "NICS Damage Surveys";
+
+"NICS Explosive Reports" = "NICS Explosive Explosive (es translate)";
 
 "NICS General Messages" = "NICS General Messages";
 
@@ -923,6 +933,64 @@
 "Major: 10 to 50 percent" = "Importante: 10% to 50%";
 
 "Destroyed: 50+ percent" = "Destruido: +50%";
+
+/* Explosive Report Form Fields */
+"Reporting Unit" = "Unidad informante/notificadora";
+
+"Reporting Location" = "Lugar de conotificación";
+
+"Contact Info" = "Información de contacto";
+
+"Explosive Type" = "Tipo de explosivo";
+
+/* Explosive type drop down choices */
+"Select Explosive Type" = "Selecciona tipo de explosivo";
+
+"Dropped" = "dejar caer";
+
+"Projected" = "Proyectado,";
+
+"Placed" = "Colocados,";
+
+"Possible IED" = "posible artefacto explosivo improvisado";
+
+"Thrown" = "Tirados or arrojados";
+
+"Size" = "Tamaño";
+
+"Shape" = "Forma";
+
+"Color" = "Color";
+
+"Condition" = "Condición";
+
+/* Condition drop down choices */
+"Select Condition" = "Selecciona condición";
+
+"Intact" = "Intacto";
+
+"Leaking" = "Filtrando";
+
+"CBRN Contamination" = "contaminacion quimica, biologica,radiologica y nuclear";
+
+"Resource Threatened" = "Fuente amenazada";
+
+"Impact On Mission" = "Impacto/consecuencias sobre la misión";
+
+"Protective Measures" = "Medidas de protección";
+
+"Recommended Priority" = "Prioridad recomendada";
+
+/* Recommended Priority drop down choices */
+"Select Recommended Priority" = "Selecciona prioridad recomendada";
+
+"Immediate" = "Inmediato";
+
+"Indirect" = "Indirecto";
+
+"Minor" = "Poco grave";
+
+"No Threat" = "Sin amenaza";
 
 "Notes" = "Observaciones";
 

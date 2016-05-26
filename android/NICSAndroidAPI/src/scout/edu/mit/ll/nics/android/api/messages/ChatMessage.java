@@ -43,7 +43,5 @@ public class ChatMessage extends Message {
 
 	public void setChatMsgs(ArrayList<ChatPayload> chats) {
 		this.chats = chats;
-	}
-    
-    
+	} 
 }

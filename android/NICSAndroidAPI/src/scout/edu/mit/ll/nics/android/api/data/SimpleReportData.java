@@ -33,7 +33,7 @@ package scout.edu.mit.ll.nics.android.api.data;
 public class SimpleReportData {
     private String assign;
     private String user;
-    private String userfull;
+	private String userfull;
     private String status;
     private String desc;
     private SimpleReportCategoryType cat;

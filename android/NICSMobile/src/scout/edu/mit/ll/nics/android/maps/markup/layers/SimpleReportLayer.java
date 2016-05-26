@@ -58,6 +58,7 @@ import scout.edu.mit.ll.nics.android.MainActivity;
 import scout.edu.mit.ll.nics.android.R;
 import scout.edu.mit.ll.nics.android.api.data.SimpleReportCategoryType;
 import scout.edu.mit.ll.nics.android.api.data.SimpleReportData;
+import scout.edu.mit.ll.nics.android.api.payload.TrackingLayerPayload;
 import scout.edu.mit.ll.nics.android.api.payload.forms.SimpleReportPayload;
 import scout.edu.mit.ll.nics.android.maps.markup.MarkupBaseShape;
 import scout.edu.mit.ll.nics.android.maps.markup.MarkupSymbol;
@@ -70,8 +71,8 @@ public class SimpleReportLayer extends MarkupLayer {
 	private BroadcastReceiver srReceiver;
 	private boolean receiverRegistered = false;
 	
-	public SimpleReportLayer(Context context, String name, GoogleMap map) {
-		super(context, name, map);
+	public SimpleReportLayer(Context context, TrackingLayerPayload layerPayload, GoogleMap map) {
+		super(context, layerPayload, map);
 		mLayerFeatures = new HashMap<String, SimpleReportPayload>();
 	}
 
@@ -113,11 +114,11 @@ public class SimpleReportLayer extends MarkupLayer {
 			}
 		};
 		
-		Intent intent = new Intent(Intents.nics_POLLING_WFS_LAYER + mLayerName);
+		Intent intent = new Intent(Intents.nics_POLLING_WFS_LAYER + mLayerPayload.getLayername());
     	intent.putExtra("type", "wfslayer");
-    	intent.putExtra("layerName", mLayerName);
+    	intent.putExtra("layerName", mLayerPayload.getLayername());
     	
-    	mContext.registerReceiver(srReceiver, new IntentFilter(Intents.nics_POLLING_WFS_LAYER + mLayerName));
+    	mContext.registerReceiver(srReceiver, new IntentFilter(Intents.nics_POLLING_WFS_LAYER + mLayerPayload.getLayername()));
     	receiverRegistered = true;
     	
 		mPendingWFSLayerRequestIntent = PendingIntent.getBroadcast(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -155,7 +156,7 @@ public class SimpleReportLayer extends MarkupLayer {
 		@Override
 		protected void onPostExecute(Integer result) {
 			super.onPostExecute(result);
-			Log.i("nicsDataManager", "Rendering " + result + " feature(s) in WFS Layer " + mLayerName);
+			Log.i("nicsDataManager", "Rendering " + result + " feature(s) in WFS Layer " + mLayerPayload.getLayername());
 			
 		}
 	}
@@ -181,15 +182,8 @@ public class SimpleReportLayer extends MarkupLayer {
 		} catch (Exception e) {
 		}
 		
-		final MarkupSymbol symbol = new MarkupSymbol(mDataManager, attr.toString(), new LatLng(data.getLatitude(), data.getLongitude()), generateTintedBitmap(getSRBitmap(data.getCategory()), new int[] { 20, 20, 20, 20 }), null, new int[] { 255, 255, 255, 255 });
+		final MarkupSymbol symbol = new MarkupSymbol(mDataManager, mMap, attr.toString(), new LatLng(data.getLatitude(), data.getLongitude()), generateTintedBitmap(getSRBitmap(data.getCategory()), new int[] { 20, 20, 20, 20 }), null, new int[] { 255, 255, 255, 255 });
 		symbol.setFeatureId(String.valueOf(payload.getFormId()));
-		((MainActivity)mContext).runOnUiThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				symbol.setMarker(mMap.addMarker(symbol.getOptions()));
-			}
-		});
 		
 		return symbol;
 	}

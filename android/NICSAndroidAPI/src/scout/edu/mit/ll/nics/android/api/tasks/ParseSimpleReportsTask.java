@@ -75,6 +75,17 @@ public class ParseSimpleReportsTask extends AsyncTask<ArrayList<SimpleReportPayl
 		}
 
 		if(numParsed > 0) {
+			
+			ArrayList<SimpleReportPayload> reports = mDataManager.getAllSimpleReportStoreAndForwardHasSent();
+			for(int i = 0; i < reports.size(); i++){
+				mDataManager.deleteSimpleReportStoreAndForward(reports.get(i).getId());
+				Log.d("ParseSimpleReport","deleted sent simple report: " + reports.get(i).getId());
+				Intent intent = new Intent();
+			    intent.setAction(Intents.nics_SENT_SIMPLE_REPORTS_CLEARED);
+				intent.putExtra("reportId", reports.get(i).getFormId());
+		        mContext.sendBroadcast (intent);
+			}
+			
 			if(!mDataManager.isPushNotificationsDisabled()){
 				mNotificationHandler.createSimpleReportNotification(srPayloads[0], mDataManager.getActiveIncidentId());
 			}

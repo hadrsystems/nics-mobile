@@ -32,30 +32,55 @@ package scout.edu.mit.ll.nics.android.api.handlers;
 
 import org.apache.http.Header;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.RestClient;
+import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
+import scout.edu.mit.ll.nics.android.api.messages.SimpleReportMessage;
+import scout.edu.mit.ll.nics.android.api.payload.forms.SimpleReportPayload;
+import scout.edu.mit.ll.nics.android.utils.Intents;
 
 public class SimpleReportNoImageResponseHandler extends AsyncHttpResponseHandler {
 	private DataManager mDataManager;
+	private Context mContext;
 	private long mReportId;
 	
-	public SimpleReportNoImageResponseHandler(DataManager dataManager, long reportId) {
+	public SimpleReportNoImageResponseHandler(Context context, DataManager dataManager, long reportId) {
+		mContext = context;
 		mReportId = reportId;
 		mDataManager = dataManager;
 	}
 	
 	@Override
 	public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-		String content = (responseBody != null) ? new String(responseBody) : "";
 		Log.e("nicsRest", "Success to post Simple Report No Image information");
-		Log.e("nicsRest", "Deleting: " + mReportId + " success: " + mDataManager.deleteSimpleReportStoreAndForward(mReportId));
-		mDataManager.addPersonalHistory("Simple Report No Image successfully sent: " + content + "\n");
-		mDataManager.requestSimpleReportRepeating(mDataManager.getIncidentDataRate(), true);
 		
+		String content = (responseBody != null) ? new String(responseBody) : "";
+		SimpleReportMessage message = new Gson().fromJson(content, SimpleReportMessage.class);
+		for(SimpleReportPayload payload : message.getReports()) {
+			mDataManager.deleteSimpleReportStoreAndForward(mReportId);
+			payload.setSendStatus(ReportSendStatus.SENT);
+			payload.setProgress(100);
+			payload.parse();
+			
+			Intent intent = new Intent();
+		    intent.setAction(Intents.nics_SIMPLE_REPORT_PROGRESS);
+		    
+			intent.putExtra("reportId", mReportId);
+			intent.putExtra("progress", (double)100);
+			
+	        mContext.sendBroadcast (intent);
+			
+			mDataManager.addSimpleReportToStoreAndForward(payload);
+		}
+		
+		mDataManager.requestSimpleReports();
 		RestClient.setSendingSimpleReports(false);
 	}
 	

@@ -127,7 +127,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    ChatViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatPrototypeCell" forIndexPath:indexPath];
+    ChatViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     if(_willPollMoreChats && indexPath.row >= [_messages count]){
         cell.MessageLabel.text = NSLocalizedString( @"Checking for new messages",nil);

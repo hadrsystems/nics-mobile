@@ -170,7 +170,7 @@ public class DamageReportTable extends DatabaseTable <DamageReportPayload> {
     
     public ArrayList<DamageReportPayload> getAllDataReadyToSend (long collaborationRoomId, SQLiteDatabase database) {
         String orderBy = "seqtime DESC";
-        String sqlSelection = "status==? AND incidentId==?";
+        String sqlSelection = "sendStatus==? AND incidentId==?";
         String[] sqlSelectionArguments = {String.valueOf(ReportSendStatus.WAITING_TO_SEND.getId ()), String.valueOf(collaborationRoomId)};
 
         return getData(sqlSelection, sqlSelectionArguments, orderBy,NO_LIMIT, database);
@@ -180,6 +180,26 @@ public class DamageReportTable extends DatabaseTable <DamageReportPayload> {
                                                            SQLiteDatabase database) {
         String sqlSelection = "sendStatus==?";
         String[] sqlSelectionArguments = {String.valueOf (ReportSendStatus.WAITING_TO_SEND.getId ())};
+
+        return getData (sqlSelection,
+                        sqlSelectionArguments,
+                        orderBy,
+                        NO_LIMIT,
+                        database);
+    }
+    
+    public ArrayList<DamageReportPayload> getAllDataHasSent (long collaborationRoomId, SQLiteDatabase database) {
+        String orderBy = "seqtime DESC";
+        String sqlSelection = "sendStatus==? AND incidentId==?";
+        String[] sqlSelectionArguments = {String.valueOf(ReportSendStatus.SENT.getId ()), String.valueOf(collaborationRoomId)};
+
+        return getData(sqlSelection, sqlSelectionArguments, orderBy,NO_LIMIT, database);
+    }
+
+    public ArrayList<DamageReportPayload> getAllDataHasSent (String orderBy,
+                                                           SQLiteDatabase database) {
+        String sqlSelection = "sendStatus==?";
+        String[] sqlSelectionArguments = {String.valueOf (ReportSendStatus.SENT.getId ())};
 
         return getData (sqlSelection,
                         sqlSelectionArguments,

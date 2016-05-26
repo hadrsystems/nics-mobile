@@ -30,6 +30,8 @@
  */
 package scout.edu.mit.ll.nics.android.api.payload;
 
+import com.google.gson.Gson;
+
 public class CollabroomPayload {
 
 	private transient long incidentid;
@@ -37,7 +39,31 @@ public class CollabroomPayload {
 	private long usersessionid;
 	private String name;
 	private String created;
+	private long[] adminUsers;
+	private long[] readWriteUsers;
 	
+	public boolean doIHaveMarkupPermission(long userId){
+		
+		if(name.equals("Working Map")){
+			return true;
+		}
+		
+		if(adminUsers == null && readWriteUsers == null){
+			return false;
+		}
+		
+		for(int i =0; i < adminUsers.length;i++){
+			if(adminUsers[i] == userId){
+				return true;
+			}
+		}
+		for(int i =0; i < readWriteUsers.length;i++){
+			if(readWriteUsers[i] == userId){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public long getIncidentid() {
 		return incidentid;
@@ -77,5 +103,25 @@ public class CollabroomPayload {
 	
 	public void setcreated(String created) {
 		this.created = created;
+	}
+
+	public long[] getAdminUsers() {
+		return adminUsers;
+	}
+
+	public void setAdminUsers(long[] adminUsers) {
+		this.adminUsers = adminUsers;
+	}
+
+	public long[] getReadWriteUsers() {
+		return readWriteUsers;
+	}
+
+	public void setReadWriteUsers(long[] readWriteUsers) {
+		this.readWriteUsers = readWriteUsers;
+	}
+	
+	public String toJsonString() {
+		return new Gson().toJson(this);
 	}
 }

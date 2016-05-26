@@ -4615,19 +4615,19 @@ com.sun.mail.util.UUDecoderStream:
     131:132:public java.lang.String getName()
     143:144:public int getMode()
 com.sun.mail.util.UUEncoderStream
-scout.edu.mit.ll.nics.android.BluetoothLRF:
+scout.scout.edu.mit.ll.nics.android.BluetoothLRF:
     public static final int REQUEST_ENABLE
     196:196:public net.sf.marineapi.nmea.sentence.LTITSentence getLatestData()
     208:212:public void sendData()
-scout.edu.mit.ll.nics.android.BuildConfig
-scout.edu.mit.ll.nics.android.LRF_HV:
+scout.scout.edu.mit.ll.nics.android.BuildConfig
+scout.scout.edu.mit.ll.nics.android.LRF_HV:
     36:36:public java.lang.String getHorizontalDistanceUnits()
     52:52:public java.lang.String getAzimuthUnits()
     60:60:public double getInclinationValue()
     68:68:public java.lang.String getInclinationUnits()
     76:76:public double getSlopeDistanceValue()
     84:84:public java.lang.String getSlopeDistanceUnits()
-scout.edu.mit.ll.nics.android.MainActivity:
+scout.scout.edu.mit.ll.nics.android.MainActivity:
     private static final java.lang.String STATE_SELECTED_NAVIGATION_ITEM
     private static final java.lang.String STATE_BACK_STACK
     private static final java.lang.String STATE_REPORT_OPENED_FROM_MAP
@@ -4645,26 +4645,26 @@ scout.edu.mit.ll.nics.android.MainActivity:
     private static final java.lang.String STATE_IS_VIEW_UXO_REPORT
     332:335:private android.content.Context getActionBarThemedContextCompat()
     1530:1541:public void showLRFError(java.lang.String)
-scout.edu.mit.ll.nics.android.MainActivity$5
-scout.edu.mit.ll.nics.android.Manifest
-scout.edu.mit.ll.nics.android.Manifest$permission
-scout.edu.mit.ll.nics.android.R:
+scout.scout.edu.mit.ll.nics.android.MainActivity$5
+scout.scout.edu.mit.ll.nics.android.Manifest
+scout.scout.edu.mit.ll.nics.android.Manifest$permission
+scout.scout.edu.mit.ll.nics.android.R:
     10:10:public R()
-scout.edu.mit.ll.nics.android.R$anim
-scout.edu.mit.ll.nics.android.R$array
-scout.edu.mit.ll.nics.android.R$attr
-scout.edu.mit.ll.nics.android.R$bool
-scout.edu.mit.ll.nics.android.R$color
-scout.edu.mit.ll.nics.android.R$dimen
-scout.edu.mit.ll.nics.android.R$drawable
-scout.edu.mit.ll.nics.android.R$id
-scout.edu.mit.ll.nics.android.R$integer
-scout.edu.mit.ll.nics.android.R$layout
-scout.edu.mit.ll.nics.android.R$menu
-scout.edu.mit.ll.nics.android.R$raw
-scout.edu.mit.ll.nics.android.R$string
-scout.edu.mit.ll.nics.android.R$style
-scout.edu.mit.ll.nics.android.R$styleable:
+scout.scout.edu.mit.ll.nics.android.R$anim
+scout.scout.edu.mit.ll.nics.android.R$array
+scout.scout.edu.mit.ll.nics.android.R$attr
+scout.scout.edu.mit.ll.nics.android.R$bool
+scout.scout.edu.mit.ll.nics.android.R$color
+scout.scout.edu.mit.ll.nics.android.R$dimen
+scout.scout.edu.mit.ll.nics.android.R$drawable
+scout.scout.edu.mit.ll.nics.android.R$id
+scout.scout.edu.mit.ll.nics.android.R$integer
+scout.scout.edu.mit.ll.nics.android.R$layout
+scout.scout.edu.mit.ll.nics.android.R$menu
+scout.scout.edu.mit.ll.nics.android.R$raw
+scout.scout.edu.mit.ll.nics.android.R$string
+scout.scout.edu.mit.ll.nics.android.R$style
+scout.scout.edu.mit.ll.nics.android.R$styleable:
     public static final int ActionBar_background
     public static final int ActionBar_backgroundSplit
     public static final int ActionBar_backgroundStacked
@@ -4794,19 +4794,19 @@ scout.edu.mit.ll.nics.android.R$styleable:
     public static final int View_paddingEnd
     public static final int View_paddingStart
     2943:2943:public R$styleable()
-scout.edu.mit.ll.nics.android.R$xml
-scout.edu.mit.ll.nics.android.SettingsActivity:
+scout.scout.edu.mit.ll.nics.android.R$xml
+scout.scout.edu.mit.ll.nics.android.SettingsActivity:
     private static final boolean ALWAYS_SIMPLE_PREFS
-scout.edu.mit.ll.nics.android.action.providers.ChatActionProvider:
+scout.scout.edu.mit.ll.nics.android.action.providers.ChatActionProvider:
     155:155:public int getNewMessageCount()
     159:160:public void setNewMessageCount(int)
     253:253:public static android.content.BroadcastReceiver getChatReceiver()
     257:257:public static android.content.IntentFilter getIntentFilter()
-scout.edu.mit.ll.nics.android.adapters.CatanRequestListAdapter:
+scout.scout.edu.mit.ll.nics.android.adapters.CatanRequestListAdapter:
     162:162:public java.util.List getItems()
-scout.edu.mit.ll.nics.android.adapters.ChatListAdapter
-scout.edu.mit.ll.nics.android.adapters.CollabRoomAdapter
-scout.edu.mit.ll.nics.android.api.DataManager:
+scout.scout.edu.mit.ll.nics.android.adapters.ChatListAdapter
+scout.scout.edu.mit.ll.nics.android.adapters.CollabRoomAdapter
+scout.scout.edu.mit.ll.nics.android.api.DataManager:
     private java.util.ArrayList mMarkupFeatures
     236:237:public void requestWeatherUpdate(double,double)
     264:265:public void setOnline(boolean)
@@ -4818,8 +4818,8 @@ scout.edu.mit.ll.nics.android.api.DataManager:
     452:452:public java.util.ArrayList getAllCatanRequestHistory()
     456:456:public java.util.ArrayList getAllCatanRequestStoreAndForwardReadyToSend()
     460:460:public java.util.ArrayList getAllCatanRequestStoreAndForwardReadyToSend(long)
-    484:484:public boolean addChatToStoreAndForward(scout.edu.mit.ll.nics.android.api.payload.ChatPayload)
-    502:502:public scout.edu.mit.ll.nics.android.api.payload.ChatPayload getLastChatMessage(long)
+    484:484:public boolean addChatToStoreAndForward(scout.scout.edu.mit.ll.nics.android.api.payload.ChatPayload)
+    502:502:public scout.scout.edu.mit.ll.nics.android.api.payload.ChatPayload getLastChatMessage(long)
     602:602:public java.util.ArrayList getAllResourceRequestHistory()
     631:640:public void requestActiveAssignmentRepeating(int)
     933:933:public long getLastMarkupTimestamp(long)
@@ -4840,13 +4840,13 @@ scout.edu.mit.ll.nics.android.api.DataManager:
     1414:1419:public void setHeartRate(java.lang.Double,java.lang.Integer)
     1426:1431:public void setHSI(java.lang.Double)
     1504:1504:public double getMDTCourse()
-    1530:1531:public void setWeather(scout.edu.mit.ll.nics.android.api.payload.WeatherPayload)
-scout.edu.mit.ll.nics.android.api.R:
+    1530:1531:public void setWeather(scout.scout.edu.mit.ll.nics.android.api.payload.WeatherPayload)
+scout.scout.edu.mit.ll.nics.android.api.R:
     9:9:public R()
-scout.edu.mit.ll.nics.android.api.R$attr
-scout.edu.mit.ll.nics.android.api.R$color
-scout.edu.mit.ll.nics.android.api.R$dimen
-scout.edu.mit.ll.nics.android.api.R$drawable:
+scout.scout.edu.mit.ll.nics.android.api.R$attr
+scout.scout.edu.mit.ll.nics.android.api.R$color
+scout.scout.edu.mit.ll.nics.android.api.R$dimen
+scout.scout.edu.mit.ll.nics.android.api.R$drawable:
     public static final int common_signin_btn_icon_dark
     public static final int common_signin_btn_icon_disabled_dark
     public static final int common_signin_btn_icon_disabled_focus_dark
@@ -4876,8 +4876,8 @@ scout.edu.mit.ll.nics.android.api.R$drawable:
     public static final int ic_plusone_standard_off_client
     public static final int ic_plusone_tall_off_client
     44:44:public R$drawable()
-scout.edu.mit.ll.nics.android.api.R$id
-scout.edu.mit.ll.nics.android.api.R$string:
+scout.scout.edu.mit.ll.nics.android.api.R$id
+scout.scout.edu.mit.ll.nics.android.api.R$string:
     public static final int app_name
     public static final int auth_client_needs_enabling_title
     public static final int auth_client_needs_installation_title
@@ -4905,21 +4905,21 @@ scout.edu.mit.ll.nics.android.api.R$string:
     public static final int common_signin_button_text
     public static final int common_signin_button_text_long
     82:82:public R$string()
-scout.edu.mit.ll.nics.android.api.R$style
-scout.edu.mit.ll.nics.android.api.R$styleable
-scout.edu.mit.ll.nics.android.api.RestClient:
+scout.scout.edu.mit.ll.nics.android.api.R$style
+scout.scout.edu.mit.ll.nics.android.api.R$styleable
+scout.scout.edu.mit.ll.nics.android.api.RestClient:
     99:99:public RestClient()
     187:204:public static void getOrgCapabilities(long)
     405:421:public static void deleteMarkup(java.lang.String)
     497:533:public static void getUserCollabrooms(long,long,boolean)
     1217:1248:public static void getWeatherUpdate(double,double)
-scout.edu.mit.ll.nics.android.api.RestClient$1
-scout.edu.mit.ll.nics.android.api.RestClient$21
-scout.edu.mit.ll.nics.android.api.RestClient$4
-scout.edu.mit.ll.nics.android.api.RestClient$7
-scout.edu.mit.ll.nics.android.api.database.DatabaseManager:
+scout.scout.edu.mit.ll.nics.android.api.RestClient$1
+scout.scout.edu.mit.ll.nics.android.api.RestClient$21
+scout.scout.edu.mit.ll.nics.android.api.RestClient$4
+scout.scout.edu.mit.ll.nics.android.api.RestClient$7
+scout.scout.edu.mit.ll.nics.android.api.database.DatabaseManager:
     208:216:public void onDowngrade(net.sqlcipher.database.SQLiteDatabase,int,int)
-    387:394:public scout.edu.mit.ll.nics.android.api.payload.ChatPayload getLastChatHistory(long)
+    387:394:public scout.scout.edu.mit.ll.nics.android.api.payload.ChatPayload getLastChatHistory(long)
     504:524:public java.util.Map getAllChatStoreAndForwardMappedByTopic()
     549:559:public boolean deleteChatStoreAndForwardSince(long)
     563:573:public boolean deleteMobileDeviceTrackingStoreAndForwardSince(long)
@@ -4948,29 +4948,29 @@ scout.edu.mit.ll.nics.android.api.database.DatabaseManager:
     1639:1649:public boolean deleteMarkupHistoryForCollabroom(long)
     1653:1663:public boolean deleteMarkupHistoryForCollabroomByFeatureIds(long,java.util.ArrayList)
     1681:1688:public boolean addAllChatHistory(java.util.ArrayList)
-scout.edu.mit.ll.nics.android.api.database.tables.CatanRequestTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.CatanRequestTable:
     131:135:public java.util.ArrayList getAllDataReadyToSend(long,net.sqlcipher.database.SQLiteDatabase)
     139:142:public java.util.ArrayList getAllDataReadyToSend(java.lang.String,net.sqlcipher.database.SQLiteDatabase)
     210:248:public long getLastDataTimestamp(net.sqlcipher.database.SQLiteDatabase)
     293:293:public long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     297:301:public java.util.ArrayList getDataByReportId(int,net.sqlcipher.database.SQLiteDatabase)
     1:1:public bridge synthetic long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
-scout.edu.mit.ll.nics.android.api.database.tables.CatanRequestTable$1:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.CatanRequestTable$1:
     private static final long serialVersionUID
-scout.edu.mit.ll.nics.android.api.database.tables.ChatTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.ChatTable:
     107:162:public long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
-    166:194:public scout.edu.mit.ll.nics.android.api.payload.ChatPayload getLastDataForCollaborationRoom(long,net.sqlcipher.database.SQLiteDatabase)
+    166:194:public scout.scout.edu.mit.ll.nics.android.api.payload.ChatPayload getLastDataForCollaborationRoom(long,net.sqlcipher.database.SQLiteDatabase)
     260:264:public java.util.ArrayList getDataForCollaborationRoomSince(long,long,net.sqlcipher.database.SQLiteDatabase)
     1:1:public bridge synthetic long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
-scout.edu.mit.ll.nics.android.api.database.tables.ChatTable$1:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.ChatTable$1:
     private static final long serialVersionUID
-scout.edu.mit.ll.nics.android.api.database.tables.DamageReportTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.DamageReportTable:
     229:264:public long getLastDataTimestamp(net.sqlcipher.database.SQLiteDatabase)
     309:309:public long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     1:1:public bridge synthetic long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
-scout.edu.mit.ll.nics.android.api.database.tables.DamageReportTable$1:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.DamageReportTable$1:
     private static final long serialVersionUID
-scout.edu.mit.ll.nics.android.api.database.tables.DatabaseTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.DatabaseTable:
     146:163:public long deleteDataByCollabroom(long,net.sqlcipher.database.SQLiteDatabase)
     public abstract long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
     193:197:java.util.ArrayList getDataSince(long,net.sqlcipher.database.SQLiteDatabase)
@@ -4979,13 +4979,13 @@ scout.edu.mit.ll.nics.android.api.database.tables.DatabaseTable:
     public abstract void createTable(net.sqlcipher.database.SQLiteDatabase)
     public abstract long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     256:273:public static java.lang.String createInsert(java.lang.String,java.util.Map)
-scout.edu.mit.ll.nics.android.api.database.tables.FieldReportTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.FieldReportTable:
     396:431:public long getLastDataTimestamp(net.sqlcipher.database.SQLiteDatabase)
     476:476:public long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     1:1:public bridge synthetic long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
-scout.edu.mit.ll.nics.android.api.database.tables.FieldReportTable$1:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.FieldReportTable$1:
     private static final long serialVersionUID
-scout.edu.mit.ll.nics.android.api.database.tables.MarkupTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.MarkupTable:
     114:157:public long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     170:207:public long getLastChatDataTimestamp(long,net.sqlcipher.database.SQLiteDatabase)
     222:229:public java.util.ArrayList getDataSince(long,net.sqlcipher.database.SQLiteDatabase)
@@ -4994,131 +4994,131 @@ scout.edu.mit.ll.nics.android.api.database.tables.MarkupTable:
     406:435:public long deleteDataByCollabroomByFeatureIds(long,java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     439:455:public java.util.ArrayList getDataForCollaborationRoomByFeatureIds(long,java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     1:1:public bridge synthetic long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
-scout.edu.mit.ll.nics.android.api.database.tables.MarkupTable$1:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.MarkupTable$1:
     private static final long serialVersionUID
-scout.edu.mit.ll.nics.android.api.database.tables.MobileDeviceTrackingTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.MobileDeviceTrackingTable:
     163:163:public long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     1:1:public bridge synthetic long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
-scout.edu.mit.ll.nics.android.api.database.tables.MobileDeviceTrackingTable$1:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.MobileDeviceTrackingTable$1:
     private static final long serialVersionUID
-scout.edu.mit.ll.nics.android.api.database.tables.ResourceRequestTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.ResourceRequestTable:
     219:254:public long getLastDataTimestamp(net.sqlcipher.database.SQLiteDatabase)
     299:299:public long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     1:1:public bridge synthetic long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
-scout.edu.mit.ll.nics.android.api.database.tables.ResourceRequestTable$1:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.ResourceRequestTable$1:
     private static final long serialVersionUID
-scout.edu.mit.ll.nics.android.api.database.tables.SimpleReportTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.SimpleReportTable:
     198:236:public long getLastDataTimestamp(net.sqlcipher.database.SQLiteDatabase)
     281:281:public long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     285:289:public java.util.ArrayList getDataByReportId(int,net.sqlcipher.database.SQLiteDatabase)
     1:1:public bridge synthetic long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
-scout.edu.mit.ll.nics.android.api.database.tables.SimpleReportTable$1:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.SimpleReportTable$1:
     private static final long serialVersionUID
-scout.edu.mit.ll.nics.android.api.database.tables.UxoReportTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.UxoReportTable:
     238:273:public long getLastDataTimestamp(net.sqlcipher.database.SQLiteDatabase)
     318:318:public long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     1:1:public bridge synthetic long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
-scout.edu.mit.ll.nics.android.api.database.tables.UxoReportTable$1:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.UxoReportTable$1:
     private static final long serialVersionUID
-scout.edu.mit.ll.nics.android.api.database.tables.WeatherReportTable:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.WeatherReportTable:
     211:249:public long getLastDataTimestamp(net.sqlcipher.database.SQLiteDatabase)
     294:294:public long addData(java.util.ArrayList,net.sqlcipher.database.SQLiteDatabase)
     298:302:public java.util.ArrayList getDataByReportId(int,net.sqlcipher.database.SQLiteDatabase)
     1:1:public bridge synthetic long addData(java.lang.Object,net.sqlcipher.database.SQLiteDatabase)
-scout.edu.mit.ll.nics.android.api.database.tables.WeatherReportTable$1:
+scout.scout.edu.mit.ll.nics.android.api.database.tables.WeatherReportTable$1:
     private static final long serialVersionUID
-scout.edu.mit.ll.nics.android.auth.AuthProvider:
+scout.scout.edu.mit.ll.nics.android.auth.AuthProvider:
     29:29:public com.loopj.android.http.AsyncHttpClient getClient()
     public abstract void getWithoutCredentials(android.content.Context,java.lang.String,com.loopj.android.http.AsyncHttpResponseHandler)
-scout.edu.mit.ll.nics.android.auth.providers.BasicAuthProvider
-scout.edu.mit.ll.nics.android.auth.providers.OpenAMAuthProvider:
+scout.scout.edu.mit.ll.nics.android.auth.providers.BasicAuthProvider
+scout.scout.edu.mit.ll.nics.android.auth.providers.OpenAMAuthProvider:
     258:258:public void getWithoutCredentials(android.content.Context,java.lang.String,com.loopj.android.http.AsyncHttpResponseHandler)
-scout.edu.mit.ll.nics.android.auth.providers.RequestRunnable
-scout.edu.mit.ll.nics.android.bugreporting.GMailSender$ByteArrayDataSource:
-    83:86:public GMailSender$ByteArrayDataSource(scout.edu.mit.ll.nics.android.bugreporting.GMailSender,byte[])
+scout.scout.edu.mit.ll.nics.android.auth.providers.RequestRunnable
+scout.scout.edu.mit.ll.nics.android.bugreporting.GMailSender$ByteArrayDataSource:
+    83:86:public GMailSender$ByteArrayDataSource(scout.scout.edu.mit.ll.nics.android.bugreporting.GMailSender,byte[])
     89:90:public void setType(java.lang.String)
     108:108:public java.io.OutputStream getOutputStream()
-scout.edu.mit.ll.nics.android.dialogs.ColorPickerDialog:
+scout.scout.edu.mit.ll.nics.android.dialogs.ColorPickerDialog:
     126:126:public int getColor()
-scout.edu.mit.ll.nics.android.formgen.FormCheckBox:
+scout.scout.edu.mit.ll.nics.android.formgen.FormCheckBox:
     protected int mPriority
-scout.edu.mit.ll.nics.android.formgen.FormDamageInformation:
+scout.scout.edu.mit.ll.nics.android.formgen.FormDamageInformation:
     protected org.json.JSONObject mOptions
-scout.edu.mit.ll.nics.android.formgen.FormImageSelector:
+scout.scout.edu.mit.ll.nics.android.formgen.FormImageSelector:
     protected static final int CAMERA_REQUEST
     protected static final int SELECT_PHOTO
-scout.edu.mit.ll.nics.android.formgen.FormNumericEditText:
+scout.scout.edu.mit.ll.nics.android.formgen.FormNumericEditText:
     protected int mPriority
-scout.edu.mit.ll.nics.android.formgen.FormSection:
+scout.scout.edu.mit.ll.nics.android.formgen.FormSection:
     protected int mPriority
-scout.edu.mit.ll.nics.android.formgen.FormWidget:
+scout.scout.edu.mit.ll.nics.android.formgen.FormWidget:
     protected android.view.View mView
-    private scout.edu.mit.ll.nics.android.api.DataManager mDataManager
+    private scout.scout.edu.mit.ll.nics.android.api.DataManager mDataManager
     130:130:public void setModifiers(org.json.JSONObject)
     183:201:public static java.lang.String toTitleCase(java.lang.String)
-scout.edu.mit.ll.nics.android.fragments.AboutFragment:
+scout.scout.edu.mit.ll.nics.android.fragments.AboutFragment:
     77:81:public void removeAssignmentFragment()
     103:103:public java.lang.String toJsonString()
-scout.edu.mit.ll.nics.android.fragments.CatanRequestFragment:
+scout.scout.edu.mit.ll.nics.android.fragments.CatanRequestFragment:
     128:132:public void removeAssignmentFragment()
     160:162:public void hideCopy(boolean)
     279:279:public java.lang.String toJson()
     300:300:public java.lang.String getFormString()
-scout.edu.mit.ll.nics.android.fragments.CatanRequestFragment$1:
+scout.scout.edu.mit.ll.nics.android.fragments.CatanRequestFragment$1:
     private android.app.AlertDialog mAlertDialog
-scout.edu.mit.ll.nics.android.fragments.ChatListFragment
-scout.edu.mit.ll.nics.android.fragments.ChatListFragment$1
-scout.edu.mit.ll.nics.android.fragments.ChatListFragment$2
-scout.edu.mit.ll.nics.android.fragments.ChatListFragment$2$1
-scout.edu.mit.ll.nics.android.fragments.DamageReportFragment:
+scout.scout.edu.mit.ll.nics.android.fragments.ChatListFragment
+scout.scout.edu.mit.ll.nics.android.fragments.ChatListFragment$1
+scout.scout.edu.mit.ll.nics.android.fragments.ChatListFragment$2
+scout.scout.edu.mit.ll.nics.android.fragments.ChatListFragment$2$1
+scout.scout.edu.mit.ll.nics.android.fragments.DamageReportFragment:
     125:129:public void removeAssignmentFragment()
     316:316:public java.lang.String toJson()
-scout.edu.mit.ll.nics.android.fragments.FieldReportFragment:
+scout.scout.edu.mit.ll.nics.android.fragments.FieldReportFragment:
     123:127:public void removeAssignmentFragment()
     249:249:public java.lang.String toJson()
-scout.edu.mit.ll.nics.android.fragments.FormListFragment:
+scout.scout.edu.mit.ll.nics.android.fragments.FormListFragment:
     protected static final java.lang.String STATE_ACTIVATED_POSITION
-scout.edu.mit.ll.nics.android.fragments.FormListTabbedFragment:
+scout.scout.edu.mit.ll.nics.android.fragments.FormListTabbedFragment:
     protected static final java.lang.String STATE_ACTIVATED_POSITION
-scout.edu.mit.ll.nics.android.fragments.GarFragment:
+scout.scout.edu.mit.ll.nics.android.fragments.GarFragment:
     private static final java.lang.String nics_GAR_STATE
-scout.edu.mit.ll.nics.android.fragments.GeneralMessageFragment:
+scout.scout.edu.mit.ll.nics.android.fragments.GeneralMessageFragment:
     124:128:public void removeAssignmentFragment()
     276:276:public java.lang.String toJson()
-scout.edu.mit.ll.nics.android.fragments.MapMarkupFragment:
+scout.scout.edu.mit.ll.nics.android.fragments.MapMarkupFragment:
     353:379:public android.graphics.Bitmap generateTintedBitmap(int,int[])
     471:471:public void onMapLongClick(com.google.android.gms.maps.model.LatLng)
-    1184:1210:public void showDeleteDialog(scout.edu.mit.ll.nics.android.maps.markup.MarkupBaseShape)
-scout.edu.mit.ll.nics.android.fragments.MapMarkupFragment$10
-scout.edu.mit.ll.nics.android.fragments.MapMarkupFragment$11
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$1
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$1$1
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$2
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$3
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$4
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$4$1
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$5
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$6
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$6$1
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$6$2
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$7
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$8
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$9
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$DownloadImageTask
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$DownloadImageTask$1
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$DownloadImageTask$2
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$DownloadImageTask$3
-scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$DownloadImageTask$4
-scout.edu.mit.ll.nics.android.fragments.UxoReportFragment:
+    1184:1210:public void showDeleteDialog(scout.scout.edu.mit.ll.nics.android.maps.markup.MarkupBaseShape)
+scout.scout.edu.mit.ll.nics.android.fragments.MapMarkupFragment$10
+scout.scout.edu.mit.ll.nics.android.fragments.MapMarkupFragment$11
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$1
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$1$1
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$2
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$3
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$4
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$4$1
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$5
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$6
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$6$1
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$6$2
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$7
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$8
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$9
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$DownloadImageTask
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$DownloadImageTask$1
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$DownloadImageTask$2
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$DownloadImageTask$3
+scout.scout.edu.mit.ll.nics.android.fragments.SimpleReportFragment$DownloadImageTask$4
+scout.scout.edu.mit.ll.nics.android.fragments.UxoReportFragment:
     124:128:public void removeAssignmentFragment()
     328:328:public java.lang.String toJson()
-scout.edu.mit.ll.nics.android.fragments.WeatherFragment
-scout.edu.mit.ll.nics.android.fragments.WeatherFragment$1
-scout.edu.mit.ll.nics.android.fragments.WeatherReportFragment:
+scout.scout.edu.mit.ll.nics.android.fragments.WeatherFragment
+scout.scout.edu.mit.ll.nics.android.fragments.WeatherFragment$1
+scout.scout.edu.mit.ll.nics.android.fragments.WeatherReportFragment:
     129:133:public void removeAssignmentFragment()
     264:264:public java.lang.String toJson()
-scout.edu.mit.ll.nics.android.maps.markup.MarkupBaseShape:
+scout.scout.edu.mit.ll.nics.android.maps.markup.MarkupBaseShape:
     public int[] mFillColor
     65:65:public java.lang.Long getId()
     73:73:public java.lang.String getTitle()
@@ -5132,12 +5132,12 @@ scout.edu.mit.ll.nics.android.maps.markup.MarkupBaseShape:
     258:258:public double getRadius()
     268:268:public java.lang.String getCreator()
     276:276:public boolean isDraft()
-scout.edu.mit.ll.nics.android.maps.markup.MarkupCircle:
+scout.scout.edu.mit.ll.nics.android.maps.markup.MarkupCircle:
     124:127:public org.json.JSONObject toJson()
     132:132:public boolean removeLastPoint()
     144:144:public void showInfoWindow()
-scout.edu.mit.ll.nics.android.maps.markup.MarkupFireLine:
-    28:36:public MarkupFireLine(scout.edu.mit.ll.nics.android.api.DataManager,java.lang.String,com.google.android.gms.maps.model.LatLng,int[])
+scout.scout.edu.mit.ll.nics.android.maps.markup.MarkupFireLine:
+    28:36:public MarkupFireLine(scout.scout.edu.mit.ll.nics.android.api.DataManager,java.lang.String,com.google.android.gms.maps.model.LatLng,int[])
     68:73:public void setPoint(com.google.android.gms.maps.model.LatLng)
     85:85:public boolean removeLastPoint()
     94:96:public android.graphics.Path makeCircle(float)
@@ -5147,27 +5147,27 @@ scout.edu.mit.ll.nics.android.maps.markup.MarkupFireLine:
     127:137:public android.graphics.Path makeCrossWithCircle(float)
     142:142:public void setIcon(android.graphics.Bitmap,int[])
     146:146:public void showInfoWindow()
-scout.edu.mit.ll.nics.android.maps.markup.MarkupRectangle:
+scout.scout.edu.mit.ll.nics.android.maps.markup.MarkupRectangle:
     116:116:public void showInfoWindow()
     122:153:public boolean removeLastPoint()
-scout.edu.mit.ll.nics.android.maps.markup.MarkupSegment:
+scout.scout.edu.mit.ll.nics.android.maps.markup.MarkupSegment:
     103:103:public void showInfoWindow()
     117:136:public boolean removeLastPoint()
-scout.edu.mit.ll.nics.android.maps.markup.MarkupSymbol:
+scout.scout.edu.mit.ll.nics.android.maps.markup.MarkupSymbol:
     174:177:public void showInfoWindow()
     186:186:public boolean removeLastPoint()
-scout.edu.mit.ll.nics.android.maps.markup.MarkupText:
+scout.scout.edu.mit.ll.nics.android.maps.markup.MarkupText:
     private java.lang.String mImagePath
-    41:54:public MarkupText(scout.edu.mit.ll.nics.android.api.DataManager,java.lang.String,com.google.android.gms.maps.model.LatLng,int[])
+    41:54:public MarkupText(scout.scout.edu.mit.ll.nics.android.api.DataManager,java.lang.String,com.google.android.gms.maps.model.LatLng,int[])
     116:125:public void setPoint(com.google.android.gms.maps.model.LatLng)
     132:133:public void setSymbolPath(java.lang.String)
     136:136:public android.graphics.Bitmap getSymbolBitmap()
     140:140:public java.lang.String getSymbolPath()
     169:172:public void showInfoWindow()
     181:181:public boolean removeLastPoint()
-scout.edu.mit.ll.nics.android.maps.markup.Symbols:
+scout.scout.edu.mit.ll.nics.android.maps.markup.Symbols:
     15:15:public Symbols()
-scout.edu.mit.ll.nics.android.maps.markup.tileprovider.MarkupWMSTileProvider:
+scout.scout.edu.mit.ll.nics.android.maps.markup.tileprovider.MarkupWMSTileProvider:
     private static final int ORIG_X
     private static final int ORIG_Y
     private static final double MAP_SIZE
@@ -5177,7 +5177,7 @@ scout.edu.mit.ll.nics.android.maps.markup.tileprovider.MarkupWMSTileProvider:
     protected static final int MAXY
     46:46:protected java.lang.String getCql()
     50:51:public void setCql(java.lang.String)
-scout.edu.mit.ll.nics.android.utils.AesCbcWithIntegrity:
+scout.scout.edu.mit.ll.nics.android.utils.AesCbcWithIntegrity:
     private static final java.lang.String CIPHER_TRANSFORMATION
     private static final java.lang.String CIPHER
     private static final java.lang.String RANDOM_ALGORITHM
@@ -5190,16 +5190,16 @@ scout.edu.mit.ll.nics.android.utils.AesCbcWithIntegrity:
     private static final java.lang.String HMAC_ALGORITHM
     private static final int HMAC_KEY_LENGTH_BITS
     66:66:public AesCbcWithIntegrity()
-    159:177:public static scout.edu.mit.ll.nics.android.utils.AesCbcWithIntegrity$SecretKeys generateKeyFromPassword(java.lang.String,byte[])
-    188:188:public static scout.edu.mit.ll.nics.android.utils.AesCbcWithIntegrity$SecretKeys generateKeyFromPassword(java.lang.String,java.lang.String)
+    159:177:public static scout.scout.edu.mit.ll.nics.android.utils.AesCbcWithIntegrity$SecretKeys generateKeyFromPassword(java.lang.String,byte[])
+    188:188:public static scout.scout.edu.mit.ll.nics.android.utils.AesCbcWithIntegrity$SecretKeys generateKeyFromPassword(java.lang.String,java.lang.String)
     196:196:public static byte[] generateSalt()
     207:207:public static java.lang.String saltString(byte[])
     218:218:public static byte[] generateIv()
     620:623:private static byte[] copyOfRange(byte[],int,int)
-scout.edu.mit.ll.nics.android.utils.AesCbcWithIntegrity$PrngFixes:
+scout.scout.edu.mit.ll.nics.android.utils.AesCbcWithIntegrity$PrngFixes:
     private static final int VERSION_CODE_JELLY_BEAN
     private static final int VERSION_CODE_JELLY_BEAN_MR2
-scout.edu.mit.ll.nics.android.utils.Constants:
+scout.scout.edu.mit.ll.nics.android.utils.Constants:
     public static final java.lang.String nics_UTF8
     public static final java.lang.String nics_ISO_8859_1
     public static final java.lang.String nics_LRF_DEVICE_NAME
@@ -5266,20 +5266,20 @@ scout.edu.mit.ll.nics.android.utils.Constants:
     public static final java.lang.String nics_MAP_ACTIVE_WFS_LAYERS
     public static final java.lang.String nics_TIME_FORMAT
     13:13:public Constants()
-scout.edu.mit.ll.nics.android.utils.EncryptedPreferences:
+scout.scout.edu.mit.ll.nics.android.utils.EncryptedPreferences:
     89:92:public void savePreferenceFloat(java.lang.String,float)
-scout.edu.mit.ll.nics.android.utils.FormType:
+scout.scout.edu.mit.ll.nics.android.utils.FormType:
     63:63:public int getId()
     72:72:public java.lang.String getText()
-    84:94:public static scout.edu.mit.ll.nics.android.utils.FormType lookUp(int)
-    106:116:public static scout.edu.mit.ll.nics.android.utils.FormType lookUp(java.lang.String)
-scout.edu.mit.ll.nics.android.utils.Intents
-scout.edu.mit.ll.nics.android.utils.LocationHandler:
+    84:94:public static scout.scout.edu.mit.ll.nics.android.utils.FormType lookUp(int)
+    106:116:public static scout.scout.edu.mit.ll.nics.android.utils.FormType lookUp(java.lang.String)
+scout.scout.edu.mit.ll.nics.android.utils.Intents
+scout.scout.edu.mit.ll.nics.android.utils.LocationHandler:
     122:122:public android.location.Location getLastLocation()
-scout.edu.mit.ll.nics.android.utils.MarkupCoordinateManager:
+scout.scout.edu.mit.ll.nics.android.utils.MarkupCoordinateManager:
     477:477:public android.graphics.drawable.Drawable getSymbol()
-scout.edu.mit.ll.nics.android.utils.MarkupShapeType
-scout.edu.mit.ll.nics.android.utils.NotificationsHandler:
+scout.scout.edu.mit.ll.nics.android.utils.MarkupShapeType
+scout.scout.edu.mit.ll.nics.android.utils.NotificationsHandler:
     private static final int SIMPLE_REPORT_NOTIFICATION_ID
     private static final int FIELD_REPORT_NOTIFICATION_ID
     private static final int RESOURCE_REQUEST_NOTIFICATION_ID
@@ -5290,7 +5290,7 @@ scout.edu.mit.ll.nics.android.utils.NotificationsHandler:
     private static final int CATAN_REQUEST_NOTIFICATION_ID
     152:183:public void createFieldReportNotification(java.util.ArrayList,long)
     288:319:public void createCatanRequestNotification(java.util.ArrayList,long)
-scout.edu.mit.ll.nics.android.utils.UnreadMessageManager:
+scout.scout.edu.mit.ll.nics.android.utils.UnreadMessageManager:
     101:102:public void clearList()
     104:104:public int getIncidentSize()
     108:113:public int getMessageListSize()

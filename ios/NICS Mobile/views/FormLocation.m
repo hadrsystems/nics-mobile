@@ -36,10 +36,6 @@
 
 @implementation FormLocation
 
-float marginSize;
-double doubleHitTestBuffer;
-double lastHitTestTime;
-
 - (id)init
 {
     self = [super init];
@@ -61,7 +57,6 @@ double lastHitTestTime;
 //    self.field = self.latitudeTextView;
 //    self.label = self.locationLabel;
     
-    
     [self.interactableViews addObject:self.latitudeTextView];
     [self.interactableViews addObject:self.longitudeTextView];
     
@@ -71,9 +66,10 @@ double lastHitTestTime;
     [self.latitudeTextView setDelegate:self];
     [self.longitudeTextView setDelegate:self];
     
-    marginSize = 5;
-    doubleHitTestBuffer = 0.25;
-    lastHitTestTime = 0;
+    _marginSize = 5;
+    _doubleHitTestBuffer = 0.25;
+    _lastHitTestTime = 0;
+    NSLog(@"lastHitTestTime set to 0");
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapCustomLocationChanged) name:@"mapCustomLocationChanged" object:nil];
     
@@ -87,23 +83,22 @@ double lastHitTestTime;
     frameMyLocationBtn.size.width =self.latitudeTextView.frame.size.height;
     
     CGRect frameLat =  self.latitudeTextView.frame;
-    frameLat.size.width = ((frameLat.size.width - frameMyLocationBtn.size.width - frameMyLocationBtn.size.width) /2) - marginSize;
+    frameLat.size.width = ((frameLat.size.width - frameMyLocationBtn.size.width - frameMyLocationBtn.size.width) /2) - _marginSize;
     self.latitudeTextView.frame = frameLat;
     [self.latitudeTextView setPlaceHolderText:NSLocalizedString(@"Latitude",nil)];
     
     CGRect frameLon = self.latitudeTextView.frame;
-    frameLon.size.width = (frameLat.size.width) - marginSize;
-    frameLon.origin.x = frameLat.size.width + marginSize;
+    frameLon.size.width = (frameLat.size.width) - _marginSize;
+    frameLon.origin.x = frameLat.size.width + _marginSize;
     self.longitudeTextView.frame = frameLon;
     [self.longitudeTextView setPlaceHolderText:NSLocalizedString(@"Longitude",nil)];
     
-    frameMyLocationBtn.origin.x =frameLon.origin.x + frameLon.size.width + marginSize;
+    frameMyLocationBtn.origin.x =frameLon.origin.x + frameLon.size.width + _marginSize;
     frameMyLocationBtn.origin.y =frameLon.origin.y;
     self.myLocationButton.frame =frameMyLocationBtn;
     
-    frameMyLocationBtn.origin.x = self.myLocationButton.frame.origin.x + self.myLocationButton.frame.size.width + marginSize;
+    frameMyLocationBtn.origin.x = self.myLocationButton.frame.origin.x + self.myLocationButton.frame.size.width + _marginSize;
     self.mapLocationButton.frame = frameMyLocationBtn;
-    
 }
 
 -(void)setLatLon : (NSString*)lat : (NSString*) lon {
@@ -132,24 +127,31 @@ double lastHitTestTime;
     
     UIView *touchedView = [super hitTest:point withEvent:event];
     
-    if(([[NSDate date] timeIntervalSince1970] - lastHitTestTime) < doubleHitTestBuffer){
-        lastHitTestTime = [[NSDate date] timeIntervalSince1970];
+    if(([[NSDate date] timeIntervalSince1970] - _lastHitTestTime) < _doubleHitTestBuffer){
+        NSLog(@"you tapped too fast @%f%",  [[NSDate date] timeIntervalSince1970] - _lastHitTestTime);
+        _lastHitTestTime = [[NSDate date] timeIntervalSince1970];
+        NSLog(@"lastHitTestTime set to now");
         return touchedView;
     }
+    
+    NSLog(@"FORM LOCATION hit test");
     
     if(!_myLocationButton.isHidden){
         if(point.x > self.myLocationButton.frame.origin.x && point.x < self.myLocationButton.frame.origin.x + self.myLocationButton.frame.size.width && point.y > self.myLocationButton.frame.origin.y && point.y < self.myLocationButton.frame.origin.y + self.myLocationButton.frame.size.height) {
             [self setFieldsToMyLocation];
+            NSLog(@"FORM LOCATION my location button pressed");
         }
     }
     
     if(!_mapLocationButton.isHidden){
         if(point.x > self.mapLocationButton.frame.origin.x && point.x < self.mapLocationButton.frame.origin.x + self.mapLocationButton.frame.size.width && point.y > self.mapLocationButton.frame.origin.y && point.y < self.mapLocationButton.frame.origin.y + self.mapLocationButton.frame.size.height) {
             [self startMapLocationPicker];
+            NSLog(@"FORM LOCATION map location picker button pressed");
         }
     }
     
-    lastHitTestTime = [[NSDate date] timeIntervalSince1970];
+    _lastHitTestTime = [[NSDate date] timeIntervalSince1970];
+    NSLog(@"lastHitTestTime set to now");
     return touchedView;
 }
 

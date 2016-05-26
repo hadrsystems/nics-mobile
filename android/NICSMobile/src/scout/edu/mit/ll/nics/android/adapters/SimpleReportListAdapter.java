@@ -103,7 +103,11 @@ public class SimpleReportListAdapter extends ArrayAdapter<SimpleReportPayload> {
 			name.setText(mContext.getString(R.string.draft) + String.valueOf(data.getUser()));
 		} else if(payload.getSendStatus() == ReportSendStatus.WAITING_TO_SEND && payload.getProgress() != 100.0) {
 			if(!payload.isFailedToSend()) {
-				name.setText(mContext.getString(R.string.sending_progress, payload.getProgress()) + String.valueOf(data.getUser()));
+				if(payload.getProgress() > 0){
+					name.setText(mContext.getString(R.string.sending_progress, payload.getProgress()) + String.valueOf(data.getUser()));
+				}else{
+					name.setText(mContext.getString(R.string.sending) + String.valueOf(data.getUser()));
+				}
 			} else {
 				name.setText(R.string.sending_failed + String.valueOf(data.getUser()));
 			}

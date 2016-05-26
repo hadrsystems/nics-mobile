@@ -1,13 +1,13 @@
-## Magical Data Modelling Framework for JSON
+## Magical Data Modeling Framework for JSON
 
-### Version 1.0.2
+### Version 1.2.0
 
 #####NB: Swift works in a different way under the hood than Objective-C. Therefore I can't find a way to re-create JSONModel in Swift. JSONModel in Objective-C works in Swift apps through CocoaPods or as an imported Objective-C library.
 
 ---
 If you like JSONModel and use it, could you please:
 
- * star this repo 
+ * star this repo
 
  * send me some feedback. Thanks!
 
@@ -37,7 +37,7 @@ Adding JSONModel to your project
 2. Copy the JSONModel sub-folder into your Xcode project
 3. Link your app to SystemConfiguration.framework
 
-#### or 2) via Cocoa pods
+#### or 2) via CocoaPods
 
 In your project's **Podfile** add the JSONModel pod:
 
@@ -46,12 +46,17 @@ pod 'JSONModel'
 ```
 If you want to read more about CocoaPods, have a look at [this short tutorial](http://www.raywenderlich.com/12139/introduction-to-cocoapods).
 
-#### Source code documentation
-The source code includes class docs, which you can build yourself and import into Xcode:
+#### or 3) via Carthage
 
-1. If you don't already have [appledoc](http://gentlebytes.com/appledoc/) installed, install it with [homebrew](http://brew.sh/) by typing `brew install appledoc`.
-2. Install the documentation into Xcode by typing `appledoc .` in the root directory of the repository.
-3. Restart Xcode if it's already running.
+In your project's **Cartfile** add the JSONModel:
+
+```ruby
+github "icanzilb/JSONModel"
+```
+
+#### Docs
+
+You can find the generated docs online at: [http://cocoadocs.org/docsets/JSONModel/](http://cocoadocs.org/docsets/JSONModel/)
 
 ------------------------------------
 Basic usage
@@ -62,7 +67,7 @@ Consider you have a JSON like this:
 {"id":"10", "country":"Germany", "dialCode": 49, "isInEurope":true}
 ```
 
- * Create a new Objective-C class for your data model and make it inherit the JSONModel class. 
+ * Create a new Objective-C class for your data model and make it inherit the JSONModel class.
  * Declare properties in your header file with the name of the JSON keys:
 
 ```objective-c
@@ -85,7 +90,7 @@ There's no need to do anything in the **.m** file.
 #import "CountryModel.h"
 ...
 
-NSString* json = (fetch here JSON from Internet) ... 
+NSString* json = (fetch here JSON from Internet) ...
 NSError* err = nil;
 CountryModel* country = [[CountryModel alloc] initWithString:json error:&err];
 
@@ -95,7 +100,7 @@ If the validation of the JSON passes you have all the corresponding properties i
 
 * convert "id" from string (in the JSON) to an int for your class
 * just copy country's value
-* convert dialCode from number (in the JSON) to an NSString value 
+* convert dialCode from number (in the JSON) to an NSString value
 * finally convert isInEurope to a BOOL for your BOOL property
 
 And the good news is all you had to do is define the properties and their expected types.
@@ -110,7 +115,7 @@ Class docs online: [http://jsonmodel.com/docs/](http://jsonmodel.com/docs/)
 
 Step-by-step tutorials:
 
- * [How to fetch and parse JSON by using data models](http://www.touch-code-magazine.com/how-to-fetch-and-parse-json-by-using-data-models/) 
+ * [How to fetch and parse JSON by using data models](http://www.touch-code-magazine.com/how-to-fetch-and-parse-json-by-using-data-models/)
 
  * [Performance optimisation for working with JSON feeds via JSONModel](http://www.touch-code-magazine.com/performance-optimisation-for-working-with-json-feeds-via-jsonmodel/)
 
@@ -224,6 +229,8 @@ Examples
 @implementation OrderModel
 @end
 </pre>
+
+Note: the angle brackets after <code>NSArray</code> contain a protocol. This is not the same as the new Objective-C generics system. They are not mutually exclusive, but for JSONModel to work, the protocol must be in place.
 </td>
 </tr>
 </table>
@@ -393,57 +400,6 @@ Examples
 </tr>
 </table>
 
-
-#### Lazy convert collection items from dictionaries to models
-<table>
-<tr>
-<td valign="top">
-<pre>
-{
-  "order_id": 104,
-  "total_price": 103.45,
-  "products" : [
-    {
-      "id": "123",
-      "name": "Product #1",
-      "price": 12.95
-    },
-    {
-      "id": "137",
-      "name": "Product #2",
-      "price": 82.95
-    }
-  ]
-}
-</pre>
-</td>
-<td valign="top">
-<pre>
-@protocol ProductModel
-@end
-
-@interface ProductModel : JSONModel
-@property (assign, nonatomic) int id;
-@property (strong, nonatomic) NSString* name;
-@property (assign, nonatomic) float price;
-@end
-
-@implementation ProductModel
-@end
-
-@interface OrderModel : JSONModel
-@property (assign, nonatomic) int order_id;
-@property (assign, nonatomic) float total_price;
-@property (strong, nonatomic) NSArray&lt;ProductModel, <b>ConvertOnDemand</b>&gt;* products;
-@end
-
-@implementation OrderModel
-@end
-</pre>
-</td>
-</tr>
-</table>
-
 #### Using the built-in thin HTTP client
 
 ```objective-c
@@ -455,9 +411,9 @@ Examples
 [JSONHTTPClient postJSONFromURLWithString:@"http://mydomain.com/api"
                                    params:@{@"postParam1":@"value1"}
                                completion:^(id json, JSONModelError *err) {
-                                   
+
                                    //check err, process json ...
-                                   
+
                                }];
 ```
 
@@ -498,7 +454,60 @@ NSString* string = [pm toJSONString];
 
 ```
 
-* json validation
+#### Custom handling for specific properties
+
+```objective-c
+
+@interface ProductModel : JSONModel
+@property (assign, nonatomic) int id;
+@property (strong, nonatomic) NSString* name;
+@property (assign, nonatomic) float price;
+@property (strong, nonatomic) NSLocale *locale;
+@end
+
+@implementation ProductModel
+
+// Convert and assign the locale property
+- (void)setLocaleWithNSString:(NSString*)string {
+    self.locale = [NSLocale localeWithLocaleIdentifier:string];
+}
+
+- (NSString *)JSONObjectForLocale {
+    return self.locale.localeIdentifier;
+}
+
+@end
+
+```
+
+#### Custom JSON validation
+
+```objective-c
+
+@interface ProductModel : JSONModel
+@property (assign, nonatomic) int id;
+@property (strong, nonatomic) NSString* name;
+@property (assign, nonatomic) float price;
+@property (strong, nonatomic) NSLocale *locale;
+@property (strong, nonatomic) NSNumber <Ignore> *minNameLength;
+@end
+
+@implementation ProductModel
+
+- (BOOL)validate:(NSError *__autoreleasing *)error {
+    BOOL valid = [super validate:error];
+    
+    if (self.name.length < self.minNameLength.integerValue) {
+        *error = [NSError errorWithDomain:@"me.mycompany.com" code:1 userInfo:nil];
+        valid = NO;
+    }
+    
+    return valid;
+}
+
+@end
+
+```
 * error handling
 * custom data validation
 * automatic compare and equality features
@@ -516,9 +525,11 @@ Also everyone who did successful [pull requests](https://github.com/icanzilb/JSO
 
 Change log : [https://github.com/icanzilb/JSONModel/blob/master/Changelog.md](https://github.com/icanzilb/JSONModel/blob/master/Changelog.md)
 
+Utility to generate JSONModel classes from JSON data: https://github.com/dofork/json2object
+
 -------
 #### License
-This code is distributed under the terms and conditions of the MIT license. 
+This code is distributed under the terms and conditions of the MIT license.
 
 -------
 #### Contribution guidelines

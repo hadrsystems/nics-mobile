@@ -32,31 +32,44 @@ package scout.edu.mit.ll.nics.android.api.handlers;
 
 import org.apache.http.Header;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.RestClient;
+import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
+import scout.edu.mit.ll.nics.android.api.messages.FieldReportMessage;
+import scout.edu.mit.ll.nics.android.api.payload.forms.FieldReportPayload;
 
 public class FieldReportResponseHandler extends AsyncHttpResponseHandler {
 	private DataManager mDataManager;
+	private Context mContext;
 	private long mReportId;
 	
-	public FieldReportResponseHandler(DataManager dataManager, long reportId) {
+	public FieldReportResponseHandler(Context context, DataManager dataManager, long reportId) {
+		mContext = context;
 		mReportId = reportId;
 		mDataManager = dataManager;
 	}
 
 	@Override
 	public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-		String content = (responseBody != null) ? new String(responseBody) : "";
-		
 		Log.e("nicsRest", "Success to post Field Report information");
-		Log.e("nicsRest", "Deleting: " + mReportId + " success: " + mDataManager.deleteFieldReportStoreAndForward(mReportId));
-		mDataManager.addPersonalHistory("Field Report successfully sent: " + content + "\n");
-		mDataManager.requestFieldReportRepeating(mDataManager.getIncidentDataRate(), true);
+	
+		String content = (responseBody != null) ? new String(responseBody) : "";
+		FieldReportMessage message = new Gson().fromJson(content, FieldReportMessage.class);
+		for(FieldReportPayload payload : message.getReports()) {
+			mDataManager.deleteFieldReportStoreAndForward(mReportId);
+			payload.setSendStatus(ReportSendStatus.SENT);
+			payload.setProgress(100);
+			payload.parse();
+			mDataManager.addFieldReportToStoreAndForward(payload);
+		}
 		
+		mDataManager.requestFieldReports();
 		RestClient.setSendingFieldReports(false);
 	}
 

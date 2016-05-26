@@ -273,6 +273,7 @@ public class OpenAMAuthProvider extends AuthProvider {
 						mLatch.await();
 					}
 			    
+			    	
 			    	mClient.get(null, getAbsoluteUrl(url), new Header[]{ new BasicHeader("AMAuthCookie", mToken), new BasicHeader("iPlanetDirectoryPro", mToken),  new BasicHeader("CUSTOM-uid",mDataManager.getUsername()),new BasicHeader("Content-Type", "application/json") }, null, new OpenAMAuthResponseHandler(responseHandler, Looper.myLooper()));
 		    	} catch(InterruptedException e) {
 		    		

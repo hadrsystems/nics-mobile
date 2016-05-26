@@ -30,6 +30,9 @@
  */
 package scout.edu.mit.ll.nics.android.api.payload.forms;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.google.gson.Gson;
 
 import scout.edu.mit.ll.nics.android.api.data.DamageReportData;
@@ -47,7 +50,17 @@ public class DamageReportPayload extends ReportPayload {
 	}
 	
     public void parse() {
+    	String msg = getMessage();
     	messageData = new Gson().fromJson(getMessage(), DamageReportData.class);
+    	
+    	try {
+			JSONObject object = new JSONObject(getMessage());
+		 
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    
     }
     
     public String toJsonString() {

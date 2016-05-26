@@ -33,25 +33,16 @@
 
 #import <UIKit/UIKit.h>
 #import "DataManager.h"
-
-@interface TrackingLayer : NSObject
-
-@property NSString *title;
-@property NSString *typeNameURL;
-@property bool active;
-
--(id)initWithParams:(NSString*) title : (NSString*) typeNameUrl;
-
-@end
+#import "TrackingLayerPayload.h"
 
 @interface ActiveWfsLayerManager : NSObject
 
 +(void) initialize;
-+(BOOL) isTrackingLayerOn:(NSString*)layerName;
+//+(BOOL) isTrackingLayerOn:(NSString*)layerName;
++(void) setTrackingLayers :(NSMutableArray*) newTrackingLayers;
 +(NSMutableArray*) getTrackingLayers;
-+(void) setTrackingLayerActiveAtIndex: (int)index : (bool) isActive;
-
-+(NSMutableArray*) getWfsFeatures;
-+(void)setWfsFeatures : (NSMutableArray*) newFeatures;
++(void) UpdateTrackingLayer:(TrackingLayerPayload*)newLayer;
++(NSMutableArray*) GetAllActiveFeatures;
+//+(void) setTrackingLayerActiveAtIndex: (int)index : (bool) isActive;
 
 @end

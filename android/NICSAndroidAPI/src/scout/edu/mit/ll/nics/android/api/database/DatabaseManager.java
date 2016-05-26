@@ -245,7 +245,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             
             weatherReportReceiveTable.createTable (database);
             weatherReportSendTable.createTable (database);
- 
+            
             markupReceiveTable.createTable (database);
             markupSendTable.createTable (database);
             
@@ -530,7 +530,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     	
     	return retValue;
     }
-    
+      
     /**
      * Gets all the chat data that is in the store and forward database table entries.
      *
@@ -718,6 +718,40 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return retValue;
     }
     
+    /**
+     * Gets all the simple reports that are ready to send in the store and forward table.
+     *
+     * @return All the simple reports that are ready to send in the store and forward table.
+     */
+    public ArrayList<SimpleReportPayload> getAllSimpleReportStoreAndForwardHasSent () {
+    	ArrayList<SimpleReportPayload> retValue = null;
+
+        SQLiteDatabase database = getDatabase ();
+
+        if (database != null) {
+            retValue = simpleReportSendTable.getAllDataHasSent (null, database);
+        }
+
+        return retValue;
+    }
+    
+    /**
+     * Gets all the simple reports that are ready to send in the store and forward table.
+     *
+     * @return All the simple reports that are ready to send in the store and forward table.
+     */
+    public ArrayList<SimpleReportPayload> getAllSimpleReportStoreAndForwardHasSent (long incidentId) {
+    	ArrayList<SimpleReportPayload> retValue = null;
+
+        SQLiteDatabase database = getDatabase ();
+
+        if (database != null) {
+            retValue = simpleReportSendTable.getAllDataHasSent(incidentId, database);
+        }
+
+        return retValue;
+    }
+    
     public ArrayList<SimpleReportPayload> getSimpleReportFromStoreAndForward(int reportId) {
     	ArrayList<SimpleReportPayload> retValue = null;
 
@@ -835,6 +869,36 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         if (database != null) {
             retValue = damageReportSendTable.getAllDataReadyToSend(incidentId, database);
+        }
+
+        return retValue;
+    }
+    
+
+    /**
+     * Gets all the field reports that are ready to send in the store and forward table.
+     *
+     * @return All the field reports that are ready to send in the store and forward table.
+     */
+    public ArrayList<DamageReportPayload> getAllDamageReportStoreAndForwardHasSent () {
+        ArrayList<DamageReportPayload> retValue = null;
+
+        SQLiteDatabase database = getDatabase ();
+
+        if (database != null) {
+            retValue = damageReportSendTable.getAllDataHasSent(null, database);
+        }
+
+        return retValue;
+    }
+    
+    public ArrayList<DamageReportPayload> getAllDamageReportStoreAndForwardHasSent (long incidentId) {
+        ArrayList<DamageReportPayload> retValue = null;
+
+        SQLiteDatabase database = getDatabase ();
+
+        if (database != null) {
+            retValue = damageReportSendTable.getAllDataHasSent(incidentId, database);
         }
 
         return retValue;
@@ -969,7 +1033,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public boolean addDamageReportHistory (DamageReportPayload data) {
         return (damageReportReceiveTable.addData(data, getDatabase ()) > 0);
     }
-    
+       
     /**
      * Gets all the field reports that are ready to send in the store and forward table.
      *
@@ -994,6 +1058,35 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         if (database != null) {
             retValue = fieldReportSendTable.getAllDataReadyToSend(incidentId, database);
+        }
+
+        return retValue;
+    }
+    
+    /**
+     * Gets all the field reports that are ready to send in the store and forward table.
+     *
+     * @return All the field reports that are ready to send in the store and forward table.
+     */
+    public ArrayList<FieldReportPayload> getAllFieldReportStoreAndForwardHasSent () {
+        ArrayList<FieldReportPayload> retValue = null;
+
+        SQLiteDatabase database = getDatabase ();
+
+        if (database != null) {
+            retValue = fieldReportSendTable.getAllDataHasSent(null, database);
+        }
+
+        return retValue;
+    }
+    
+    public ArrayList<FieldReportPayload> getAllFieldReportStoreAndForwardHasSent (long incidentId) {
+        ArrayList<FieldReportPayload> retValue = null;
+
+        SQLiteDatabase database = getDatabase ();
+
+        if (database != null) {
+            retValue = fieldReportSendTable.getAllDataHasSent(incidentId, database);
         }
 
         return retValue;
@@ -1159,6 +1252,35 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
     
     /**
+     * Gets all the field reports that are ready to send in the store and forward table.
+     *
+     * @return All the field reports that are ready to send in the store and forward table.
+     */
+    public ArrayList<ResourceRequestPayload> getAllResourceRequestStoreAndForwardHasSent () {
+        ArrayList<ResourceRequestPayload> retValue = null;
+
+        SQLiteDatabase database = getDatabase ();
+
+        if (database != null) {
+            retValue = resourceRequestSendTable.getAllDataHasSent (null, database);
+        }
+
+        return retValue;
+    }
+    
+    public ArrayList<ResourceRequestPayload> getAllResourceRequestStoreAndForwardHasSent (long incidentId) {
+        ArrayList<ResourceRequestPayload> retValue = null;
+
+        SQLiteDatabase database = getDatabase ();
+
+        if (database != null) {
+            retValue = resourceRequestSendTable.getAllDataHasSent(incidentId, database);
+        }
+
+        return retValue;
+    }
+    
+    /**
      * Deletes all entries from the res req receive table that match a specified incident id.
      *
      * @param id The incident id to delete by
@@ -1288,6 +1410,35 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
     
     /**
+     * Gets all the weather reports that are ready to send in the store and forward table.
+     *
+     * @return All the weather reports that are ready to send in the store and forward table.
+     */
+    public ArrayList<WeatherReportPayload> getAllWeatherReportStoreAndForwardHasSent () {
+        ArrayList<WeatherReportPayload> retValue = null;
+
+        SQLiteDatabase database = getDatabase ();
+
+        if (database != null) {
+            retValue = weatherReportSendTable.getAllDataHasSent(null, database);
+        }
+
+        return retValue;
+    }
+    
+    public ArrayList<WeatherReportPayload> getAllWeatherReportStoreAndForwardHasSent (long incidentId) {
+        ArrayList<WeatherReportPayload> retValue = null;
+
+        SQLiteDatabase database = getDatabase ();
+
+        if (database != null) {
+            retValue = weatherReportSendTable.getAllDataHasSent(incidentId, database);
+        }
+
+        return retValue;
+    }
+    
+    /**
      * Deletes all entries from the weather report receive table that match a specified incident id.
      *
      * @param id The incident id to delete by
@@ -1387,7 +1538,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
      */
     public boolean addWeatherReportHistory (WeatherReportPayload data) {
         return (weatherReportReceiveTable.addData (data, getDatabase ()) > 0);
-    }
+    }   
     
     
     //-----------------------------------------------------------------------------------------------------------------------------
@@ -1461,7 +1612,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
      */
     public boolean addResourceRequestToStoreAndForward (ResourceRequestPayload data) {
         return (resourceRequestSendTable.addData(data, getDatabase ()) > 0);
-    }
+    }    
     
     /**
      * Adds a simple report to the store and forward database table.
@@ -1595,7 +1746,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         return retValue;
 	}
-	
+
 	public boolean deleteAllFieldReportsHistory() {
         boolean retValue = false;
 
@@ -1637,7 +1788,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         return retValue;
 	}
-	
+		
 	public boolean deleteAllResourceRequestStoreAndForward() {
         boolean retValue = false;
 
@@ -1679,7 +1830,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         return retValue;
 	}
-	
+		
 	public boolean deleteAllMarkupFeatureHistory() {
         boolean retValue = false;
 

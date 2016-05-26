@@ -88,6 +88,17 @@ public class ParseWeatherReportsTask extends AsyncTask<ArrayList<WeatherReportPa
 		}
 		
 		if(numParsed > 0) {
+			
+			ArrayList<WeatherReportPayload> reports = mDataManager.getAllWeatherReportStoreAndForwardHasSent();
+			for(int i = 0; i < reports.size(); i++){
+				mDataManager.deleteWeatherReportStoreAndForward(reports.get(i).getId());
+				Log.d("ParseWeatherReport","deleted sent weather report: " + reports.get(i).getId());
+				Intent intent = new Intent();
+			    intent.setAction(Intents.nics_SENT_WEATHER_REPORTS_CLEARED);
+				intent.putExtra("reportId", reports.get(i).getFormId());
+		        mContext.sendBroadcast (intent);
+			}
+			
 			mDataManager.setNewReportAvailable(true);
 			if(!mDataManager.isPushNotificationsDisabled()){
 				mNotificationHandler.createWeatherReportNotification(wrPayloads[0], mDataManager.getActiveIncidentId());

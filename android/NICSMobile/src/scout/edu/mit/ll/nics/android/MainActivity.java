@@ -64,6 +64,7 @@ import com.google.gson.Gson;
 import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.RestClient;
 import scout.edu.mit.ll.nics.android.api.data.UserData;
+import scout.edu.mit.ll.nics.android.api.payload.CollabroomPayload;
 import scout.edu.mit.ll.nics.android.api.payload.OrganizationPayload;
 import scout.edu.mit.ll.nics.android.api.payload.forms.DamageReportPayload;
 import scout.edu.mit.ll.nics.android.api.payload.forms.FieldReportPayload;
@@ -133,6 +134,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 	private WeatherReportListFragment mWeatherReportListFragment;
 	public WeatherReportFragment mWeatherReportFragment;
 	
+//	private ChatFragment mChatFragment;
 	private ChatListFragment mChatFragment;
 	
 	private FormFragment mUserInfoFragment;
@@ -271,7 +273,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 				mViewWeatherReport = true;
 				mEditWeatherReport = false;
 			}
-
+			
 			if(position != NavigationOptions.OVERVIEW.getValue()) {
 				mBackStack = new Stack<Integer>();
 				mBackStack.add(NavigationOptions.OVERVIEW.getValue());
@@ -350,8 +352,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 			mBreadcrumbTextView = new TextView(this);
 			mBreadcrumbTextView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			
-			if(mDataManager.getSelectedCollabRoomId() > -1) {
-				mBreadcrumbTextView.setText(mDataManager.getSelectedCollabRoomName());
+			CollabroomPayload payload = mDataManager.getSelectedCollabRoom();
+			
+			if(payload.getCollabRoomId() > -1) {
+				mBreadcrumbTextView.setText(payload.getName());
 			} else {
 				mBreadcrumbTextView.setText(mDataManager.getActiveIncidentName());
 			}
@@ -366,8 +370,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 
 		if(mLastPosition != NavigationOptions.OVERVIEW.getValue()) {
 			
-			if(mDataManager.getSelectedCollabRoomId() > -1) {
-				mBreadcrumbTextView.setText(mDataManager.getSelectedCollabRoomName());
+			CollabroomPayload payload = mDataManager.getSelectedCollabRoom();
+			
+			if(payload.getCollabRoomId() > -1) {
+				mBreadcrumbTextView.setText(payload.getName());
 			} else {
 				mBreadcrumbTextView.setText(mDataManager.getActiveIncidentName());
 			}
@@ -680,7 +686,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 		mEditResourceRequest = true;
 		mViewResourceRequest = false;
 	}
-		
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
@@ -690,7 +696,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 	    		break;
 	        case R.id.action_settings:
 				Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-				if(mDataManager.getSelectedCollabRoomId() == -1) {
+				if(mDataManager.getSelectedCollabRoom().getCollabRoomId() == -1) {
 			        intent.putExtra("hideGarCollab", true);
 				}
 				
@@ -729,7 +735,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 	        case R.id.addWeatherReportOption:
 	        	addWeatherReportToDetailView(false);
 				break;
-				
+												
 	        case R.id.markAllSrAsRead:
 	        	mSimpleReportListFragment.MarkAllMessagesAsRead();
 	        	break;
@@ -764,7 +770,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 	        case R.id.copyWeatherReportOption:
 	        	addWeatherReportToDetailView(true);
 				break;
-				
+								
 	        case R.id.refreshSimpleReportOption:
 	        	mDataManager.requestSimpleReports();
 				break;
@@ -781,7 +787,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 	        	mDataManager.requestResourceRequests();
 				break;
 	        case R.id.refreshChatMessagesOption:
-	        	mDataManager.requestChatHistory(mDataManager.getActiveIncidentId(), mDataManager.getSelectedCollabRoomId());
+	        	mDataManager.requestChatHistory(mDataManager.getActiveIncidentId(), mDataManager.getSelectedCollabRoom().getCollabRoomId());
 				break;
 	        case R.id.refreshMapOption:
 	        	mDataManager.requestMarkupUpdate();
@@ -814,7 +820,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 		if(requestCode == 1001 && data != null) {
 			if(data.getBooleanExtra("logoutAndClear", false)) {
 				mDataManager.setCurrentIncidentData(null, -1, "");	
-				mDataManager.setSelectedCollabRoom("N/A", -1);
+				mDataManager.setSelectedCollabRoom(null);
 				onNavigationItemSelected(NavigationOptions.LOGOUT.getValue(), 0);
 			} else if(data.getBooleanExtra("loadGAR", false)) {
 				onNavigationItemSelected(NavigationOptions.GAR.getValue(), -1);
@@ -906,7 +912,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 		            	mEditFieldReport = false;
 		            	mEditResourceRequest = false;
 		            	mEditSimpleReport = false;
-		            	mEditWeatherReport = false;
+		            	mEditWeatherReport = false; 
 		            	onNavigationItemSelected(position, id);
 		            }
 		        });
@@ -1138,7 +1144,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 					showIncidentName = true;
 					
 					break;
-	
 				case MAPCOLLABORATION:
 					if(mMapMarkupFragment == null) {
 						mMapMarkupFragment = new MapMarkupFragment();
@@ -1333,11 +1338,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 						setBreadcrumbText(mDataManager.getActiveIncidentName() + "\n" + NavigationOptions.values()[position]);
 						mDataManager.setCurrentNavigationView(NavigationOptions.values()[position].toString());
 					} else {
-						String collabRoom = mDataManager.getSelectedCollabRoomName();
-						if(collabRoom.equals(getString(R.string.no_selection))){
+						CollabroomPayload collabRoom = mDataManager.getSelectedCollabRoom();
+						if(collabRoom.getName().equals(getString(R.string.no_selection))){
 							setBreadcrumbText("No Room Selected");
 						}else{
-							setBreadcrumbText(collabRoom);
+							setBreadcrumbText(collabRoom.getName());
 						}
 					}
 					mBreadcrumbTextView.setVisibility(View.VISIBLE);
@@ -1748,7 +1753,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 			mViewWeatherReport = true;
 		}
 	}
-	
+
 	public void openMapLocationPicker() {
 
 		int fragmentID =((Fragment) mFragmentManager.findFragmentById(R.id.container)).getId();
@@ -1807,6 +1812,24 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 	public boolean isViewReport() {
 		return mViewFieldReport || mViewSimpleReport || mViewResourceRequest || mViewDamageReport || mViewWeatherReport;
 	}
+
+//	@Override
+//	public void uncaughtException(Thread thread, Throwable ex) {
+//		String error = ex.getClass() + " - " + ex.getLocalizedMessage() + "\n";
+//		
+//		StackTraceElement[] traceArray = ex.getStackTrace();
+//		for(StackTraceElement element : traceArray) {
+//			if(element.getClassName().contains("nics")) {
+//				error += element.getClassName() + " - Line: " + element.getLineNumber() + "\n";
+//			}
+//		}
+//
+//		mDataManager.addPersonalHistory(error);
+//		Log.e("nicsError", error);
+//		ex.printStackTrace();
+//		System.exit(1);
+//
+//	}
 	
 	public void setBreadcrumbText(CharSequence charSequence) {
 		mBreadcrumbTextView.setText(charSequence);

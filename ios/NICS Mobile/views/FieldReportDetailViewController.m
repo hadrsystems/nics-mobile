@@ -1,30 +1,9 @@
-/*|~^~|Copyright (c) 2008-2016, Massachusetts Institute of Technology (MIT)
- |~^~|All rights reserved.
+/*|~^~|(c) Copyright, 2008-2015 Massachusetts Institute of Technology.
  |~^~|
- |~^~|Redistribution and use in source and binary forms, with or without
- |~^~|modification, are permitted provided that the following conditions are met:
- |~^~|
- |~^~|-1. Redistributions of source code must retain the above copyright notice, this
- |~^~|ist of conditions and the following disclaimer.
- |~^~|
- |~^~|-2. Redistributions in binary form must reproduce the above copyright notice,
- |~^~|this list of conditions and the following disclaimer in the documentation
- |~^~|and/or other materials provided with the distribution.
- |~^~|
- |~^~|-3. Neither the name of the copyright holder nor the names of its contributors
- |~^~|may be used to endorse or promote products derived from this software without
- |~^~|specific prior written permission.
- |~^~|
- |~^~|THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- |~^~|AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- |~^~|IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- |~^~|DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- |~^~|FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- |~^~|DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- |~^~|SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- |~^~|CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\*/
+ |~^~|This material may be reproduced by or for the
+ |~^~|U.S. Government pursuant to the copyright license
+ |~^~|under the clause at DFARS 252.227-7013 (June, 1995).
+ |~^~|*/
 //
 //  DetailViewController.m
 //  nics
@@ -53,7 +32,11 @@
     
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
+    }else{
+        self.navigationItem.hidesBackButton = YES;
+        UIBarButtonItem *backBtn =[[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonSystemItemCancel target:self action:@selector(handleBack:)];
+        self.navigationItem.leftBarButtonItem=backBtn;
+    }
 }
 
 - (void)viewDidLoad
@@ -167,7 +150,11 @@
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)button {
-    [self.navigationController popViewControllerAnimated:YES];
+    if(self.hideEditControls == false){
+        [self showCancelAlertView];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)cancelTabletButtonPressed {
@@ -204,6 +191,48 @@
     payload.status = [NSNumber numberWithInt:WAITING_TO_SEND];
     
     return payload;
+}
+
+-(void) showCancelAlertView{
+    UIAlertController * alert= [UIAlertController alertControllerWithTitle:@"Cancel Report" message:@"Your report progress will be lost if you leave the report." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* saveAndCloseButton = [UIAlertAction actionWithTitle:@"Save Draft And Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        
+        if([_dataManager isIpad]){
+            [self saveTabletDraftButtonPressed];
+        }else{
+            [self saveDraftButtonPressed:nil];
+        }
+    }];
+    
+    UIAlertAction* closeButton = [UIAlertAction actionWithTitle:@"Don't Save And Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        
+        if([_dataManager isIpad]){
+            [[IncidentButtonBar GetIncidentCanvasController] SetCanvasToFieldReportFromButtonBar];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+    
+    UIAlertAction* continueButton = [UIAlertAction actionWithTitle:@"Continue Editing" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        
+    }];
+    
+    [alert addAction:saveAndCloseButton];
+    [alert addAction:closeButton];
+    [alert addAction:continueButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+- (void) handleBack:(id)sender
+{
+    if(self.hideEditControls == false){
+        [self showCancelAlertView];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

@@ -76,8 +76,19 @@ public class ParseFieldReportsTask extends AsyncTask<ArrayList<FieldReportPayloa
 		}
 		
 		if(numParsed > 0) {
+			
+			ArrayList<FieldReportPayload> reports = mDataManager.getAllFieldReportStoreAndForwardHasSent();
+			for(int i = 0; i < reports.size(); i++){
+				mDataManager.deleteFieldReportStoreAndForward(reports.get(i).getId());
+				Log.d("ParseFieldReport","deleted sent field report: " + reports.get(i).getId());
+				Intent intent = new Intent();
+			    intent.setAction(Intents.nics_SENT_FIELD_REPORTS_CLEARED);
+				intent.putExtra("reportId", reports.get(i).getFormId());
+		        mContext.sendBroadcast (intent);
+			}
+			
 			if(!mDataManager.isPushNotificationsDisabled()){
-				//mNotificationHandler.createFieldReportNotification(frPayloads[0], mDataManager.getActiveIncidentId());
+				mNotificationHandler.createFieldReportNotification(frPayloads[0], mDataManager.getActiveIncidentId());
 			}
 	        mDataManager.addPersonalHistory("Successfully received " + numParsed + " field reports from " + mDataManager.getActiveIncidentName());
 		}

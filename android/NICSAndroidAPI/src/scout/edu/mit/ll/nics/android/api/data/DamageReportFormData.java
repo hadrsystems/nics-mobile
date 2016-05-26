@@ -112,7 +112,7 @@ public class DamageReportFormData {
 	
 	public String getUserFull() {
 		return userfull;
-	}		 	
+	}
 
 	public void setUser(String user) {
 		this.user = user;

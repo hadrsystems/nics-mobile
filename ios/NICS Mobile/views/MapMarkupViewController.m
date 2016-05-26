@@ -44,13 +44,18 @@ static NSNumber* selectedIndex;
 
 @implementation MapMarkupViewController
 
-MapMarkupViewController *FullscreenMap = nil;
-UIPopoverController *myPopOver = nil;
+//MapMarkupViewController *FullscreenMap = nil;
+//UIPopoverController *myPopOver = nil;
 bool markupProcessing = false;
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidLoad
@@ -87,19 +92,19 @@ bool markupProcessing = false;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetMapPosition:) name:@"SetMapPosition" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetMapCustomMarkerPosition:) name:@"SetMapCustomMarkerPosition" object:nil];
     
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(trackingLayerWasToggled:) name:@"wfsLayerWasToggled" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(GeneralMessageUpdateRecieved:) name:@"simpleReportsUpdateReceived" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DamageReportUpdateRecieved:) name:@"damageReportsUpdateReceived" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"DidBecomeActive" object:nil];
     
     if([_dataManager getIsIpad] == false){
         
         UIBarButtonItem *refreshBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonPressed)];
         refreshBarButtonItem.style = UIBarButtonItemStyleBordered;
         
-        UIBarButtonItem *mapSettingsBarButton = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(MapSettingsBarButtonPressed)];
+        UIBarButtonItem *mapSettingsBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Layers" style:UIBarButtonItemStylePlain target:self action:@selector(MapSettingsBarButtonPressed)];
         mapSettingsBarButton.style = UIBarButtonItemStyleBordered;
         
         self.navigationItem.rightBarButtonItems = @[mapSettingsBarButton,refreshBarButtonItem];
@@ -110,8 +115,6 @@ bool markupProcessing = false;
     _mapView.settings.myLocationButton = YES;
     
     [_mapView moveCamera:[GMSCameraUpdate setTarget:CLLocationCoordinate2DMake([_dataManager.currentIncident.lat doubleValue], [_dataManager.currentIncident.lon doubleValue]) zoom:10]];
-    
-    _isFirstLoad = YES;
     
     if(_zoomingToReport){
         [_mapView animateToLocation: _positionToZoomTo];
@@ -127,26 +130,29 @@ bool markupProcessing = false;
     _myCustomMarker.position = CLLocationCoordinate2DMake(0,0);
     _myCustomMarker.draggable = TRUE;
     
+    [self setupMapButtons];
+}
+
+-(void)setupMapButtons{
     UIImage *image;
-    
     float mapBtnOffset = 65;
     
     if([_dataManager getIsIpad] == true){
-  
+//
         mapBtnOffset = 75;
-        
-        _fullscreenButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-        image = [UIImage imageNamed:@"enter_fullscreen_button.png"];
-        [_fullscreenButton setImage:image forState:UIControlStateNormal];
-        
-        SEL noArgumentSelectorFullScreen = @selector(FullScreenMap);
-        [_fullscreenButton addTarget:self action:noArgumentSelectorFullScreen forControlEvents:UIControlEventTouchUpInside];
-    
-        _fullscreenButton.frame = CGRectMake(_mapView.bounds.size.width - 200, _mapView.bounds.size.height - mapBtnOffset, 50, 50);
-        _fullscreenButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
-        [_fullscreenButton setTitle:@"Fullscreen" forState:UIControlStateNormal];
-        [_mapView addSubview:_fullscreenButton];
+//
+//        _fullscreenButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        
+//        image = [UIImage imageNamed:@"enter_fullscreen_button.png"];
+//        [_fullscreenButton setImage:image forState:UIControlStateNormal];
+//        
+//        SEL noArgumentSelectorFullScreen = @selector(FullScreenMap);
+//        [_fullscreenButton addTarget:self action:noArgumentSelectorFullScreen forControlEvents:UIControlEventTouchUpInside];
+//        
+//        _fullscreenButton.frame = CGRectMake(_mapView.bounds.size.width - 200, _mapView.bounds.size.height - mapBtnOffset, 50, 50);
+//        _fullscreenButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
+//        [_fullscreenButton setTitle:@"Fullscreen" forState:UIControlStateNormal];
+//        [_mapView addSubview:_fullscreenButton];
     }
     _extendMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -176,15 +182,16 @@ bool markupProcessing = false;
     mapEditFrame.origin.x = 0;
     mapEditFrame.origin.y = 0;
     mapEditFrame.size.height = 70;
-//    _mapEditView = [[MapEditView alloc]initWithFrame: mapEditFrame];
+    //    _mapEditView = [[MapEditView alloc]initWithFrame: mapEditFrame];
     _mapEditView = [[MapEditView alloc] init];
     _mapEditView.mapViewController = self;
     [_mapEditView Setup:mapEditFrame];
-//    _mapEditView.frame = mapEditFrame;
+    //    _mapEditView.frame = mapEditFrame;
     [_MapEditCanvas addSubview:_mapEditView.view];
     
     _editMapPanelOpen = false;
-
+    [self checkAndEnableMarkupTools];
+    
     _gotoReportButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_gotoReportButton setImage:[UIImage imageNamed:@"report_map_icon.png"] forState:UIControlStateNormal];
     SEL noArgumentSelectorGotoReport = @selector(GotoReport);
@@ -202,20 +209,20 @@ bool markupProcessing = false;
     [_tableView reloadData];
 }
 
--(void)FullScreenMap{
-    if(FullscreenMap == nil){
-        FullscreenMap = [[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"MapFullscreenViewID"];
-    }
-    if(myPopOver == nil){
-        myPopOver = [[UIPopoverController alloc]initWithContentViewController:FullscreenMap];
-        CGRect displayFrom = CGRectMake(1,1,1,1);
-        [myPopOver presentPopoverFromRect:displayFrom inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-        [FullscreenMap setPopoverButtons];
-    }else{
-        [myPopOver dismissPopoverAnimated:YES];
-        myPopOver = nil;
-    }
-}
+//-(void)FullScreenMap{
+//    if(FullscreenMap == nil){
+//        FullscreenMap = [[UIStoryboard storyboardWithName:@"Main_iPad_Prototype" bundle:nil] instantiateViewControllerWithIdentifier:@"MapFullscreenViewID"];
+//    }
+//    if(myPopOver == nil){
+//        myPopOver = [[UIPopoverController alloc]initWithContentViewController:FullscreenMap];
+//        CGRect displayFrom = CGRectMake(1,1,1,1);
+//        [myPopOver presentPopoverFromRect:displayFrom inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+//        [FullscreenMap setPopoverButtons];
+//    }else{
+//        [myPopOver dismissPopoverAnimated:YES];
+//        myPopOver = nil;
+//    }
+//}
 
 -(void)ExtendMapDown{
     
@@ -331,14 +338,14 @@ bool markupProcessing = false;
             }
             
         } else if(currentType == segment) {
-            if([feature.dashStyle isEqualToString:@"solid"] || [feature.dashStyle isEqualToString:@"completedLine"]) {
+            if(feature.dashStyle == nil) {  //line segment
                 MarkupSegment *segment = [[MarkupSegment alloc] initWithMap:_mapView feature:feature];
                 if([feature.featureId isEqualToString: @"draft"]){
                     [_markupDraftShapes addObject:segment];
                 }else{
                     [_markupShapes setValue:segment forKey:feature.featureId];
                 }
-            } else {
+            } else {    //fireline, should figure out which fire line is being drawn and change the graphic
                 MarkupFireline *fireline = [[MarkupFireline alloc] initWithMap:_mapView feature:feature];
                 if([feature.featureId isEqualToString: @"draft"]){
                     [_markupDraftShapes addObject:fireline];
@@ -405,7 +412,24 @@ bool markupProcessing = false;
     [self clearMapOfFeature];
 }
 
+-(void)checkAndEnableMarkupTools{
+    CollabroomPayload* activeCollabroom = [_dataManager getActiveCollabroomPayload];
+    NSNumber* userId =[_dataManager getUserId];
+    if([activeCollabroom doIHaveMarkupPermission:userId]){
+        _editMapButton.hidden = false;
+    }else{
+        _editMapButton.hidden = true;
+        
+        if(_editMapPanelOpen){
+            [self ToggleEditMap];
+        }
+    }
+}
+
 -(void) addMarkupUpdateFromServer :(NSNotification *)notification{
+    
+    [self checkAndEnableMarkupTools];
+    
     if(_currentShape == nil && !markupProcessing) {
         
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
@@ -416,24 +440,7 @@ bool markupProcessing = false;
                 
                 //if room switched or first load then init map with local storage
                 if(_currentCollabRoomId == nil || _currentCollabRoomId != [_dataManager getSelectedCollabroomId]){
-                    
-                    [self clearMapOfFeature];
-                    [self clearMapOfDraftFeatures];
-                    
-                    for(MarkupFeature* feature in [_dataManager getAllMarkupFeaturesFromStoreAndForwardForCollabroomId: [_dataManager getSelectedCollabroomId]]){
-                        [self addFeatureToMap:feature];
-                    }
-                    for(MarkupFeature* feature in [_dataManager getAllMarkupFeaturesForCollabroomId:[_dataManager getSelectedCollabroomId]]){
-                        [self addFeatureToMap:feature];
-                    }
-
-                    if([ActiveWfsLayerManager isTrackingLayerOn:NSLocalizedString(@"NICS General Messages",nil)]){
-                        [self addAllGeneralMessageSymbolsToMap];
-                    }
-                    if([ActiveWfsLayerManager isTrackingLayerOn:NSLocalizedString(@"NICS Damage Surveys",nil)]){
-                        [self addAllDamageReportSymbolsToMap];
-                    }
-                    
+                    [self redrawLocalMapFeatures];
                     _currentCollabRoomId = [_dataManager getSelectedCollabroomId];
                 }
                 
@@ -464,7 +471,31 @@ bool markupProcessing = false;
             markupProcessing = false;
      });
     }
+}
+
+-(void)redrawLocalMapFeatures{
+    [self clearMapOfFeature];
+    [self clearMapOfDraftFeatures];
+    [self clearGeneralMessageSymbolsFromMap];
+    [self clearDamageReportSymbolsFromMap];
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_mapView clear];
+    });
+    
+    for(MarkupFeature* feature in [_dataManager getAllMarkupFeaturesFromStoreAndForwardForCollabroomId: [_dataManager getSelectedCollabroomId]]){
+        [self addFeatureToMap:feature];
+    }
+    for(MarkupFeature* feature in [_dataManager getAllMarkupFeaturesForCollabroomId:[_dataManager getSelectedCollabroomId]]){
+        [self addFeatureToMap:feature];
+    }
+    
+    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"NICS General Messages",nil)]){
+        [self addAllGeneralMessageSymbolsToMap];
+    }
+    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"NICS Damage Surveys",nil)]){
+        [self addAllDamageReportSymbolsToMap];
+    }
 }
 
 -(void)trackingLayerWasToggled:(NSNotification *)notification{
@@ -472,15 +503,15 @@ bool markupProcessing = false;
     int isOn = [[[notification userInfo] valueForKey:@"isOn"] intValue];
     int layerIndex = [[[notification userInfo] valueForKey:@"indexOfToggledLayer"] intValue];
     
-    TrackingLayer* trackingLayerToCompare = [[ActiveWfsLayerManager getTrackingLayers] objectAtIndex:layerIndex ];
+    TrackingLayerPayload* trackingLayerToCompare = [[ActiveWfsLayerManager getTrackingLayers] objectAtIndex:layerIndex ];
     
-    if([trackingLayerToCompare.title isEqualToString:NSLocalizedString(@"NICS General Messages",nil)]){
+    if([trackingLayerToCompare.displayname isEqualToString:NSLocalizedString(@"NICS General Messages",nil)]){
         if(isOn == 1){
             [self addAllGeneralMessageSymbolsToMap];
         }else{
             [self clearGeneralMessageSymbolsFromMap];
         }
-    }else if([trackingLayerToCompare.title isEqualToString:NSLocalizedString(@"NICS Damage Surveys",nil)]){
+    }else if([trackingLayerToCompare.displayname isEqualToString:NSLocalizedString(@"NICS Damage Surveys",nil)]){
         if(isOn == 1){
             [self addAllDamageReportSymbolsToMap];
         }else{
@@ -521,7 +552,7 @@ bool markupProcessing = false;
 
 -(void)addGeneralMessageSymbolToMap:(SimpleReportPayload*)payload{
     
-    if([ActiveWfsLayerManager isTrackingLayerOn:NSLocalizedString(@"NICS General Messages",nil)]){
+    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"NICS General Messages",nil)]){
     
         MarkupFeature *feature = [[MarkupFeature alloc]init];
         feature.type = @"General Message";
@@ -589,7 +620,7 @@ bool markupProcessing = false;
 
 -(void)addDamageReportSymbolToMap:(DamageReportPayload*)payload{
 
-    if([ActiveWfsLayerManager isTrackingLayerOn:NSLocalizedString(@"NICS Damage Surveys",nil)]){
+    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"NICS Damage Surveys",nil)]){
     
         MarkupFeature *feature = [[MarkupFeature alloc]init];
         feature.type = @"Damage Report";
@@ -648,11 +679,20 @@ bool markupProcessing = false;
         return nil; //uses default GMS info windows
     }else{
         NSArray* splitTitle = [marker.title componentsSeparatedByString: @"~"];
-        infoWindow.reportType = splitTitle[0];
-        infoWindow.reportId = splitTitle[1];
-        [infoWindow setupImage:splitTitle[2]];
-        
-        [self setOpenReportButtonVisible:true];
+        if(splitTitle.count <= 1){  //not a report window
+            
+            [infoWindow setupImage: @"marker"];
+            NSString *testString = marker.snippet;
+            infoWindow.label1.text = marker.snippet;
+            [self setOpenReportButtonVisible:false];
+            
+        }else{  //it is a report window
+            infoWindow.reportType = splitTitle[0];
+            infoWindow.reportId = splitTitle[1];
+            [infoWindow setupImage:splitTitle[2]];
+            
+            [self setOpenReportButtonVisible:true];
+        }
     }
     _currentReportWindow = infoWindow;
 
@@ -761,7 +801,7 @@ bool markupProcessing = false;
 
 - (void)updateWfsLayers{
     
-        NSMutableArray* wfsFeatures = [ActiveWfsLayerManager getWfsFeatures];
+        NSMutableArray* wfsFeatures = [ActiveWfsLayerManager GetAllActiveFeatures];
         
     //clear old markers
 //    for (GMSMarker *currentMarker in _wfsMarkers)
@@ -771,8 +811,7 @@ bool markupProcessing = false;
         marker.map = nil;
     }
     [_wfsMarkers removeAllObjects];
-        
-        
+
     for ( WfsFeature *currentFeature in wfsFeatures)
     {
     CLLocationCoordinate2D markerLocation = CLLocationCoordinate2DMake([currentFeature.latitude doubleValue],[currentFeature.longitude doubleValue]);
@@ -809,10 +848,63 @@ bool markupProcessing = false;
     }
     
     marker.map = _mapView;
-    marker.title = currentFeature.name;
-    marker.snippet = [currentFeature.timestamp stringByAppendingString: [currentFeature.course stringValue]];//currentFeature.timestamp + [currentFeature.course stringValue];
+    marker.title = @"mdt_dot_directional.png";
         
-        [_wfsMarkers addObject:marker];
+    NSString* windowString = @"";
+        
+    for (NSString* key in currentFeature.propertiesDictionary) {
+        
+        
+        if([key isEqualToString:@"properties"]){
+            
+            NSMutableDictionary* propertiesDictionary = [currentFeature.propertiesDictionary objectForKey:key];
+            
+            for (NSString* propKey in propertiesDictionary) {
+                
+                NSObject* propValue = [propertiesDictionary objectForKey:propKey];
+                
+                if([propValue isKindOfClass:[NSString class]]){
+                    windowString = [windowString stringByAppendingString:propKey];
+                    windowString = [windowString stringByAppendingString:@" : "];
+                    if(propValue == nil){
+                        windowString = [windowString stringByAppendingString:@"n/a"];
+                    }else{
+                        windowString = [windowString stringByAppendingString:propValue];
+                    }
+                    windowString = [windowString stringByAppendingString:@"\n"];
+                }
+            }
+            
+        }else if([key isEqualToString:@"geometry"]){
+            NSArray* coordinate = currentFeature.propertiesDictionary[@"geometry"][@"coordinates"];
+            NSNumber *lat = [NSNumber numberWithDouble:[coordinate[0] doubleValue]];
+            NSNumber *lon = [NSNumber numberWithDouble:[coordinate[1] doubleValue]];
+            
+            windowString = [windowString stringByAppendingString:[lat stringValue]];
+            windowString = [windowString stringByAppendingString:@" , "];
+            windowString = [windowString stringByAppendingString:[lon stringValue]];
+            windowString = [windowString stringByAppendingString:@"\n"];
+            
+        }else{
+            NSObject* value = [currentFeature.propertiesDictionary objectForKey:key];
+            
+            if([value isKindOfClass:[NSString class]]){
+                windowString = [windowString stringByAppendingString:key];
+                windowString = [windowString stringByAppendingString:@" : "];
+                if(value == nil){
+                    windowString = [windowString stringByAppendingString:@"n/a"];
+                }else{
+                    windowString = [windowString stringByAppendingString:value];
+                }
+                windowString = [windowString stringByAppendingString:@"\n"];
+            }
+            
+        }
+    }
+        
+    marker.snippet = windowString;
+        
+    [_wfsMarkers addObject:marker];
     }
 }
 
@@ -869,10 +961,10 @@ bool markupProcessing = false;
             NSNotification *GotoReportDetailViewNotification = [NSNotification notificationWithName:@"GotoReportDetailView" object:reportInfo];
             [[NSNotificationCenter defaultCenter] postNotification:GotoReportDetailViewNotification];
             
-            if(myPopOver != nil){ //close fullscreen map if open
-               [myPopOver dismissPopoverAnimated:YES];
-               myPopOver = nil;
-            }
+//            if(myPopOver != nil){ //close fullscreen map if open
+//               [myPopOver dismissPopoverAnimated:YES];
+//               myPopOver = nil;
+//            }
             
         }else if([_currentReportWindow.reportType isEqualToString:[Enums formTypeEnumToStringAbbrev:SR]]){
             NSMutableArray *generalMessages = [_dataManager getAllSimpleReportsForIncidentId:[_dataManager getActiveIncidentId]];
@@ -948,8 +1040,8 @@ _mapView.selectedMarker = nil;
 }
 
 -(void)setPopoverButtons{
-    UIImage *image = [UIImage imageNamed:@"exit_fullscreen_button.png"];
-    [_fullscreenButton setImage:image forState:UIControlStateNormal];
+//    UIImage *image = [UIImage imageNamed:@"exit_fullscreen_button.png"];
+//    [_fullscreenButton setImage:image forState:UIControlStateNormal];
     
     [_extendMapButton setHidden:TRUE];
     [_editMapButton setHidden:TRUE];
@@ -994,6 +1086,10 @@ _mapView.selectedMarker = nil;
 
 -(void)refreshButtonPressed{
     [_dataManager requestMarkupFeaturesRepeatedEvery:[[DataManager getMapUpdateFrequencyFromSettings] intValue] immediate:YES];
+}
+
+-(void)refreshView{
+    [self redrawLocalMapFeatures];
 }
 
 -(void)MapSettingsBarButtonPressed{

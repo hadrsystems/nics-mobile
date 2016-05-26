@@ -27,7 +27,11 @@
  |~^~|OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  |~^~|OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  |~^~|-->
+<!--
 
+
+
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -75,5 +79,7 @@
                 android:text="Send" />
 
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>

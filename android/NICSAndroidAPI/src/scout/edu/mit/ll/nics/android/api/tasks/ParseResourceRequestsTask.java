@@ -44,7 +44,6 @@ import scout.edu.mit.ll.nics.android.api.payload.forms.ResourceRequestPayload;
 import scout.edu.mit.ll.nics.android.utils.Intents;
 import scout.edu.mit.ll.nics.android.utils.NotificationsHandler;
 
-
 public class ParseResourceRequestsTask extends AsyncTask<ArrayList<ResourceRequestPayload>, Object, Integer> {
 	private Context mContext;
 	private DataManager mDataManager;
@@ -81,6 +80,17 @@ public class ParseResourceRequestsTask extends AsyncTask<ArrayList<ResourceReque
 		}
 		
 		if(numParsed > 0) {
+			
+			ArrayList<ResourceRequestPayload> reports = mDataManager.getAllResourceRequestStoreAndForwardHasSent();
+			for(int i = 0; i < reports.size(); i++){
+				mDataManager.deleteResourceRequestStoreAndForward(reports.get(i).getId());
+				Log.d("ParseResourceRequest","deleted sent resource request: " + reports.get(i).getId());
+				Intent intent = new Intent();
+			    intent.setAction(Intents.nics_SENT_RESOURCE_REQUESTS_CLEARED);
+				intent.putExtra("reportId", reports.get(i).getFormId());
+		        mContext.sendBroadcast (intent);
+			}
+			
 			if(!mDataManager.isPushNotificationsDisabled()){
 				mNotificationHandler.createResourceRequestNotification(resourceRequestPayloads[0], mDataManager.getActiveIncidentId());
 			}

@@ -30,6 +30,10 @@
  */
 package scout.edu.mit.ll.nics.android.maps.markup.layers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,6 +42,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import org.apache.http.Header;
+import org.xmlpull.v1.XmlPullParserException;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -76,6 +81,8 @@ import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.RestClient;
 import scout.edu.mit.ll.nics.android.api.data.geo.wfs.Feature;
 import scout.edu.mit.ll.nics.android.api.data.geo.wfs.FeatureCollection;
+import scout.edu.mit.ll.nics.android.api.data.geo.wfs.XmlParser;
+import scout.edu.mit.ll.nics.android.api.payload.TrackingLayerPayload;
 import scout.edu.mit.ll.nics.android.maps.markup.MarkupBaseShape;
 import scout.edu.mit.ll.nics.android.maps.markup.MarkupSymbol;
 import scout.edu.mit.ll.nics.android.utils.Intents;
@@ -84,7 +91,7 @@ public class MarkupLayer {
 	protected Context mContext;
 	protected DataManager mDataManager;
 	protected GsonBuilder mBuilder;
-	protected String mLayerName;						// name of the layer
+	protected TrackingLayerPayload mLayerPayload;						// name of the layer
 	protected ArrayList<MarkupBaseShape> mMarkupShapes;		// actual objects that will be rendered
 	protected HashMap<String, Feature> mLayerFeatures;	
 	protected AsyncTask<ArrayList<Feature>, Object, Integer> mParseFeaturesTask;
@@ -94,13 +101,13 @@ public class MarkupLayer {
 	protected GoogleMap mMap;
 	protected boolean receiverRegistered = false;
 	
-	public MarkupLayer(Context context, String name, GoogleMap map) {
+	public MarkupLayer(Context context, TrackingLayerPayload layerPayload, GoogleMap map) {
 		mContext = context;
 		mMap = map;
 		mDataManager = DataManager.getInstance(mContext);
 		mAlarmManager = (AlarmManager)mContext.getSystemService(Context.ALARM_SERVICE);
 		mBuilder = new GsonBuilder();
-		mLayerName = name;
+		mLayerPayload = layerPayload;
 		
 		mLayerFeatures = new HashMap<String, Feature>();
 		mMarkupShapes = new ArrayList<MarkupBaseShape>();
@@ -109,11 +116,11 @@ public class MarkupLayer {
 	}
 	
 	protected void setupReceiver() {
-		Intent intent = new Intent(Intents.nics_POLLING_WFS_LAYER + mLayerName);
+		Intent intent = new Intent(Intents.nics_POLLING_WFS_LAYER + mLayerPayload.getLayername());
     	intent.putExtra("type", "wfslayer");
-    	intent.putExtra("layerName", mLayerName);
+    	intent.putExtra("layerName", mLayerPayload.getLayername());
     	
-    	mContext.registerReceiver(receiver, new IntentFilter(Intents.nics_POLLING_WFS_LAYER + mLayerName));
+    	mContext.registerReceiver(receiver, new IntentFilter(Intents.nics_POLLING_WFS_LAYER + mLayerPayload.getLayername()));
     	receiverRegistered = true;
     	
 		mPendingWFSLayerRequestIntent = PendingIntent.getBroadcast(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -159,7 +166,7 @@ public class MarkupLayer {
 		@Override
 		protected void onPostExecute(Integer result) {
 			super.onPostExecute(result);
-			Log.i("nicsDataManager", "Rendering " + result + " feature(s) in WFS Layer " + mLayerName);
+			Log.i("nicsDataManager", "Rendering " + result + " feature(s) in WFS Layer " + mLayerPayload.getLayername());
 			
 		}
 	}
@@ -170,9 +177,28 @@ public class MarkupLayer {
 		
 		String id = properties.get("id").toString();
 		Object description = properties.get("description");
-		float course = Float.parseFloat(properties.get("course").toString());
-		float speed = Float.parseFloat(properties.get("speed").toString());
-		float age = Float.parseFloat(properties.get("age").toString());
+		
+		float course = 0;
+		float speed = 0;
+		float age = 0;
+		
+		if(properties.containsKey("course")){
+			if(!properties.get("course").toString().equalsIgnoreCase("NULL")){
+				course = Float.parseFloat(properties.get("course").toString());
+			}
+		}
+		
+		if(properties.containsKey("speed")){
+			if(!properties.get("speed").toString().equalsIgnoreCase("NULL")){
+				speed = Float.parseFloat(properties.get("speed").toString());
+			}
+		}
+		
+		if(properties.containsKey("age")){
+			if(!properties.get("age").toString().equalsIgnoreCase("NULL")){
+				age = Float.parseFloat(properties.get("age").toString());
+			}
+		}
 		//float accuracy = Float.parseFloat(android.text.Html.fromHtml(properties.get("description").toString().).toString());
 		
 		final Bitmap symbolBitmap;
@@ -196,16 +222,22 @@ public class MarkupLayer {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
 				format.setTimeZone(TimeZone.getTimeZone("UTC"));
 				mdtDate = format.parse(properties.get("created").toString());
-			} else {
+			} else if(properties.get("timestamp") != null) {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
 				format.setTimeZone(TimeZone.getTimeZone("UTC"));
 				mdtDate = format.parse(properties.get("timestamp").toString());
+			}else if(properties.get("xmltime") != null){
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+				format.setTimeZone(TimeZone.getTimeZone("UTC"));
+				mdtDate = format.parse(properties.get("xmltime").toString());
 			}
-			
-			long featureTimestamp = mdtDate.getTime();
-			
-			if(featureTimestamp > mLastFeatureTimestamp) {
-				mLastFeatureTimestamp = featureTimestamp;
+
+			if(mdtDate != null){
+				long featureTimestamp = mdtDate.getTime();
+				
+				if(featureTimestamp > mLastFeatureTimestamp) {
+					mLastFeatureTimestamp = featureTimestamp;
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -225,17 +257,15 @@ public class MarkupLayer {
 			
 		} catch (Exception e) {
 		}
-		
-		final MarkupSymbol symbol = new MarkupSymbol(mDataManager, attr.toString(), new LatLng(coordinates.get(1), coordinates.get(0)), symbolBitmap, null, new int[] { 255, 255, 255, 255 });
+				
+		final MarkupSymbol symbol = new MarkupSymbol(mDataManager,mMap, attr.toString(), new LatLng(coordinates.get(1), coordinates.get(0)), symbolBitmap, null, new int[] { 255, 255, 255, 255 });
 		symbol.setFeatureId(id);
 		if(!feature.isRendered()) {
 			((MainActivity)mContext).runOnUiThread(new Runnable() {
 				
 				@Override
 				public void run() {
-					symbol.setMarker(mMap.addMarker(symbol.getOptions()));
 					feature.setRendered(true);
-					
 					symbolBitmap.recycle();
 				}
 			});
@@ -264,20 +294,52 @@ public class MarkupLayer {
 					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
 					format.setTimeZone(TimeZone.getTimeZone("UTC"));
 					
-					RestClient.getWFSData(layerName, 500, format.format(new Date(mLastFeatureTimestamp)), new AsyncHttpResponseHandler() {
+					RestClient.getWFSData(mLayerPayload, 500, format.format(new Date(mLastFeatureTimestamp)), new AsyncHttpResponseHandler() {
 						@SuppressWarnings("unchecked")
 
 						@Override
 						public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 							String content = (responseBody != null) ? new String(responseBody) : "error";
-							try {
-								FeatureCollection collection = mBuilder.create().fromJson(content, FeatureCollection.class);
-								if(collection != null) {
-									clearFromMap();
-									mParseFeaturesTask = new ParseFeaturesTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, collection.getFeatures());
+							
+							if(mLayerPayload.shouldExpectJson()){
+								try {
+									FeatureCollection collection = mBuilder.create().fromJson(content, FeatureCollection.class);
+									if(collection != null) {
+										clearFromMap();
+										mParseFeaturesTask = new ParseFeaturesTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, collection.getFeatures());
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
 								}
-							} catch (Exception e) {
-								e.printStackTrace();
+							}else{
+								
+								XmlParser parser = new XmlParser();
+					        	InputStream stream = new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8));;
+					        	
+					            try {
+					            	FeatureCollection collection = new FeatureCollection();
+					            	collection.setFeatures(parser.parse(stream));
+					            	collection.setType("TRACKING TYPE");
+					            	
+					            	if(collection.getFeatures() != null) {
+										clearFromMap();
+										mParseFeaturesTask = new ParseFeaturesTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, collection.getFeatures());
+									}
+					            	
+								} catch (XmlPullParserException e) {
+									e.printStackTrace();
+								} catch (IOException e) {
+									e.printStackTrace();
+								}finally {
+						            if (stream != null) {
+						                try {
+											stream.close();
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+						            }
+								}
 							}
 						}
 
@@ -285,10 +347,11 @@ public class MarkupLayer {
 						public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 							String content = (responseBody != null) ? new String(responseBody) : "error";
 							Log.e("nicsRest", content);
+							
+							mLayerPayload.setAuthtoken(null);	//force a new token on next pull
 						}
 					});
 				}
-				
 				//Release the lock
 				wakeLock.release();
 			} catch (Exception e) {
@@ -296,7 +359,7 @@ public class MarkupLayer {
 			}
 		}
 	};
-	
+		
 	public Bitmap generateRotatedBitmap(int resourceId, float rotationDegrees) {
 		Bitmap bitmap = null;
 		Options opts = new BitmapFactory.Options();

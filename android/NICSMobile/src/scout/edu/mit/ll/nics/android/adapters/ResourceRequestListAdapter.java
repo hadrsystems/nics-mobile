@@ -43,12 +43,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import scout.edu.mit.ll.nics.android.R;
+import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
 import scout.edu.mit.ll.nics.android.api.data.ResourceRequestData;
 import scout.edu.mit.ll.nics.android.api.payload.forms.ResourceRequestPayload;
 
 public class ResourceRequestListAdapter extends ArrayAdapter<ResourceRequestPayload> {
 	private List<ResourceRequestPayload> mItems;
+	private DataManager mDataManager;
 	private Resources mResources;
 	private Context mContext;
 	
@@ -58,6 +60,7 @@ public class ResourceRequestListAdapter extends ArrayAdapter<ResourceRequestPayl
 		super(context, resource, textViewResourceId, list);
 
 		mContext = context;
+		mDataManager = DataManager.getInstance(context);
 		mResources = context.getResources();
 		mItems = list;
 	}
@@ -79,16 +82,27 @@ public class ResourceRequestListAdapter extends ArrayAdapter<ResourceRequestPayl
 			desc.setVisibility(View.GONE);
 		}
 		
-		if(payload.isDraft()) {
-			name.setText(mContext.getString(R.string.draft) + data.getUser());
-		} else if(payload.getSendStatus() == ReportSendStatus.WAITING_TO_SEND) {
-			name.setText(mContext.getString(R.string.sending) + data.getUser());
-		} else {
-			name.setText(data.getUser());
-		}
-		
 		TextView size = (TextView)row.findViewById(R.id.resourceRequestTime);
 		size.setText(new Date(mItems.get(position).getSeqTime()).toString());
+		
+		if(payload.isDraft()) {
+			name.setText(mContext.getString(R.string.draft) + data.getUser());
+		} else if(payload.getSendStatus() == ReportSendStatus.WAITING_TO_SEND  && payload.getProgress() != 100.0) {
+			if(!payload.isFailedToSend()){
+				if(payload.getProgress() > 0){
+					name.setText(mContext.getString(R.string.sending_progress, payload.getProgress()) + String.valueOf(data.getUser()));
+				}else{
+					name.setText(mContext.getString(R.string.sending) + String.valueOf(data.getUser()));
+				}
+			}else{
+				name.setText(R.string.sending_failed + String.valueOf(data.getUser()));
+			}
+			if(!mDataManager.isOnline()) {
+				size.setText(R.string.device_not_connected_to_network);
+			}
+		} else {
+			name.setText(String.valueOf(data.getUser()));
+		}
 		
 		ImageView image = (ImageView) row.findViewById(R.id.resourceRequestThumbnail);
 		

@@ -30,17 +30,17 @@
  */
 package scout.edu.mit.ll.nics.android.maps.markup;
 
-import java.util.List;
-
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.JsonObject;
 
+import scout.edu.mit.ll.nics.android.MainActivity;
 import scout.edu.mit.ll.nics.android.R;
 import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.data.MarkupFeature;
@@ -54,7 +54,7 @@ public class MarkupSymbol extends MarkupBaseShape {
 	private Bitmap mMarkerBitmap;
 	private String mImagePath;
 	
-	public MarkupSymbol(DataManager manager, String title, LatLng coordinate, Bitmap symbolBitmap, String symbolPath, int[] strokeColor) {
+	public MarkupSymbol(DataManager manager,final GoogleMap mMap,final String title,final LatLng coordinate,final Bitmap symbolBitmap,final String symbolPath,final int[] strokeColor) {
 		super(manager);
 		
 		mMarkerOptions = new MarkerOptions();
@@ -63,15 +63,22 @@ public class MarkupSymbol extends MarkupBaseShape {
 		mMarkerOptions.position(coordinate);
 		mMarkerOptions.icon(BitmapDescriptorFactory.fromBitmap(symbolBitmap));
 
-		setTitle(title);
-		setPoint(coordinate);
-		setType(MarkupType.marker);
+		((MainActivity)manager.getActiveActivity()).runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				setMarker(mMap.addMarker(getOptions()));
+				setTitle(title);
+				setPoint(coordinate);
+				
+				if(symbolBitmap != null) {
+					setSymbolBitmap(symbolBitmap);
+					setSymbolPath(symbolPath);
+					setIcon(symbolBitmap, strokeColor);
+				}
+			}
+		});
 		
-		if(symbolBitmap != null) {
-			setSymbolBitmap(symbolBitmap);
-			setSymbolPath(symbolPath);
-			setIcon(symbolBitmap, strokeColor);
-		}
+		setType(MarkupType.marker);
 		
 		setStrokeColor(strokeColor);
 	}

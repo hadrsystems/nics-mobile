@@ -65,19 +65,10 @@
             android:text="@string/markup_ok" />
     </LinearLayout>
 
-    <include
-        android:id="@+id/include1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        layout="@layout/coordinate_decimal" />
-
     <LinearLayout
         android:id="@+id/markup_misc_land_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/coordinateFormatSelectorGroup"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp" >
 
@@ -97,5 +88,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp" />
     </LinearLayout>
+    <include android:id="@+id/include1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_below="@+id/markup_misc_land_layout" layout="@layout/coordinate_decimal"/>
 
 </RelativeLayout>

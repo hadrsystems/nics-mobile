@@ -59,5 +59,7 @@
 
 -(void)setupWithDictionary:(NSDictionary*) feature;
 
+@property NSDictionary* propertiesDictionary;
+
 @end
 

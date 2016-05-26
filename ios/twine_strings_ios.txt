@@ -179,6 +179,12 @@
 		ca-ES = !@#$!@#$ !@#$!@#$
 		es = Capa de seguimineto
 		it = #$%&! #$%&!
+	[LkN-rW-2Wn.text]
+		en = No Explosive Reports have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "LkN-rW-2Wn";
+		ca-ES = !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$
+		es = No existen registros de explosiones para esta incidencia
+		it = #$%&! #$%&! #$%&! #$%&! #$%&! #$%&!.
 	[MhW-5A-pco.normalTitle]
 		en = Browse Gallery
 		comment = Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "MhW-5A-pco";
@@ -232,6 +238,12 @@
 		comment = Class = "UILabel"; text = "Remember Username"; ObjectID = "RKm-7P-Umu";
 		ca-ES = !@#$!@#$ !@#$!@#$
 		es = Recordar usuario
+		it = #$%&! #$%&!
+	[Rhx-eX-gmf.title]
+		en = UXO Reports
+		comment = Class = "UINavigationItem"; title = "UXO Reports"; ObjectID = "Rhx-eX-gmf";
+		ca-ES = !@#$!@#$ !@#$!@#$
+		es = Informes UXO municiones sin detonar
 		it = #$%&! #$%&!
 	[Ru3-1u-Jg3.title]
 		en = Damage Report List
@@ -600,6 +612,12 @@
 		ca-ES = No Damage Reports have been posted in this incident yet.
 		es = No se han registrado informes de daños para esta incidencia
 		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
+	[3dm-Xb-Cc1.title]
+		en = Explosive Reports
+		comment = Class = "UINavigationItem"; title = "Explosive Reports"; ObjectID = "3dm-Xb-Cc1";
+		ca-ES = Explosive Reports
+		es = Informes UXO municiones sin detonar
+		it = +=+=+= +=+=+=
 	[3sG-7z-WY9.title]
 		en = Map
 		comment = Class = "UINavigationItem"; title = "Map"; ObjectID = "3sG-7z-WY9";
@@ -778,6 +796,12 @@
 		ca-ES = Tracking Layer
 		es = Capa de seguimineto
 		it = +=+=+= +=+=+=
+	[KMh-4F-Wxu.text]
+		en = No Explosive Reports have been posted in this incident yet.
+		comment = Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "KMh-4F-Wxu";
+		ca-ES = No Explosive Reports have been posted in this incident yet.
+		es = No existen registros de explosiones para esta incidencia.
+		it = +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.
 	[KNe-sX-U2w.text]
 		en = Name
 		comment = Class = "UILabel"; text = "Name"; ObjectID = "KNe-sX-U2w";
@@ -1361,6 +1385,10 @@
 		en = Field Report
 		es = Informe de campo
 		it = +=+=+= +=+=+=
+	[Explosives Report]
+		en = Explosive Report
+		es = Informe de explosivos
+		it = +=+=+= +=+=+=
 	[Draft]
 		en = Draft
 		comment = Shown in the report list view when a report is either a saved Draft, or is currently sending to NICS
@@ -1418,6 +1446,10 @@
 	[NICS Damage Surveys]
 		en = NICS Damage Surveys
 		es = NICS Damage Surveys
+		it = +=+=+= +=+=+= +=+=+=
+	[NICS Explosive Reports]
+		en = NICS Explosive Reports
+		es = NICS Explosive Explosive (es translate)
 		it = +=+=+= +=+=+= +=+=+=
 	[NICS General Messages]
 		en = NICS General Messages
@@ -1799,6 +1831,118 @@
 		en = Destroyed: 50+ percent
 		es = Destruido: +50%
 		it = +=+=+=: > 50%
+	[Reporting Unit]
+		en = Reporting Unit
+		comment = Explosive Report Form Fields
+		es = Unidad informante/notificadora
+		it = +=+=+= +=+=+=
+	[Reporting Location]
+		en = Reporting Location
+		es = Lugar de conotificación
+		it = +=+=+= +=+=+=
+	[Contact Info]
+		en = Contact Info
+		es = Información de contacto
+		it = +=+=+= +=+=+=
+	[Explosive Type]
+		en = Explosive Type
+		es = Tipo de explosivo
+		it = +=+=+= +=+=+=
+	[Select Explosive Type]
+		en = Select Explosive Type
+		comment = Explosive type drop down choices
+		es = Selecciona tipo de explosivo
+		it = +=+=+= +=+=+= +=+=+=
+	[Dropped]
+		en = Dropped
+		es = dejar caer
+		it = +=+=+=
+	[Projected]
+		en = Projected
+		es = Proyectado,
+		it = +=+=+=
+	[Placed]
+		en = Placed
+		es = Colocados,
+		it = +=+=+=
+	[Possible IED]
+		en = Possible IED
+		es = posible artefacto explosivo improvisado
+		it = +=+=+= +=+=+=
+	[Thrown]
+		en = Thrown
+		es = Tirados or arrojados
+		it = +=+=+=
+	[Size]
+		en = Size
+		es = Tamaño
+		it = +=+=+=
+	[Shape]
+		en = Shape
+		es = Forma
+		it = +=+=+=
+	[Color]
+		en = Color
+		es = Color
+		it = +=+=+=
+	[Condition]
+		en = Condition
+		es = Condición
+		it = +=+=+=
+	[Select Condition]
+		en = Select Condition
+		comment = Condition drop down choices
+		es = Selecciona condición
+		it = +=+=+= +=+=+=
+	[Intact]
+		en = Intact
+		es = Intacto
+		it = +=+=+=
+	[Leaking]
+		en = Leaking
+		es = Filtrando
+		it = +=+=+=
+	[CBRN Contamination]
+		en = CBRN Contamination
+		es = contaminacion quimica, biologica,radiologica y nuclear
+		it = +=+=+= +=+=+=
+	[Resource Threatened]
+		en = Resource Threatened
+		es = Fuente amenazada
+		it = +=+=+= +=+=+=
+	[Impact On Mission]
+		en = Impact On Mission
+		es = Impacto/consecuencias sobre la misión
+		it = +=+=+= +=+=+= +=+=+=
+	[Protective Measures]
+		en = Protective Measures
+		es = Medidas de protección
+		it = +=+=+= +=+=+=
+	[Recommended Priority]
+		en = Recommended Priority
+		es = Prioridad recomendada
+		it = +=+=+= +=+=+=
+	[Select Recommended Priority]
+		en = Select Recommended Priority
+		comment = Recommended Priority drop down choices
+		es = Selecciona prioridad recomendada
+		it = +=+=+= +=+=+= +=+=+=
+	[Immediate]
+		en = Immediate
+		es = Inmediato
+		it = +=+=+=
+	[Indirect]
+		en = Indirect
+		es = Indirecto
+		it = +=+=+=
+	[Minor]
+		en = Minor
+		es = Poco grave
+		it = +=+=+=
+	[No Threat]
+		en = No Threat
+		es = Sin amenaza
+		it = +=+=+= +=+=+=
 	[Notes]
 		en = Notes
 		es = Observaciones

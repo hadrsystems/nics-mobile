@@ -62,9 +62,6 @@ int BackgroundMdtPostCounter = 0;
         _userPreferences = [NSUserDefaults standardUserDefaults];
         _databaseManager = [[DatabaseManager alloc] init];
         
-
-        
-        
         [self getCookieDomainForCurrentServer];
         
         _notificationCenter = [NSNotificationCenter defaultCenter];
@@ -478,7 +475,7 @@ long long lastMdtSync = 0;
 
 -(void) requestWfsUpdate {
     NSLog(@"Requesting wfs tracking update...");
-    [RestClient getWFSData];
+    [RestClient getActiveWFSData];
 }
 
 #pragma mark Chat Message History/Store & Forward
@@ -942,6 +939,12 @@ long long lastMdtSync = 0;
     return _collabRoomList;
 }
 
+- (CollabroomPayload *)getActiveCollabroomPayload {
+    NSNumber* collabroomId = [self getSelectedCollabroomId];
+    CollabroomPayload* payload = [_collabRoomList objectForKey:collabroomId];
+    return payload;
+}
+
 - (NSMutableArray *)getCollabroomPayloadArray{
     
     NSMutableArray *payloadArray = [[NSMutableArray alloc]init];
@@ -1042,6 +1045,13 @@ long long lastMdtSync = 0;
 }
 + (bool)getCalTrackingEnabledFromSettings{
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"calTracking"];
+}
+
+- (bool)getTrackingLayerEnabled: (NSString*) layerDisplayName{
+    return [_userPreferences secretBoolForKey:layerDisplayName];
+}
+- (void)setTrackingLayerEnabled: (NSString*) layerDisplayName : (bool)enabled{
+    [_userPreferences setSecretBool:enabled forKey:layerDisplayName];
 }
 
 -(void)setOverviewController:(UINavigationController *)controller{

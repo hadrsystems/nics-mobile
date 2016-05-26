@@ -73,7 +73,7 @@ public class ParseChatMessagesTask extends AsyncTask<ArrayList<ChatPayload>, Obj
 	        intent.putExtra("newMessageCount", numParsed);
 	        mContext.sendBroadcast (intent);
 	        
-	        mDataManager.addPersonalHistory("Successfully received " + numParsed + " chat messages from " + mDataManager.getSelectedCollabRoomName());
+	        mDataManager.addPersonalHistory("Successfully received " + numParsed + " chat messages from " + mDataManager.getSelectedCollabRoom().getName());
 	        mDataManager.setNewchatAvailable(true);
 		}
 		return numParsed;

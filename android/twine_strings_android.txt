@@ -75,6 +75,14 @@
 		en = Weather Report
 		es = Weather Report
 		fr = Weather Report
+	[UXOREPORT]
+		en = Explosive Report
+		es = Informe de explosivos
+		fr = Explosive Report
+	[CATANREQUEST]
+		en = Catan Request
+		es = Catan Request
+		fr = Catan Request
 	[LOGOUT]
 		en = Logout
 		es = Desconexión
@@ -332,6 +340,10 @@
 		en = No weather reports exist - please click the '+' sign to create a new report.
 		es = No weather reports exist - please click the '+' sign to create a new report.
 		fr = No weather reports exist - please click the '+' sign to create a new report.
+	[no_uxo_reports_exist]
+		en = No Explosive reports exist - please click the '+' sign to create a new report.
+		es = No Explosive reports exist - please click the '+' sign to create a new report.
+		fr = No Explosive reports exist - please click the '+' sign to create a new report.
 	[go_to_report_on_map]
 		en = Go to report on map
 		es = Go to report on map
@@ -340,6 +352,10 @@
 		en = You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.
 		es = You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.
 		fr = You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.
+	[no_catan_requests_exist]
+		en = No Catan Requests exist.
+		es = No Catan Requests exist.
+		fr = No Catan Requests exist.
 	[n_a]
 		en = N/A
 		es = N/A

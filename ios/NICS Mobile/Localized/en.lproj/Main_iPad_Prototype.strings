@@ -95,6 +95,9 @@
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "L9O-Sl-a8r"; */
 "L9O-Sl-a8r.text" = "Tracking Layer";
 
+/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "LkN-rW-2Wn"; */
+"LkN-rW-2Wn.text" = "No Explosive Reports have been posted in this incident yet.";
+
 /* Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "MhW-5A-pco"; */
 "MhW-5A-pco.normalTitle" = "Browse Gallery";
 

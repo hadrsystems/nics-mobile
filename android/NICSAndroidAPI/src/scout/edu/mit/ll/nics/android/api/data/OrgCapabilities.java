@@ -43,6 +43,7 @@ public class OrgCapabilities {
 	private boolean MapMarkup;
 	private boolean Chat;
 	
+	
 	public void setCapabilitiesFromJSON(String content) {
 
 		FieldReportForm = false;

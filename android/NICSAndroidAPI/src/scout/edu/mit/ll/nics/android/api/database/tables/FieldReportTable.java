@@ -352,7 +352,20 @@ public class FieldReportTable extends DatabaseTable <FieldReportPayload> {
         return getData (sqlSelection, sqlSelectionArguments, orderBy,NO_LIMIT, database);
     }
     
-    
+    public ArrayList<FieldReportPayload> getAllDataHasSent (long collaborationRoomId, SQLiteDatabase database) {
+        String orderBy = "seqtime DESC";
+        String sqlSelection = "sendStatus==? AND incidentId==?";
+        String[] sqlSelectionArguments = {String.valueOf(ReportSendStatus.SENT.getId ()), String.valueOf(collaborationRoomId)};
+
+        return getData(sqlSelection, sqlSelectionArguments, orderBy,NO_LIMIT, database);
+    }
+
+    public ArrayList<FieldReportPayload> getAllDataHasSent (String orderBy, SQLiteDatabase database) {
+        String sqlSelection = "sendStatus==?";
+        String[] sqlSelectionArguments = {String.valueOf (ReportSendStatus.SENT.getId ())};
+
+        return getData (sqlSelection, sqlSelectionArguments, orderBy,NO_LIMIT, database);
+    }
 
     @Override
     protected ArrayList<FieldReportPayload> getData (String   sqlSelection,

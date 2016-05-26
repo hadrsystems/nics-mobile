@@ -136,10 +136,8 @@ bool useOpenAM = false;
     }
     
     [_loadingLabel setText:NSLocalizedString(@"Logging in...", nil)];
-    
 
     [self login];
-    
 }
 
 
@@ -176,25 +174,20 @@ bool useOpenAM = false;
                 [_loadingView setHidden:true];
                 [_loginContentView setHidden:false];
                 [_settingsView setHidden:false];
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to login.",nil) message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+                
+                NSError *jsonError;
+                NSData *objectData = [msg dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                     options:NSJSONReadingMutableContainers
+                                                                       error:&jsonError];
+                
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to login.",nil) message:[json objectForKey:@"message"] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
                 [alertView show];
                 
                 [dataManager setPassword:@""];
             }];
         }
     }];
-}
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    switch (buttonIndex) {
-        case 0:
-//            [self performSegueWithIdentifier:@"segue_damage_report" sender:self];
-            break;
-
-        default:
-            break;
-    }
 }
 
 - (void)submitSelection

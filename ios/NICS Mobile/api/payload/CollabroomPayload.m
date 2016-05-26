@@ -35,4 +35,29 @@
 
 @implementation CollabroomPayload
 
+-(bool)doIHaveMarkupPermission:(NSNumber*)userId{
+    
+    if([_name isEqualToString:@"Working Map"]){
+        return true;
+    }
+    
+    if(_adminUsers == nil && _readWriteUsers == nil){
+        return false;
+    }
+    
+    for(int i = 0; i < _adminUsers.count ; i++){
+        if(_adminUsers[i] == userId){
+            return true;
+        }
+    }
+    
+    for(int i = 0; i < _readWriteUsers.count ; i++){
+        if(_readWriteUsers[i] == userId){
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 @end

@@ -443,15 +443,15 @@ public class FieldReportFormData {
 	public String getUser() {
 		return user;
 	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
+	
 	public String getUserFull() {
 		return userfull;
 	}
 	
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 	public String getStatus(){
 		return status;
 	}

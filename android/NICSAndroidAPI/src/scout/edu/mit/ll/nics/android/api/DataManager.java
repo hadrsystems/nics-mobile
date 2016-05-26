@@ -81,6 +81,7 @@ import scout.edu.mit.ll.nics.android.api.payload.IncidentPayload;
 import scout.edu.mit.ll.nics.android.api.payload.LoginPayload;
 import scout.edu.mit.ll.nics.android.api.payload.MobileDeviceTrackingPayload;
 import scout.edu.mit.ll.nics.android.api.payload.OrganizationPayload;
+import scout.edu.mit.ll.nics.android.api.payload.TrackingLayerPayload;
 import scout.edu.mit.ll.nics.android.api.payload.UserPayload;
 import scout.edu.mit.ll.nics.android.api.payload.WeatherPayload;
 import scout.edu.mit.ll.nics.android.api.payload.forms.DamageReportPayload;
@@ -147,6 +148,8 @@ public class DataManager {
 	private boolean newReportAvailable = false;
 	private boolean newchatAvailable = false;
 	private boolean newMapAvailable = false;
+	
+	private ArrayList<TrackingLayerPayload> TrackingLayers;
 	
 	private DataManager() {
 		mAlarmManager = (AlarmManager)mContext.getSystemService(Context.ALARM_SERVICE);
@@ -221,8 +224,7 @@ public class DataManager {
 
 		mSharedPreferences.savePreferenceLong(Constants.INCIDENT_ID, (long)-1);	
 		mSharedPreferences.savePreferenceString(Constants.INCIDENT_NAME, getContext().getResources().getString(R.string.no_selection));
-		mSharedPreferences.removePreference(Constants.SELECTED_COLLABROOM_NAME);	
-		mSharedPreferences.savePreferenceLong(Constants.SELECTED_COLLABROOM_ID, (long)-1);
+		mSharedPreferences.removePreference(Constants.SELECTED_COLLABROOM);
 
 		setAuthToken(null);
 		
@@ -262,11 +264,15 @@ public class DataManager {
 	}
 	
 	public void requestMarkupUpdate() {
-		RestClient.getMarkupHistory(getSelectedCollabRoomId());
+		RestClient.getMarkupHistory(getSelectedCollabRoom().getCollabRoomId());
 	}
 	
 	public void requestCollabrooms(long incidentId, String incidentName){
 		RestClient.getCollabRooms(incidentId, incidentName);
+	}
+	
+	public void requestWfsLayers(){
+		RestClient.getWFSLayers();
 	}
 	
 	public void setCollabRoomsForIncident(String incidentName, ArrayList<CollabroomPayload> rooms){
@@ -332,6 +338,14 @@ public class DataManager {
 	public ArrayList<SimpleReportPayload> getAllSimpleReportStoreAndForwardReadyToSend(long incidentId) {
 		return mDatabaseManager.getAllSimpleReportStoreAndForwardReadyToSend(incidentId);
 	}
+	
+	public ArrayList<SimpleReportPayload> getAllSimpleReportStoreAndForwardHasSent() {
+		return mDatabaseManager.getAllSimpleReportStoreAndForwardHasSent();
+	}
+
+	public ArrayList<SimpleReportPayload> getAllSimpleReportStoreAndForwardHasSent(long incidentId) {
+		return mDatabaseManager.getAllSimpleReportStoreAndForwardHasSent(incidentId);
+	}
 
 	public void addSimpleReportToHistory(SimpleReportPayload payload) {
 		mDatabaseManager.addSimpleReportHistory(payload);
@@ -376,6 +390,14 @@ public class DataManager {
 	
 	public ArrayList<FieldReportPayload> getAllFieldReportStoreAndForwardReadyToSend(long incidentId) {
 		return mDatabaseManager.getAllFieldReportStoreAndForwardReadyToSend(incidentId);
+	}
+	
+	public ArrayList<FieldReportPayload> getAllFieldReportStoreAndForwardHasSent() {
+		return mDatabaseManager.getAllFieldReportStoreAndForwardHasSent();
+	}
+	
+	public ArrayList<FieldReportPayload> getAllFieldReportStoreAndForwardHasSent(long incidentId) {
+		return mDatabaseManager.getAllFieldReportStoreAndForwardHasSent(incidentId);
 	}
 
 	public boolean addFieldReportToHistory(FieldReportPayload payload) {
@@ -423,6 +445,14 @@ public class DataManager {
 		return mDatabaseManager.getAllDamageReportStoreAndForwardReadyToSend(incidentId);
 	}
 	
+	public ArrayList<DamageReportPayload> getAllDamageReportStoreAndForwardHasSent() {
+		return mDatabaseManager.getAllDamageReportStoreAndForwardHasSent();
+	}
+
+	public ArrayList<DamageReportPayload> getAllDamageReportStoreAndForwardHasSent(long incidentId) {
+		return mDatabaseManager.getAllDamageReportStoreAndForwardHasSent(incidentId);
+	}
+	
 	public boolean addDamageReportToHistory(DamageReportPayload payload) {
 		return mDatabaseManager.addDamageReportHistory(payload);
 	}
@@ -466,6 +496,14 @@ public class DataManager {
 	
 	public ArrayList<WeatherReportPayload> getAllWeatherReportStoreAndForwardReadyToSend(long incidentId) {
 		return mDatabaseManager.getAllWeatherReportStoreAndForwardReadyToSend(incidentId);
+	}
+	
+	public ArrayList<WeatherReportPayload> getAllWeatherReportStoreAndForwardHasSent() {
+		return mDatabaseManager.getAllWeatherReportStoreAndForwardHasSent();
+	}
+	
+	public ArrayList<WeatherReportPayload> getAllWeatherReportStoreAndForwardHasSent(long incidentId) {
+		return mDatabaseManager.getAllWeatherReportStoreAndForwardHasSent(incidentId);
 	}
 
 	public boolean addWeatherReportToHistory(WeatherReportPayload payload) {
@@ -537,7 +575,7 @@ public class DataManager {
 	        data.setchatid(currentTime);
 	        data.setmessage(msg);
 	        data.setuserId(getUserId());
-	        data.setcollabroomid(getSelectedCollabRoomId());
+	        data.setcollabroomid(getSelectedCollabRoom().getCollabRoomId());
 //	        data.setSeqTime(currentTime);
 	        data.setseqnum(currentTime);
 	        data.setchatid(-1);
@@ -583,19 +621,19 @@ public class DataManager {
 	}
 
 	public ArrayList<ChatPayload> getRecentChatHistory() {
-		return mDatabaseManager.getRecentChatHistory(getSelectedCollabRoomId());
+		return mDatabaseManager.getRecentChatHistory(getSelectedCollabRoom().getCollabRoomId());
 	}
 	
 	public ArrayList<ChatPayload> getNewChatMessages(long timestamp) {
-		return mDatabaseManager.getNewChatMessagesFromDate(getSelectedCollabRoomId(), timestamp);
+		return mDatabaseManager.getNewChatMessagesFromDate(getSelectedCollabRoom().getCollabRoomId(), timestamp);
 	}
 	
 	public ArrayList<ChatPayload> getRecentChatHistoryStartingFromAndGoingBack(long timestamp, String limit) {
-		return mDatabaseManager.getRecentChatHistoryStartingFromAndGoingBack(getSelectedCollabRoomId(), timestamp, limit);
+		return mDatabaseManager.getRecentChatHistoryStartingFromAndGoingBack(getSelectedCollabRoom().getCollabRoomId(), timestamp, limit);
 	}
 	
 	public ArrayList<ChatPayload> getChatStoreAndForwardReadyToSend() {
-		return mDatabaseManager.getChatStoreAndForwardReadyToSend(getSelectedCollabRoomId());
+		return mDatabaseManager.getChatStoreAndForwardReadyToSend(getSelectedCollabRoom().getCollabRoomId());
 	}
 
 	public ArrayList<ChatPayload> getRecentPersonalHistory() {
@@ -640,6 +678,14 @@ public class DataManager {
 	
 	public ArrayList<ResourceRequestPayload> getAllResourceRequestStoreAndForwardReadyToSend(long incidentId) {
 		return mDatabaseManager.getAllResourceRequestStoreAndForwardReadyToSend(incidentId);
+	}
+	
+	public ArrayList<ResourceRequestPayload> getAllResourceRequestStoreAndForwardHasSent() {
+		return mDatabaseManager.getAllResourceRequestStoreAndForwardHasSent();
+	}
+	
+	public ArrayList<ResourceRequestPayload> getAllResourceRequestStoreAndForwardHasSent(long incidentId) {
+		return mDatabaseManager.getAllResourceRequestStoreAndForwardHasSent(incidentId);
 	}
 
 	public long getLastResourceRequestTimestamp() {
@@ -754,7 +800,7 @@ public class DataManager {
     	
     	Log.i("nicsDataManager", "Set weather report repeating fetch interval:" + seconds + " seconds.");
     }
-    
+            
     public void requestMarkupRepeating(int seconds, boolean immediately) {
     	Intent intent = new Intent(Intents.nics_POLLING_MARKUP_REQUEST);
     	intent.putExtra("type", "markup");
@@ -852,7 +898,7 @@ public class DataManager {
 							} else if(type.equals("resourcerequest")) {
 								requestResourceRequests();
 							} else if(type.equals("chatmessages")) {
-								requestChatHistory(getActiveIncidentId(), getSelectedCollabRoomId());
+								requestChatHistory(getActiveIncidentId(), getSelectedCollabRoom().getCollabRoomId());
 							} else if(type.equals("markup")) {
 								requestMarkupUpdate();
 							}
@@ -966,28 +1012,27 @@ public class DataManager {
 		return mCollabRoomList;
 	}
 	
-	public HashMap<String, Long> getCollabRoomNamesList() {
-		HashMap<String, Long> collabRoomNames = new HashMap<String, Long>();
+	public HashMap<Long, CollabroomPayload> getCollabRoomMapById() {
+		HashMap<Long, CollabroomPayload> collabRooms = new HashMap<Long, CollabroomPayload>();
 		for(int i = 0; i < mCollabRoomList.size(); i++) {
 			CollabroomPayload payload = mCollabRoomList.valueAt(i);
-			collabRoomNames.put(payload.getName(), payload.getCollabRoomId());
+			collabRooms.put(payload.getCollabRoomId(), payload);
 		}
 		
-		return collabRoomNames;
+		return collabRooms;
 	}
 	
-	public void setSelectedCollabRoom(String collabRoomName, long collabRoomId) {
-		String selectedCollabroom = getSelectedCollabRoomName();
-		
-		if(selectedCollabroom == null) {
-			mSharedPreferences.removePreference(Constants.SELECTED_COLLABROOM_NAME);
-			mSharedPreferences.removePreference(Constants.SELECTED_COLLABROOM_ID);
-		} else if(!selectedCollabroom.equals(collabRoomName)) {	
-			mSharedPreferences.savePreferenceString(Constants.SELECTED_COLLABROOM_NAME, collabRoomName);
-			mSharedPreferences.savePreferenceLong(Constants.SELECTED_COLLABROOM_ID, collabRoomId);
+	public void setSelectedCollabRoom(CollabroomPayload newCollabroomPayload) {
+		if(newCollabroomPayload != null){
+			mSharedPreferences.savePreferenceString(Constants.SELECTED_COLLABROOM, newCollabroomPayload.toJsonString());
+		}else{
+			newCollabroomPayload = new CollabroomPayload();
+			newCollabroomPayload.setCollabRoomId(-1);
+			newCollabroomPayload.setName(getContext().getResources().getString(R.string.no_selection));
+			mSharedPreferences.savePreferenceString(Constants.SELECTED_COLLABROOM, newCollabroomPayload.toJsonString());
 		}
 		
-		if(collabRoomId != -1) {
+		if(newCollabroomPayload.getCollabRoomId() != -1) {
 			requestChatMessagesRepeating(getCollabroomDataRate(), true);
 		} else {
 			stopPollingMarkup();
@@ -995,14 +1040,20 @@ public class DataManager {
 		}
 	}
 	
-	public String getSelectedCollabRoomName() {
-		return mSharedPreferences.getPreferenceString(Constants.SELECTED_COLLABROOM_NAME, getContext().getResources().getString(R.string.no_selection));
+	public CollabroomPayload getSelectedCollabRoom() {
+		
+		String collabroomString = mSharedPreferences.getPreferenceString(Constants.SELECTED_COLLABROOM, "");
+		if(!collabroomString.equals("")){
+			return new Gson().fromJson(collabroomString, CollabroomPayload.class);
+		}
+		else{
+			CollabroomPayload newPayload = new CollabroomPayload();
+			newPayload.setCollabRoomId(-1);
+			newPayload.setName(getContext().getResources().getString(R.string.no_selection));
+			return newPayload;
+		}
 	}
-	
-	public long getSelectedCollabRoomId() {
-		return mSharedPreferences.getPreferenceLong(Constants.SELECTED_COLLABROOM_ID);
-	}
-	
+		
 	public boolean CheckWifiStatus(){
 		boolean ProceedWithSync = true;
 		
@@ -1045,7 +1096,7 @@ public class DataManager {
 			RestClient.postWeatherReports();
 		}
 	}
-		
+	
 	public void sendMarkupFeatures() {
 		if(CheckWifiStatus()){
 			RestClient.postMarkupFeatures();
@@ -1106,8 +1157,8 @@ public class DataManager {
 		mDatabaseManager.deleteMarkupHistoryForCollabroomByFeatureIds(collabroomId, featuresToRemove);
 	}
 	
-	public boolean deleteMarkupHistoryForCollabroomByFeatureId(long collabroomId, String featureToRemove) {
-		return mDatabaseManager.deleteMarkupHistoryForCollabroomByFeatureId(collabroomId, featureToRemove);
+	public void deleteMarkupHistoryForCollabroomByFeatureId(long collabroomId, String featureToRemove) {
+		mDatabaseManager.deleteMarkupHistoryForCollabroomByFeatureId(collabroomId, featureToRemove);
 	}
 
 	public void addAllChatHistory(ArrayList<ChatPayload> payloads) {
@@ -1190,8 +1241,8 @@ public class DataManager {
 		if(incident != null) {
 			mSharedPreferences.savePreferenceLong(Constants.INCIDENT_ID, incident.getIncidentId());
 			mSharedPreferences.savePreferenceString(Constants.INCIDENT_NAME, incident.getIncidentName());
-			mSharedPreferences.savePreferenceString(Constants.INCIDENT_LATITUDE, String.valueOf(incident.getLatitude()));
-			mSharedPreferences.savePreferenceString(Constants.INCIDENT_LONGITUDE, String.valueOf(incident.getLongitude()));
+			mSharedPreferences.savePreferenceString(Constants.INCIDENT_LATITUDE, String.valueOf(incident.getLat()));
+			mSharedPreferences.savePreferenceString(Constants.INCIDENT_LONGITUDE, String.valueOf(incident.getLon()));
 		} else {
 			mSharedPreferences.removePreference(Constants.INCIDENT_ID);
 			mSharedPreferences.removePreference(Constants.INCIDENT_NAME);
@@ -1244,8 +1295,18 @@ public class DataManager {
 		return mSharedPreferences.getPreferenceLong(Constants.COLLABROOM_ID);
 	}
 	
-	public long getPreviousCollabroomId() {
-		return mSharedPreferences.getPreferenceLong(Constants.PREVIOUS_COLLABROOM_ID);
+	public CollabroomPayload getPreviousCollabroom() {
+	
+		String collabroomString = mSharedPreferences.getPreferenceString(Constants.PREVIOUS_COLLABROOM, "");
+		if(!collabroomString.equals("")){
+			return new Gson().fromJson(collabroomString, CollabroomPayload.class);
+		}
+		else{
+			CollabroomPayload newPayload = new CollabroomPayload();
+			newPayload.setCollabRoomId(-1);
+			newPayload.setName(getContext().getResources().getString(R.string.no_selection));
+			return newPayload;
+		}
 	}
 	
 	public String getActiveCollabroomName() {
@@ -1432,6 +1493,7 @@ public class DataManager {
 	}
 	public String getIplanetCookieDomain(){
 		if(isCustomDomainEnabled()){
+			String test = mGlobalPreferences.getString("custom_cookie_domain","");
 			return mGlobalPreferences.getString("custom_cookie_domain","");
 		}else{
 			return mSharedPreferences.getPreferenceString(Constants.IPLANET_COOKIE_DOMAIN, getContext().getResources().getString(R.string.config_iplanet_cookie_domain_default));
@@ -1601,7 +1663,7 @@ public class DataManager {
 	            String value = simpleReportCategoryType.getTextKey();
 	            translationReverseLookup.put(key, value);
 	        }
-	        
+	          
 	        for (WeatherWindTypes windType : WeatherWindTypes.values ()) {
 	            
 	            int resId = res.getIdentifier(windType.getTextKey(), "string", mContext.getPackageName());
@@ -1706,5 +1768,45 @@ public class DataManager {
 	}
 	public void setNewMapAvailable(boolean newMapAvailable) {
 		this.newMapAvailable = newMapAvailable;
+	}
+	private void initializeTrackingLayers(){
+		
+			TrackingLayers = new ArrayList<TrackingLayerPayload>();
+			
+			TrackingLayerPayload damagePayload = new TrackingLayerPayload();
+			damagePayload.setDisplayname(mContext.getString(R.string.wfslayer_nics_damage_report_title));
+			damagePayload.setLayername("nics_dmgrpt");
+			damagePayload.setInternalurl(getGeoServerURL());
+			
+			TrackingLayerPayload generalPayload = new TrackingLayerPayload();
+			generalPayload.setDisplayname(mContext.getString(R.string.wfslayer_nics_simple_report_title));
+			generalPayload.setLayername("nics_sr");
+			generalPayload.setInternalurl(getGeoServerURL());
+						
+			TrackingLayers.add(generalPayload);
+			TrackingLayers.add(damagePayload);
+	}
+	public ArrayList<TrackingLayerPayload>  getTrackingLayers() {
+		if(TrackingLayers == null){
+			initializeTrackingLayers();
+		}
+		return TrackingLayers;
+	}
+	public void setTrackingLayers(ArrayList<TrackingLayerPayload>  trackingLayers) {
+		initializeTrackingLayers();
+		if(trackingLayers != null){
+			TrackingLayers.addAll(trackingLayers);
+		}
+	}
+	public boolean UpdateTrackingLayerData(TrackingLayerPayload updatedTrackingLayer){
+	
+		for(int i = 0; i < TrackingLayers.size();i++){
+			TrackingLayerPayload layer = TrackingLayers.get(i);
+			if(layer.getLayername().equals(updatedTrackingLayer.getDisplayname())){
+				TrackingLayers.set(i, updatedTrackingLayer);
+				return true;
+			}
+		}
+		return false;
 	}
 }

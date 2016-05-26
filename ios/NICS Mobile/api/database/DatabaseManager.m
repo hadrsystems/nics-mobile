@@ -58,7 +58,7 @@
         
         _simpleReportReceiveTable = [[SimpleReportTable alloc] initWithName:@"simpleReportReceiveTable" databaseQueue:_databaseQueue];
         _simpleReportSendTable = [[SimpleReportTable alloc] initWithName:@"simpleReportSendTable" databaseQueue:_databaseQueue];
-        
+
         _weatherReportReceiveTable = [[WeatherReportTable alloc] initWithName:@"weatherReportReceiveTable" databaseQueue:_databaseQueue];
         _weatherReportSendTable = [[WeatherReportTable alloc] initWithName:@"weatherReportSendTable" databaseQueue:_databaseQueue];
         

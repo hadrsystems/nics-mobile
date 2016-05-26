@@ -70,6 +70,7 @@ public class DamageReportListFragment extends FormListFragment {
 	private IntentFilter mDamageReportProgressReceiverFilter;
 	private IntentFilter mIncidentSwitchedReceiverFilter;
 	private IntentFilter mMarkAllAsReadReceiverFilter;
+	private IntentFilter mSentReportsClearedFilter;
 	private long mLastIncidentId = 0;
 	protected boolean mIsFirstLoad = true;
 	protected MarkAllReportsAsReadTask MarkMessagesAsReadTask = null;
@@ -89,12 +90,15 @@ public class DamageReportListFragment extends FormListFragment {
 		mDamageReportProgressReceiverFilter = new IntentFilter(Intents.nics_DAMAGE_REPORT_PROGRESS);
 		mIncidentSwitchedReceiverFilter = new IntentFilter(Intents.nics_INCIDENT_SWITCHED);
 		mMarkAllAsReadReceiverFilter = new IntentFilter(Intents.nics_MARKING_ALL_REPORTS_READ_FINISHED);
+		mSentReportsClearedFilter = new IntentFilter(Intents.nics_SENT_DAMAGE_REPORTS_CLEARED);
 		
 		if(!damageReportReceiverRegistered) {
 			mContext.registerReceiver(damageReportReceiver, mDamageReportReceiverFilter);
 			mContext.registerReceiver(damageReportProgressReceiver, mDamageReportProgressReceiverFilter);
 			mContext.registerReceiver(incidentChangedReceiver, mIncidentSwitchedReceiverFilter);
 			mContext.registerReceiver(markAllAsReadReceiver, mMarkAllAsReadReceiverFilter);
+			mContext.registerReceiver(sentReportsClearedReceiver, mSentReportsClearedFilter);
+			
 			damageReportReceiverRegistered = true;
 		}
 		
@@ -188,6 +192,7 @@ public class DamageReportListFragment extends FormListFragment {
 			mContext.registerReceiver(damageReportProgressReceiver, mDamageReportProgressReceiverFilter);
 			mContext.registerReceiver(incidentChangedReceiver, mIncidentSwitchedReceiverFilter);
 			mContext.registerReceiver(markAllAsReadReceiver, mMarkAllAsReadReceiverFilter);
+			mContext.registerReceiver(sentReportsClearedReceiver, mSentReportsClearedFilter);
 			damageReportReceiverRegistered = true;
 		}
 		
@@ -215,6 +220,7 @@ public class DamageReportListFragment extends FormListFragment {
 			mContext.unregisterReceiver(damageReportProgressReceiver);
 			mContext.unregisterReceiver(incidentChangedReceiver);
 			mContext.unregisterReceiver(markAllAsReadReceiver);
+			mContext.unregisterReceiver(sentReportsClearedReceiver);
 			damageReportReceiverRegistered = false;
 		}
 	}
@@ -241,15 +247,8 @@ public class DamageReportListFragment extends FormListFragment {
 				payload.setSendStatus(ReportSendStatus.lookUp(bundle.getInt("sendStatus", 0)));
 				payload.parse();
 				
-				DamageReportData data = payload.getMessageData();
+				mDamageReportListAdapter.add(payload);
 				
-				if(data.getUser().equals(mDataManager.getUsername()) && payload.getSeqTime() >= mDataManager.getLastDamageReportTimestamp() - 10000) {
-					mDamageReportListAdapter.clear();
-					mDamageReportListAdapter.addAll(mDataManager.getDamageReportHistoryForIncident(mDataManager.getActiveIncidentId()));
-					mDamageReportListAdapter.addAll(mDataManager.getAllDamageReportStoreAndForwardReadyToSend(mDataManager.getActiveIncidentId()));
-				} else {
-					mDamageReportListAdapter.add(payload);
-				}
 				mDamageReportListAdapter.sort(reportComparator);
 				mDamageReportListAdapter.notifyDataSetChanged();
 			} catch (Exception e) {
@@ -301,6 +300,7 @@ public class DamageReportListFragment extends FormListFragment {
 		mDamageReportListAdapter.clear();
 		mDamageReportListAdapter.addAll(mDataManager.getDamageReportHistoryForIncident(currentIncidentId));
 		mDamageReportListAdapter.addAll(mDataManager.getAllDamageReportStoreAndForwardReadyToSend(currentIncidentId));
+		mDamageReportListAdapter.addAll(mDataManager.getAllDamageReportStoreAndForwardHasSent(currentIncidentId));
 		mDamageReportListAdapter.sort(reportComparator);
 			
 		if(mIsFirstLoad) {
@@ -328,6 +328,22 @@ public class DamageReportListFragment extends FormListFragment {
 			});
 		}
 	}
+	
+	private BroadcastReceiver sentReportsClearedReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			long reportId = intent.getExtras().getLong("reportId");
+			for(int i = 0; i < mDamageReportListAdapter.getCount() ; i++){
+				DamageReportPayload payload = mDamageReportListAdapter.getItem(i);
+				if(payload.getFormId() == reportId && payload.isNew() == false){
+					mDamageReportListAdapter.remove(payload);
+					mDamageReportListAdapter.notifyDataSetChanged();
+					return;
+				}
+			}	
+		}
+	};
 	
 	private Comparator<? super DamageReportPayload> reportComparator = new Comparator<DamageReportPayload>() {
 		

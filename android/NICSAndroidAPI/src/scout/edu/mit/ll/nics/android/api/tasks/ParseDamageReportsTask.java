@@ -76,6 +76,17 @@ public class ParseDamageReportsTask extends AsyncTask<ArrayList<DamageReportPayl
 		}
 		
 		if(numParsed > 0) {
+			
+			ArrayList<DamageReportPayload> reports = mDataManager.getAllDamageReportStoreAndForwardHasSent();
+			for(int i = 0; i < reports.size(); i++){
+				mDataManager.deleteDamageReportStoreAndForward(reports.get(i).getId());
+				Log.d("ParseDamageReport","deleted sent damage report: " + reports.get(i).getId());
+				Intent intent = new Intent();
+			    intent.setAction(Intents.nics_SENT_DAMAGE_REPORTS_CLEARED);
+				intent.putExtra("reportId", reports.get(i).getFormId());
+		        mContext.sendBroadcast (intent);
+			}
+			
 			mDataManager.setNewReportAvailable(true);
 			if(!mDataManager.isPushNotificationsDisabled()){
 				mNotificationHandler.createDamageReportNotification(drPayloads[0], mDataManager.getActiveIncidentId());

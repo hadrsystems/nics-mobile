@@ -33,25 +33,6 @@
 
 #import "ActiveWfsLayerManager.h"
 
-@interface TrackingLayer ()
-@end
-
-@implementation TrackingLayer
--(id)initWithParams:(NSString*) newTitle : (NSString*) newTypeNameUrl{
-   
-    self = [super init];
-    self.title = newTitle;
-    self.typeNameURL = newTypeNameUrl;
-    self.active = FALSE;
-    
-    return self;
-}
-
-@end
-
-
-
-
 @interface ActiveWfsLayerManager ()
 
 @end
@@ -59,55 +40,53 @@
 @implementation ActiveWfsLayerManager
 
 NSMutableArray* trackingLayers;
-NSMutableArray* wfsFeatures;
 
-+ (void) initialize {
 
-    //init tracking layers
-    trackingLayers = [[NSMutableArray alloc]init];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"NICS Damage Surveys",nil)  : @"nics_dmgrpt"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"NICS General Messages",nil)  : @"nics_sr"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"NICS Mobile Users",nil) : @"phi_mdt_view"]];
-    [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"SARApp PLI",nil)  : @"sar_view"]];
++(void) setTrackingLayers :(NSMutableArray*) newTrackingLayers {
+    trackingLayers = newTrackingLayers;
     
-    if([DataManager getCalTrackingEnabledFromSettings]){
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-BEU/XMY AVL",nil)  : @"ca_beu_view"]];
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-COR-HMT AVL",nil)  : @"ca_corona_view"]];
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-ORC AVL",nil)  : @"ca_ocfa_view"]];
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-VNC AVL",nil)  : @"ca_ventura_view"]];
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XFR AVL",nil)  : @"ca_fku_view"]];
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XMY-XSL (RIV temp.) AVL",nil)  : @"avlnmea_view"]];
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XRI AVL",nil)  : @"avlxriground_view"]];
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XSD-RCIP AVL",nil)  : @"avlrcip_view"]];
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CA-XSL AVL",nil)  : @"ca_slu_view"]];
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"CDF AFF",nil)  : @"avlxriair_view"]];
-        [trackingLayers addObject:[[TrackingLayer alloc]initWithParams: NSLocalizedString(@"Delorme PLI",nil)  : @"avldelorme_view"]];
-    }
+    TrackingLayerPayload* damagePayload = [[TrackingLayerPayload alloc]init];
+    damagePayload.displayname = NSLocalizedString(@"NICS Damage Surveys",nil);
+    damagePayload.layername = @"nics_dmgrpt";
+    damagePayload.internalurl = [[DataManager getInstance] getGeoServerFromSettings];
+    
+    TrackingLayerPayload* generalPayload = [[TrackingLayerPayload alloc]init];
+    generalPayload.displayname = NSLocalizedString(@"NICS General Messages",nil);
+    generalPayload.layername = @"nics_sr";
+    generalPayload.internalurl = [[DataManager getInstance] getGeoServerFromSettings];
+    
+    TrackingLayerPayload* explosivePayload = [[TrackingLayerPayload alloc]init];
+    explosivePayload.displayname = NSLocalizedString(@"NICS Explosive Reports",nil);
+    explosivePayload.layername = @"nics_urrpt";
+    explosivePayload.internalurl = [[DataManager getInstance] getGeoServerFromSettings];
+    
+    [trackingLayers addObject:damagePayload];
+    [trackingLayers addObject:generalPayload];
+    [trackingLayers addObject:explosivePayload];
 }
-
-+(BOOL) isTrackingLayerOn:(NSString*)layerName{
-
-    for(TrackingLayer* layer in trackingLayers){
-        if([layer.title isEqualToString:layerName]){
-            return layer.active;
-        }
-    }
-    return false;
-}
-
 +(NSMutableArray*) getTrackingLayers{ return trackingLayers;}
 
-+(void) setTrackingLayerActiveAtIndex: (int)index : (bool) isActive{
-    TrackingLayer *layer = [trackingLayers objectAtIndex:index];
-    layer.active = isActive;
-    trackingLayers[index] = layer;
++(void) UpdateTrackingLayer:(TrackingLayerPayload*)newLayer{
+    
+    for(int i = 0; i < trackingLayers.count; i++){
+        
+        TrackingLayerPayload* layer = [trackingLayers objectAtIndex:i];
+        if([layer.displayname isEqualToString:newLayer.displayname]){
+            layer = newLayer;
+        }
+    }
 }
 
-+(NSMutableArray*) getWfsFeatures{
-    return wfsFeatures;
-}
-+(void)setWfsFeatures : (NSMutableArray*) newFeatures{
-    wfsFeatures = newFeatures;
++(NSMutableArray*) GetAllActiveFeatures{
+    
+    NSMutableArray *features = [[NSMutableArray alloc]init];
+    
+    for(TrackingLayerPayload* layer in trackingLayers){
+        if([[DataManager getInstance]getTrackingLayerEnabled:layer.displayname]){
+            [features addObjectsFromArray:[layer features]];
+        }
+    }
+    return features;
 }
 
 @end

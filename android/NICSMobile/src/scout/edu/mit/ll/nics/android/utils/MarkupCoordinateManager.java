@@ -54,7 +54,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import scout.edu.mit.ll.nics.android.utils.Intents;
 import scout.edu.mit.ll.nics.android.BluetoothLRF;
 import scout.edu.mit.ll.nics.android.LRF_HV;
 import scout.edu.mit.ll.nics.android.MainActivity;
@@ -308,6 +307,7 @@ public class MarkupCoordinateManager implements OnLRFDataListener {
 					
 				case R.id.markupMyLocation2:
 					idx = 2;
+					break;
 					
 				case R.id.markupMyLocation3:
 					idx = 3;
@@ -384,38 +384,92 @@ public class MarkupCoordinateManager implements OnLRFDataListener {
 		ArrayList<LatLng> list = new ArrayList<LatLng>();
 		
 		if(mLatitudeInput0.getText().length() > 0 && mLongitudeInput0.getText().length() > 0) {
-			list.add(new LatLng(Double.valueOf(mLatitudeInput0.getText().toString()), Double.valueOf(mLongitudeInput0.getText().toString())));
+			list.add(new LatLng(validateLat(mLatitudeInput0.getText().toString()), validateLon(mLongitudeInput0.getText().toString())));
 		}
 		
 		if(mCurrentShapeType == R.id.MarkupButtonLine || mCurrentShapeType == R.id.MarkupButtonTrapezoid) {
 			if(mLatitudeInput1.getText().length() > 0 && mLongitudeInput1.getText().length() > 0) {
-				list.add(new LatLng(Double.valueOf(mLatitudeInput1.getText().toString()), Double.valueOf(mLongitudeInput1.getText().toString())));
+				list.add(new LatLng(validateLat(mLatitudeInput1.getText().toString()), validateLon(mLongitudeInput1.getText().toString())));
 			}
 			
 		}
 		
 		if(mCurrentShapeType == R.id.MarkupButtonRectangle) {
 			if(mLatitudeInput0.getText().length() > 0 && mLongitudeInput0.getText().length() > 0 && mLatitudeInput1.getText().length() > 0 && mLongitudeInput1.getText().length() > 0) {
-				list.add(new LatLng(Double.valueOf(mLatitudeInput0.getText().toString()), Double.valueOf(mLongitudeInput1.getText().toString())));
-				list.add(new LatLng(Double.valueOf(mLatitudeInput1.getText().toString()), Double.valueOf(mLongitudeInput1.getText().toString())));
-				list.add(new LatLng(Double.valueOf(mLatitudeInput1.getText().toString()), Double.valueOf(mLongitudeInput0.getText().toString())));
+				list.add(new LatLng(validateLat(mLatitudeInput0.getText().toString()), validateLon(mLongitudeInput1.getText().toString())));
+				list.add(new LatLng(validateLat(mLatitudeInput1.getText().toString()), validateLon(mLongitudeInput1.getText().toString())));
+				list.add(new LatLng(validateLat(mLatitudeInput1.getText().toString()), validateLon(mLongitudeInput0.getText().toString())));
 				list.add(list.get(0));
 			}
 		}
 		
 		if(mCurrentShapeType == R.id.MarkupButtonTrapezoid) {
 			if(mLatitudeInput2.getText().length() > 0 && mLongitudeInput2.getText().length() > 0) {
-				list.add(new LatLng(Double.valueOf(mLatitudeInput2.getText().toString()), Double.valueOf(mLongitudeInput2.getText().toString())));
+				list.add(new LatLng(validateLat(mLatitudeInput2.getText().toString()), validateLon(mLongitudeInput2.getText().toString())));
 			}
 			
 			if(mLatitudeInput3.getText().length() > 0 && mLongitudeInput3.getText().length() > 0) {
-				list.add(new LatLng(Double.valueOf(mLatitudeInput3.getText().toString()), Double.valueOf(mLongitudeInput3.getText().toString())));
+				list.add(new LatLng(validateLat(mLatitudeInput3.getText().toString()), validateLon(mLongitudeInput3.getText().toString())));
 			}
 			list.add(list.get(0));
 		}
 		
 		
 		return list;
+	}
+	
+	private double validateLat(String value){
+		
+		boolean containsDigit = false;
+	    if (value != null && !value.isEmpty()) {
+	        for (char c : value.toCharArray()) {
+	            if (containsDigit = Character.isDigit(c)) {
+	            	containsDigit = true;
+	                break;
+	            }
+	        }
+	    }
+		
+	    if(containsDigit == false){
+	    	return 0.0;
+	    }
+	    
+	    value = value.replaceAll("[^0-9.-]", "");
+	    
+	    double num = Double.valueOf(value);
+	    if(num <= -90){
+	    	num = -89.9999;
+	    }else if(num >= 90){
+	    	num = 89.9999;
+	    }
+		return num;				
+	}
+	
+	private double validateLon(String value){
+		
+		boolean containsDigit = false;
+	    if (value != null && !value.isEmpty()) {
+	        for (char c : value.toCharArray()) {
+	            if (containsDigit = Character.isDigit(c)) {
+	            	containsDigit = true;
+	                break;
+	            }
+	        }
+	    }
+		
+	    if(containsDigit == false){
+	    	return 0.0;
+	    }
+	    
+	    value = value.replaceAll("[^0-9.-]", "");
+	    
+	    double num = Double.valueOf(value);
+	    if(num <= -180){
+	    	num = -179.9999;
+	    }else if(num >= 180){
+	    	num = 179.9999;
+	    }
+		return num;			
 	}
 
 	public void setCoordinates(String coords) {

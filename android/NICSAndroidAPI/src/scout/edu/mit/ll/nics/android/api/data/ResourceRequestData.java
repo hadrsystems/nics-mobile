@@ -98,7 +98,7 @@ public class ResourceRequestData {
 	
 	public void setUserFull(String userfull) {
 		this.userfull = userfull;
- 	}		 	
+	}
 
 	public String getQuantity() {
 		return quantity;

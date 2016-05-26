@@ -44,8 +44,8 @@
     self.id = feature[@"id"];
 
     NSArray* coordinate =feature[@"geometry"][@"coordinates"];
-    self.latitude = (NSNumber*) [coordinate objectAtIndex:1];
-    self.longitude = (NSNumber*) [coordinate objectAtIndex:0];
+    self.latitude = (NSNumber*) [coordinate objectAtIndex:1];   //nsnumber
+    self.longitude = (NSNumber*) [coordinate objectAtIndex:0];  //nsnumber
     
     self.geometry_name = feature[@"geometry_name"];
     self.uid = feature[@"properties"][@"uid"];
@@ -53,11 +53,13 @@
     self.name = feature[@"properties"][@"name"];
     self.propDescription = feature[@"properties"][@"description"];
     self.timestamp = feature[@"properties"][@"timestamp"];
-    self.speed = feature[@"properties"][@"speed"];
-    self.course = feature[@"properties"][@"course"];
+    self.speed = feature[@"properties"][@"speed"];  //nsnumber
+    self.course = feature[@"properties"][@"course"];    //nsnumber
     self.extendeddata = feature[@"properties"][@"extendeddata"];
     self.styler = feature[@"properties"][@"styler"];
-    self.age = feature[@"properties"][@"age"];
+    self.age = feature[@"properties"][@"age"];  //nsnumber
+    
+    self.propertiesDictionary = feature;
 }
 
 @end

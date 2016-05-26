@@ -130,6 +130,7 @@
         android:textAllCaps="true"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:typeface="normal" />
+        android:typeface="normal"
+        android:visibility="invisible" />
 
 </RelativeLayout>

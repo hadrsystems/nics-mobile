@@ -53,7 +53,6 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import scout.edu.mit.ll.nics.android.MainActivity;
 import scout.edu.mit.ll.nics.android.R;
 import scout.edu.mit.ll.nics.android.adapters.WeatherReportListAdapter;
-import scout.edu.mit.ll.nics.android.api.data.WeatherReportData;
 import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
 import scout.edu.mit.ll.nics.android.api.payload.forms.WeatherReportPayload;
 import scout.edu.mit.ll.nics.android.api.tasks.MarkAllReportsAsReadTask;
@@ -70,8 +69,10 @@ public class WeatherReportListFragment extends FormListFragment {
 	private WeatherReportListAdapter mWeatherReportListAdapter;
 	private boolean weatherReportReceiverFilter;
 	private IntentFilter mWeatherReportReceiverFilter;
+	private IntentFilter mWeatherReportProgressReceiverFilter;
 	private IntentFilter mIncidentSwitchedReceiverFilter;
 	private IntentFilter mMarkAllAsReadReceiverFilter;
+	private IntentFilter mSentReportsClearedFilter;
 	private long mLastIncidentId = 0;
 	protected boolean mIsFirstLoad = true;
 	protected MarkAllReportsAsReadTask MarkMessagesAsReadTask = null;
@@ -88,13 +89,17 @@ public class WeatherReportListFragment extends FormListFragment {
 		settings = mContext.getSharedPreferences(Constants.PREFERENCES_NAME, Constants.PREFERENCES_MODE);
 		
 		mWeatherReportReceiverFilter = new IntentFilter(Intents.nics_NEW_WEATHER_REPORT_RECEIVED);
+		mWeatherReportProgressReceiverFilter = new IntentFilter(Intents.nics_WEATHER_REPORT_PROGRESS);
 		mIncidentSwitchedReceiverFilter = new IntentFilter(Intents.nics_INCIDENT_SWITCHED);
 		mMarkAllAsReadReceiverFilter = new IntentFilter(Intents.nics_MARKING_ALL_REPORTS_READ_FINISHED);
+		mSentReportsClearedFilter = new IntentFilter(Intents.nics_SENT_WEATHER_REPORTS_CLEARED);
 		
 		if(!weatherReportReceiverFilter) {
 			mContext.registerReceiver(weatherReportReceiver, mWeatherReportReceiverFilter);
+			mContext.registerReceiver(weatherReportProgressReceiver, mWeatherReportProgressReceiverFilter);
 			mContext.registerReceiver(incidentChangedReceiver, mIncidentSwitchedReceiverFilter);
 			mContext.registerReceiver(markAllAsReadReceiver, mMarkAllAsReadReceiverFilter);
+			mContext.registerReceiver(sentReportsClearedReceiver, mSentReportsClearedFilter);
 			weatherReportReceiverFilter = true;
 		}
 		setHasOptionsMenu(true);
@@ -183,8 +188,10 @@ public class WeatherReportListFragment extends FormListFragment {
 		
 		if(!weatherReportReceiverFilter) {
 			mContext.registerReceiver(weatherReportReceiver, mWeatherReportReceiverFilter);
+			mContext.registerReceiver(weatherReportProgressReceiver, mWeatherReportProgressReceiverFilter);
 			mContext.registerReceiver(incidentChangedReceiver, mIncidentSwitchedReceiverFilter);
 			mContext.registerReceiver(markAllAsReadReceiver, mMarkAllAsReadReceiverFilter);
+			mContext.registerReceiver(sentReportsClearedReceiver, mSentReportsClearedFilter);
 			weatherReportReceiverFilter = true;
 		}
 		
@@ -211,8 +218,10 @@ public class WeatherReportListFragment extends FormListFragment {
 		
 		if(weatherReportReceiverFilter) {
 			mContext.unregisterReceiver(weatherReportReceiver);
+			mContext.unregisterReceiver(weatherReportProgressReceiver);
 			mContext.unregisterReceiver(incidentChangedReceiver);
 			mContext.unregisterReceiver(markAllAsReadReceiver);
+			mContext.unregisterReceiver(sentReportsClearedReceiver);
 			weatherReportReceiverFilter = false;
 		}
 	}
@@ -243,18 +252,35 @@ public class WeatherReportListFragment extends FormListFragment {
 				payload.setSendStatus(ReportSendStatus.lookUp(bundle.getInt("sendStatus", 0)));
 				payload.parse();
 				
-				WeatherReportData data = payload.getMessageData();
-
-				if(data.getUser().equals(mDataManager.getUsername()) && payload.getSeqTime() >= mDataManager.getLastWeatherReportTimestamp() - 10000) {
-					mWeatherReportListAdapter.clear();
-					mWeatherReportListAdapter.addAll(mDataManager.getWeatherReportHistoryForIncident(mDataManager.getActiveIncidentId()));
-					mWeatherReportListAdapter.addAll(mDataManager.getAllWeatherReportStoreAndForwardReadyToSend(mDataManager.getActiveIncidentId()));
-				} else {
-					mWeatherReportListAdapter.add(payload);
-				}
+				mWeatherReportListAdapter.add(payload);
 				mWeatherReportListAdapter.sort(reportComparator);
-				
 				mWeatherReportListAdapter.notifyDataSetChanged();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	};
+	
+	private BroadcastReceiver weatherReportProgressReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			try {
+				Bundle bundle = intent.getExtras();
+				long reportId = bundle.getLong("reportId");
+				double progress = bundle.getDouble("progress");
+				boolean failed = bundle.getBoolean("failed");
+
+				for (WeatherReportPayload payload : mWeatherReportListAdapter.getItems()) {
+					if (payload.getId() == reportId) {
+						payload.setProgress((int) Math.round(progress));
+						payload.setFailedToSend(failed);
+					}
+				}
+
+				if(mWeatherReportListAdapter != null) {
+					mWeatherReportListAdapter.notifyDataSetChanged();
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -278,6 +304,7 @@ public class WeatherReportListFragment extends FormListFragment {
 		mWeatherReportListAdapter.clear();
 		mWeatherReportListAdapter.addAll(mDataManager.getWeatherReportHistoryForIncident(currentIncidentId));
 		mWeatherReportListAdapter.addAll(mDataManager.getAllWeatherReportStoreAndForwardReadyToSend(currentIncidentId));
+		mWeatherReportListAdapter.addAll(mDataManager.getAllWeatherReportStoreAndForwardHasSent(currentIncidentId));
 		mWeatherReportListAdapter.sort(reportComparator);
 
 		if(mIsFirstLoad) {
@@ -307,6 +334,22 @@ public class WeatherReportListFragment extends FormListFragment {
 			});
 		}
 	}
+	
+	private BroadcastReceiver sentReportsClearedReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			long reportId = intent.getExtras().getLong("reportId");
+			for(int i = 0; i < mWeatherReportListAdapter.getCount() ; i++){
+				WeatherReportPayload payload = mWeatherReportListAdapter.getItem(i);
+				if(payload.getFormId() == reportId && payload.isNew() == false){
+					mWeatherReportListAdapter.remove(payload);
+					mWeatherReportListAdapter.notifyDataSetChanged();
+					return;
+				}
+			}	
+		}
+	};
 	
 	private Comparator<? super WeatherReportPayload> reportComparator = new Comparator<WeatherReportPayload>() {
 		

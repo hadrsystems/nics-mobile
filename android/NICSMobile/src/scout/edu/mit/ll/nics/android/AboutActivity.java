@@ -30,6 +30,7 @@
  */
 package scout.edu.mit.ll.nics.android;
 
+import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,7 +38,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import scout.edu.mit.ll.nics.android.api.RestClient;
 import scout.edu.mit.ll.nics.android.fragments.AboutFragment;
 
 public class AboutActivity extends ActionBarActivity {
@@ -59,15 +62,42 @@ public class AboutActivity extends ActionBarActivity {
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		JSONObject object = mAboutFragment.toJson();
-		try {
+		try {			
 			object.put("funding", getResources().getString(R.string.funding));
-			object.put("google", GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(this));
 			object.put("icons", getResources().getString(R.string.nounproject));
+			
+			String googleLegal = GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(this);
+			if(googleLegal != null){
+				object.put("google", googleLegal);
+			}else{
+				RestClient.getGoogleMapsLegalInfo(new AsyncHttpResponseHandler() {
+					
+						@Override
+						public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+							String content = (responseBody != null) ? new String(responseBody) : "error";
+							JSONObject object = mAboutFragment.toJson();
+							try {			
+								object.put("funding", getResources().getString(R.string.funding));
+							    String cleanString = content.replaceAll("\\<.*?>","");
+							    cleanString = cleanString.replace("\n", "");
+								object.put("google", cleanString);
+								object.put("icons", getResources().getString(R.string.nounproject));
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+							mAboutFragment.populate(object.toString(), 0, false);
+						}
+						
+						@Override
+						public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+							String content = (responseBody != null) ? new String(responseBody) : "error";
+					}
+				});
+			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mAboutFragment.populate(object.toString(), 0, false);
 	}
-	
 }

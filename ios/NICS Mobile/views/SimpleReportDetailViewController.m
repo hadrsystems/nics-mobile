@@ -194,8 +194,13 @@
     
     [self configureView];
     
-    _scrollView.contentSize = CGSizeMake(512, _contentView.frame.size.height + _imageSelectionView.frame.size.height + _imageView.frame.size.height);//self.scrollView.frame.size.height);
-    
+    if([_dataManager isIpad]){
+        _scrollView.contentSize = CGSizeMake(512, _contentView.frame.size.height + _imageSelectionView.frame.size.height + _imageView.frame.size.height);//self.scrollView.frame.size.height);
+    }else{
+        self.navigationItem.hidesBackButton = YES;
+        UIBarButtonItem *backBtn =[[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonSystemItemCancel target:self action:@selector(handleBack:)];
+        self.navigationItem.leftBarButtonItem=backBtn;
+    }
     
 }
 
@@ -227,12 +232,13 @@
 
 - (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
 {
-    NSLog(@"%@", @"Starting download");
+    NSLog(@"%@%@", @"Starting download: ", url );
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:500];
     
     [request setValue:RestClient.authValue forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
+    [request setAllHTTPHeaderFields:[self getCookies]];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
         completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -260,6 +266,29 @@
         }
 
      ];
+}
+
+-(NSDictionary*)getCookies{
+    DataManager* dataManager = [DataManager getInstance];
+    
+    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [dataManager getCookieDomainForCurrentServer], NSHTTPCookieDomain,
+                                @"/", NSHTTPCookiePath,  // IMPORTANT!
+                                @"iPlanetDirectoryPro", NSHTTPCookieName,
+                                [dataManager getAuthToken], NSHTTPCookieValue,
+                                nil];
+    NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:properties];
+    
+    NSDictionary *properties2 = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [dataManager getCookieDomainForCurrentServer], NSHTTPCookieDomain,
+                                 @"/", NSHTTPCookiePath,  // IMPORTANT!
+                                 @"AMAuthCookie", NSHTTPCookieName,
+                                 [dataManager getAuthToken], NSHTTPCookieValue,
+                                 nil];
+    NSHTTPCookie *cookie2 = [NSHTTPCookie cookieWithProperties:properties2];
+    
+    NSArray* cookies = [NSArray arrayWithObjects: cookie,cookie2, nil];
+    return [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
 }
 
 - (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
@@ -391,7 +420,11 @@
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)button {
-    [self.navigationController popViewControllerAnimated:YES];
+    if(self.hideEditControls == false){
+        [self showCancelAlertView];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)cancelTabletButtonPressed {
@@ -484,6 +517,48 @@
 - (void)keyboardWillBeHidden:(NSNotification*)notification {
     
     [Utils AdjustViewForKeyboard:self.view :FALSE:_originalFrame :notification];
+}
+
+-(void) showCancelAlertView{
+    UIAlertController * alert= [UIAlertController alertControllerWithTitle:@"Cancel Report" message:@"Your report progress will be lost if you leave the report." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* saveAndCloseButton = [UIAlertAction actionWithTitle:@"Save Draft And Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        
+        if([_dataManager isIpad]){
+            [self saveTabletDraftButtonPressed];
+        }else{
+            [self saveDraftButtonPressed:nil];
+        }
+    }];
+    
+    UIAlertAction* closeButton = [UIAlertAction actionWithTitle:@"Don't Save And Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        
+        if([_dataManager isIpad]){
+            [[IncidentButtonBar GetIncidentCanvasController] SetCanvasToGeneralMessageFromButtonBar];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+    
+    UIAlertAction* continueButton = [UIAlertAction actionWithTitle:@"Continue Editing" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        
+    }];
+    
+    [alert addAction:saveAndCloseButton];
+    [alert addAction:closeButton];
+    [alert addAction:continueButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+- (void) handleBack:(id)sender
+{
+    if(self.hideEditControls == false){
+        [self showCancelAlertView];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

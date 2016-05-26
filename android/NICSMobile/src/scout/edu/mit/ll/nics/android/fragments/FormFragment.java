@@ -522,6 +522,10 @@ public class FormFragment extends Fragment implements OnFocusChangeListener {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		
+		if(data == null){
+			return;
+		}
+		
 		if (requestCode == 200 && resultCode == 0) {
 			for(FormWidget widget : mWidgets) {
 				if(widget.getClass().getName().equals(FormColorPicker.class.getName())) {
@@ -542,5 +546,4 @@ public class FormFragment extends Fragment implements OnFocusChangeListener {
 			}
 		}
 	}
-
 }

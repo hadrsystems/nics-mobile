@@ -129,6 +129,9 @@ double lastHitTestTime;
 }
 
 - (NSString *)getData{
+    if(_selectedColor == nil){
+        _selectedHexColor = @"#000000";
+    }
     return _selectedHexColor;
 }
 

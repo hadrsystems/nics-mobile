@@ -94,9 +94,14 @@ static DataManager *dataManager;
 }
 
 - (IBAction)LogoutButtonPressed:(id)sender {
-    [self dismissViewControllerAnimated:NO completion:nil];
-    [[IncidentButtonBar GetOverview] navigateBackToLoginScreen];
-    [IncidentButtonBar ClearAllViews];
+    if([dataManager getIsIpad]){
+        [self dismissViewControllerAnimated:NO completion:nil];
+        [[IncidentButtonBar GetOverview] navigateBackToLoginScreen];
+        [IncidentButtonBar ClearAllViews];
+    }else{
+        UIViewController *myController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"];
+        [self presentViewController:myController animated:YES completion:nil];
+    }
     
     [dataManager setAutoLogin:FALSE];
     [RestClient logoutUser:[dataManager getUsername]];
@@ -114,10 +119,14 @@ static DataManager *dataManager;
         [_ClearLocalDataButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         _confirmDeleteActivated = true;
     }else{
-        [self dismissViewControllerAnimated:NO completion:nil];
-        [[IncidentButtonBar GetOverview] navigateBackToLoginScreen];
-        [IncidentButtonBar ClearAllViews];
-        
+        if([dataManager getIsIpad]){
+            [self dismissViewControllerAnimated:NO completion:nil];
+            [[IncidentButtonBar GetOverview] navigateBackToLoginScreen];
+            [IncidentButtonBar ClearAllViews];
+        }else{
+            UIViewController *myController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"];
+            [self presentViewController:myController animated:YES completion:nil];
+        }
         [dataManager setAutoLogin:FALSE];
         [RestClient logoutUser:[dataManager getUsername]];
         [dataManager disableAllPollingTimers];

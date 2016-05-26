@@ -116,6 +116,7 @@ import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.RestClient;
 import scout.edu.mit.ll.nics.android.api.data.MarkupFeature;
 import scout.edu.mit.ll.nics.android.api.data.Vector2;
+import scout.edu.mit.ll.nics.android.api.payload.TrackingLayerPayload;
 import scout.edu.mit.ll.nics.android.maps.markup.MapMarkupInfoWindowAdapter;
 import scout.edu.mit.ll.nics.android.maps.markup.MarkupBaseShape;
 import scout.edu.mit.ll.nics.android.maps.markup.MarkupCircle;
@@ -132,6 +133,7 @@ import scout.edu.mit.ll.nics.android.maps.markup.layers.SimpleReportLayer;
 import scout.edu.mit.ll.nics.android.maps.markup.tileprovider.MarkupFeatureTileProvider;
 import scout.edu.mit.ll.nics.android.maps.markup.tileprovider.MarkupWMSTileProvider;
 import scout.edu.mit.ll.nics.android.utils.Constants;
+import scout.edu.mit.ll.nics.android.utils.Constants.NavigationOptions;
 import scout.edu.mit.ll.nics.android.utils.EncryptedPreferences;
 import scout.edu.mit.ll.nics.android.utils.Intents;
 import scout.edu.mit.ll.nics.android.utils.LocationHandler;
@@ -164,6 +166,7 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 	private IntentFilter mCollabRoomSwitchedFilter;
 	private IntentFilter mIncidentSwitchedFilter;
 	private IntentFilter mLocalMapDataClearedFilter;
+	private IntentFilter mMarkupFailedToPostFilter;
 	private ImageButton mIncidentFocusButton;
 	protected Button mPickerCompleteButton;	
 	private boolean markerReceiverRegistered;
@@ -193,7 +196,6 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 	private TileOverlay tileOverlay;
 	private static TileOverlay wmsTileOverlay;
 	private InfoWindowAdapter mInfoWindowAdapter;
-	private Set<String> activeWFSLayers;
 
 	private MarkerOptions markerOptionsTabletReport = null;
 	private Marker markerTabletReport = null;
@@ -231,15 +233,18 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 		mCollabRoomSwitchedFilter = new IntentFilter(Intents.nics_COLLABROOM_SWITCHED);
 		mIncidentSwitchedFilter = new IntentFilter(Intents.nics_INCIDENT_SWITCHED);
 		mLocalMapDataClearedFilter = new IntentFilter(Intents.nics_LOCAL_MAP_FEATURES_CLEARED);
+		mMarkupFailedToPostFilter = new IntentFilter(Intents.nics_FAILED_TO_POST_MARKUP);
 		
 		if (!markerReceiverRegistered) {
+			Log.d("MarkupFragment", "receivers registereed onCreate");
 			mContext.registerReceiver(markupReceiver, mMarkupReceiverFilter);
 			mContext.registerReceiver(collabRoomSwitchedReceiver,mCollabRoomSwitchedFilter);
 			mContext.registerReceiver(incidentSwitchedReceiver,mIncidentSwitchedFilter);
 			mContext.registerReceiver(localMapDataClearedReceiver,mLocalMapDataClearedFilter);
+			mContext.registerReceiver(mapFeatureFailedToPostReceiver,mMarkupFailedToPostFilter);
 			markerReceiverRegistered = true;
 		}
-		addingMarkupEnabled = mDataManager.getOrgCapabilities().getMapMarkup();
+		addingMarkupEnabled = mDataManager.getSelectedCollabRoom().doIHaveMarkupPermission(mDataManager.getUserId());
 	}
 
 	@Override
@@ -421,14 +426,15 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 		super.onResume();
 		mDataManager.setNewMapAvailable(false);
 		mContext.registerReceiver(markupReceiver, mMarkupReceiverFilter);
-		markerReceiverRegistered = true;
 		setUpMapIfNeeded();
 
 		if (!markerReceiverRegistered) {
+			Log.d("MarkupFragment", "receivers registereed onResume");
 			mContext.registerReceiver(markupReceiver, mMarkupReceiverFilter);
 			mContext.registerReceiver(collabRoomSwitchedReceiver,mCollabRoomSwitchedFilter);
 			mContext.registerReceiver(incidentSwitchedReceiver,mIncidentSwitchedFilter);
 			mContext.registerReceiver(localMapDataClearedReceiver,mLocalMapDataClearedFilter);
+			mContext.registerReceiver(mapFeatureFailedToPostReceiver,mMarkupFailedToPostFilter);
 			markerReceiverRegistered = true;
 		}
 		
@@ -448,8 +454,14 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 			mRenderMarkupFeaturesTask = null;
 		}
 
+		
 		if (markerReceiverRegistered) {
+			Log.d("MarkupFragment", "receivers unregistereed onPause");
 			mContext.unregisterReceiver(markupReceiver);
+			mContext.unregisterReceiver(collabRoomSwitchedReceiver);
+			mContext.unregisterReceiver(incidentSwitchedReceiver);
+			mContext.unregisterReceiver(localMapDataClearedReceiver);
+			mContext.unregisterReceiver(mapFeatureFailedToPostReceiver);
 			mCoordinateManager.unregisterReceivers();
 			markerReceiverRegistered = false;
 		}
@@ -525,7 +537,7 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 			if (mCurrentShape == null) {
 				Bitmap symbolBitmap = generateRotatedBitmap(mCurrentSymbolResourceId, 0);
 				String symbolPath = Symbols.ALL.getKey(mCurrentSymbolResourceId);
-				MarkupSymbol symbol = new MarkupSymbol(mDataManager, "Marker", coordinate, symbolBitmap, symbolPath, new int[] { 255, 255, 255, 255 });
+				MarkupSymbol symbol = new MarkupSymbol(mDataManager, mMap, "Marker", coordinate, symbolBitmap, symbolPath, new int[] { 255, 255, 255, 255 });
 				symbol.setMarker(mMap.addMarker(symbol.getOptions()));
 				symbol.setType(MarkupType.marker);
 				
@@ -776,6 +788,7 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 									main.mOpenedSimpleReportPayload = data.getString("payload");
 									
 									//all three navigation calls from map to report are not working on phone ui right now.
+									//locks up in MainActivity around line 1958 : mFragmentManager.executePendingTransactions();
 									
 //									main.onNavigationItemSelected(NavigationOptions.GENERALMESSAGE.getValue(), -1);
 								} else if(type.equals("dmgrpt")) {
@@ -846,7 +859,7 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 
 			mPickerCompleteButton.setVisibility(View.INVISIBLE);
 			
-			if(mDataManager.getSelectedCollabRoomName().equals(getString(R.string.no_selection))){
+			if(mDataManager.getSelectedCollabRoom().getName().equals(getString(R.string.no_selection))){
 				mIncidentFocusButton.setVisibility(View.INVISIBLE);
 			}else{
 				mIncidentFocusButton.setVisibility(View.VISIBLE);
@@ -996,7 +1009,7 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 //		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 //			activeWFSLayers = settings.getStringSet(Constants.nics_MAP_ACTIVE_WFS_LAYERS, null);
 //		} else {
-			activeWFSLayers = new HashSet<String>(Arrays.asList(settings.getPreferenceString(Constants.nics_MAP_ACTIVE_WFS_LAYERS, "").split(";")));
+//			activeWFSLayers = new HashSet<String>(Arrays.asList(settings.getPreferenceString(Constants.nics_MAP_ACTIVE_WFS_LAYERS, "").split(";")));
 //		}
 
 		Handler handler = new Handler();
@@ -1017,24 +1030,22 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 	private Runnable postInitialMarkupLoad = new Runnable() {
 		@Override
 		public void run() {
-			if (activeWFSLayers != null) {
-				for (String layerName : activeWFSLayers) {
-					try {
-						if (layerName.equals(getResources().getString(R.string.wfslayer_nics_simple_report_layername))) {
-							addSimpleReportLayer(layerName);
-						} else if (layerName.equals(getResources().getString(R.string.wfslayer_nics_damage_report_layername))) {
-							addDamageReportLayer(layerName);
+			for (TrackingLayerPayload layer : mDataManager.getTrackingLayers()) {
+				try {
+					if(layer.isActive()){
+						if (layer.getDisplayname().equals(getResources().getString(R.string.wfslayer_nics_simple_report_title))) {
+							addSimpleReportLayer(layer);
+						} else if (layer.getDisplayname().equals(getResources().getString(R.string.wfslayer_nics_damage_report_title))) {
+							addDamageReportLayer(layer);
 						} else {
-							addMapLayer(layerName);
+							addMapLayer(layer);
 						}
-					} catch (Exception e) {
-						mDataManager.addPersonalHistory("Failed to add WFS Layer " + layerName + " to the map.");
-						Log.e(Constants.nics_DEBUG_ANDROID_TAG, "Failed to add WFS Layer " + layerName + " to the map.");
 					}
+				} catch (Exception e) {
+					mDataManager.addPersonalHistory("Failed to add WFS Layer " + layer.getLayername() + " to the map.");
+					Log.e(Constants.nics_DEBUG_ANDROID_TAG, "Failed to add WFS Layer " + layer.getLayername() + " to the map.");
 				}
-				activeWFSLayers = null;
 			}
-
 		}
 	};
 
@@ -1071,20 +1082,20 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 //		}
 	}
 
-	public static void addMapLayer(String layerName) {
-		MarkupLayer layer = mMarkupLayers.remove(layerName);
+	public static void addMapLayer(TrackingLayerPayload layerPayload) {
+		MarkupLayer layer = mMarkupLayers.remove(layerPayload.getDisplayname());
 		if(layer != null) {
 			layer.unregister();
 		}
-		mMarkupLayers.put(layerName, new MarkupLayer(MainActivity.getAppContext(), layerName, mMap));
+		mMarkupLayers.put(layerPayload.getDisplayname(), new MarkupLayer(MainActivity.getAppContext(), layerPayload, mMap));
 	}
 
-	public static void addSimpleReportLayer(String layerName) {
-		mMarkupLayers.put(layerName, new SimpleReportLayer(MainActivity.getAppContext(), layerName, mMap));
+	public static void addSimpleReportLayer(TrackingLayerPayload layerPayload) {
+		mMarkupLayers.put(layerPayload.getDisplayname(), new SimpleReportLayer(MainActivity.getAppContext(), layerPayload, mMap));
 	}
 	
-	public static void addDamageReportLayer(String layerName) {
-		mMarkupLayers.put(layerName, new DamageReportLayer(MainActivity.getAppContext(), layerName, mMap));
+	public static void addDamageReportLayer(TrackingLayerPayload layerPayload) {
+		mMarkupLayers.put(layerPayload.getDisplayname(), new DamageReportLayer(MainActivity.getAppContext(), layerPayload, mMap));
 	}
 
 	public static void removeMapLayer(String string) {
@@ -1145,14 +1156,15 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 		markerOptionsTabletReport = null;
 		markerTabletReport = null;
 		
-		if (markerReceiverRegistered) {
-			mContext.unregisterReceiver(markupReceiver);
-			mContext.unregisterReceiver(collabRoomSwitchedReceiver);
-			mContext.unregisterReceiver(incidentSwitchedReceiver);
-			mContext.unregisterReceiver(localMapDataClearedReceiver);
-			mCoordinateManager.unregisterReceivers();
-			markerReceiverRegistered = false;
-		}
+//		if (markerReceiverRegistered) {
+//			mContext.unregisterReceiver(markupReceiver);
+//			mContext.unregisterReceiver(collabRoomSwitchedReceiver);
+//			mContext.unregisterReceiver(incidentSwitchedReceiver);
+//			mContext.unregisterReceiver(localMapDataClearedReceiver);
+//			mContext.unregisterReceiver(mapFeatureFailedToPostReceiver);
+//			mCoordinateManager.unregisterReceivers();
+//			markerReceiverRegistered = false;
+//		}
 
 		mDataManager.stopPollingMarkup();
 		if (mRenderMarkupFeaturesTask != null) {
@@ -1170,7 +1182,7 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 			try {
 								
 				Log.i(Constants.nics_DEBUG_ANDROID_TAG, "Rendering shapes");
-				if (intent.getLongExtra("collabroomId", -99) == mDataManager.getSelectedCollabRoomId()) {
+				if (intent.getLongExtra("collabroomId", -99) == mDataManager.getSelectedCollabRoom().getCollabRoomId()) {
 					String[] addMarkup = intent.getStringArrayExtra("featuresToAdd");
 					String[] removeMarkup = intent.getStringArrayExtra("featuresToRemove");
 					if (addMarkup != null) {
@@ -1471,7 +1483,24 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 					}
 
 					mFeatures.addAll(mDataManager.getAllMarkupFeaturesStoreAndForwardReadyToSend());
-					mFeatures.addAll(mDataManager.getMarkupHistoryForCollabroom(mDataManager.getSelectedCollabRoomId()));
+					
+					//Flippeding lat and lon values of draft features.
+					//currently the web api accepts these coordinates backwards. so they don't show up properly on mobile when they are a draft
+					//this can be removed once the lat lon web bug is fixed
+					for(int i = 0; i < mFeatures.size(); i++){
+						ArrayList<Vector2> latLonList = mFeatures.get(i).getGeometryVector2();
+						
+						for(int latlonIndex =0; latlonIndex < latLonList.size(); latlonIndex++){
+							double x = latLonList.get(latlonIndex).x;
+							double y = latLonList.get(latlonIndex).y;
+							
+							latLonList.get(latlonIndex).x = y;
+							latLonList.get(latlonIndex).y = x;
+						}
+						mFeatures.get(i).setGeometryVector2(latLonList);
+					}
+					
+					mFeatures.addAll(mDataManager.getMarkupHistoryForCollabroom(mDataManager.getSelectedCollabRoom().getCollabRoomId()));
 
 					if (mFeatures.size() > 0) {
 						mFirstLoad = false;
@@ -1719,54 +1748,67 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.mapmarkup_layer_provider) {
-			String[] wfsNameArray = getResources().getStringArray(R.array.wfslayer_title_array);
-			final String[] wfsLayer = getResources().getStringArray(R.array.wfslayer_array);
-			
+//			String[] wfsNameArray = getResources().getStringArray(R.array.wfslayer_title_array);
+//			final String[] wfsLayer = getResources().getStringArray(R.array.wfslayer_array);
 			
 			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-			boolean[] wfsActiveArray = new boolean[wfsLayer.length];
-
-			if (activeWFSLayers != null) {
-				for (String layer : activeWFSLayers) {
-					int index = ArrayUtils.indexOf(wfsLayer, layer);
-					if (index > ArrayUtils.INDEX_NOT_FOUND) {
-						wfsActiveArray[index] = true;
-					}
-				}
-			} else {
-				for (String layer : mMarkupLayers.keySet()) {
-					int index = ArrayUtils.indexOf(wfsLayer, layer);
-					if (index > ArrayUtils.INDEX_NOT_FOUND) {
-						wfsActiveArray[index] = true;
-					}
-				}
+			
+			ArrayList<TrackingLayerPayload> layerPayloads = mDataManager.getTrackingLayers();
+			
+			String[] wfsNameArray = new String[layerPayloads.size()];
+			boolean[] wfsActiveArray = new boolean[layerPayloads.size()];
+			
+			for(int i = 0; i < layerPayloads.size(); i++){
+				wfsNameArray[i] = layerPayloads.get(i).getDisplayname();
+				wfsActiveArray[i] = layerPayloads.get(i).isActive();
 			}
+			
+
+//			if (activeWFSLayers != null) {
+//				for (String layer : activeWFSLayers) {
+//					int index = ArrayUtils.indexOf(wfsLayer, layer);
+//					if (index > ArrayUtils.INDEX_NOT_FOUND) {
+//						wfsActiveArray[index] = true;
+//					}
+//				}
+//			} else {
+//				for (String layer : mMarkupLayers.keySet()) {
+//					int index = ArrayUtils.indexOf(wfsLayer, layer);
+//					if (index > ArrayUtils.INDEX_NOT_FOUND) {
+//						wfsActiveArray[index] = true;
+//					}
+//				}
+//			}
 
 			builder.setMultiChoiceItems(wfsNameArray, wfsActiveArray, new OnMultiChoiceClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-					String selectedLayer = wfsLayer[which];
+					TrackingLayerPayload selectedLayer = mDataManager.getTrackingLayers().get(which);
 					if (isChecked) {
-						if (selectedLayer.equals(getResources().getString(R.string.wfslayer_nics_simple_report_layername))) {
+						if (selectedLayer.getDisplayname().equals(getResources().getString(R.string.wfslayer_nics_simple_report_title))) {
 							addSimpleReportLayer(selectedLayer);
-						} else if (selectedLayer.equals(getResources().getString(R.string.wfslayer_nics_damage_report_layername))) {
+						} else if (selectedLayer.getDisplayname().equals(getResources().getString(R.string.wfslayer_nics_damage_report_title))) {
 							addDamageReportLayer(selectedLayer);
 						} else {
 							addMapLayer(selectedLayer);
 						}
 					} else {
-						removeMapLayer(selectedLayer);
+						removeMapLayer(selectedLayer.getDisplayname());
 					}
 					
-					EncryptedPreferences settings = new EncryptedPreferences(mContext.getSharedPreferences(Constants.nics_MAP_MARKUP_STATE, 0));
+					TrackingLayerPayload payload = mDataManager.getTrackingLayers().get(which);
+					payload.setActive(isChecked);
+					mDataManager.UpdateTrackingLayerData(payload);
+					
+//					EncryptedPreferences settings = new EncryptedPreferences(mContext.getSharedPreferences(Constants.nics_MAP_MARKUP_STATE, 0));
 //					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 //						editor.putStringSet(Constants.nics_MAP_ACTIVE_WFS_LAYERS, mMarkupLayers.keySet());
 //					} else {
-						String layers = "";
-						for (String layerName : mMarkupLayers.keySet()) {
-							layers += layerName + ";";
-						}
-						settings.savePreferenceString(Constants.nics_MAP_ACTIVE_WFS_LAYERS, layers);
+//						String layers = "";
+//						for (String layerName : mMarkupLayers.keySet()) {
+//							layers += layerName + ";";
+//						}
+//						settings.savePreferenceString(Constants.nics_MAP_ACTIVE_WFS_LAYERS, layers);
 //					}
 				}
 			});
@@ -1783,6 +1825,37 @@ public class MapMarkupFragment extends Fragment implements OnMapClickListener, O
 
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
+	
+	private BroadcastReceiver mapFeatureFailedToPostReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			
+			saveMapState();
+			
+			mMap.clear();
+			mFeatures.clear();
+			mMarkupShapes.clear();	
+			setUpMapIfNeeded();
+			
+			mShapesAdapter.notifyDataSetChanged();
+			
+			final AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+			alertDialog.setTitle("Feature Failed To Post");
+			alertDialog.setMessage(intent.getExtras().getString("message"));
+			alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getString(R.string.ok), new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					alertDialog.dismiss();
+				}
+			});
+			alertDialog.show();
+			
+		}
+	};
 	
 	private BroadcastReceiver collabRoomSwitchedReceiver = new BroadcastReceiver() {
 

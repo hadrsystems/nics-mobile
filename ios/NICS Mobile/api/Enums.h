@@ -83,7 +83,7 @@ typedef enum {
 } FormType;
 #define FormTypeArrayAbbrev @"NONE",@"ROC",@"RESC",@"ABC",@"TWO_15",@"SITREP",@"ASSGN",@"SR",@"FR",@"TASK",@"RESREQ",@"NINE_110",@"DR",@"UXO",@"SVRRPT",@"AGRRPT",@"MITAM",@"WR",nil
 
-#define FormTypeArrayFull @"Report on Condition",@"RESC",@"ABC",@"215",@"SITREP",@"Assignment Form",@"Simple Report",@"Field Report",@"Task",@"Resource Request",@"9110 - Notification Report",@"Damage Report",@"Explosive Report",@"Catan Survivor Request",@"Catan Survivor Aggrogate Request",@"MITAM",@"Weather Report",nil
+#define FormTypeArrayFull @"NONE",@"Report on Condition",@"RESC",@"ABC",@"215",@"SITREP",@"Assignment Form",@"Simple Report",@"Field Report",@"Task",@"Resource Request",@"9110 - Notification Report",@"Damage Report",@"Explosive Report",@"Catan Survivor Request",@"Catan Survivor Aggrogate Request",@"MITAM",@"Weather Report",nil
 
 +(NSString*) formTypeEnumToStringAbbrev:(FormType)enumVal;
 +(NSString*) formTypeEnumToStringFull:(FormType)enumVal;
@@ -105,7 +105,7 @@ typedef enum {
     polygon = 130,
     circle = 140,
     text = 150,
-    AaaReportMarkup = 160,
+    ExplosiveReportMarkup = 160,
     GeneralMessageMarkup = 170,
     DamageReportMarkup = 180
 } MarkupType;

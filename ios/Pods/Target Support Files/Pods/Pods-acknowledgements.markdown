@@ -67,7 +67,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-## Google-Maps-iOS-SDK
+## GoogleMaps
 
 If you use the Google Maps SDK for iOS in your application, you must
 include the attribution text as part of a legal notices section in your

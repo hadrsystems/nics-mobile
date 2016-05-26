@@ -42,6 +42,7 @@ import android.support.v7.widget.GridLayout.LayoutParams;
 import android.support.v7.widget.GridLayout.Spec;
 import android.text.Html;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -114,7 +115,9 @@ public class MapMarkupInfoWindowAdapter implements InfoWindowAdapter {
 				if(key.equals(mContext.getResources().getString(R.string.markup_timestamp))) {
 					value = DateFormat.format(Constants.nics_TIME_FORMAT, new Date(entry.getValue().getAsLong())).toString();
 				} else {
-					value = entry.getValue().getAsString();
+					if(entry.getValue() != null && entry.getValue().isJsonNull() == false ){
+						value = entry.getValue().getAsString();
+					}
 				}
 				
 				if(value != null && !value.isEmpty() && !key.equals("reportId") && !key.equals("type") && !key.equals("payload")) {
@@ -151,7 +154,7 @@ public class MapMarkupInfoWindowAdapter implements InfoWindowAdapter {
 			}
 			
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		
 		return mRootView;

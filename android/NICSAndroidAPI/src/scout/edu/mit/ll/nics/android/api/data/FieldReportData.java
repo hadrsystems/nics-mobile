@@ -459,7 +459,7 @@ public class FieldReportData {
 	public void setUserFull(String userfull) {
 		this.userfull = userfull;
 	}
-
+	
 	public String getStatus(){
 		return status;
 	}

@@ -52,6 +52,7 @@
             android:ems="5"
             android:hint="@string/markup_latitude"
             android:inputType="numberDecimal|numberSigned"
+            android:textColor="@color/white"
             android:textSize="14sp" />
 
         <EditText
@@ -62,6 +63,7 @@
             android:ems="5"
             android:hint="@string/markup_longitude"
             android:inputType="numberDecimal|numberSigned"
+            android:textColor="@color/white"
             android:textSize="14sp" />
 
         <ImageButton
@@ -110,7 +112,8 @@
             android:ems="5"
             android:hint="@string/markup_latitude"
             android:inputType="numberDecimal|numberSigned"
-            android:textSize="14sp" >
+            android:textSize="14sp"
+            android:textColor="@color/white" >
 
             <requestFocus />
         </EditText>
@@ -123,7 +126,8 @@
             android:ems="5"
             android:hint="@string/markup_longitude"
             android:inputType="numberDecimal|numberSigned"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColor="@color/white" />
 
         <ImageButton
             android:id="@+id/markupLRF1"
@@ -197,7 +201,8 @@
             android:ems="5"
             android:hint="@string/markup_radius"
             android:inputType="numberDecimal|numberSigned"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -217,7 +222,8 @@
             android:ems="5"
             android:hint="@string/markup_latitude"
             android:inputType="numberDecimal|numberSigned"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/markupLongitudeInput2"
@@ -227,7 +233,8 @@
             android:ems="5"
             android:hint="@string/markup_longitude"
             android:inputType="numberDecimal|numberSigned"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColor="@color/white" />
 
         <ImageButton
             android:id="@+id/markupLRF2"
@@ -274,7 +281,8 @@
             android:ems="5"
             android:hint="@string/markup_latitude"
             android:inputType="numberDecimal|numberSigned"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/markupLongitudeInput3"
@@ -284,7 +292,8 @@
             android:ems="5"
             android:hint="@string/markup_longitude"
             android:inputType="numberDecimal|numberSigned"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColor="@color/white" />
 
         <ImageButton
             android:id="@+id/markupLRF3"

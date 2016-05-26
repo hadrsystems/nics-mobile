@@ -32,31 +32,44 @@ package scout.edu.mit.ll.nics.android.api.handlers;
 
 import org.apache.http.Header;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import scout.edu.mit.ll.nics.android.api.DataManager;
 import scout.edu.mit.ll.nics.android.api.RestClient;
+import scout.edu.mit.ll.nics.android.api.data.ReportSendStatus;
+import scout.edu.mit.ll.nics.android.api.messages.ResourceRequestMessage;
+import scout.edu.mit.ll.nics.android.api.payload.forms.ResourceRequestPayload;
 
 public class ResourceRequestResponseHandler extends AsyncHttpResponseHandler {
 	private DataManager mDataManager;
+	private Context mContext;
 	private long mReportId;
 	
-	public ResourceRequestResponseHandler(DataManager dataManager, long reportId) {
+	public ResourceRequestResponseHandler(Context context, DataManager dataManager, long reportId) {
+		mContext = context;
 		mReportId = reportId;
 		mDataManager = dataManager;
 	}
-	
 
 	@Override
 	public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-		String content = (responseBody != null) ? new String(responseBody) : "";
 		Log.e("nicsRest", "Success to post Resource Request information");
-		Log.e("nicsRest", "Deleting: " + mReportId + " success: " + mDataManager.deleteResourceRequestStoreAndForward(mReportId));
-		mDataManager.addPersonalHistory("Resource Request successfully sent: " + content + "\n");
-		mDataManager.requestResourceRequestRepeating(mDataManager.getIncidentDataRate(), true);
+	
+		String content = (responseBody != null) ? new String(responseBody) : "";
+		ResourceRequestMessage message = new Gson().fromJson(content, ResourceRequestMessage.class);
+		for(ResourceRequestPayload payload : message.getReports()) {
+			mDataManager.deleteResourceRequestStoreAndForward(mReportId);
+			payload.setSendStatus(ReportSendStatus.SENT);
+			payload.setProgress(100);
+			payload.parse();
+			mDataManager.addResourceRequestToStoreAndForward(payload);
+		}
 		
+		mDataManager.requestResourceRequests();
 		RestClient.setSendingResourceRequests(false);
 	}
 
