@@ -142,16 +142,6 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>calTracking</string>
-			<key>Title</key>
-			<string>Enable California Tracking</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
 			<string>gpsEnabled</string>

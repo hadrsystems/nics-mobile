@@ -58,6 +58,12 @@ public class Intents {
 	public static final String nics_NEW_RESOURCE_REQUEST_RECEIVED = "nics_NEW_RESOURCE_REQUEST_RECEIVED";
 	public static final String nics_NEW_SIMPLE_REPORT_RECEIVED = "nics_NEW_SIMPLE_REPORT_RECEIVED";
 	public static final String nics_NEW_WEATHER_REPORT_RECEIVED = "nics_NEW_WEATHER_REPORT_RECEIVED";
+		
+	public static final String nics_SENT_SIMPLE_REPORTS_CLEARED = "nics_SENT_SIMPLE_REPORTS_CLEARED";
+	public static final String nics_SENT_DAMAGE_REPORTS_CLEARED = "nics_SENT_DAMAGE_REPORTS_CLEARED";
+	public static final String nics_SENT_FIELD_REPORTS_CLEARED = "nics_SENT_FIELD_REPORTS_CLEARED";
+	public static final String nics_SENT_RESOURCE_REQUESTS_CLEARED = "nics_SENT_RESOURCE_REQUESTS_CLEARED";
+	public static final String nics_SENT_WEATHER_REPORTS_CLEARED = "nics_SENT_WEATHER_REPORTS_CLEARED";
 	
 	public static final String nics_VIEW_OVERVIEW = "nics_VIEW_OVERVIEW";
 	public static final String nics_VIEW_SIMPLE_REPORTS_LIST = "nics_VIEW_SIMPLE_REPORTS_LIST";
@@ -85,10 +91,14 @@ public class Intents {
 	public static final String nics_SUCCESSFULLY_GET_INCIDENTS = "nics_SUCCESSFULLY_GET_INCIDENTS";
 	public static final String nics_FAILED_GET_COLLABROOMS = "nics_FAILED_GET_COLLABROOMS";
 	public static final String nics_FAILED_GET_INCIDENTS = "nics_FAILED_GET_INCIDENTS";
+	public static final String nics_FAILED_TO_POST_MARKUP = "nics_FAILED_TO_POST_MARKUP";
 	
 	public static final String nics_SHOW_INCIDENT_SELECT = "nics_SHOW_INCIDENT_SELECT";
 	public static final String nics_SIMPLE_REPORT_PROGRESS = "nics_SIMPLE_REPORT_PROGRESS";
 	public static final String nics_DAMAGE_REPORT_PROGRESS = "nics_DAMAGE_REPORT_PROGRESS";
+	public static final String nics_WEATHER_REPORT_PROGRESS = "nics_WEATHER_REPORT_PROGRESS";
+	public static final String nics_FIELD_REPORT_PROGRESS = "nics_FIELD_REPORT_PROGRESS";
+	public static final String nics_RESOURCE_REQUEST_PROGRESS = "nics_RESOURCE_REQUEST_PROGRESS";
 	public static final String nics_SUCCESSFUL_GET_USER_ORGANIZATION_INFO = "nics_SUCCESSFUL_GET_USER_ORGANIZATION_INFO";
 	public static final String nics_OPENAM_AUTH_TIMEOUT = "nics_OPENAM_AUTH_TIMEOUT";
 	

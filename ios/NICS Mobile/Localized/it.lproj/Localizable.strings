@@ -96,6 +96,9 @@
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "L9O-Sl-a8r"; */
 "L9O-Sl-a8r.text" = "#$%&! #$%&!";
 
+/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "LkN-rW-2Wn"; */
+"LkN-rW-2Wn.text" = "#$%&! #$%&! #$%&! #$%&! #$%&! #$%&!.";
+
 /* Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "MhW-5A-pco"; */
 "MhW-5A-pco.normalTitle" = "#$%&! #$%&!";
 
@@ -307,6 +310,9 @@
 /* Class = "UILabel"; text = "No Damage Reports have been posted in this incident yet."; ObjectID = "20l-MD-9Xg"; */
 "20l-MD-9Xg.text" = "+=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.";
 
+/* Class = "UINavigationItem"; title = "Explosive Reports"; ObjectID = "3dm-Xb-Cc1"; */
+"3dm-Xb-Cc1.title" = "+=+=+= +=+=+=";
+
 /* Class = "UINavigationItem"; title = "Map"; ObjectID = "3sG-7z-WY9"; */
 "3sG-7z-WY9.title" = "+=+=+=";
 
@@ -396,6 +402,9 @@
 
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "JZV-8h-oRi"; */
 "JZV-8h-oRi.text" = "+=+=+= +=+=+=";
+
+/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "KMh-4F-Wxu"; */
+"KMh-4F-Wxu.text" = "+=+=+= +=+=+= +=+=+= +=+=+= +=+=+= +=+=+=.";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "KNe-sX-U2w"; */
 "KNe-sX-U2w.text" = "+=+=+=";
@@ -698,6 +707,8 @@
 
 "Field Report" = "+=+=+= +=+=+=";
 
+"Explosives Report" = "+=+=+= +=+=+=";
+
 /* Shown in the report list view when a report is either a saved Draft, or is currently sending to NICS */
 "Draft" = "+=+=+=";
 
@@ -727,6 +738,8 @@
 "Delorme PLI" = "+=+=+= +=+=+=";
 
 "NICS Damage Surveys" = "+=+=+= +=+=+= +=+=+=";
+
+"NICS Explosive Reports" = "+=+=+= +=+=+= +=+=+=";
 
 "NICS General Messages" = "+=+=+= +=+=+= +=+=+=";
 
@@ -923,6 +936,64 @@
 "Major: 10 to 50 percent" = "+=+=+=: 10% - 50%";
 
 "Destroyed: 50+ percent" = "+=+=+=: > 50%";
+
+/* Explosive Report Form Fields */
+"Reporting Unit" = "+=+=+= +=+=+=";
+
+"Reporting Location" = "+=+=+= +=+=+=";
+
+"Contact Info" = "+=+=+= +=+=+=";
+
+"Explosive Type" = "+=+=+= +=+=+=";
+
+/* Explosive type drop down choices */
+"Select Explosive Type" = "+=+=+= +=+=+= +=+=+=";
+
+"Dropped" = "+=+=+=";
+
+"Projected" = "+=+=+=";
+
+"Placed" = "+=+=+=";
+
+"Possible IED" = "+=+=+= +=+=+=";
+
+"Thrown" = "+=+=+=";
+
+"Size" = "+=+=+=";
+
+"Shape" = "+=+=+=";
+
+"Color" = "+=+=+=";
+
+"Condition" = "+=+=+=";
+
+/* Condition drop down choices */
+"Select Condition" = "+=+=+= +=+=+=";
+
+"Intact" = "+=+=+=";
+
+"Leaking" = "+=+=+=";
+
+"CBRN Contamination" = "+=+=+= +=+=+=";
+
+"Resource Threatened" = "+=+=+= +=+=+=";
+
+"Impact On Mission" = "+=+=+= +=+=+= +=+=+=";
+
+"Protective Measures" = "+=+=+= +=+=+=";
+
+"Recommended Priority" = "+=+=+= +=+=+=";
+
+/* Recommended Priority drop down choices */
+"Select Recommended Priority" = "+=+=+= +=+=+= +=+=+=";
+
+"Immediate" = "+=+=+=";
+
+"Indirect" = "+=+=+=";
+
+"Minor" = "+=+=+=";
+
+"No Threat" = "+=+=+= +=+=+=";
 
 "Notes" = "+=+=+=";
 

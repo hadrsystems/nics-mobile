@@ -45,12 +45,16 @@
 
 @property bool readOnly;
 
+@property float marginSize;
+@property double doubleHitTestBuffer;
+@property double lastHitTestTime;
+
 - (void)configureFields;
 - (void)setData : (NSString*)lat : (NSString*) lon : (bool)readOnly;
--(void)setLatLon : (NSString*)lat : (NSString*) lon;
--(void)setLabel: (NSString*) text;
+- (void)setLatLon : (NSString*)lat : (NSString*) lon;
+- (void)setLabel: (NSString*) text;
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
--(void)cleanNotificationListener;
--(void)hideButtons;
+- (void)cleanNotificationListener;
+- (void)hideButtons;
 
 @end

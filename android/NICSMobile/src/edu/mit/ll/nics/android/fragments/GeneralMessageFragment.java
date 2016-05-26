@@ -243,6 +243,7 @@ public class GeneralMessageFragment extends Fragment {
 					
 					messageData = new SimpleReportData((new Gson().fromJson(mFormFragment.save().toString(), SimpleReportFormData.class)));
 					messageData.setUser(mDataManager.getUsername());
+					messageData.setUserFull(mDataManager.getUserNickname());
 					
 					payload = new SimpleReportPayload();
 					
@@ -266,6 +267,7 @@ public class GeneralMessageFragment extends Fragment {
 				case R.id.generalMessageSubmitButton:						
 					messageData = new SimpleReportData((new Gson().fromJson(mFormFragment.save().toString(), SimpleReportFormData.class)));
 					messageData.setUser(mDataManager.getUsername());
+					messageData.setUserFull(mDataManager.getUserNickname());
 					
 //					if(messageData.getFullpath() != null && !messageData.getFullpath().isEmpty()) {
 						if(isDraft) {
@@ -351,6 +353,7 @@ public class GeneralMessageFragment extends Fragment {
 			
 			mCurrentData = new SimpleReportData(new Gson().fromJson(mFormFragment.save().toString(), SimpleReportFormData.class));
 			mCurrentData.setUser(mDataManager.getUsername());
+			mCurrentData.setUserFull(mDataManager.getUserNickname());
 			
 			mCurrentPayload.setMessageData(mCurrentData);
 		} else {

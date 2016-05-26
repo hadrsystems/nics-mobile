@@ -49,6 +49,7 @@
 #import "FieldReportMessage.h"
 #import "WeatherReportMessage.h"
 #import "ResourceRequestMessage.h"
+#import "TrackingLayerMessage.h"
 #import "UserMessage.h"
 #import "OrganizationMessage.h"
 #import "WeatherPayload.h"
@@ -58,6 +59,7 @@
 #import "ActiveWfsLayerManager.h"
 #import "openAmAuth.h"
 #import "MultipartPostQueue.h"
+#import "WfsXmlParser.h";
 
 #import "DataManager.h"
 
@@ -96,7 +98,10 @@
 + (void)postMapMarkupFeatures;
 + (NSString *) deleteMarkupFeatureById:(NSString *)featureId;
 
-+ (void) getWFSData;
++ (void) getWFSDataLayers;
++ (void) getWfsDataForLayer: (TrackingLayerPayload*) layer;
++ (void) getActiveWFSData;
++ (void) getWfsDataToken: (TrackingLayerPayload*) layer;
 + (void) getUserOrgs:(NSNumber*) userId;
 
 + (void)postSimpleReports;

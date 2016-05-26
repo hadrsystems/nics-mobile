@@ -96,6 +96,9 @@
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "L9O-Sl-a8r"; */
 "L9O-Sl-a8r.text" = "!@#$!@#$ !@#$!@#$";
 
+/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "LkN-rW-2Wn"; */
+"LkN-rW-2Wn.text" = "!@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$ !@#$!@#$";
+
 /* Class = "UIButton"; normalTitle = "Browse Gallery"; ObjectID = "MhW-5A-pco"; */
 "MhW-5A-pco.normalTitle" = "!@#$!@#$ !@#$!@#$";
 
@@ -122,6 +125,9 @@
 
 /* Class = "UILabel"; text = "Remember Username"; ObjectID = "RKm-7P-Umu"; */
 "RKm-7P-Umu.text" = "!@#$!@#$ !@#$!@#$";
+
+/* Class = "UINavigationItem"; title = "UXO Reports"; ObjectID = "Rhx-eX-gmf"; */
+"Rhx-eX-gmf.title" = "!@#$!@#$ !@#$!@#$";
 
 /* Class = "UITableViewController"; title = "Damage Report List"; ObjectID = "Ru3-1u-Jg3"; */
 "Ru3-1u-Jg3.title" = "!@#$!@#$ !@#$!@#$ !@#$!@#$";
@@ -307,6 +313,9 @@
 /* Class = "UILabel"; text = "No Damage Reports have been posted in this incident yet."; ObjectID = "20l-MD-9Xg"; */
 "20l-MD-9Xg.text" = "No Damage Reports have been posted in this incident yet.";
 
+/* Class = "UINavigationItem"; title = "Explosive Reports"; ObjectID = "3dm-Xb-Cc1"; */
+"3dm-Xb-Cc1.title" = "Explosive Reports";
+
 /* Class = "UINavigationItem"; title = "Map"; ObjectID = "3sG-7z-WY9"; */
 "3sG-7z-WY9.title" = "Map";
 
@@ -396,6 +405,9 @@
 
 /* Class = "UILabel"; text = "Tracking Layer"; ObjectID = "JZV-8h-oRi"; */
 "JZV-8h-oRi.text" = "Tracking Layer";
+
+/* Class = "UILabel"; text = "No Explosive Reports have been posted in this incident yet."; ObjectID = "KMh-4F-Wxu"; */
+"KMh-4F-Wxu.text" = "No Explosive Reports have been posted in this incident yet.";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "KNe-sX-U2w"; */
 "KNe-sX-U2w.text" = "Name";
@@ -698,6 +710,8 @@
 
 "Field Report" = "Field Report";
 
+"Explosives Report" = "Explosive Report";
+
 /* Shown in the report list view when a report is either a saved Draft, or is currently sending to NICS */
 "Draft" = "Draft";
 
@@ -727,6 +741,8 @@
 "Delorme PLI" = "Delorme PLI";
 
 "NICS Damage Surveys" = "NICS Damage Surveys";
+
+"NICS Explosive Reports" = "NICS Explosive Reports";
 
 "NICS General Messages" = "NICS General Messages";
 
@@ -923,6 +939,64 @@
 "Major: 10 to 50 percent" = "Major: 10 to 50 percent";
 
 "Destroyed: 50+ percent" = "Destroyed: 50+ percent";
+
+/* Explosive Report Form Fields */
+"Reporting Unit" = "Reporting Unit";
+
+"Reporting Location" = "Reporting Location";
+
+"Contact Info" = "Contact Info";
+
+"Explosive Type" = "Explosive Type";
+
+/* Explosive type drop down choices */
+"Select Explosive Type" = "Select Explosive Type";
+
+"Dropped" = "Dropped";
+
+"Projected" = "Projected";
+
+"Placed" = "Placed";
+
+"Possible IED" = "Possible IED";
+
+"Thrown" = "Thrown";
+
+"Size" = "Size";
+
+"Shape" = "Shape";
+
+"Color" = "Color";
+
+"Condition" = "Condition";
+
+/* Condition drop down choices */
+"Select Condition" = "Select Condition";
+
+"Intact" = "Intact";
+
+"Leaking" = "Leaking";
+
+"CBRN Contamination" = "CBRN Contamination";
+
+"Resource Threatened" = "Resource Threatened";
+
+"Impact On Mission" = "Impact On Mission";
+
+"Protective Measures" = "Protective Measures";
+
+"Recommended Priority" = "Recommended Priority";
+
+/* Recommended Priority drop down choices */
+"Select Recommended Priority" = "Select Recommended Priority";
+
+"Immediate" = "Immediate";
+
+"Indirect" = "Indirect";
+
+"Minor" = "Minor";
+
+"No Threat" = "No Threat";
 
 "Notes" = "Notes";
 

@@ -67,6 +67,8 @@ public class MarkAllReportsAsReadTask extends AsyncTask<FormType,String,String> 
 		    	break;
 			case ABC:
 				break;
+			case AGRRPT:
+				break;
 			case ASSGN:
 				break;
 			case DR:
@@ -89,6 +91,8 @@ public class MarkAllReportsAsReadTask extends AsyncTask<FormType,String,String> 
 			case ROC:
 				break;
 			case SITREP:
+				break;
+			case SVRRPT:
 				break;
 			case TASK:
 				break;

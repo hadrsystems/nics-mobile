@@ -171,6 +171,8 @@ UIStoryboard *currentStoryboard;
     } else if([payload.status isEqual:[NSNumber numberWithInt:WAITING_TO_SEND]] && payload.progress < [NSNumber numberWithInt: 100]) {
         if(payload.progress == 0) {
             cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Sending", nil),@">",data.user];
+        }else if([payload.progress doubleValue] >= 100){
+            cell.NameLabel.text = data.user;
         } else {
             cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%.2f%@%@",NSLocalizedString(@"Sending", nil), [payload.progress doubleValue],@">",data.user];
         }

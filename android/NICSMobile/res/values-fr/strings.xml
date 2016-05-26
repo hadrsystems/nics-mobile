@@ -51,6 +51,7 @@
 	<string name="FIELDREPORT">Field Report</string>
 	<string name="GENERALMESSAGE">General Message</string>
 	<string name="WEATHERREPORT">Weather Report</string>
+	<string name="CATANREQUEST">Catan Request</string>
 	<string name="LOGOUT">Logout</string>
 	<string name="MAPCOLLABORATION">Map Collaboration</string>
 	<string name="OVERVIEW">Overview</string>
@@ -117,6 +118,7 @@
 	<string name="no_weather_reports_exist">No weather reports exist - please click the \&#39;+\&#39; sign to create a new report.</string>
 	<string name="go_to_report_on_map">Go to report on map</string>
 	<string name="no_rooms_accessible">You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.</string>
+	<string name="no_catan_requests_exist">No Catan Requests exist.</string>
 	<string name="n_a">N/A</string>
 	<!-- Don't Translate -->
 	<string name="select_an_incident">Select an Incident</string>

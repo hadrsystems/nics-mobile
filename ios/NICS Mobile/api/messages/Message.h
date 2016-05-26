@@ -39,6 +39,6 @@
 @interface Message : JSONModel
 
 @property int count;
-@property NSString* message;
+@property NSString<Optional>* message;
 
 @end

@@ -338,6 +338,8 @@ static NSDictionary *simpleReportCategories;
         return polygon;
     } else if([type isEqualToString:@"label"]) {
         return text;
+    } else if([type isEqualToString:@"Explosive Report"]) {
+        return ExplosiveReportMarkup;
     } else if([type isEqualToString:@"General Message"]) {
         return GeneralMessageMarkup;
     }else if([type isEqualToString:@"Damage Report"]) {

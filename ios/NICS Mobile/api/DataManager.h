@@ -231,6 +231,8 @@
 - (void) removeAllFeaturesInCollabroom:(NSNumber*)collabRoomId;
 
 
+
+
 - (BOOL)addPersonalLogMessage:(ChatPayload *) payload;
 
 
@@ -272,6 +274,7 @@
 - (NSMutableDictionary *)getCollabroomList;
 - (NSMutableDictionary *)getCollabroomNamesList;
 - (NSMutableArray *)getCollabroomPayloadArray;
+- (CollabroomPayload *)getActiveCollabroomPayload;
 
 - (NSString *)getServerFromSettings;
 - (NSString *)getAuthServerFromSettings;
@@ -285,6 +288,9 @@
 + (int)getMdtUpdateFrequencyFromSettings;
 + (NSNumber *)getWfsUpdateFrequencyFromSettings;
 + (bool)getCalTrackingEnabledFromSettings;
+
+- (bool)getTrackingLayerEnabled: (NSString*) layerDisplayName;
+- (void)setTrackingLayerEnabled: (NSString*) layerDisplayName : (bool)enabled;
 
 -(void)setOverviewController:(UINavigationController *)controller;
 -(UINavigationController*)getOverviewController;

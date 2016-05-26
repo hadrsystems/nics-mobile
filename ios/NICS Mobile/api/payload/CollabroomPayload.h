@@ -47,5 +47,9 @@
 @property NSNumber *usersessionid;
 @property NSString* name;
 @property NSString* created;
+@property NSArray<NSNumber *>* adminUsers;
+@property NSArray<NSNumber *>* readWriteUsers;
+
+-(bool)doIHaveMarkupPermission:(NSNumber*)userId;
 
 @end

@@ -51,6 +51,7 @@
 	<string name="FIELDREPORT">Informe de campo</string>
 	<string name="GENERALMESSAGE">Mensaje general</string>
 	<string name="WEATHERREPORT">Weather Report</string>
+	<string name="CATANREQUEST">Catan Request</string>
 	<string name="LOGOUT">Desconexión</string>
 	<string name="MAPCOLLABORATION">Map Collaboration</string>
 	<string name="OVERVIEW">Descripción general</string>
@@ -118,6 +119,7 @@
 	<string name="no_weather_reports_exist">No weather reports exist - please click the \&#39;+\&#39; sign to create a new report.</string>
 	<string name="go_to_report_on_map">Go to report on map</string>
 	<string name="no_rooms_accessible">You do not have access to any collaboration rooms for this incident. Please contact the owner of this incident.</string>
+	<string name="no_catan_requests_exist">No Catan Requests exist.</string>
 	<string name="n_a">N/A</string>
 	<!-- Don't Translate -->
 	<string name="select_an_incident">Selecciona incidencia</string>
@@ -278,4 +280,9 @@
 	<string name="markup_speed">Velocidad:</string>
 	<string name="markup_description">Descripción:</string>
 	<string name="markup_press_to_view">Press to view message…</string>
+	<string name="about_legal_section_google_display_name">Legal Notices - Google Maps(es translate)</string>
+	<string name="about_funding_display_name">(es translate)</string>
+	<string name="about_google_display_name">(es translate)</string>
+	<string name="about_legal_section_icons_display_name">Legal Notice - Icons(es translate)</string>
+	<string name="about_icons_display_name">(es translate)</string>
 </resources>

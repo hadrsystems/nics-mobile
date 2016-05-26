@@ -33,4 +33,9 @@
 <resources>
 	<!-- SECTION: Uncategorized -->
 	<string name="date_range">+=+=+=</string>
+	<string name="about_legal_section_google_display_name">Legal Notices - Google Maps(it translate)</string>
+	<string name="about_funding_display_name">(it translate)</string>
+	<string name="about_google_display_name">(it translate)</string>
+	<string name="about_legal_section_icons_display_name">Legal Notice - Icons(it translate)</string>
+	<string name="about_icons_display_name">(it translate)</string>
 </resources>

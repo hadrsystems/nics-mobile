@@ -177,7 +177,7 @@ public class ChatListFragment extends Fragment {
 						chatEmpty = false;
 					}
 					
-					String collabRoomName = mDataManager.getSelectedCollabRoomName();
+					String collabRoomName = mDataManager.getSelectedCollabRoom().getName();
 					mInputField.setText("");
 					
 					ChatPayload data = mDataManager.addChatMsgToStoreAndForward(chatMessage, collabRoomName);
@@ -333,7 +333,7 @@ public class ChatListFragment extends Fragment {
 					}else if(mostRecentPulledChatHistory.size() <= 0){
 						ChatPayload emptyChat = new ChatPayload();
 						emptyChat.setNickname("");
-						if(mDataManager.getSelectedCollabRoomId() == -1){
+						if(mDataManager.getSelectedCollabRoom().getCollabRoomId() == -1){
 							emptyChat.setmessage(getString(R.string.select_collabroom_to_join_your_teams_chat));
 						}else{
 							emptyChat.setmessage(getString(R.string.no_chat_messages_have_been_posted_in_this_room_yet));

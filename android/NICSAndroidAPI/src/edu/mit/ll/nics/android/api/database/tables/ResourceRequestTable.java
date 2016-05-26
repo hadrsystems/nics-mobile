@@ -173,6 +173,26 @@ public class ResourceRequestTable extends DatabaseTable <ResourceRequestPayload>
                         database);
     }
 
+    public ArrayList<ResourceRequestPayload> getAllDataHasSent (long collaborationRoomId, SQLiteDatabase database) {
+        String orderBy = "seqtime DESC";
+        String sqlSelection = "sendStatus==? AND incidentId==?";
+        String[] sqlSelectionArguments = {String.valueOf(ReportSendStatus.SENT.getId ()), String.valueOf(collaborationRoomId)};
+
+        return getData(sqlSelection, sqlSelectionArguments, orderBy, NO_LIMIT, database);
+    }
+
+    public ArrayList<ResourceRequestPayload> getAllDataHasSent (String orderBy,
+                                                           SQLiteDatabase database) {
+        String sqlSelection = "sendStatus==?";
+        String[] sqlSelectionArguments = {String.valueOf (ReportSendStatus.SENT.getId ())};
+
+        return getData (sqlSelection,
+                        sqlSelectionArguments,
+                        orderBy,
+                        NO_LIMIT,
+                        database);
+    }
+    
     @Override
     protected ArrayList<ResourceRequestPayload> getData (String   sqlSelection,
                                                 String[] sqlSelectionArguments,

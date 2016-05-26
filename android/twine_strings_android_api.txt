@@ -3,6 +3,18 @@
 		en = All
 		es = All
 		fr = All
+	[wfslayer_nics_simple_report_title]
+		en = NICS General Messages
+		es = NICS General Messages (es translate)
+		fr = NICS General Messages (fr translate)
+	[wfslayer_nics_uxo_report_title]
+		en = NICS Explosive Surveys
+		es = NICS Explosive Surveys (es translate)
+		fr = NICS Explosive Surveys (fr translate)
+	[wfslayer_nics_damage_report_title]
+		en = NICS Damage Surveys
+		es = NICS Damage Surveys (es translate)
+		fr = NICS Damage Surveys (fr translate)
 	[dr_property_owner_information_displayname]
 		en = Property Owner Information
 		comment = Damage Report
@@ -233,6 +245,155 @@
 		en = Time Taken
 		es = Time Taken(italian)
 		it = Time Taken(italian)
+	[ur_color_white]
+		en = White
+		comment = UXO Report
+		es = Blanco
+		it = White(italian)
+	[ur_color_red]
+		en = Red
+		es = Rojo
+		it = Red(italian)
+	[ur_color_orange]
+		en = Orange
+		es = Naranja
+		it = Orange(italian)
+	[ur_color_yellow]
+		en = Yellow
+		es = Amarillo
+		it = Yellow(italian)
+	[ur_color_green]
+		en = Green
+		es = Verde
+		it = Green(italian)
+	[ur_color_teal]
+		en = Teal
+		es = Turquesa
+		it = Teal(italian)
+	[ur_color_blue]
+		en = Blue
+		es = Azul
+		it = Blue(italian)
+	[ur_color_purple]
+		en = Purple
+		es = Morado
+		it = Purple(italian)
+	[ur_color_pink]
+		en = Pink
+		es = Rosa
+		it = Pink(italian)
+	[ur_color_grey]
+		en = Grey
+		es = Gris
+		it = Grey(italian)
+	[ur_color_black]
+		en = Black
+		es = Negro
+		it = Black(italian)
+	[ur_type_dropped]
+		en = Dropped
+		es = dejar caer
+		it = Dropped(italian)
+	[ur_type_projected]
+		en = Projected
+		es = Proyectado
+		it = Projected(italian)
+	[ur_type_placed]
+		en = Placed
+		es = Colocados
+		it = Placed(italian)
+	[ur_type_possible_ied]
+		en = Possible IED
+		es = posible artefacto explosivo improvisado
+		it = Possible IED(italian)
+	[ur_type_thrown]
+		en = Thrown
+		es = Tirados or arrojados
+		it = Thrown(italian)
+	[ur_condition_intact]
+		en = Intact
+		es = Intacto
+		it = Intact(italian)
+	[ur_condition_leaking]
+		en = Leaking
+		es = Filtrando
+		it = Leaking(italian)
+	[ur_recommendedpriority_immediate]
+		en = Immediate
+		es = Inmediato
+		it = Immediate(italian)
+	[ur_recommendedpriority_indirect]
+		en = Indirect
+		es = Indirecto
+		it = Indirect(italian)
+	[ur_recommendedpriority_minor]
+		en = Minor
+		es = Poco grave
+		it = Minor(italian)
+	[ur_recommendedpriority_no_threat]
+		en = No Threat
+		es = Sin amenaza
+		it = No Threat(italian)
+	[ur_reportingunit_displayname]
+		en = Reporting Unit
+		es = Unidad informante/notificadora
+		it = Reporting Unit(italian)
+	[ur_reportinglocation_displayname]
+		en = Reporting Location
+		es = Lugar de conotificación
+		it = Reporting Location(italian)
+	[ur_coordinate_displayname]
+		en = Coordinate
+		es = Coordinate
+		it = Coordinate(italian)
+	[ur_contactinfo_displayname]
+		en = Contact Info
+		es = Información de contacto
+		it = Contact Info(italian)
+	[ur_uxotype_displayname]
+		en = Uxo Type
+		es = Tipo de explosivo
+		it = Uxo Type(italian)
+	[ur_size_displayname]
+		en = Size
+		es = Tamaño
+		it = Size(italian)
+	[ur_shape_displayname]
+		en = Shape
+		es = Forma
+		it = Shape(italian)
+	[ur_color_displayname]
+		en = Color
+		es = Color
+		it = Color(italian)
+	[ur_condition_displayname]
+		en = Condition
+		es = Condición
+		it = Condition(italian)
+	[ur_cbrncontamination_displayname]
+		en = CbrnContamination
+		es = contaminacion quimica, biologica,radiologica y nuclear
+		it = CbrnContamination(italian)
+	[ur_resourcethreatened_displayname]
+		en = Resource Threatened
+		es = Fuente amenazada
+		it = Resource Threatened(italian)
+	[ur_impactonmission_displayname]
+		en = Impact On Mission
+		es = Impacto/consecuencias sobre la misión
+		it = Impact On Mission(italian)
+	[ur_protectivemeasures_displayname]
+		en = Protective Measures
+		es = Medidas de protección
+		it = Protective Measures(italian)
+	[ur_recommendedpriority_displayname]
+		en = Recommended Priority
+		es = Prioridad recomendada
+		it = Recommended Priority(italian)
+	[ur_image_displayname]
+		en = Image
+		es = Imagen
+		it = Image(italian)
 	[resreq_description_displayname]
 		en = Description
 		comment = Resource Request

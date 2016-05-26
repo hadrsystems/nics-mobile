@@ -84,7 +84,6 @@
     
     _formView = view;
     [_CameraImageView setImage: nil];
-    _popoverOpen = NO;
     _readOnly = readOnly;
     
     if(readOnly){
@@ -157,6 +156,9 @@
 }
 
 - (NSString *)getData{
+    if(_imagePath == nil){
+        _imagePath = @"";
+    }
     return _imagePath;
 }
 
@@ -166,17 +168,11 @@
     if(!_readOnly){
         if(point.x > self.BrowseImageButton.frame.origin.x && point.x < self.BrowseImageButton.frame.origin.x + self.BrowseImageButton.frame.size.width && point.y > self.BrowseImageButton.frame.origin.y && point.y < self.BrowseImageButton.frame.origin.y + self.BrowseImageButton.frame.size.height) {
             
-            if(_popoverOpen == false){
-                [self BrowseGalleryButtonPressed];
-            }
+            [self BrowseGalleryButtonPressed];
             
         }else if(point.x > self.CaptureImageButton.frame.origin.x && point.x < self.CaptureImageButton.frame.origin.x + self.CaptureImageButton.frame.size.width && point.y > self.CaptureImageButton.frame.origin.y && point.y < self.CaptureImageButton.frame.origin.y + self.CaptureImageButton.frame.size.height) {
             
-            if(_popoverOpen == false){
-                [self captureImageButtonPressed];
-            }
-        }else{
-            _popoverOpen = NO;
+            [self captureImageButtonPressed];
         }
     }
     
@@ -193,10 +189,8 @@
         
         if([self.dataManager isIpad]){
             [IncidentButtonBar OpenImagePickerCameraForTablet:imagePicker];
-            _popoverOpen = YES;
         }else{
             [[self.dataManager getOverviewController] presentViewController:imagePicker animated:YES completion:nil];
-            _popoverOpen = YES;
         }
         
     } else {
@@ -217,10 +211,8 @@
         CGRect displayFrom = _formView.view.frame;
         [myPopOver presentPopoverFromRect:displayFrom inView: [IncidentButtonBar GetOverview].view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
         
-        _popoverOpen = YES;
     }else{
         [[self.dataManager getOverviewController] presentViewController:imagePicker animated:YES completion:nil];
-        _popoverOpen = YES;
     }
 }
 
@@ -254,23 +246,22 @@
     } else {
 //        _isImageSaved = YES;
     }
-    _popoverOpen = NO;
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    _popoverOpen = NO;
      [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
 {
-    NSLog(@"%@", @"Starting download");
+    NSLog(@"%@%@", @"Starting download: ", url );
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:500];
     
     [request setValue:RestClient.authValue forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
+    [request setAllHTTPHeaderFields:[self getCookies]];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -294,10 +285,31 @@
                                    completionBlock(NO, nil);
                                }
                            }
-     
      ];
 }
 
 
+-(NSDictionary*)getCookies{
+    DataManager* dataManager = [DataManager getInstance];
+    
+    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [dataManager getCookieDomainForCurrentServer], NSHTTPCookieDomain,
+                                @"/", NSHTTPCookiePath,  // IMPORTANT!
+                                @"iPlanetDirectoryPro", NSHTTPCookieName,
+                                [dataManager getAuthToken], NSHTTPCookieValue,
+                                nil];
+    NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:properties];
+    
+    NSDictionary *properties2 = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [dataManager getCookieDomainForCurrentServer], NSHTTPCookieDomain,
+                                 @"/", NSHTTPCookiePath,  // IMPORTANT!
+                                 @"AMAuthCookie", NSHTTPCookieName,
+                                 [dataManager getAuthToken], NSHTTPCookieValue,
+                                 nil];
+    NSHTTPCookie *cookie2 = [NSHTTPCookie cookieWithProperties:properties2];
+    
+    NSArray* cookies = [NSArray arrayWithObjects: cookie,cookie2, nil];
+    return [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+}
 
 @end

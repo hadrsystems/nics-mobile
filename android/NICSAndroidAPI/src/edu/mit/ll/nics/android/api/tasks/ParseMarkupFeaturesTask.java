@@ -48,7 +48,6 @@ public class ParseMarkupFeaturesTask extends AsyncTask<MarkupPayload, Object, In
 	private ArrayList<String> mFeaturesToAdd;
 	private ArrayList<String> mFeaturesToRemove;
 	private long collabroomId;
-	private boolean featuresDeleted = false;
 	
 	public ParseMarkupFeaturesTask(Context context) {
 		mContext = context;
@@ -65,8 +64,6 @@ public class ParseMarkupFeaturesTask extends AsyncTask<MarkupPayload, Object, In
 		mFeaturesToAdd.clear();
 		mFeaturesToRemove.clear();
 		
-		featuresDeleted = false;
-		
 		if(markupPayload != null) {
 			MarkupPayload payload = markupPayload[0];
 			collabroomId = payload.getCollabRoomId();
@@ -76,10 +73,7 @@ public class ParseMarkupFeaturesTask extends AsyncTask<MarkupPayload, Object, In
 			}
 			
 			for(String featureId : mFeaturesToRemove) {
-				boolean didRemove = mDataManager.deleteMarkupHistoryForCollabroomByFeatureId(collabroomId, featureId);
-				if(didRemove){
-					featuresDeleted = true;
-				}
+				mDataManager.deleteMarkupHistoryForCollabroomByFeatureId(collabroomId, featureId);
 			}
 			Log.i("nicsParseMarkupFeaturesTask", "Successfully removed " + mFeaturesToRemove.size() + " markup features.");
 			
@@ -98,7 +92,7 @@ public class ParseMarkupFeaturesTask extends AsyncTask<MarkupPayload, Object, In
 			
 			if(numParsed > 0) {
 				//mNotificationHandler.createMarkupNotification(chatPayloads[0], mDataManager.getActiveIncidentId());
-		        mDataManager.addPersonalHistory("Successfully received " + numParsed + " markup features from " + mDataManager.getSelectedCollabRoomName());
+		        mDataManager.addPersonalHistory("Successfully received " + numParsed + " markup features from " + mDataManager.getSelectedCollabRoom().getName());
 			}
 		}
 		return numParsed;
@@ -114,22 +108,16 @@ public class ParseMarkupFeaturesTask extends AsyncTask<MarkupPayload, Object, In
 			intent.putExtra("collabroomId", collabroomId);
 			intent.setAction(Intents.nics_NEW_MARKUP_RECEIVED);
 			
-			boolean send = false;
-			
 			if(numParsed > 0){
 		        String[] addStrings = mFeaturesToAdd.toArray(new String[0]);
 		        intent.putExtra("featuresToAdd", addStrings);
 				mDataManager.setNewMapAvailable(true);
-				send = true;
 			}
-			if(mFeaturesToRemove.size() > 0 && featuresDeleted){
+			if(mFeaturesToRemove.size() > 0){
 				String[] removeStrings = mFeaturesToRemove.toArray(new String[0]);
 				intent.putExtra("featuresToRemove", removeStrings);
-				send = true;
 			}	
-			if(send){
-				mContext.sendBroadcast (intent);
-			}
+			mContext.sendBroadcast (intent);
 		}
 		Log.i("nicsParseMarkupFeaturesTask", "Successfully parsed " + numParsed + " markup features.");
 		

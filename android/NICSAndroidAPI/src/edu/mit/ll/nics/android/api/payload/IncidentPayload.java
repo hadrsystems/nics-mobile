@@ -34,13 +34,16 @@ import java.util.ArrayList;
 
 public class IncidentPayload {
 
-	private long created;	//
-//	private long lastUpdatedUTC;	
-	private long incidentid;	//
-	private long usersessionid;	//
-	private String incidentname;	//
-	private double latitude;	//
-	private double longitude;	//
+	private long created;
+	private long incidentid;
+	private long parentincidentid;
+	private long usersessionid;
+	private String incidentname;
+	private double lat;
+	private double lon;
+	private boolean active;
+	private String description;
+	private long workspaceid;
 	private ArrayList<CollabroomPayload> collabrooms;
 	
 	public long getCreated() {
@@ -49,12 +52,7 @@ public class IncidentPayload {
 	public void setCreatedUTC(long created) {
 		this.created = created;
 	}
-//	public long getLastUpdatedUTC() {
-//		return lastUpdatedUTC;
-//	}
-//	public void setLastUpdatedUTC(long lastUpdatedUTC) {
-//		this.lastUpdatedUTC = lastUpdatedUTC;
-//	}
+
 	public long getIncidentId() {
 		return incidentid;
 	}
@@ -73,18 +71,6 @@ public class IncidentPayload {
 	public void setIncidentName(String incidentName) {
 		this.incidentname = incidentName;
 	}
-	public double getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
-	public double getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
-	}
 	public ArrayList<CollabroomPayload> getCollabrooms() {
 		return collabrooms;
 	}
@@ -92,6 +78,45 @@ public class IncidentPayload {
 		this.collabrooms = collabrooms;
 	}
 	
+	public long getParentincidentid() {
+		return parentincidentid;
+	}
+	public void setParentincidentid(long parentincidentid) {
+		this.parentincidentid = parentincidentid;
+	}
+	public double getLat() {
+		return lat;
+	}
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+	public double getLon() {
+		return lon;
+	}
+	public void setLon(double lon) {
+		this.lon = lon;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public long getWorkspaceid() {
+		return workspaceid;
+	}
+	public void setWorkspaceid(long workspaceid) {
+		this.workspaceid = workspaceid;
+	}
+	public void setCreated(long created) {
+		this.created = created;
+	}
 	public boolean containsCollabroom(String collabroomName, long collabroomId) {
 		for(CollabroomPayload roomPayload : collabrooms) {
 			if(roomPayload.getCollabRoomId() == collabroomId && roomPayload.getName().equals(collabroomName)) {

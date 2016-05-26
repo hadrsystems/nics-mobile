@@ -37,7 +37,7 @@
 
 /*
  Static class to hold references to each of the panels in the tablet layout
- only used in the tablet layout.
+ only used in the tablet layout. DO NOT reference in iPhone code
  
  It was created to handle the button bar on the bottom right to work for
  whichever report you are currently in but it is also used as an access point for the app to reference other views when swapping canvases.
@@ -147,6 +147,21 @@ static UIButton *FilterButton;
         [fieldReportDetailview submitTabletReportButtonPressed];
     }else if([currentReport isEqualToString:@"WeatherReport"]){
         [weatherReportDetailview submitTabletReportButtonPressed];
+    }
+}
+
++ (void)FilterButtonPressed:(NSString*)currentReport{
+    
+    if([currentReport isEqualToString:@"GeneralMessage"]){
+//        [generalMessageListview prepareForTabletCanvasSwap:TRUE:0];
+    }else if([currentReport isEqualToString:@"DamageReport"]){
+//        [damageReportListview prepareForTabletCanvasSwap:TRUE:-1];
+    }else if([currentReport isEqualToString:@"ResourceRequest"]){
+//        [resourceRequestListview prepareForTabletCanvasSwap:TRUE:-1];
+    }else if([currentReport isEqualToString:@"FieldReport"]){
+//        [fieldReportListview prepareForTabletCanvasSwap:TRUE:-1];
+    }else if([currentReport isEqualToString:@"WeatherReport"]){
+//        [weatherReportListview prepareForTabletCanvasSwap:TRUE:-1];
     }
 }
 

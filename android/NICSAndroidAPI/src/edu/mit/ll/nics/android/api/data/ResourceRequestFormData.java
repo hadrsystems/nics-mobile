@@ -37,6 +37,7 @@ import com.google.gson.annotations.SerializedName;
 public class ResourceRequestFormData {
 	
 	private String user;
+	private String userfull;
 	private String quantity;
 	private String priority;
 	private String description;
@@ -52,6 +53,7 @@ public class ResourceRequestFormData {
 	
 	public ResourceRequestFormData(ResourceRequestData messageData) {
 		user = messageData.getUser();
+		userfull = messageData.getUserFull();
 		quantity = messageData.getQuantity();
 		priority = messageData.getPriority();
 		description = messageData.getDescription();
@@ -65,6 +67,10 @@ public class ResourceRequestFormData {
 	
 	public String getUser() {
 		return user;
+	}
+	
+	public String getUserFull() {
+		return userfull;
 	}
 
 	public void setUser(String user) {

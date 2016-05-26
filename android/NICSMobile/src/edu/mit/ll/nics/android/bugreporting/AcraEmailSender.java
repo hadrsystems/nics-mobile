@@ -92,7 +92,7 @@ public class AcraEmailSender  implements ReportSender {
 		 .append("\n")
 		 .append("Incident : " + mDataManager.getActiveIncidentName() + "(" + mDataManager.getActiveIncidentId() + ")" )
 		 .append("\n")
-		 .append("CollabRoom : " + mDataManager.getSelectedCollabRoomName() + "(" + mDataManager.getSelectedCollabRoomId() + ")" )
+		 .append("CollabRoom : " + mDataManager.getSelectedCollabRoom().getName() + "(" + mDataManager.getSelectedCollabRoom().getCollabRoomId() + ")" )
 		 .append("\n")
 		 .append("CurrentView : " + mDataManager.getCurrentNavigationView())
 		 .append("\n")

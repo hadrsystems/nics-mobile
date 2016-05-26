@@ -62,6 +62,7 @@ public class FieldReportListFragment extends FormListFragment {
 	private boolean fieldReportReceiverRegistered;
 	private IntentFilter mFieldReportReceiverFilter;
 	private IntentFilter mIncidentSwitchedReceiverFilter;
+	private IntentFilter mSentReportsClearedFilter;
 	private long mLastIncidentId = 0;
 	protected boolean mIsFirstLoad = true;
 	
@@ -78,10 +79,12 @@ public class FieldReportListFragment extends FormListFragment {
 		
 		mFieldReportReceiverFilter = new IntentFilter(Intents.nics_NEW_FIELD_REPORT_RECEIVED);
 		mIncidentSwitchedReceiverFilter = new IntentFilter(Intents.nics_INCIDENT_SWITCHED);
+		mSentReportsClearedFilter = new IntentFilter(Intents.nics_SENT_FIELD_REPORTS_CLEARED);
 		
 		if(!fieldReportReceiverRegistered) {
 			mContext.registerReceiver(fieldReportReceiver, mFieldReportReceiverFilter);
 			mContext.registerReceiver(incidentChangedReceiver, mIncidentSwitchedReceiverFilter);
+			mContext.registerReceiver(sentReportsClearedReceiver, mSentReportsClearedFilter);
 			fieldReportReceiverRegistered = true;
 		}
 		
@@ -126,6 +129,7 @@ public class FieldReportListFragment extends FormListFragment {
 		if(!fieldReportReceiverRegistered) {
 			mContext.registerReceiver(fieldReportReceiver, mFieldReportReceiverFilter);
 			mContext.registerReceiver(incidentChangedReceiver, mIncidentSwitchedReceiverFilter);
+			mContext.registerReceiver(sentReportsClearedReceiver, mSentReportsClearedFilter);
 			fieldReportReceiverRegistered = true;
 		}
 		
@@ -151,6 +155,7 @@ public class FieldReportListFragment extends FormListFragment {
 		if(fieldReportReceiverRegistered) {
 			mContext.unregisterReceiver(fieldReportReceiver);
 			mContext.unregisterReceiver(incidentChangedReceiver);
+			mContext.unregisterReceiver(sentReportsClearedReceiver);
 			fieldReportReceiverRegistered = false;
 		}
 	}
@@ -176,16 +181,8 @@ public class FieldReportListFragment extends FormListFragment {
 				FieldReportPayload payload = mBuilder.create().fromJson(bundle.getString("payload"), FieldReportPayload.class);
 				payload.setSendStatus(ReportSendStatus.lookUp(bundle.getInt("sendStatus", 0)));
 				payload.parse();
-				
-				FieldReportData data = payload.getMessageData();
 
-				if(data.getUser().equals(mDataManager.getUsername()) && payload.getSeqTime() >= mDataManager.getLastFieldReportTimestamp() - 10000) {
-					mFieldReportListAdapter.clear();
-					mFieldReportListAdapter.addAll(mDataManager.getFieldReportHistoryForIncident(mDataManager.getActiveIncidentId()));
-					mFieldReportListAdapter.addAll(mDataManager.getAllFieldReportStoreAndForwardReadyToSend(mDataManager.getActiveIncidentId()));
-				} else {
-					mFieldReportListAdapter.add(payload);
-				}
+				mFieldReportListAdapter.add(payload);
 				mFieldReportListAdapter.sort(reportComparator);
 				
 				mFieldReportListAdapter.notifyDataSetChanged();
@@ -214,6 +211,7 @@ public class FieldReportListFragment extends FormListFragment {
 		mFieldReportListAdapter.clear();
 		mFieldReportListAdapter.addAll(mDataManager.getFieldReportHistoryForIncident(currentIncidentId));
 		mFieldReportListAdapter.addAll(mDataManager.getAllFieldReportStoreAndForwardReadyToSend(currentIncidentId));
+		mFieldReportListAdapter.addAll(mDataManager.getAllFieldReportStoreAndForwardHasSent(currentIncidentId));
 		mFieldReportListAdapter.sort(reportComparator);
 
 		if(mIsFirstLoad) {
@@ -243,6 +241,22 @@ public class FieldReportListFragment extends FormListFragment {
 			});
 		}
 	}
+	
+	private BroadcastReceiver sentReportsClearedReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			long reportId = intent.getExtras().getLong("reportId");
+			for(int i = 0; i < mFieldReportListAdapter.getCount() ; i++){
+				FieldReportPayload payload = mFieldReportListAdapter.getItem(i);
+				if(payload.getFormId() == reportId && payload.isNew() == false){
+					mFieldReportListAdapter.remove(payload);
+					mFieldReportListAdapter.notifyDataSetChanged();
+					return;
+				}
+			}	
+		}
+	};
 	
 	private Comparator<? super FieldReportPayload> reportComparator = new Comparator<FieldReportPayload>() {
 		

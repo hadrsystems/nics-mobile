@@ -64,8 +64,6 @@
 @property MapEditView *mapEditView;
 @property (weak, nonatomic) IBOutlet UIView *MapEditCanvas;
 
-@property BOOL isFirstLoad;
-
 @property DataManager *dataManager;
 
 @property NSNumber *currentCollabRoomId;
@@ -86,7 +84,7 @@
 
 @property CGRect originalFrame;
 @property CGRect originalMapFrame;
-@property UIButton *fullscreenButton;
+//@property UIButton *fullscreenButton;
 @property UIButton *extendMapButton;
 @property UIButton *gotoReportButton;
 
@@ -103,7 +101,7 @@
 
 - (void)updateWfsLayers;
 
-- (void)setPopoverButtons;
+//- (void)setPopoverButtons;
 - (void)addFeatureToMap:(MarkupFeature*) feature;
 - (void)addMarkupUpdateFromServer;
 - (void)reloadTableView;

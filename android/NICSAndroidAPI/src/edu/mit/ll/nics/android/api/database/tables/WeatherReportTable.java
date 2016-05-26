@@ -36,8 +36,6 @@ import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
-//import android.database.Cursor;
-//import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import net.sqlcipher.Cursor;
 import net.sqlcipher.database.SQLiteDatabase;
@@ -165,6 +163,22 @@ public class WeatherReportTable extends DatabaseTable <WeatherReportPayload> {
     public ArrayList<WeatherReportPayload> getAllDataReadyToSend (String orderBy, SQLiteDatabase database) {
         String sqlSelection = "sendStatus==?";
         String[] sqlSelectionArguments = {String.valueOf (ReportSendStatus.WAITING_TO_SEND.getId ())};
+
+        return getData(sqlSelection, sqlSelectionArguments, orderBy,NO_LIMIT, database);
+    }
+    
+
+    public ArrayList<WeatherReportPayload> getAllDataHasSent (long collaborationRoomId, SQLiteDatabase database) {
+        String orderBy = "seqtime DESC";
+        String sqlSelection = "sendStatus==? AND incidentId==?";
+        String[] sqlSelectionArguments = {String.valueOf(ReportSendStatus.SENT.getId ()), String.valueOf(collaborationRoomId)};
+
+        return getData(sqlSelection, sqlSelectionArguments, orderBy,NO_LIMIT, database);
+    }
+    
+    public ArrayList<WeatherReportPayload> getAllDataHasSent (String orderBy, SQLiteDatabase database) {
+        String sqlSelection = "sendStatus==?";
+        String[] sqlSelectionArguments = {String.valueOf (ReportSendStatus.SENT.getId ())};
 
         return getData(sqlSelection, sqlSelectionArguments, orderBy,NO_LIMIT, database);
     }

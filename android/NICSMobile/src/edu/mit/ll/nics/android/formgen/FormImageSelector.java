@@ -44,6 +44,8 @@ import java.net.URLConnection;
 import javax.net.ssl.HttpsURLConnection;
 
 import org.apache.http.Header;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.cookie.BasicClientCookie;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -63,6 +65,7 @@ import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -205,6 +208,11 @@ public class FormImageSelector extends FormWidget {
 		 	case CAMERA_REQUEST:
 		 		if(intent != null) {
 			 		mImageUri = intent.getData();
+			 		
+			 		if(intent.getExtras() == null){
+			 			return;
+			 		}
+			 		
 			 		mSelectedImage = (Bitmap) intent.getExtras().get("data");
 			 		
 			 		Uri alternate = getImageUri(mContext, mSelectedImage);
@@ -488,7 +496,7 @@ public class FormImageSelector extends FormWidget {
         	} else if(url.startsWith("https://")) {
         		connection = (HttpsURLConnection) new URL(url).openConnection();
         	}
-        	
+        	connection.setRequestProperty("Cookie", "iPlanetDirectoryPro=" + mDataManager.getAuthToken() + "; AMAuthCookie=" + mDataManager.getAuthToken());
         	
         	connection.setRequestProperty (mBase64Auth[0].getName(), mBase64Auth[0].getValue());
             in = connection.getInputStream();

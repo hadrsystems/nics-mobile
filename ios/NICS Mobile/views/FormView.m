@@ -333,10 +333,9 @@
                         formLocation.label.text = NSLocalizedString(field.name,nil);
                         [textView setText:[field defaultText]];
                         [self initTextView:textView];
-                        
                     }
-                    
                     [formLocation configureFields];
+                    
                     //[damageInformation.field setText:[field defaultText]];
                     
                     [_viewMap setObject:formLocation forKey:field.key];

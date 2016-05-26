@@ -48,7 +48,10 @@
 @property DataManager *dataManager;
 
 @property bool emptyList;
+@property bool filteredList;
+//@property WeatherReportFilterData* currentFilter;
 
 -(void)prepareForTabletCanvasSwap:(BOOL)isEdit :(NSInteger)index;
+//-(void)filterReports: (WeatherReportFilterData*)filter;
 
 @end

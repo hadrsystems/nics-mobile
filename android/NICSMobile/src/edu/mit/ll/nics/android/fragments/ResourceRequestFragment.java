@@ -187,6 +187,7 @@ public class ResourceRequestFragment extends Fragment {
 					
 					messageData = new ResourceRequestData((new Gson().fromJson(mFormFragment.save().toString(), ResourceRequestFormData.class)));
 					messageData.setUser(mDataManager.getUsername());
+					messageData.setUserFull(mDataManager.getUserNickname());
 					
 					payload = new ResourceRequestPayload();
 					payload.setId(mReportId);
@@ -213,6 +214,7 @@ public class ResourceRequestFragment extends Fragment {
 					}
 					messageData = new ResourceRequestData((new Gson().fromJson(mFormFragment.save().toString(), ResourceRequestFormData.class)));
 					messageData.setUser(mDataManager.getUsername());
+					messageData.setUserFull(mDataManager.getUserNickname());
 					
 					payload = new ResourceRequestPayload();
 					payload.setId(mReportId);
@@ -274,6 +276,7 @@ public class ResourceRequestFragment extends Fragment {
 			mCurrentPayload.setSeqTime(currentTime);
 			
 			mCurrentData.setUser(mDataManager.getUsername());
+			mCurrentData.setUserFull(mDataManager.getUserNickname());
 			mCurrentData = new ResourceRequestData(new Gson().fromJson(mFormFragment.save().toString(), ResourceRequestFormData.class));
 			
 			mCurrentPayload.setMessageData(mCurrentData);

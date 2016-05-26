@@ -258,7 +258,7 @@ public abstract class MarkupBaseShape {
 //		long testCollabRoom = mDataManager.getSelectedCollabRoomId();
 //		long testCollabRoom2 = mDataManager.getActiveCollabroomId();
 		
-		feature.setCollabRoomId(mDataManager.getSelectedCollabRoomId());
+		feature.setCollabRoomId(mDataManager.getSelectedCollabRoom().getCollabRoomId());
 		feature.setUsersessionId(mDataManager.getUserSessionId());
 //		feature.setDashStyle("solid"); //set for firelines only
 		feature.setFillColor(colorToHexString(mStrokeColor));
@@ -273,7 +273,7 @@ public abstract class MarkupBaseShape {
 		feature.setSeqTime(System.currentTimeMillis()/1000);
 		feature.setFeatureId(mFeatureId);
 		
-		feature.setTopic("NICS.incidents." + mDataManager.getActiveIncidentName() + ".collab." + mDataManager.getSelectedCollabRoomName());
+		feature.setTopic("NICS.incidents." + mDataManager.getActiveIncidentName() + ".collab." + mDataManager.getSelectedCollabRoom().getName());
 		
 		feature.setType(type);
 		feature.setOpacity(opacity);

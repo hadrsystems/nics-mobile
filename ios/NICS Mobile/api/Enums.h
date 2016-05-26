@@ -62,26 +62,28 @@ typedef enum {
 
 
 typedef enum {
-    ROC = 0,
-    RESC = 1,
-    ABC = 2,
-    TWO_15 = 3,
-    SITREP = 4,
-    ASSGN = 5,
-    SR = 6,
-    FR = 7,
-    TASK = 8,
-    RESREQ = 9,
-    NINE_110 = 10,
-    DR = 11,
-    AAA = 12,
-    BBB = 13,
-    CCC = 14,
-    WR = 15
+    NONE = 0,
+    ROC = 1,
+    RESC = 2,
+    ABC = 3,
+    TWO_15 = 4,
+    SITREP = 5,
+    ASSGN = 6,
+    SR = 7,
+    FR = 8,
+    TASK = 9,
+    RESREQ = 10,
+    NINE_110 = 11,
+    DR = 12,
+    UXO = 13,
+    SVRRPT = 14,
+    AGRRPT = 15,
+    MITAM = 16,
+    WR = 17
 } FormType;
-#define FormTypeArrayAbbrev @"ROC",@"RESC",@"ABC",@"TWO_15",@"SITREP",@"ASSGN",@"SR",@"FR",@"TASK",@"RESREQ",@"NINE_110",@"DR",@"AAA",@"BBB",@"CCC",@"WR",nil
+#define FormTypeArrayAbbrev @"NONE",@"ROC",@"RESC",@"ABC",@"TWO_15",@"SITREP",@"ASSGN",@"SR",@"FR",@"TASK",@"RESREQ",@"NINE_110",@"DR",@"UXO",@"SVRRPT",@"AGRRPT",@"MITAM",@"WR",nil
 
-#define FormTypeArrayFull @"Report on Condition",@"RESC",@"ABC",@"215",@"SITREP",@"Assignment Form",@"Simple Report",@"Field Report",@"Task",@"Resource Request",@"9110 - Notification Report",@"Damage Report",@"AAA",@"BBB",@"CCC",@"Weather Report",nil
+#define FormTypeArrayFull @"NONE",@"Report on Condition",@"RESC",@"ABC",@"215",@"SITREP",@"Assignment Form",@"Simple Report",@"Field Report",@"Task",@"Resource Request",@"9110 - Notification Report",@"Damage Report",@"Explosive Report",@"Catan Survivor Request",@"Catan Survivor Aggrogate Request",@"MITAM",@"Weather Report",nil
 
 +(NSString*) formTypeEnumToStringAbbrev:(FormType)enumVal;
 +(NSString*) formTypeEnumToStringFull:(FormType)enumVal;
@@ -103,7 +105,7 @@ typedef enum {
     polygon = 130,
     circle = 140,
     text = 150,
-    AaaReportMarkup = 160,
+    ExplosiveReportMarkup = 160,
     GeneralMessageMarkup = 170,
     DamageReportMarkup = 180
 } MarkupType;

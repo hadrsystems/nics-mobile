@@ -101,7 +101,7 @@ You can get the attribution text by making a call to
 [GMSServices openSourceLicenseInfo].
 </string>
 			<key>Title</key>
-			<string>Google-Maps-iOS-SDK</string>
+			<string>GoogleMaps</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

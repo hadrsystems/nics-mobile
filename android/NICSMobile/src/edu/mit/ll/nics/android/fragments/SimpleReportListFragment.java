@@ -72,6 +72,7 @@ public class SimpleReportListFragment extends FormListFragment {
 	private IntentFilter mSimpleReportProgressReceiverFilter;
 	private IntentFilter mIncidentSwitchedReceiverFilter;
 	private IntentFilter mMarkAllAsReadReceiverFilter;
+	private IntentFilter mSentReportsClearedFilter;
 	private long mLastIncidentId = 0;
 	protected boolean mIsFirstLoad = true;
 	protected MarkAllReportsAsReadTask MarkMessagesAsReadTask = null;
@@ -91,12 +92,14 @@ public class SimpleReportListFragment extends FormListFragment {
 		mSimpleReportProgressReceiverFilter = new IntentFilter(Intents.nics_SIMPLE_REPORT_PROGRESS);
 		mIncidentSwitchedReceiverFilter = new IntentFilter(Intents.nics_INCIDENT_SWITCHED);
 		mMarkAllAsReadReceiverFilter = new IntentFilter(Intents.nics_MARKING_ALL_REPORTS_READ_FINISHED);
+		mSentReportsClearedFilter = new IntentFilter(Intents.nics_SENT_SIMPLE_REPORTS_CLEARED);
 		
 		if (!simpleReportReceiverRegistered) {
 			mContext.registerReceiver(simpleReportReceiver, mSimpleReportReceiverFilter);
 			mContext.registerReceiver(simpleReportProgressReceiver, mSimpleReportProgressReceiverFilter);
 			mContext.registerReceiver(incidentChangedReceiver, mIncidentSwitchedReceiverFilter);
 			mContext.registerReceiver(markAllAsReadReceiver, mMarkAllAsReadReceiverFilter);
+			mContext.registerReceiver(sentReportsClearedReceiver, mSentReportsClearedFilter);
 			
 			simpleReportReceiverRegistered = true;
 		}
@@ -192,6 +195,7 @@ public class SimpleReportListFragment extends FormListFragment {
 			mContext.registerReceiver(simpleReportProgressReceiver, mSimpleReportProgressReceiverFilter);
 			mContext.registerReceiver(incidentChangedReceiver, mIncidentSwitchedReceiverFilter);
 			mContext.registerReceiver(markAllAsReadReceiver, mMarkAllAsReadReceiverFilter);
+			mContext.registerReceiver(sentReportsClearedReceiver, mSentReportsClearedFilter);
 			simpleReportReceiverRegistered = true;
 		}
 		
@@ -219,6 +223,7 @@ public class SimpleReportListFragment extends FormListFragment {
 			mContext.unregisterReceiver(simpleReportProgressReceiver);
 			mContext.unregisterReceiver(incidentChangedReceiver);
 			mContext.unregisterReceiver(markAllAsReadReceiver);
+			mContext.unregisterReceiver(sentReportsClearedReceiver);
 			simpleReportReceiverRegistered = false;
 		}
 	}
@@ -246,14 +251,8 @@ public class SimpleReportListFragment extends FormListFragment {
 				payload.parse();
 
 				SimpleReportData data = payload.getMessageData();
+				mSimpleReportListAdapter.add(payload);
 				
-				if (data.getUser().equals(mDataManager.getUsername()) && payload.getSeqTime() >= mDataManager.getLastSimpleReportTimestamp() - 10000) {
-					mSimpleReportListAdapter.clear();
-					mSimpleReportListAdapter.addAll(mDataManager.getSimpleReportHistoryForIncident(mDataManager.getActiveIncidentId()));
-					mSimpleReportListAdapter.addAll(mDataManager.getAllSimpleReportStoreAndForwardReadyToSend(mDataManager.getActiveIncidentId()));
-				} else {
-					mSimpleReportListAdapter.add(payload);
-				}
 				mSimpleReportListAdapter.sort(reportComparator);
 				mSimpleReportListAdapter.notifyDataSetChanged();
 				mDataManager.setNewGeneralMessageAvailable(false);
@@ -305,8 +304,10 @@ public class SimpleReportListFragment extends FormListFragment {
 		mDataManager.requestSimpleReports();
 		
 		mSimpleReportListAdapter.clear();
+		
 		mSimpleReportListAdapter.addAll(mDataManager.getSimpleReportHistoryForIncident(currentIncidentId));
 		mSimpleReportListAdapter.addAll(mDataManager.getAllSimpleReportStoreAndForwardReadyToSend(currentIncidentId));
+		mSimpleReportListAdapter.addAll(mDataManager.getAllSimpleReportStoreAndForwardHasSent(currentIncidentId));
 		mSimpleReportListAdapter.sort(reportComparator);
 		
 		if(mIsFirstLoad) {
@@ -349,6 +350,23 @@ public class SimpleReportListFragment extends FormListFragment {
 		public void onReceive(Context context, Intent intent) {
 			MarkMessagesAsReadTask = null;
 			updateData();	
+		}
+	};
+	
+	
+	private BroadcastReceiver sentReportsClearedReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			long reportId = intent.getExtras().getLong("reportId");
+			for(int i = 0; i < mSimpleReportListAdapter.getCount() ; i++){
+				SimpleReportPayload payload = mSimpleReportListAdapter.getItem(i);
+				if(payload.getFormId() == reportId && payload.isNew() == false){
+					mSimpleReportListAdapter.remove(payload);
+					mSimpleReportListAdapter.notifyDataSetChanged();
+					return;
+				}
+			}	
 		}
 	};
 	

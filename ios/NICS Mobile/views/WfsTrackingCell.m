@@ -39,6 +39,15 @@
     // Initialization code
 }
 
+-(void)initCell : (TrackingLayerPayload*) newLayer : (int) newIndex{
+    
+    self.trackingLayer = newLayer;
+    self.index = newIndex;
+    
+    _TrackingNameLabel.text = self.trackingLayer.displayname;
+    [_activeSwitch setOn:[[DataManager getInstance] getTrackingLayerEnabled:self.trackingLayer.displayname]];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
@@ -47,8 +56,7 @@
 
 - (IBAction)activeSwitchToggled:(id)sender {
     
-    [ActiveWfsLayerManager setTrackingLayerActiveAtIndex:_index :_activeSwitch.isOn];
-    
+    [[DataManager getInstance] setTrackingLayerEnabled:_TrackingNameLabel.text : _activeSwitch.isOn];
     int inOnInt = _activeSwitch.isOn;
     
      NSDictionary *trackingLayerToggledDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:inOnInt],@"isOn",[NSNumber numberWithInt:_index],@"indexOfToggledLayer", nil];

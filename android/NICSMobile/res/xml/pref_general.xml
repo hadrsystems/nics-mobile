@@ -44,12 +44,7 @@
         android:key="disable_notifications_checkbox"
         android:title="@string/pref_title_disable_notifications" />
     <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="debug_checkbox"
-        android:summary="@string/pref_description_debug_tab"
-        android:title="@string/pref_title_debug_tab" />
-    <CheckBoxPreference
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:key="tracking_checkbox"
         android:title="@string/pref_title_tracking" />
     

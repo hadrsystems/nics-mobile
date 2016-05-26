@@ -155,7 +155,6 @@ UIStoryboard *currentStoryboard;
     [[IncidentButtonBar GetFilterButton] setHidden:TRUE];
 }
 
-
 - (void)SetCanvasToDamageReport {
 
     [[IncidentButtonBar GetDamageReportListview] viewDidAppear:TRUE];

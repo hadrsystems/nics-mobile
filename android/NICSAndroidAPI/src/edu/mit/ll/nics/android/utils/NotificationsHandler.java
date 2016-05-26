@@ -80,7 +80,7 @@ public class NotificationsHandler {
 	private static final int ASSIGNMENT_CHANGE_NOTIFICATION_ID = 3;
 	private static final int DAMAGE_REPORT_NOTIFICATION_ID = 4;
 	private static final int WEATHER_REPORT_NOTIFICATION_ID = 5;
-	
+
 	private NotificationsHandler() {
 		
 		if(mSimpleReportInboxStyle == null) {
@@ -251,7 +251,7 @@ public class NotificationsHandler {
 		
 		mNotificationManager.notify(RESOURCE_REQUEST_NOTIFICATION_ID, mBuilder.build());
 	}
-	
+
 	public void createAssignmentChangeNotification(AssignmentPayload payload) {
 		mBuilder.setContentTitle("NICS Assignment Change");
 		
@@ -327,4 +327,5 @@ public class NotificationsHandler {
 		mNotificationManager.cancel(SIMPLE_REPORT_NOTIFICATION_ID);
 		mNotificationManager.cancel(WEATHER_REPORT_NOTIFICATION_ID);
 	}
+
 }

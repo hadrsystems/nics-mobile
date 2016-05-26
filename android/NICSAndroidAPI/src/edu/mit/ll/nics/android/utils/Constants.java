@@ -91,10 +91,13 @@ public class Constants {
 	public static final String PREVIOUS_INCIDENT_ID = "previous_incident_id";
 	public static final String PREVIOUS_INCIDENT_NAME = "previous_incident_name";
 
-	public static final String PREVIOUS_COLLABROOM_ID = "previous_collabroom_id";
-	public static final String PREVIOUS_COLLABROOM_NAME = "previous_collabroom_name";
-	public static final String SELECTED_COLLABROOM_ID = "selected_collabroom_id";
-	public static final String SELECTED_COLLABROOM_NAME = "selected_collabroom_name";
+	public static final String PREVIOUS_COLLABROOM = "previous_collabroom";
+//	public static final String PREVIOUS_COLLABROOM_ID = "previous_collabroom_id";
+//	public static final String PREVIOUS_COLLABROOM_NAME = "previous_collabroom_name";
+	
+	public static final String SELECTED_COLLABROOM = "selected_collabroom";
+//	public static final String SELECTED_COLLABROOM_ID = "selected_collabroom_id";
+//	public static final String SELECTED_COLLABROOM_NAME = "selected_collabroom_name";
 
 	public static final String SAVED_INCIDENTS = "saved_incidents";
 	
@@ -129,7 +132,10 @@ public class Constants {
 		GAR(8),
 		USERINFO(9),
 		LOGOUT(10),
-		DAMAGESURVEY(11);
+		DAMAGESURVEY(11),
+		CATANREQUEST(12),
+		UXOREPORT(13),
+		UXOFILTER(14);
 		
 		private final int value;
 		

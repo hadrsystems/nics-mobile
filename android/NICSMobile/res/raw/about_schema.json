@@ -5,7 +5,7 @@
     },
     
     "funding": {
-    	"display_name": "",
+    	"display_name": "about_funding_display_name",
     	"type": "string",
     	"font_size": 16,
     	"id": "0",
@@ -13,7 +13,7 @@
     },
        
     "legal_section_google": {
-    	"display_name": "Legal Notices - Google Maps",
+    	"display_name": "about_legal_section_google_display_name",
         "type": "section",
         "id": "1",
         "priority": "1",
@@ -25,7 +25,7 @@
         }
     },
     "google": {
-    	"display_name": "",
+    	"display_name": "about_google_display_name",
     	"font_size": 10,
         "type": "string",
         "id": "2",
@@ -34,7 +34,7 @@
     },
     
     "legal_section_icons": {
-    	"display_name": "Legal Notice - Icons",
+    	"display_name": "about_legal_section_icons_display_name",
         "type": "section",
         "id": "3",
         "priority": "3",
@@ -46,7 +46,7 @@
         }
     },
     "icons": {
-    	"display_name": "",
+    	"display_name": "about_icons_display_name",
     	"font_size": 10,
         "type": "string",
         "id": "4",

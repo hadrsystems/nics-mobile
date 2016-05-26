@@ -36,6 +36,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -100,7 +101,10 @@ public class OverviewFragment extends Fragment {
 	private View mRoomFrameLayout;
 	
 	private String[] incidentArray;
-	private String[] collabroomArray;
+	private String[] dialogNameArray;
+	private HashMap<Long, CollabroomPayload> collabRoomsIncidentIdMap;
+	private Long[] dialogIndexToCollabIdLookup;
+	
 	private LinearLayout mIncidentFrameButtonLayout;
 	private LinearLayout mRoomFrameButtonLayout;
 
@@ -134,6 +138,7 @@ public class OverviewFragment extends Fragment {
 		
 		mDamageReportReceivedFilter = new IntentFilter(Intents.nics_NEW_DAMAGE_REPORT_RECEIVED);
 		mWeatherReportReceivedFilter = new IntentFilter(Intents.nics_NEW_WEATHER_REPORT_RECEIVED);
+
 	}
 	
 	@Override
@@ -277,7 +282,7 @@ public class OverviewFragment extends Fragment {
 					mDialogBuilder.create().show();
 					
 					mDataManager.setCurrentIncidentData(null, -1, "");
-					mDataManager.setSelectedCollabRoom(null, -1);
+					mDataManager.setSelectedCollabRoom(null);
 
 					mJoinIncidentButton.setText(getString(R.string.incident_join));
 				}
@@ -311,7 +316,7 @@ public class OverviewFragment extends Fragment {
 				defaultRoom = incidentRooms.get(0);
 			}
 			
-			boolean noRoomSelected = mDataManager.getSelectedCollabRoomName().equals(getString(R.string.no_selection));
+			boolean noRoomSelected = mDataManager.getSelectedCollabRoom().getName().equals(getString(R.string.no_selection));
 			mJoinRoomButton.setText(getString(R.string.room_join));
 			
 			if(noRoomSelected) {
@@ -351,7 +356,7 @@ public class OverviewFragment extends Fragment {
 				mDataManager.setSelectedCollabRoom(null, -1);
 			}*/
 			 else {
-				mJoinRoomButton.setText(getString(R.string.room_active, mDataManager.getSelectedCollabRoomName().replace(mDataManager.getActiveIncidentName() + "-", "")));
+				mJoinRoomButton.setText(getString(R.string.room_active, mDataManager.getSelectedCollabRoom().getName().replace(mDataManager.getActiveIncidentName() + "-", "")));
 				if(mMapButton != null){
 					mMapButton.setClickable(true);
 				}
@@ -557,7 +562,7 @@ public class OverviewFragment extends Fragment {
 			}
 			
 			mDataManager.setCurrentIncidentData(currentIncident, -1, "");	
-			mDataManager.setSelectedCollabRoom(getString(R.string.no_selection), -1);
+			mDataManager.setSelectedCollabRoom(null);
 
 			mDataManager.stopPollingAssignment();
 			mDataManager.stopPollingChat();
@@ -641,19 +646,24 @@ public class OverviewFragment extends Fragment {
 			mDialogBuilder.setTitle(R.string.select_a_room);
 			mDialogBuilder.setMessage(null);
 		    mDialogBuilder.setPositiveButton(null, null);
-		    HashMap<String, Long> collabRoomsMap = mDataManager.getCollabRoomNamesList();	//not getting collabrooms
-		    collabroomArray = new String[collabRoomsMap.size()];
-		    collabRoomsMap.keySet().toArray(collabroomArray); 
-		    Arrays.sort(collabroomArray);
+		    collabRoomsIncidentIdMap = mDataManager.getCollabRoomMapById();	//not getting collabrooms
+		     
+		    dialogNameArray = new String[collabRoomsIncidentIdMap.size()];
+		    dialogIndexToCollabIdLookup = new Long[collabRoomsIncidentIdMap.size()];
 		    
-		    for(int i = 0; i < collabroomArray.length; i++) {
-		    	
-		    	collabroomArray[i] = collabroomArray[i].replace(mDataManager.getActiveIncidentName() + "-", "");
+		    int indexCount = 0;
+		    for (Map.Entry< Long , CollabroomPayload> entry : collabRoomsIncidentIdMap.entrySet()) {
+		        Long key = entry.getKey();
+		        CollabroomPayload payload = entry.getValue();
+
+		        dialogNameArray[indexCount] = payload.getName().replace(mDataManager.getActiveIncidentName() + "-", "");
+		        dialogIndexToCollabIdLookup[indexCount] = key;
+		        indexCount++;
 		    }
 
-		    if(collabroomArray.length > 0) {
+		    if(dialogNameArray.length > 0) {
 		    	mDialogBuilder.setMessage(null);
-		    	mDialogBuilder.setItems(collabroomArray, roomSelected);
+		    	mDialogBuilder.setItems(dialogNameArray, roomSelected);
 		    } else {
 		    	mDialogBuilder.setMessage(R.string.no_rooms_accessible);
 		    	mDialogBuilder.setItems(null, null);
@@ -669,17 +679,18 @@ public class OverviewFragment extends Fragment {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
 
-			CollabroomPayload currentRoom = mDataManager.getCollabRoomList().get(mDataManager.getCollabRoomNamesList().get(collabroomArray[which]));
+			CollabroomPayload currentRoom = collabRoomsIncidentIdMap.get(dialogIndexToCollabIdLookup[which]);
+//			CollabroomPayload currentRoom = mDataManager.getCollabRoomList().get(mDataManager.getCollabRoomMapById().get(collabroomArray[which].getCollabRoomId()));
 
 			mDataManager.stopPollingChat();
 			mDataManager.stopPollingMarkup();
 			
-			mDataManager.setSelectedCollabRoom(currentRoom.getName(), currentRoom.getCollabRoomId());
+			mDataManager.setSelectedCollabRoom(currentRoom);
 			
 			mDataManager.stopPollingAssignment();
 			mDataManager.requestMarkupRepeating(mDataManager.getCollabroomDataRate(), true);
 
-			mJoinRoomButton.setText(getString(R.string.room_active, mDataManager.getSelectedCollabRoomName().replace(mDataManager.getActiveIncidentName() + "-", "")));
+			mJoinRoomButton.setText(getString(R.string.room_active, mDataManager.getSelectedCollabRoom().getName().replace(mDataManager.getActiveIncidentName() + "-", "")));
 
 			if(mRoomFrameLayout != null){
 				mRoomFrameLayout.setAlpha(1.0f);

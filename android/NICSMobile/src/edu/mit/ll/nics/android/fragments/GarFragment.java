@@ -142,7 +142,7 @@ public class GarFragment extends Fragment {
     	// post the time message was sent to the view
     	((TextView) mRootView.findViewById(R.id.sendStatusTxt)).setText(getString(R.string.gar_sent, new Date()));
     	
-    	mDataManager.addChatMsgToStoreAndForward(m_sendString, mDataManager.getSelectedCollabRoomName());
+    	mDataManager.addChatMsgToStoreAndForward(m_sendString, mDataManager.getSelectedCollabRoom().getName());
     	mDataManager.sendChatMessages();
     }
     

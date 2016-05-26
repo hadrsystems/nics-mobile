@@ -55,6 +55,11 @@ static MultipartPostQueue* mMultipartPostQueue;
     myUsername = username;
     myPassword = password;
     
+    if(![[dataManager getPassword] isEqualToString:password]){
+        _AuthValue = nil;
+        [dataManager setAuthToken:nil];
+    }
+    
     if(_AuthValue == nil){
         return [self requestAuthToken:username :password];
     }else{

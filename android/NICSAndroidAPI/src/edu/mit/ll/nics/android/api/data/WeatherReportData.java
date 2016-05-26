@@ -39,6 +39,7 @@ import com.google.gson.annotations.SerializedName;
 public class WeatherReportData {
 	
 	private String user;
+	private String userfull;
 	private String status;
 	
 	@SerializedName("wr-dataSource")
@@ -82,6 +83,7 @@ public class WeatherReportData {
 	
 	public WeatherReportData(WeatherReportFormData messageData) {
 		user = messageData.getUser();
+		userfull = messageData.getUserFull();
 		status = messageData.getStatus();
 		datasource = WeatherSourceTypes.lookUp(messageData.getDataSource());
 		latitude = messageData.getLatitude();
@@ -100,9 +102,17 @@ public class WeatherReportData {
 	public String getUser() {
 		return user;
 	}
-
+	
 	public void setUser(String user) {
 		this.user = user;
+	}
+	
+	public String getUserFull() {
+		return userfull;
+	}
+	
+	public void setUserFull(String userfull) {
+		this.userfull = userfull;
 	}
 
 	public String getStatus(){

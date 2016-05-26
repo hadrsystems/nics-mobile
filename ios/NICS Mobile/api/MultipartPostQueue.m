@@ -167,14 +167,11 @@ static NSNotificationCenter *notificationCenter;
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten
 totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     
-    
-    
     ReportPayload* payload =[sendQueue objectAtIndex:0];
     
         double percentage = ((double)totalBytesWritten/(double)totalBytesExpectedToWrite) * 100.0;
     
     NSLog(@"%@", [[Enums formTypeEnumToStringFull:[payload.formtypeid intValue]] stringByAppendingString: [NSString stringWithFormat:@"%f", percentage]] );
-    
     
         [payload setProgress:[NSNumber numberWithDouble:percentage]];
 
@@ -182,10 +179,8 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
         [userInfo setObject:[NSNumber numberWithDouble: percentage] forKey:@"progress"];
         [userInfo setObject:payload.id forKey:@"id"];
     
-
         NSNotification *reportProgressNotification = [NSNotification notificationWithName: [[Enums formTypeEnumToStringAbbrev:[payload.formtypeid intValue]] stringByAppendingString:@"ReportProgressUpdateReceived"] object:nil userInfo:userInfo];
         [notificationCenter postNotification:reportProgressNotification];
-
 }
 
 //this system should get moved to some sort of queue to better manage multiple reports being sent at one time.
@@ -198,15 +193,19 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
         if(reportPayload != nil){
             if(reportPayload.formtypeid == [NSNumber numberWithLong:SR]){
                 [dataManager deleteSimpleReportFromStoreAndForward:reportPayload];
+                [reportPayload setStatus: [NSNumber numberWithInt:SENT]];
+                [dataManager addSimpleReportToStoreAndForward:reportPayload];
+                
                 [dataManager requestSimpleReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
                 
             }else if (reportPayload.formtypeid == [NSNumber numberWithLong:DR]){
                 [dataManager deleteDamageReportFromStoreAndForward:reportPayload];
-                [dataManager requestDamageReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
+                [reportPayload setStatus: [NSNumber numberWithInt:SENT]];
+                [dataManager addDamageReportToStoreAndForward:reportPayload];
                 
+                [dataManager requestDamageReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
             }
         }
-        
         activeConnection = nil;
         
         [sendQueue removeObjectAtIndex:0];
@@ -223,9 +222,6 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
             [self postReport: [sendQueue objectAtIndex:0]];
         }
     }
-    
-    
-
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -246,12 +242,11 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     [Reports addObjectsFromArray:[dataManager getAllDamageReportsFromStoreAndForward]];
     
     for(ReportPayload *payload in Reports) {
-        if([payload.isDraft isEqual:@0]) {
+        if([payload.isDraft isEqual:@0] && [payload.status isEqualToNumber:@(WAITING_TO_SEND)]) {
             [self addPayloadToSendQueue:payload];
         }
     }
 }
-
 
 @end
 

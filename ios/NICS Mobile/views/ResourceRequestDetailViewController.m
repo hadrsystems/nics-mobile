@@ -66,6 +66,10 @@
     if([_dataManager getIsIpad])
     {
         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, [IncidentButtonBar GetIncidentCanvas].frame.size.width, self.view.frame.size.height - 200);
+    }else{
+        self.navigationItem.hidesBackButton = YES;
+        UIBarButtonItem *backBtn =[[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonSystemItemCancel target:self action:@selector(handleBack:)];
+        self.navigationItem.leftBarButtonItem=backBtn;
     }
     
     [self configureView];
@@ -178,7 +182,11 @@
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)button {
-    [self.navigationController popViewControllerAnimated:YES];
+    if(self.hideEditControls == false){
+        [self showCancelAlertView];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)cancelTabletButtonPressed {
@@ -222,6 +230,48 @@
     payload.status = [NSNumber numberWithInt:WAITING_TO_SEND];
     
     return payload;
+}
+
+-(void) showCancelAlertView{
+    UIAlertController * alert= [UIAlertController alertControllerWithTitle:@"Cancel Report" message:@"Your report progress will be lost if you leave the report." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* saveAndCloseButton = [UIAlertAction actionWithTitle:@"Save Draft And Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        
+        if([_dataManager isIpad]){
+            [self saveTabletDraftButtonPressed];
+        }else{
+            [self saveDraftButtonPressed:nil];
+        }
+    }];
+    
+    UIAlertAction* closeButton = [UIAlertAction actionWithTitle:@"Don't Save And Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        
+        if([_dataManager isIpad]){
+            [[IncidentButtonBar GetIncidentCanvasController] SetCanvasToResourceRequestFromButtonBar];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+    
+    UIAlertAction* continueButton = [UIAlertAction actionWithTitle:@"Continue Editing" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        
+    }];
+    
+    [alert addAction:saveAndCloseButton];
+    [alert addAction:closeButton];
+    [alert addAction:continueButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+- (void) handleBack:(id)sender
+{
+    if(self.hideEditControls == false){
+        [self showCancelAlertView];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

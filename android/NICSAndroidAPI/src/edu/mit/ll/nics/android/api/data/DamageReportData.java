@@ -38,6 +38,7 @@ import com.google.gson.annotations.SerializedName;
 public class DamageReportData {
 	
 	private String user;
+	private String userfull;
 	private String status;
 	
 	// Property Owner information
@@ -85,6 +86,7 @@ public class DamageReportData {
 	
 	public DamageReportData(DamageReportFormData messageData) {
 		user = messageData.getUser();
+		userfull = messageData.getUserFull();
 		status = messageData.getStatus();
 		
 		ownerLastName = messageData.getOwnerLastName();
@@ -112,6 +114,14 @@ public class DamageReportData {
 
 	public void setUser(String user) {
 		this.user = user;
+	}
+	
+	public String getUserFull() {
+		return userfull;
+	}
+	
+	public void setUserFull(String userfull) {
+		this.userfull = userfull;
 	}
 	
 	public String getStatus(){

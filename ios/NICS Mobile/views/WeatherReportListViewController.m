@@ -46,7 +46,7 @@ UIStoryboard *currentStoryboard;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"WeatherReportsUpdateReceived" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"IncidentSwitched" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:[[Enums formTypeEnumToStringAbbrev:WR] stringByAppendingString:@"ReportProgressUpdateReceived"] object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:[[Enums formTypeEnumToStringAbbrev:WR] stringByAppendingString:@"ReportProgressUpdateReceived"] object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(WeatherReportsPolledNothing) name:@"WeatherReportsPolledNothing" object:nil];
     [_dataManager requestWeatherReportsRepeatedEvery:[[DataManager getReportsUpdateFrequencyFromSettings] intValue] immediate:YES];
     
@@ -151,6 +151,8 @@ UIStoryboard *currentStoryboard;
     } else if([payload.status isEqual:[NSNumber numberWithInt:WAITING_TO_SEND]]) {
         if(payload.progress == 0) {
             cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%@%@",NSLocalizedString(@"Sending", nil),@">",data.user];
+        }else if([payload.progress doubleValue] >= 100){
+            cell.NameLabel.text = data.user;
         } else {
             cell.NameLabel.text = [@"<" stringByAppendingFormat:@"%@%.2f%@%@",NSLocalizedString(@"Sending", nil), [payload.progress doubleValue],@">",data.user];
         }
@@ -171,12 +173,18 @@ UIStoryboard *currentStoryboard;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(_filteredList && indexPath.row==0){
+        return 180;
+    }
     return 50;
 }
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if(_emptyList){
+        return nil;
+    }
+    if(_filteredList && indexPath.row==0){
         return nil;
     }
     

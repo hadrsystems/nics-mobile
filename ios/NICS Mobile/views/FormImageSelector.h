@@ -49,7 +49,6 @@
 @property NSString *imagePath;
 @property UIViewController *formView;
 
-@property bool popoverOpen;
 @property bool readOnly;
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;

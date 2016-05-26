@@ -32,6 +32,8 @@
 <!-- Language: it -->
 <resources>
 	<!-- SECTION: Uncategorized -->
+	<string name="wfslayer_nics_simple_report_title">NICS General Messages (it translate)</string>
+	<string name="wfslayer_nics_damage_report_title">NICS Damage Surveys (it translate)</string>
 	<!-- Damage Report -->
 	<string name="dr_property_owner_information_displayname">Property Owner Information(italian)</string>
 	<string name="dr_last_name_displayname">Last Name(italian)</string>

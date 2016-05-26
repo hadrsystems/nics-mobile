@@ -36,6 +36,7 @@ import com.google.gson.annotations.SerializedName;
 public class FieldReportFormData {
 
 	private String user;
+	private String userfull;
 	private String status;
 	
 	// Incident Identification
@@ -327,6 +328,7 @@ public class FieldReportFormData {
 		
 	public FieldReportFormData(FieldReportData messageData) {
 		user = messageData.getUser();
+		userfull = messageData.getUserFull();
 		status = messageData.getStatus();
 		
 		// Incident Identification
@@ -441,7 +443,11 @@ public class FieldReportFormData {
 	public String getUser() {
 		return user;
 	}
-
+	
+	public String getUserFull() {
+		return userfull;
+	}
+	
 	public void setUser(String user) {
 		this.user = user;
 	}
