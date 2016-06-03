@@ -2470,10 +2470,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lRk-wA-tDq"/>
+        <segue reference="sLZ-iX-arC"/>
+        <segue reference="k61-9N-M3Z"/>
+        <segue reference="b6z-MR-ALc"/>
         <segue reference="j9x-0w-rHv"/>
         <segue reference="y6q-d4-a7M"/>
-        <segue reference="b6z-MR-ALc"/>
-        <segue reference="sLZ-iX-arC"/>
     </inferredMetricsTieBreakers>
 </document>
