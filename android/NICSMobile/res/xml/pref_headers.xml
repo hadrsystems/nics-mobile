@@ -37,13 +37,13 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="edu.mit.ll.nics.android.SettingsActivity$GeneralPreferenceFragment"
+        android:fragment="scout.edu.mit.ll.nics.android.SettingsActivity$GeneralPreferenceFragment"
         android:title="@string/pref_header_general" />
     <header
-        android:fragment="edu.mit.ll.nics.android.SettingsActivity$SyncPreferenceFragment"
+        android:fragment="scout.edu.mit.ll.nics.android.SettingsActivity$SyncPreferenceFragment"
         android:title="@string/pref_header_sync" />
 <!--     <header
-        android:fragment="edu.mit.ll.nics.android.SettingsActivity$OtherPreferenceFragment"
+        android:fragment="scout.edu.mit.ll.nics.android.SettingsActivity$OtherPreferenceFragment"
         android:title="@string/pref_header_other" /> -->
 
 </preference-headers>

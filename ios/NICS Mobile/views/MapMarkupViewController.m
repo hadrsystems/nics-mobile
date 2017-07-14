@@ -37,7 +37,7 @@
 @class DamageReportDetailViewController;
 
 @interface MapMarkupViewController ()
-
+@property float currentZoomLevel;
 @end
 
 static NSNumber* selectedIndex;
@@ -77,6 +77,7 @@ bool markupProcessing = false;
     _mapView.mapType = _dataManager.CurrentMapType;
     _mapView.trafficEnabled = _dataManager.TrafficDisplay;
     _mapView.indoorEnabled = _dataManager.IndoorDisplay;
+    _currentZoomLevel = 8.0;
     
     [self addMarkupUpdateFromServer:nil];
     
@@ -118,11 +119,20 @@ bool markupProcessing = false;
     
     if(_zoomingToReport){
         [_mapView animateToLocation: _positionToZoomTo];
-        [_mapView animateToZoom:12];
+        [_mapView animateToZoom:10];
         _zoomingToReport = false;
     }else{
-        [_mapView animateToLocation:[_dataManager.locationManager location].coordinate];
-        [_mapView animateToZoom:12];
+        if ([_dataManager.locationManager location].coordinate.latitude > 0.0 && [_dataManager.locationManager location].coordinate.longitude > 0.0) {
+            [_mapView animateToLocation:[_dataManager.locationManager location].coordinate];
+            [_mapView animateToZoom:10];
+
+        } else {
+            [_mapView animateToLocation:CLLocationCoordinate2DMake(36.7468, -119.7726)];
+            [_mapView animateToZoom:6];
+
+        }
+        
+
     }
     _mapView.delegate = self;
     
@@ -315,6 +325,16 @@ bool markupProcessing = false;
     _previousZoomLevel = position.zoom;
 }
 
+-(void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position {
+    
+    if (roundf(position.zoom) > _currentZoomLevel && roundf(position.zoom) < 16.0) {
+        
+        [self refreshView];
+        _currentZoomLevel = roundf(position.zoom);
+        NSLog(@"\t\tDID ZOOM position:%f\n\t\tCurrent Zoom Level:%f", position.zoom, _currentZoomLevel);
+    }
+}
+
 -(void)addFeatureToMap:(MarkupFeature*) feature {
     
 //    [_markupFeatures setValue:feature forKey:feature.featureId];
@@ -338,21 +358,23 @@ bool markupProcessing = false;
             }
             
         } else if(currentType == segment) {
-            if(feature.dashStyle == nil) {  //line segment
-                MarkupSegment *segment = [[MarkupSegment alloc] initWithMap:_mapView feature:feature];
-                if([feature.featureId isEqualToString: @"draft"]){
-                    [_markupDraftShapes addObject:segment];
-                }else{
-                    [_markupShapes setValue:segment forKey:feature.featureId];
-                }
-            } else {    //fireline, should figure out which fire line is being drawn and change the graphic
-                MarkupFireline *fireline = [[MarkupFireline alloc] initWithMap:_mapView feature:feature];
-                if([feature.featureId isEqualToString: @"draft"]){
-                    [_markupDraftShapes addObject:fireline];
-                }else{
-                    [_markupShapes setValue:fireline forKey:feature.featureId];
-                }
-            }
+//            if(feature.dashStyle == nil) {  //line segment
+//                MarkupSegment *segment = [[MarkupSegment alloc] initWithMap:_mapView feature:feature];
+//                if([feature.featureId isEqualToString: @"draft"]){
+//                    [_markupDraftShapes addObject:segment];
+//                }else{
+//                    [_markupShapes setValue:segment forKey:feature.featureId];
+//                }
+//            } else {    //fireline, should figure out which fire line is being drawn and change the graphic
+            
+                // WARNING: Firelines removed due to client request
+//                MarkupFireline *fireline = [[MarkupFireline alloc] initWithMap:_mapView feature:feature];
+//                if([feature.featureId isEqualToString: @"draft"]){
+//                    [_markupDraftShapes addObject:fireline];
+//                }else{
+//                    [_markupShapes setValue:fireline forKey:feature.featureId];
+//                }
+            //}
             
         } else if(currentType == rectangle || currentType == polygon) {
             MarkupPolygon *polygon = [[MarkupPolygon alloc] initWithMap:_mapView feature:feature];
@@ -490,10 +512,10 @@ bool markupProcessing = false;
         [self addFeatureToMap:feature];
     }
     
-    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"NICS General Messages",nil)]){
+    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"SCOUT General Messages",nil)]){
         [self addAllGeneralMessageSymbolsToMap];
     }
-    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"NICS Damage Surveys",nil)]){
+    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"SCOUT Damage Surveys",nil)]){
         [self addAllDamageReportSymbolsToMap];
     }
 }
@@ -505,13 +527,13 @@ bool markupProcessing = false;
     
     TrackingLayerPayload* trackingLayerToCompare = [[ActiveWfsLayerManager getTrackingLayers] objectAtIndex:layerIndex ];
     
-    if([trackingLayerToCompare.displayname isEqualToString:NSLocalizedString(@"NICS General Messages",nil)]){
+    if([trackingLayerToCompare.displayname isEqualToString:NSLocalizedString(@"SCOUT General Messages",nil)]){
         if(isOn == 1){
             [self addAllGeneralMessageSymbolsToMap];
         }else{
             [self clearGeneralMessageSymbolsFromMap];
         }
-    }else if([trackingLayerToCompare.displayname isEqualToString:NSLocalizedString(@"NICS Damage Surveys",nil)]){
+    }else if([trackingLayerToCompare.displayname isEqualToString:NSLocalizedString(@"SCOUT Damage Surveys",nil)]){
         if(isOn == 1){
             [self addAllDamageReportSymbolsToMap];
         }else{
@@ -552,7 +574,7 @@ bool markupProcessing = false;
 
 -(void)addGeneralMessageSymbolToMap:(SimpleReportPayload*)payload{
     
-    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"NICS General Messages",nil)]){
+    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"SCOUT General Messages",nil)]){
     
         MarkupFeature *feature = [[MarkupFeature alloc]init];
         feature.type = @"General Message";
@@ -620,7 +642,7 @@ bool markupProcessing = false;
 
 -(void)addDamageReportSymbolToMap:(DamageReportPayload*)payload{
 
-    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"NICS Damage Surveys",nil)]){
+    if([_dataManager getTrackingLayerEnabled:NSLocalizedString(@"SCOUT Damage Surveys",nil)]){
     
         MarkupFeature *feature = [[MarkupFeature alloc]init];
         feature.type = @"Damage Report";
@@ -759,7 +781,7 @@ bool markupProcessing = false;
 
     if(type == segment || type == rectangle || type == polygon || type == circle || type == text) {
         GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:[shape getPath]];
-        GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:100.f];
+        GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:50.f];
         
         [_mapView animateWithCameraUpdate:update];
     }else{
@@ -767,7 +789,7 @@ bool markupProcessing = false;
         [[shape.points objectAtIndex:0] getValue:&positionCoordinate];
         
         [_mapView animateToLocation:positionCoordinate];
-        [_mapView animateToZoom:12];
+        [_mapView animateToZoom:16];
     }
 
     _mapView.selectedMarker = nil;
@@ -1017,8 +1039,10 @@ bool markupProcessing = false;
     positionCoordinate.latitude=[[[notification userInfo] valueForKey:@"lat"] doubleValue];
     positionCoordinate.longitude=[[[notification userInfo] valueForKey:@"lon"] doubleValue];
     
+    
+    
     [_mapView animateToLocation:positionCoordinate];
-    [_mapView animateToZoom:12];
+    [_mapView animateToZoom:10];
 
 
 _mapView.selectedMarker = nil;

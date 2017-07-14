@@ -55,6 +55,7 @@
         _polyline = [GMSPolyline polylineWithPath:path];
         _polyline.strokeColor = [Utils colorWithHexString:feature.strokeColor];
         _polyline.strokeWidth = [feature.strokeWidth floatValue];
+        
         _polyline.map = self.mapView;
     }
 

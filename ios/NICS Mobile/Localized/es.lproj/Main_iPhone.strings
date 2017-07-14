@@ -204,7 +204,7 @@
 "bcx-V1-ydT.title" = "Lista de recursos solicitados";
 
 /* Class = "UINavigationItem"; title = "NICS Mobile"; ObjectID = "bgx-nT-I6n"; */
-"bgx-nT-I6n.title" = "NICS Mobile";
+"bgx-nT-I6n.title" = "SCOUT Mobile";
 
 /* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "bzj-9e-DzO"; */
 "bzj-9e-DzO.normalTitle" = "Enviar";

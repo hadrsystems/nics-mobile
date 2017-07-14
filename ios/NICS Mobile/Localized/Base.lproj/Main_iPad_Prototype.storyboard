@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="yzV-ge-y18">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="yzV-ge-y18">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--NICS Mobile-->
+        <!--SCOUT Mobile-->
         <scene sceneID="CuJ-cu-EvX">
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" modalTransitionStyle="crossDissolve" id="7Ul-8G-n6M" customClass="LoginViewController" sceneMemberID="viewController">
@@ -33,7 +33,7 @@
                                     </label>
                                 </subviews>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nics_splash" translatesAutoresizingMaskIntoConstraints="NO" id="a3j-uC-RkM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nics_splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="a3j-uC-RkM">
                                 <rect key="frame" x="214" y="20" width="597" height="464"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yY7-1O-ENR" userLabel="Login Content View">
@@ -155,7 +155,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="NICS Mobile" id="R34-ZS-sLC"/>
+                    <navigationItem key="navigationItem" title="SCOUT Mobile" id="R34-ZS-sLC"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="SettingsButton" destination="g7v-Ub-Qi0" id="qWE-VW-O31"/>
@@ -199,7 +199,7 @@
                                 <rect key="frame" x="0.0" y="1" width="512" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qQE-tF-Mjq" id="bAx-BO-1s9">
-                                    <rect key="frame" x="0.0" y="0.0" width="512" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="512" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="50" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ABCD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfa-Ph-kzy">
@@ -532,7 +532,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Overview" id="Dls-Xw-pvD">
                         <barButtonItem key="backBarButtonItem" title="Back" id="nkE-Nq-uB4"/>
-                        <barButtonItem key="leftBarButtonItem" title="NICS Help" id="BHW-uL-ACk">
+                        <barButtonItem key="leftBarButtonItem" title="SCOUT Help" id="BHW-uL-ACk">
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="nicsHelpButtonPressed:" destination="WyR-MA-SR2" id="2TB-Kd-fbO"/>
@@ -577,7 +577,7 @@
                                 <rect key="frame" x="0.0" y="22" width="512" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JCO-Ua-fxN" id="WFY-sb-9me">
-                                    <rect key="frame" x="0.0" y="0.0" width="512" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="512" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yg-qf-Ga5">
@@ -663,7 +663,7 @@
                                 <rect key="frame" x="0.0" y="22" width="512" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1E7-0S-5zf" id="rkq-2c-mVd">
-                                    <rect key="frame" x="0.0" y="0.0" width="512" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="512" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjl-0I-2ap">
@@ -799,7 +799,7 @@
                                         <rect key="frame" x="0.0" y="22" width="511" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zmv-al-EtH" id="HMD-6o-qVH">
-                                            <rect key="frame" x="0.0" y="0.0" width="511" height="45.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="511" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LhP-DN-t9B">
@@ -1179,7 +1179,7 @@
                                 <rect key="frame" x="0.0" y="22" width="512" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DuV-np-5U5" id="u0X-bo-isF">
-                                    <rect key="frame" x="0.0" y="0.0" width="512" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="512" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kn4-g3-Chz">
@@ -1200,7 +1200,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button hidden="YES" opaque="NO" tag="50" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOc-oO-Tcx" userLabel="mapLocationButton">
+                                        <button hidden="YES" opaque="NO" tag="50" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOc-oO-Tcx" userLabel="mapLocationButton">
                                             <rect key="frame" x="463" y="3" width="44" height="44"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="FOc-oO-Tcx" secondAttribute="height" multiplier="1:1" id="7iO-h9-ynv"/>
@@ -1505,7 +1505,7 @@
                                         <rect key="frame" x="0.0" y="22" width="334" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UxT-Uk-9mT" id="8k3-uR-dgR">
-                                            <rect key="frame" x="0.0" y="0.0" width="334" height="45.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="334" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ytP-Ie-TuI">
@@ -1590,7 +1590,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="749" misplaced="YES" image="nics_splash" translatesAutoresizingMaskIntoConstraints="NO" id="hKp-AR-TlF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="749" misplaced="YES" image="nics_splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="hKp-AR-TlF">
                                 <rect key="frame" x="16" y="95" width="318" height="207"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" misplaced="YES" text="Version:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VnG-V6-k4S">
@@ -1727,7 +1727,7 @@
                                 <rect key="frame" x="0.0" y="28" width="517" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TiX-Yr-8qh" id="dKi-7c-QrQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="517" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="517" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jeo-5c-kX3">
@@ -1795,7 +1795,7 @@
                                 <rect key="frame" x="0.0" y="22" width="350" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CvD-Rb-I33" id="Yrt-HG-mp1">
-                                    <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="350" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tracking Layer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9O-Sl-a8r">
@@ -2009,7 +2009,7 @@
                                 <rect key="frame" x="0.0" y="22" width="512" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bz5-J6-z1E" id="J4o-jV-cIc">
-                                    <rect key="frame" x="0.0" y="0.0" width="512" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="512" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Gg4-DF-Gnf">
@@ -2030,7 +2030,7 @@
                                             <color key="textColor" white="0.88229927009999998" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button hidden="YES" opaque="NO" tag="50" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70N-io-2J0" userLabel="mapLocationButton">
+                                        <button hidden="YES" opaque="NO" tag="50" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70N-io-2J0" userLabel="mapLocationButton">
                                             <rect key="frame" x="463" y="3" width="44" height="44"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="70N-io-2J0" secondAttribute="height" multiplier="1:1" id="zAq-Qr-1gL"/>
@@ -2124,7 +2124,7 @@
         <image name="mapMarkerIcon" width="128" height="128"/>
         <image name="menu.png" width="28" height="20"/>
         <image name="myloc" width="32" height="32"/>
-        <image name="nics_splash" width="500" height="410"/>
+        <image name="nics_splash.png" width="500" height="410"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>

@@ -680,7 +680,7 @@
 "Logging in..." = "+=+=+= +=+=+=...";
 
 /* Displayed for a bried period of time while the user is logging in and the app is loading */
-"Loading Incidents and Collabrooms..." = "+=+=+= +=+=+= +=+=+= +=+=+=...";
+"Loading Incidents and Collaboration Rooms..." = "+=+=+= +=+=+= +=+=+= +=+=+=...";
 
 /* Displayed on a failed login in a pop up window */
 "Failed to login." = "+=+=+= +=+=+= +=+=+=.";

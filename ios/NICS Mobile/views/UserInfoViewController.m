@@ -60,7 +60,7 @@ static DataManager *dataManager;
         [_WorkspaceLabel setText:NSLocalizedString(@"Incident",nil)];
     }
     
-    _VersionNumberLabel.text =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    _VersionNumberLabel.text =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     
     [_ServerNameLabel setText: [dataManager getServerFromSettings]];
     _confirmDeleteActivated = false;

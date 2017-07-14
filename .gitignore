@@ -73,3 +73,13 @@ xcuserdata
 ## Obj-C/Swift specific
 *.hmap
 *.ipa
+
+# Server-specific Configuration files (or files containing configuration values)
+android/NICSAndroidAPI/res/values/config_strings.xml
+ios/NICS Mobile/AppDelegate.m
+ios/NICS Mobile/Localized/Settings.bundle/Root.plist
+ios/NICS Mobile/views/OverviewViewController.m
+ios/NICS Mobile/views/OverviewViewControllerTablet.m
+
+# Excluding the Google Maps framework directory
+ios/Pods/GoogleMaps/

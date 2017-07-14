@@ -77,7 +77,7 @@ bool useOpenAM = false;
     }
     
     self.currentServerLabel.text = [dataManager getServerFromSettings];
-    self.VersionLabel.text = [@"Version: " stringByAppendingString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+    self.VersionLabel.text = [@"Version: " stringByAppendingString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
     
     [_loadingView setHidden:true];
     [_loginContentView setHidden:false];
@@ -150,7 +150,7 @@ bool useOpenAM = false;
             }
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [_loadingLabel setText:NSLocalizedString(@"Loading Incidents and Collabrooms...",nil)];
+                [_loadingLabel setText:NSLocalizedString(@"Loading Incidents and Collaboration Rooms...",nil)];
             }];
             
 //            OrganizationPayload* orgPayload = dataManager.orgData;

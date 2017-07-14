@@ -33,7 +33,7 @@
 
 -->
 <account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
-    android:accountType="edu.mit.ll.nics.android"
+    android:accountType="scout.edu.mit.ll.nics.android"
     android:icon="@drawable/ic_launcher"
     android:label="@string/app_name"
     android:smallIcon="@drawable/ic_launcher" >

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Chat Update Frequency</string>
+			<key>Values</key>
+			<array>
+				<integer>15</integer>
+				<integer>30</integer>
+				<integer>60</integer>
+				<integer>90</integer>
+				<integer>120</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>15 Seconds</string>
+				<string>30 Seconds</string>
+				<string>1 Minute</string>
+				<string>1.5 Minutes</string>
+				<string>2 Minutes</string>
+			</array>
+			<key>Key</key>
+			<string>chatUpdateFrequency</string>
+			<key>DefaultValue</key>
+			<integer>30</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Reports Update Frequency</string>
+			<key>Values</key>
+			<array>
+				<integer>15</integer>
+				<integer>30</integer>
+				<integer>60</integer>
+				<integer>90</integer>
+				<integer>120</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>15 Seconds</string>
+				<string>30 Seconds</string>
+				<string>1 Minute</string>
+				<string>1.5 Minutes</string>
+				<string>2 Minutes</string>
+			</array>
+			<key>Key</key>
+			<string>reportsUpdateFrequency</string>
+			<key>DefaultValue</key>
+			<integer>30</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Map Update Frequency</string>
+			<key>Values</key>
+			<array>
+				<integer>15</integer>
+				<integer>30</integer>
+				<integer>60</integer>
+				<integer>90</integer>
+				<integer>120</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>15 Seconds</string>
+				<string>30 Seconds</string>
+				<string>1 Minute</string>
+				<string>1.5 Minutes</string>
+				<string>2 Minutes</string>
+			</array>
+			<key>Key</key>
+			<string>mapUpdateFrequency</string>
+			<key>DefaultValue</key>
+			<integer>30</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Mobile Tracking Update Frequency</string>
+			<key>Values</key>
+			<array>
+				<integer>15</integer>
+				<integer>30</integer>
+				<integer>60</integer>
+				<integer>90</integer>
+				<integer>120</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>15 Seconds</string>
+				<string>30 Seconds</string>
+				<string>1 Minute</string>
+				<string>1.5 Minutes</string>
+				<string>2 Minutes</string>
+			</array>
+			<key>Key</key>
+			<string>mdtUpdateFrequency</string>
+			<key>DefaultValue</key>
+			<integer>60</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>WFS Update Frequency</string>
+			<key>Values</key>
+			<array>
+				<integer>15</integer>
+				<integer>30</integer>
+				<integer>60</integer>
+				<integer>90</integer>
+				<integer>120</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>15 Seconds</string>
+				<string>30 Seconds</string>
+				<string>1 Minute</string>
+				<string>1.5 Minutes</string>
+				<string>2 Minutes</string>
+			</array>
+			<key>Key</key>
+			<string>wfsUpdateFrequency</string>
+			<key>DefaultValue</key>
+			<integer>60</integer>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>General</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>calTracking</string>
+			<key>Title</key>
+			<string>Enable California Tracking</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>gpsEnabled</string>
+			<key>Title</key>
+			<string>GPS Mobile Device Tracking</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Select SCOUT Server</string>
+			<key>Titles</key>
+			<array>
+				<string>ENTER SERVER NAME HERE</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>http://YOUR_SERVER_DOMAIN.com/em-api/v1</string>
+			</array>
+			<key>Key</key>
+			<string>selectedServer</string>
+			<key>DefaultValue</key>
+			<string>https://www.YOUR_SERVER_DOMAIN.com/em-api/v1/</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Select SCOUT Authentication Server</string>
+			<key>Titles</key>
+			<array>
+				<string>ENTER AUTHENTICATION SERVER NAME HERE</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>http://YOUR_SERVER_DOMAIN.com/openam</string>
+			</array>
+			<key>Key</key>
+			<string>selectedAuthServer</string>
+			<key>DefaultValue</key>
+			<string>https://www.YOUR_SERVER_DOMAIN.com/openam/</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Select SCOUT Geo Server</string>
+			<key>Titles</key>
+			<array>
+				<string>ENTER GEOSERVER NAME HERE</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>http://YOUR_SERVER_DOMAIN.com/geoserver</string>
+			</array>
+			<key>Key</key>
+			<string>selectedGeoServer</string>
+			<key>DefaultValue</key>
+			<string>https://www.YOUR_SERVER_DOMAIN.com/geoserver/</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>useCustomServer</string>
+			<key>Title</key>
+			<string>Use Custom Servers</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Custom SCOUT Server:</string>
+			<key>Key</key>
+			<string>customNicsServer</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Custom Authentication Server:</string>
+			<key>Key</key>
+			<string>customAuthServer</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Custom Geo Server:</string>
+			<key>Key</key>
+			<string>customGeoServer</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Custom Domain:</string>
+			<key>Key</key>
+			<string>customCookieDomain</string>
+		</dict>
+	</array>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>CookieDomains</key>
+	<dict>
+		<key>https://www.YOUR_SERVER_DOMAIN.com/em-api/v1/</key>
+		<string>YOUR_SERVER_DOMAIN.com</string>
+	</dict>
+</dict>
+</plist>

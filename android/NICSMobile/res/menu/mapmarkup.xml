@@ -34,7 +34,7 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:nics="http://schemas.android.com/apk/res-auto">
  
-   <item android:id="@+id/mapmarkup_action_provider" android:orderInCategory="10" nics:showAsAction="always" android:showAsAction="always" android:title="@string/markup_maptype" nics:actionProviderClass="edu.mit.ll.nics.android.action.providers.MapMarkupActionProvider" android:actionProviderClass="edu.mit.ll.nics.android.action.providers.MapMarkupActionProvider">
+   <item android:id="@+id/mapmarkup_action_provider" android:orderInCategory="10" nics:showAsAction="always" android:showAsAction="always" android:title="@string/markup_maptype" nics:actionProviderClass="scout.edu.mit.ll.nics.android.action.providers.MapMarkupActionProvider" android:actionProviderClass="scout.edu.mit.ll.nics.android.action.providers.MapMarkupActionProvider">
 				
 		<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 		    <group android:checkableBehavior="single">

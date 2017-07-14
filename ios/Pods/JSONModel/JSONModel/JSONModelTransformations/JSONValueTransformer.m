@@ -21,7 +21,7 @@ extern BOOL isNull(id value)
 {
     if (!value) return YES;
     if ([value isKindOfClass:[NSNull class]]) return YES;
-    
+
     return NO;
 }
 
@@ -35,7 +35,7 @@ extern BOOL isNull(id value)
                              //and some famous aliases of primitive types
                              // BOOL is now "B" on iOS __LP64 builds
                              @"I":@"NSInteger", @"Q":@"NSUInteger", @"B":@"BOOL",
-                             
+
                              @"@?":@"Block"};
     }
     return self;
@@ -47,7 +47,7 @@ extern BOOL isNull(id value)
     if ([sourceClass isSubclassOfClass:[NSString class]]) {
         return [NSString class];
     }
-    
+
     //check for all variations of numbers
     if ([sourceClass isSubclassOfClass:[NSNumber class]]) {
         return [NSNumber class];
@@ -57,7 +57,7 @@ extern BOOL isNull(id value)
     if ([sourceClass isSubclassOfClass:[NSArray class]]) {
         return [NSArray class];
     }
-    
+
     //check for all variations of arrays
     if ([sourceClass isSubclassOfClass:[NSDictionary class]]) {
         return [NSDictionary class];
@@ -124,7 +124,7 @@ extern BOOL isNull(id value)
 
 -(NSNumber*)BOOLFromNSString:(NSString*)string
 {
-    if (string != nil && 
+    if (string != nil &&
         ([string caseInsensitiveCompare:@"true"] == NSOrderedSame ||
         [string caseInsensitiveCompare:@"yes"] == NSOrderedSame)) {
         return [NSNumber numberWithBool:YES];
@@ -183,7 +183,7 @@ extern BOOL isNull(id value)
 -(NSURL*)NSURLFromNSString:(NSString*)string
 {
     // do not change this behavior - there are other ways of overriding it
-    // see: https://github.com/icanzilb/JSONModel/pull/119
+    // see: https://github.com/jsonmodel/jsonmodel/pull/119
     return [NSURL URLWithString:string];
 }
 
@@ -214,7 +214,7 @@ extern BOOL isNull(id value)
 -(NSString*)__JSONObjectFromNSDate:(NSDate*)date
 {
     static dispatch_once_t onceOutput;
-	static NSDateFormatter *outputDateFormatter;
+    static NSDateFormatter *outputDateFormatter;
     dispatch_once(&onceOutput, ^{
         outputDateFormatter = [[NSDateFormatter alloc] init];
         [outputDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
@@ -240,7 +240,7 @@ extern BOOL isNull(id value)
 }
 
 #pragma mark - hidden transform for empty dictionaries
-//https://github.com/icanzilb/JSONModel/issues/163
+//https://github.com/jsonmodel/jsonmodel/issues/163
 -(NSDictionary*)__NSDictionaryFromNSArray:(NSArray*)array
 {
     if (array.count==0) return @{};
