@@ -121,7 +121,7 @@
 "Qis-51-CXH.normalTitle" = "Normal";
 
 /* Class = "UINavigationItem"; title = "NICS Mobile"; ObjectID = "R34-ZS-sLC"; */
-"R34-ZS-sLC.title" = "NICS Mobile";
+"R34-ZS-sLC.title" = "SCOUT Mobile";
 
 /* Class = "UILabel"; text = "Remember Username"; ObjectID = "RKm-7P-Umu"; */
 "RKm-7P-Umu.text" = "Remember Username";
@@ -503,7 +503,7 @@
 "bcx-V1-ydT.title" = "Resource Request List";
 
 /* Class = "UINavigationItem"; title = "NICS Mobile"; ObjectID = "bgx-nT-I6n"; */
-"bgx-nT-I6n.title" = "NICS Mobile";
+"bgx-nT-I6n.title" = "SCOUT Mobile";
 
 /* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "bzj-9e-DzO"; */
 "bzj-9e-DzO.normalTitle" = "Submit";
@@ -680,7 +680,7 @@
 "Logging in..." = "Logging in...";
 
 /* Displayed for a bried period of time while the user is logging in and the app is loading */
-"Loading Incidents and Collabrooms..." = "Loading Incidents and Collabrooms...";
+"Loading Incidents and Collaboration Rooms..." = "Loading Incidents and Collaboration Rooms...";
 
 /* Displayed on a failed login in a pop up window */
 "Failed to login." = "Failed to login.";
@@ -737,13 +737,13 @@
 
 "Delorme PLI" = "Delorme PLI";
 
-"NICS Damage Surveys" = "NICS Damage Surveys";
+"SCOUT Damage Surveys" = "SCOUT Damage Surveys";
 
-"NICS Explosive Reports" = "NICS Explosive Reports";
+"SCOUT Explosive Reports" = "SCOUT Explosive Reports";
 
-"NICS General Messages" = "NICS General Messages";
+"SCOUT General Messages" = "SCOUT General Messages";
 
-"NICS Mobile Users" = "NICS Mobile Users";
+"SCOUT Mobile Users" = "SCOUT Mobile Users";
 
 "SARApp PLI" = "SARApp PLI";
 
@@ -1266,11 +1266,11 @@
 
 "GPS Mobile Device Tracking" = "GPS Mobile Device Tracking";
 
-"Select NICS Server" = "Select NICS Server";
+"Select SCOUT Server" = "Select SCOUT Server";
 
-"Select NICS Authentication Server" = "Select NICS Authentication Server";
+"Select SCOUT Authentication Server" = "Select SCOUT Authentication Server";
 
-"Select NICS Geo Server" = "Select NICS Geo Server";
+"Select SCOUT Geo Server" = "Select SCOUT Geo Server";
 
 /* Drop down options for settings menu */
 "15 Seconds" = "15 Seconds";

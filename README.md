@@ -18,7 +18,7 @@ When creating your Eclipse workspace, import all the packages in the "nics-mobil
   <br>- You should see the following 8 packages in the import window. Make sure all are checked and press the finish button
 
 <ul>
-  <li>NICSMobile</li>
+  <li>LoginActivity</li>
   <li>nicsAndroidAPI</li>
   <li>android-async-http</li>
   <li>google-play-services_lib</li>
@@ -32,7 +32,7 @@ Now that everything is imported you need to configure the dependencies of each p
 
 The NicsMobile and NicsAndroidAPI package dependencies should be preconfigured in each package's properties menu when imported to match the structure below. You can check these by right clicking each NICS project and selecting Properties then Android.
 
-NICSMobile
+LoginActivity
 <ul>
   <li>nicsAndroidAPI</li>
   <li>nmea-handler_lib</li>
@@ -48,9 +48,36 @@ NICSAndroidAPI  (Is Library)
   <li>nasa-worldwind-coordinate-converter</li>
 </ul>
 
-You can deploy the app by building the "NICSMobile" project as an Android Application in Eclipse.
+You can deploy the app by building the "LoginActivity" project as an Android Application in Eclipse.
+
+###iOS
+
+The Google Maps framework has been removed from the iOS project files.
+This framework is required for proper compilation / app functionality.
+
+To acquire the Google Maps framework for the app, download the framework from the following URL:
+
+https://developers.google.com/maps/documentation/ios-sdk/start
+
+After downloading the framework, copy the file "GoogleMaps.framework" to the directory: "nics-mobile/ios/Pods/GoogleMaps/Frameworks/"
+
 
 ## Configuration
+
+Configuration files have been removed from the "android" and "ios" project directories, and moved to the "config file templates" directory.
+All configuration files have had the ".template" file extension appended to their file names.
+
+Steps required to resolve configuration files to get the projects in working order:
+<lu>
+<li>1. Go into each template file and populate the template information</li>
+<li>2. Remove the ".template" extension from each template file</li>
+<li>3. Drag and drop the "config file templates/ios" and "config file templates/android" folders onto the root "ios" and "android" folders</li>
+  <ul>
+    <li>This should merge the folders and add the modified template files into the project directories, restoring the projects to working order.</li>
+    </ul>
+</ul>
+
+
 
 ###Android
 

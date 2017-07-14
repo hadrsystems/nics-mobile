@@ -27,9 +27,9 @@
 #   public *;
 #}
 
--keep class edu.mit.ll.nics.android.SettingsActivity$GeneralPreferenceFragment
--keep class edu.mit.ll.nics.android.SettingsActivity$SyncPreferenceFragment
--keep class edu.mit.ll.nics.android.SettingsActivity$OtherPreferenceFragment
+-keep class scout.edu.mit.ll.nics.android.SettingsActivity$GeneralPreferenceFragment
+-keep class scout.edu.mit.ll.nics.android.SettingsActivity$SyncPreferenceFragment
+-keep class scout.edu.mit.ll.nics.android.SettingsActivity$OtherPreferenceFragment
 
 -keepclassmembers enum * {
  public static **[] values();
@@ -48,14 +48,14 @@
   <init>(...);
 }
 
--keep class edu.mit.ll.nics.android.api.data.** {
+-keep class scout.edu.mit.ll.nics.android.api.data.** {
 	*;
 }
 
--keep class edu.mit.ll.nics.android.api.messages.** {
+-keep class scout.edu.mit.ll.nics.android.api.messages.** {
 	*;
 }
 
--keep class edu.mit.ll.nics.android.api.payload.** {
+-keep class scout.edu.mit.ll.nics.android.api.payload.** {
 	*;
 }

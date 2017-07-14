@@ -46,17 +46,17 @@ NSMutableArray* trackingLayers;
     trackingLayers = newTrackingLayers;
     
     TrackingLayerPayload* damagePayload = [[TrackingLayerPayload alloc]init];
-    damagePayload.displayname = NSLocalizedString(@"NICS Damage Surveys",nil);
+    damagePayload.displayname = NSLocalizedString(@"SCOUT Damage Surveys",nil);
     damagePayload.layername = @"nics_dmgrpt";
     damagePayload.internalurl = [[DataManager getInstance] getGeoServerFromSettings];
     
     TrackingLayerPayload* generalPayload = [[TrackingLayerPayload alloc]init];
-    generalPayload.displayname = NSLocalizedString(@"NICS General Messages",nil);
+    generalPayload.displayname = NSLocalizedString(@"SCOUT General Messages",nil);
     generalPayload.layername = @"nics_sr";
     generalPayload.internalurl = [[DataManager getInstance] getGeoServerFromSettings];
     
     TrackingLayerPayload* explosivePayload = [[TrackingLayerPayload alloc]init];
-    explosivePayload.displayname = NSLocalizedString(@"NICS Explosive Reports",nil);
+    explosivePayload.displayname = NSLocalizedString(@"SCOUT Explosive Reports",nil);
     explosivePayload.layername = @"nics_urrpt";
     explosivePayload.internalurl = [[DataManager getInstance] getGeoServerFromSettings];
     

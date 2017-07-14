@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="gVp-Pt-9WE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="gVp-Pt-9WE">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--NICS Mobile-->
+        <!--SCOUT Mobile-->
         <scene sceneID="GQF-SI-GSu">
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" modalTransitionStyle="crossDissolve" id="TXl-Kq-aF3" customClass="LoginViewController" sceneMemberID="viewController">
@@ -159,7 +159,7 @@
                             <constraint firstAttribute="centerY" secondItem="PyM-YI-8s1" secondAttribute="centerY" id="wm1-tl-KDv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="NICS Mobile" id="bgx-nT-I6n"/>
+                    <navigationItem key="navigationItem" title="SCOUT Mobile" id="bgx-nT-I6n"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="SettingsButton" destination="l27-i6-UZp" id="1g2-eL-mag"/>
@@ -203,7 +203,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zis-NZ-KaU" id="klF-bV-lEd">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KNe-sX-U2w">
@@ -706,7 +706,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Overview" id="JGE-Ey-BI6">
                         <barButtonItem key="backBarButtonItem" title="Back" width="26" id="5rc-Iv-4RA"/>
-                        <barButtonItem key="leftBarButtonItem" title="NICS Help" id="GVV-a8-7a9">
+                        <barButtonItem key="leftBarButtonItem" title="SCOUT Help" id="GVV-a8-7a9">
                             <connections>
                                 <action selector="nicsHelpButtonPressed:" destination="pfi-KL-drU" id="K8R-Gc-BJY"/>
                             </connections>
@@ -844,7 +844,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TBM-TW-CZN" id="UXA-1i-xD8">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cl4-6N-wWX">
@@ -1008,7 +1008,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ot0-fC-f6x" id="cWd-85-ZKS">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NgE-KP-Ydp">
@@ -1249,7 +1249,7 @@
                                     <action selector="ClearLocalDataButtonPressed:" destination="lRD-14-JZp" eventType="touchUpInside" id="S50-3v-uDX"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nics_splash" translatesAutoresizingMaskIntoConstraints="NO" id="ozC-bM-NrR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nics_splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="ozC-bM-NrR">
                                 <rect key="frame" x="74" y="93" width="172" height="142"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="JFD-Kk-Fqy">
@@ -1338,7 +1338,7 @@
                                         <rect key="frame" x="0.0" y="22" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4LL-sj-Hzh" id="kJa-gm-o0U">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="45.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gtE-Rb-aud">
@@ -1644,7 +1644,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XXz-CM-6Kd" id="a3u-ix-clb">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4c7-2H-Fq9">
@@ -1829,7 +1829,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8mP-Xc-LHa" id="mXv-WY-9fE">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tracking Layer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZV-8h-oRi">
@@ -2203,7 +2203,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gD3-sI-6Nt" id="2tt-qi-u4I">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="r6l-zv-3yq">
@@ -2395,7 +2395,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ych-ms-uzU" id="O8K-SC-iSM">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ua-yW-U2i">
@@ -2461,7 +2461,7 @@
         <image name="mapMarkerIcon" width="128" height="128"/>
         <image name="menu" width="28" height="20"/>
         <image name="myloc" width="32" height="32"/>
-        <image name="nics_splash" width="500" height="410"/>
+        <image name="nics_splash.png" width="500" height="410"/>
         <image name="report" width="128" height="128"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -2470,10 +2470,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lRk-wA-tDq"/>
+        <segue reference="sLZ-iX-arC"/>
+        <segue reference="k61-9N-M3Z"/>
+        <segue reference="b6z-MR-ALc"/>
         <segue reference="j9x-0w-rHv"/>
         <segue reference="y6q-d4-a7M"/>
-        <segue reference="b6z-MR-ALc"/>
-        <segue reference="sLZ-iX-arC"/>
     </inferredMetricsTieBreakers>
 </document>

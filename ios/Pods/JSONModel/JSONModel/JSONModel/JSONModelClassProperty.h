@@ -20,7 +20,7 @@ enum kCustomizationTypes {
     kNotInspected = 0,
     kCustom,
     kNo
-    };
+};
 
 typedef enum kCustomizationTypes PropertyGetterType;
 
@@ -29,22 +29,25 @@ typedef enum kCustomizationTypes PropertyGetterType;
  * to inspect the declared properties of your model class.
  *
  * Class to contain the information, representing a class property
- * It features the property's name, type, whether it's a required property, 
+ * It features the property's name, type, whether it's a required property,
  * and (optionally) the class protocol
  */
 @interface JSONModelClassProperty : NSObject
 
+// deprecated
+@property (assign, nonatomic) BOOL isIndex DEPRECATED_ATTRIBUTE;
+
 /** The name of the declared property (not the ivar name) */
-@property (copy, nonatomic) NSString* name;
+@property (copy, nonatomic) NSString *name;
 
 /** A property class type  */
 @property (assign, nonatomic) Class type;
 
 /** Struct name if a struct */
-@property (strong, nonatomic) NSString* structName;
+@property (strong, nonatomic) NSString *structName;
 
 /** The name of the protocol the property conforms to (or nil) */
-@property (copy, nonatomic) NSString* protocol;
+@property (copy, nonatomic) NSString *protocol;
 
 /** If YES, it can be missing in the input data, and the input would be still valid */
 @property (assign, nonatomic) BOOL isOptional;
@@ -54,9 +57,6 @@ typedef enum kCustomizationTypes PropertyGetterType;
 
 /** If YES - create a mutable object for the value of the property */
 @property (assign, nonatomic) BOOL isMutable;
-
-/** If YES - the value of this property determines equality to other models */
-@property (assign, nonatomic) BOOL isIndex;
 
 /** The status of property getter introspection in a model */
 @property (assign, nonatomic) PropertyGetterType getterType;

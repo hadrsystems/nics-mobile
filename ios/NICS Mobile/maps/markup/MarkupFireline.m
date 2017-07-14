@@ -132,18 +132,18 @@
         [path setLineWidth:3.0];
         CGFloat dashes[] = {0, 8};
         [path setLineDash:dashes count:2 phase:0];
-    } else if([dashStyle isEqualToString:@"secondaryFireline"]) {
+    } else if([dashStyle isEqualToString:@"secondary-fire-line"]) {
         [path setLineCapStyle:kCGLineCapRound];
         CGFloat dashes[] = {0, 8};
         [path setLineDash:dashes count:2 phase:0];
     } else if([dashStyle isEqualToString:@"fireSpreadPrediction"]) {
         [[UIColor colorWithRed:0.964844f green:0.578125f blue:0.117188f alpha:1.0f] set];
-    } else if([dashStyle isEqualToString:@"completedDozer"]) {
+    } else if([dashStyle isEqualToString:@"completed-dozer-line"]) {
         
     } else if([dashStyle isEqualToString:@"proposedDozer"]) {
     
         
-    } else if([dashStyle isEqualToString:@"fireEdge"]) {
+    } else if([dashStyle isEqualToString:@"fire-edge-line"]) {
         [[UIColor redColor] set];
         [path setLineWidth:2.0];
         [path stroke];

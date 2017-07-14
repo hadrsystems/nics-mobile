@@ -37,7 +37,7 @@
 
 -(bool)doIHaveMarkupPermission:(NSNumber*)userId{
     
-    if([_name isEqualToString:@"Working Map"]){
+    if(![_name isEqualToString:@"Incident Map"]){
         return true;
     }
     
